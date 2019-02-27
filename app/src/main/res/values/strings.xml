@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">esgro</string>
+    <string name="welcome_to_esgro">Welcome To Esgro</string>
+    <string name="get_started">Get Started</string>
+    <string name="sign_in">Sign In</string>
+    <string name="v1_0">v1.0</string>
+</resources>

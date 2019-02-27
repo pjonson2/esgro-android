@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.esgro" >
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme" >
+        <activity android:name=".activity.MainActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.LaunchedActivity" >
+
+
+        </activity>
+        <activity android:name=".activity.SignUpActivity" >
+
+
+        </activity>
+        <activity android:name=".activity.SignInActivity" >
+
+
+        </activity>
+        <activity android:name=".activity.MobileVerificationActivity" >
+
+
+        </activity>
+        <activity android:name=".activity.EnterVerificationActivity" >
+
+
+        </activity>
+        <activity android:name=".activity.CompleteProfileActivity" >
+
+
+        </activity>
+        <activity android:name=".activity.HomePageActivity" >
+
+
+        </activity>
+        <activity android:name=".activity.BankAndCards2Activity" >
+
+
+        </activity>
+        <activity android:name=".activity.AddCardActivity" >
+
+
+        </activity>
+        <activity android:name=".activity.BankListActivity" >
+
+
+        </activity>gi
+        <activity android:name=".activity.LinkBankAccountActivity" >
+
+
+        </activity>
+        <activity android:name=".activity.PreferencesActivity" >
+
+
+        </activity>
+        <activity android:name=".activity.CheckPasswordActivity" >
+
+
+        </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+    </application>
+
+</manifest>
