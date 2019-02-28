@@ -24,7 +24,7 @@
         android:layout_height="22dp"
         android:layout_marginTop="15dp"
         android:fontFamily="@font/open_sans_semibold"
-        android:text="LINK BANK ACOUNT  "
+        android:text="LINK BANK ACCOUNT  "
         android:textAlignment="center"
         android:textColor="@android:color/white"
         android:textSize="14dp"
@@ -35,7 +35,7 @@
         app:layout_constraintVertical_bias="0.268" />
 
     <Button
-        android:id="@+id/button6"
+        android:id="@+id/linkBankAccountBackBtnn"
         android:layout_width="64dp"
         android:layout_height="20dp"
         android:layout_marginStart="16dp"

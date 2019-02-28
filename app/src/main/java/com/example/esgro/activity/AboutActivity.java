@@ -8,24 +8,16 @@ import android.widget.Button;
 
 import com.example.esgro.R;
 
-public class BankAndCards2Activity extends AppCompatActivity {
+public class AboutActivity  extends AppCompatActivity {
 
-    Button card;
-    Button bank;
     Button back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         onWindowFocusChanged(true);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bank_and_cards2);
-        card = findViewById(R.id.plusCard);
-        card.setOnClickListener(plusCard);
-
-        bank = findViewById(R.id.plusBank);
-        bank.setOnClickListener(plusBank);
-
-        back = findViewById(R.id.bankAndCardBackBtn);
+        setContentView(R.layout.activity_about);
+        back = findViewById(R.id.aboutBackBtn);
         back.setOnClickListener(backAction);
 
     }
@@ -42,22 +34,10 @@ public class BankAndCards2Activity extends AppCompatActivity {
                             | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         }
     }
-    View.OnClickListener plusCard = new View.OnClickListener() {
-        public void onClick(View v) {
-            Intent mainIntent = new Intent(BankAndCards2Activity.this, AddCardActivity.class);
-            BankAndCards2Activity.this.startActivity(mainIntent);
-        }
-    };
-    View.OnClickListener plusBank = new View.OnClickListener() {
-        public void onClick(View v) {
-            Intent mainIntent = new Intent(BankAndCards2Activity.this, BankListActivity.class);
-            BankAndCards2Activity.this.startActivity(mainIntent);
-        }
-    };
     View.OnClickListener backAction = new View.OnClickListener() {
         public void onClick(View v) {
-            Intent mainIntent = new Intent(BankAndCards2Activity.this, HomePageActivity.class);
-            BankAndCards2Activity.this.startActivity(mainIntent);
+            Intent mainIntent = new Intent(AboutActivity.this, HomePageActivity.class);
+            AboutActivity.this.startActivity(mainIntent);
         }
     };
 }

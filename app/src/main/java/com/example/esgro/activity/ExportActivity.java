@@ -1,6 +1,5 @@
 package com.example.esgro.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -8,22 +7,15 @@ import android.widget.Button;
 
 import com.example.esgro.R;
 
-public class CheckPasswordActivity extends AppCompatActivity {
-
+public class ExportActivity extends AppCompatActivity {
     Button back;
-    Button update;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         onWindowFocusChanged(true);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_check_password);
+        setContentView(R.layout.activity_export);
 
-        back = findViewById(R.id.checkPasswordBackBtn);
-        back.setOnClickListener(backAction);
-
-        update = findViewById(R.id.updatePasswordBtn);
-        update.setOnClickListener(updatePswrdAction);
 
     }
     @Override
@@ -39,17 +31,4 @@ public class CheckPasswordActivity extends AppCompatActivity {
                             | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         }
     }
-
-    View.OnClickListener backAction = new View.OnClickListener() {
-        public void onClick(View v) {
-            Intent mainIntent = new Intent(CheckPasswordActivity.this, PreferencesActivity.class);
-            CheckPasswordActivity.this.startActivity(mainIntent);
-        }
-    };
-    View.OnClickListener updatePswrdAction = new View.OnClickListener() {
-        public void onClick(View v) {
-            Intent mainIntent = new Intent(CheckPasswordActivity.this, HomePageActivity.class);
-            CheckPasswordActivity.this.startActivity(mainIntent);
-        }
-    };
 }

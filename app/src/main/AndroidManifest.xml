@@ -54,7 +54,7 @@
         <activity android:name=".activity.BankListActivity" >
 
 
-        </activity>gi
+        </activity>
         <activity android:name=".activity.LinkBankAccountActivity" >
 
 
@@ -67,6 +67,52 @@
 
 
         </activity>
+        <activity android:name=".activity.AboutActivity" >
+
+
+        </activity>
+        <activity android:name=".activity.ExportActivity" >
+
+
+        </activity>
+        <activity android:name=".activity.ContactUsActivity" >
+
+
+        </activity>
+        <activity android:name=".activity.DisputeDetails_01_Activity" >
+
+
+        </activity>
+        <activity android:name=".activity.Request_01_Activity" >
+
+
+        </activity>
+        <activity android:name=".activity.Request_02_Activity" >
+
+
+        </activity>
+        <activity android:name=".activity.Request_03_Activity" >
+
+
+        </activity>
+        <activity android:name=".activity.ResponedActivity" >
+
+
+        </activity>
+        <activity android:name=".activity.ProfileActivity" >
+
+
+        </activity>
+        <activity android:name=".activity.UpdateProfileActivity" >
+
+
+        </activity>
+        <activity android:name=".activity.FooterActivity" >
+
+
+        </activity>
+
+
 
         <meta-data
             android:name="preloaded_fonts"

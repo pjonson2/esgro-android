@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.esgro.R;
 
@@ -13,6 +14,9 @@ public class CompleteProfileActivity  extends AppCompatActivity {
     Button continueBtn;
     Button plusAddCard;
     Button plusLinkBank;
+
+    TextView plusLinkbankAccount;
+    TextView plusCrd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +31,13 @@ public class CompleteProfileActivity  extends AppCompatActivity {
 
         plusAddCard = findViewById(R.id.plusCompleteAddBankBtn);
         plusAddCard.setOnClickListener(plusAddBank);
+        plusCrd = findViewById(R.id.plusAddCrdLbl);
+        plusCrd.setOnClickListener(plusAddBank);
+
+        plusLinkBank = findViewById(R.id.plusLinkBankBtn);
+        plusLinkBank.setOnClickListener(plusLinkBanks);
+        plusLinkbankAccount = findViewById(R.id.plusLinkBankLbl);
+        plusLinkbankAccount.setOnClickListener(plusLinkBanks);
     }
 
     @Override
@@ -63,7 +74,7 @@ public class CompleteProfileActivity  extends AppCompatActivity {
     };
     View.OnClickListener plusLinkBanks = new View.OnClickListener() {
         public void onClick(View v) {
-            Intent mainIntent = new Intent(CompleteProfileActivity.this,AddCardActivity.class);
+            Intent mainIntent = new Intent(CompleteProfileActivity.this,BankListActivity.class);
             CompleteProfileActivity.this.startActivity(mainIntent);
         }
     };

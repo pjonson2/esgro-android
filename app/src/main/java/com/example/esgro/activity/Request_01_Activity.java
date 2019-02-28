@@ -1,6 +1,5 @@
 package com.example.esgro.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -8,16 +7,15 @@ import android.widget.Button;
 
 import com.example.esgro.R;
 
-public class LinkBankAccountActivity extends AppCompatActivity {
-    Button back;
+public class Request_01_Activity extends AppCompatActivity {
+
+    Button submit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         onWindowFocusChanged(true);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_link_bank);
-        back = findViewById(R.id.linkBankAccountBackBtnn);
-        back.setOnClickListener(backAction);
+        setContentView(R.layout.activity_request_1);
 
 
     }
@@ -34,10 +32,4 @@ public class LinkBankAccountActivity extends AppCompatActivity {
                             | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         }
     }
-    View.OnClickListener backAction = new View.OnClickListener() {
-        public void onClick(View v) {
-            Intent mainIntent = new Intent(LinkBankAccountActivity.this,BankAndCards2Activity.class);
-            LinkBankAccountActivity.this.startActivity(mainIntent);
-        }
-    };
 }

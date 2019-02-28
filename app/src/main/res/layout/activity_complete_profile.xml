@@ -58,7 +58,7 @@
             app:layout_constraintVertical_bias="0.583">
 
             <TextView
-                android:id="@+id/txtView20"
+                android:id="@+id/plusLinkBankLbl"
                 android:layout_width="163dp"
                 android:layout_height="20dp"
                 android:layout_marginStart="103dp"
@@ -99,7 +99,7 @@
                 app:srcCompat="@drawable/group_10502x" />
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/plusLinkBankBtn"
                 android:layout_width="32dp"
                 android:layout_height="37dp"
                 android:layout_marginStart="8dp"
@@ -139,7 +139,7 @@
             app:layout_constraintVertical_bias="0.449">
 
             <TextView
-                android:id="@+id/txtView21"
+                android:id="@+id/plusAddCrdLbl"
                 android:layout_width="163dp"
                 android:layout_height="20dp"
                 android:layout_marginStart="103dp"
@@ -305,7 +305,7 @@
             app:layout_constraintVertical_bias="0.905" />
 
         <Button
-            android:id="@+id/button5"
+            android:id="@+id/skipNowBtn"
             android:layout_width="133dp"
             android:layout_height="31dp"
             android:layout_marginStart="8dp"

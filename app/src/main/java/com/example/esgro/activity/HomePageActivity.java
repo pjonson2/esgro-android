@@ -5,12 +5,18 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.example.esgro.R;
 
 public class HomePageActivity extends AppCompatActivity {
 
     Button bankCard;
+    Button about;
+    Button preferences;
+    Button signOut;
+    Button export;
+    ImageView contactIcon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +26,23 @@ public class HomePageActivity extends AppCompatActivity {
 
         bankCard = findViewById(R.id.bankAndCard);
         bankCard.setOnClickListener(bankCardAction);
+
+        about = findViewById(R.id.aboutBtn);
+        about.setOnClickListener(aboutAction);
+
+        preferences = findViewById(R.id.preferenceaBtn);
+        preferences.setOnClickListener(preferenceAction);
+
+        signOut = findViewById(R.id.signOutBtn);
+        signOut.setOnClickListener(signOutAction);
+
+        export = findViewById(R.id.exportReqBtn);
+        export.setOnClickListener(exportAction);
+
+        contactIcon = findViewById(R.id.contactIcon);
+        contactIcon.setOnClickListener(contactUs);
+
+
     }
 
 
@@ -43,4 +66,39 @@ public class HomePageActivity extends AppCompatActivity {
             HomePageActivity.this.startActivity(mainIntent);
         }
     };
+    View.OnClickListener aboutAction = new View.OnClickListener() {
+        public void onClick(View v) {
+            Intent mainIntent = new Intent(HomePageActivity.this,AboutActivity.class);
+            HomePageActivity.this.startActivity(mainIntent);
+        }
+    };
+    View.OnClickListener preferenceAction = new View.OnClickListener() {
+        public void onClick(View v) {
+            Intent mainIntent = new Intent(HomePageActivity.this,PreferencesActivity.class);
+            HomePageActivity.this.startActivity(mainIntent);
+        }
+    };
+    View.OnClickListener signOutAction = new View.OnClickListener() {
+        public void onClick(View v) {
+            Intent mainIntent = new Intent(HomePageActivity.this,LaunchedActivity.class);
+            HomePageActivity.this.startActivity(mainIntent);
+        }
+    };
+    View.OnClickListener exportAction = new View.OnClickListener() {
+        public void onClick(View v) {
+//            Intent mainIntent = new Intent(HomePageActivity.this,ExportActivity.class);
+//            HomePageActivity.this.startActivity(mainIntent);
+        }
+    };
+
+
+    // footer icon actions
+
+    View.OnClickListener contactUs = new View.OnClickListener() {
+        public void onClick(View v) {
+            Intent mainIntent = new Intent(HomePageActivity.this,ContactUsActivity.class);
+            HomePageActivity.this.startActivity(mainIntent);
+        }
+    };
 }
+

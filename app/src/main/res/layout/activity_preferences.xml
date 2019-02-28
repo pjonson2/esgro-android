@@ -35,7 +35,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button15"
+        android:id="@+id/preferenceBackBtn"
         android:layout_width="64dp"
         android:layout_height="20dp"
         android:layout_marginStart="16dp"
@@ -167,7 +167,7 @@
         app:layout_constraintVertical_bias="0.035" />
 
     <TextView
-        android:id="@+id/textView46"
+        android:id="@+id/changePasswordBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="44dp"
@@ -213,7 +213,7 @@
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/textView45"
+        android:id="@+id/changeNumberTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="44dp"
@@ -233,7 +233,7 @@
         app:layout_constraintVertical_bias="0.609" />
 
     <TextView
-        android:id="@+id/textView44"
+        android:id="@+id/notificationTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="44dp"
@@ -266,7 +266,7 @@
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/textView43"
+        android:id="@+id/privacyTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="44dp"

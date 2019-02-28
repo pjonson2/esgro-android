@@ -117,7 +117,7 @@
         app:layout_constraintVertical_bias="0.28" />
 
     <Button
-        android:id="@+id/button21"
+        android:id="@+id/aboutBtn"
         android:layout_width="310dp"
         android:layout_height="31dp"
         android:background="@android:color/transparent"
@@ -161,7 +161,7 @@
         tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/button20"
+        android:id="@+id/exportReqBtn"
         android:layout_width="310dp"
         android:layout_height="31dp"
         android:background="@android:color/transparent"
@@ -205,7 +205,7 @@
         tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/button19"
+        android:id="@+id/preferenceaBtn"
         android:layout_width="310dp"
         android:layout_height="31dp"
         android:background="@android:color/transparent"
@@ -371,7 +371,7 @@
         tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/button9"
+        android:id="@+id/signOutBtn"
         android:layout_width="262dp"
         android:layout_height="50dp"
         android:layout_marginStart="8dp"
@@ -435,7 +435,7 @@
             app:layout_constraintTop_toTopOf="@+id/view4" />
 
         <ImageView
-            android:id="@+id/imageView14"
+            android:id="@+id/contactIcon"
             android:layout_width="18dp"
             android:layout_height="18dp"
             android:layout_marginTop="8dp"

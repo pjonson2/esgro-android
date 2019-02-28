@@ -46,7 +46,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginBottom="12dp"
         android:fontFamily="@font/open_sans_semibold"
-        android:text="LINK BANK ACOUNT  "
+        android:text="LINK BANK ACCOUNT  "
         android:textAlignment="center"
         android:textColor="@android:color/white"
         android:textSize="14dp"

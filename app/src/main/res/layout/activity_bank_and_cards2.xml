@@ -74,7 +74,7 @@
         app:layout_constraintTop_toTopOf="@+id/view3" />
 
     <TextView
-        android:id="@+id/textView28"
+        android:id="@+id/plusAddCardLbl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
@@ -206,7 +206,7 @@
         app:layout_constraintVertical_bias="0.464" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/bankAndCardBackBtn"
         android:layout_width="64dp"
         android:layout_height="20dp"
         android:layout_marginStart="16dp"
@@ -279,7 +279,7 @@
         app:layout_constraintVertical_bias="0.476" />
 
     <TextView
-        android:id="@+id/textView27"
+        android:id="@+id/plusLinkBankAccountLbl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
