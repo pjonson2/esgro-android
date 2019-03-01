@@ -111,6 +111,10 @@
 
 
         </activity>
+        <activity android:name=".activity.alert.FeedBackAlertActivity" >
+
+
+        </activity>
 
 
 

@@ -16,7 +16,13 @@ public class HomePageActivity extends AppCompatActivity {
     Button preferences;
     Button signOut;
     Button export;
+    Button cancelAndCompletedBtn;
+    Button disputesBtn;
     ImageView contactIcon;
+    ImageView profileIcon;
+    ImageView handshakeIcon;
+    ImageView newPostIcon;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +30,11 @@ public class HomePageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
 
+        changeBehaviours();
+
+
+    }
+    public void changeBehaviours(){
         bankCard = findViewById(R.id.bankAndCard);
         bankCard.setOnClickListener(bankCardAction);
 
@@ -39,9 +50,23 @@ public class HomePageActivity extends AppCompatActivity {
         export = findViewById(R.id.exportReqBtn);
         export.setOnClickListener(exportAction);
 
+        cancelAndCompletedBtn = findViewById(R.id.cancelAndCompletedBtn);
+        cancelAndCompletedBtn.setOnClickListener(cancelAndCompletedAction);
+
+        disputesBtn = findViewById(R.id.disputesBtn);
+        disputesBtn.setOnClickListener(disputesAction);
+
         contactIcon = findViewById(R.id.contactIcon);
         contactIcon.setOnClickListener(contactUs);
 
+        profileIcon = findViewById(R.id.profileIcon);
+        profileIcon.setOnClickListener(profile);
+
+        handshakeIcon = findViewById(R.id.handshakeIcon);
+        handshakeIcon.setOnClickListener(handshake);
+
+        newPostIcon = findViewById(R.id.newPostIcon);
+        newPostIcon.setOnClickListener(newAction);
 
     }
 
@@ -59,6 +84,8 @@ public class HomePageActivity extends AppCompatActivity {
                             | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         }
     }
+
+    //  ----------------------- main view button actions  -------------------------
 
     View.OnClickListener bankCardAction = new View.OnClickListener() {
         public void onClick(View v) {
@@ -86,18 +113,43 @@ public class HomePageActivity extends AppCompatActivity {
     };
     View.OnClickListener exportAction = new View.OnClickListener() {
         public void onClick(View v) {
-//            Intent mainIntent = new Intent(HomePageActivity.this,ExportActivity.class);
-//            HomePageActivity.this.startActivity(mainIntent);
+            Intent mainIntent = new Intent(HomePageActivity.this,ExportActivity.class);
+            HomePageActivity.this.startActivity(mainIntent);
+        }
+    };
+    View.OnClickListener cancelAndCompletedAction = new View.OnClickListener() {
+        public void onClick(View v) {
+        }
+    };
+    View.OnClickListener disputesAction = new View.OnClickListener() {
+        public void onClick(View v) {
         }
     };
 
 
-    // footer icon actions
+    //  ----------------------- footer icon actions  -------------------------
 
     View.OnClickListener contactUs = new View.OnClickListener() {
         public void onClick(View v) {
             Intent mainIntent = new Intent(HomePageActivity.this,ContactUsActivity.class);
             HomePageActivity.this.startActivity(mainIntent);
+        }
+    };
+
+    View.OnClickListener profile = new View.OnClickListener() {
+        public void onClick(View v) {
+            Intent mainIntent = new Intent(HomePageActivity.this,ProfileActivity.class);
+            HomePageActivity.this.startActivity(mainIntent);
+        }
+    };
+    View.OnClickListener handshake = new View.OnClickListener() {
+        public void onClick(View v) {
+
+        }
+    };
+    View.OnClickListener newAction = new View.OnClickListener() {
+        public void onClick(View v) {
+
         }
     };
 }

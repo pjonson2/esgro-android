@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.example.esgro.R;
 
@@ -13,6 +14,11 @@ public class BankAndCards2Activity extends AppCompatActivity {
     Button card;
     Button bank;
     Button back;
+    ImageView contactIcon;
+    ImageView profileIcon;
+    ImageView handshakeIcon;
+    ImageView newPostIcon;
+    ImageView bankCardSettingsIcon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +33,21 @@ public class BankAndCards2Activity extends AppCompatActivity {
 
         back = findViewById(R.id.bankAndCardBackBtn);
         back.setOnClickListener(backAction);
+
+        contactIcon = findViewById(R.id.bankCardContactUsIcon);
+        contactIcon.setOnClickListener(contactAction);
+
+        profileIcon = findViewById(R.id.profileIcon);
+        profileIcon.setOnClickListener(profileIconAction);
+
+        bankCardSettingsIcon = findViewById(R.id.bankCardSettingsIcon);
+        bankCardSettingsIcon.setOnClickListener(settingsActoin);
+
+        newPostIcon = findViewById(R.id.bankAndCardNewPostIcon);
+        newPostIcon.setOnClickListener(newPostAction);
+
+        handshakeIcon = findViewById(R.id.bankCardHandshakeIcon);
+        handshakeIcon.setOnClickListener(handHsakeAction);
 
     }
     @Override
@@ -58,6 +79,35 @@ public class BankAndCards2Activity extends AppCompatActivity {
         public void onClick(View v) {
             Intent mainIntent = new Intent(BankAndCards2Activity.this, HomePageActivity.class);
             BankAndCards2Activity.this.startActivity(mainIntent);
+        }
+    };
+
+
+
+    View.OnClickListener contactAction = new View.OnClickListener() {
+        public void onClick(View v) {
+            Intent mainIntent = new Intent(BankAndCards2Activity.this, ContactUsActivity.class);
+            BankAndCards2Activity.this.startActivity(mainIntent);
+        }
+    };
+    View.OnClickListener profileIconAction = new View.OnClickListener() {
+        public void onClick(View v) {
+            Intent mainIntent = new Intent(BankAndCards2Activity.this, ProfileActivity.class);
+            BankAndCards2Activity.this.startActivity(mainIntent);
+        }
+    };
+    View.OnClickListener settingsActoin = new View.OnClickListener() {
+        public void onClick(View v) {
+            Intent mainIntent = new Intent(BankAndCards2Activity.this, HomePageActivity.class);
+            BankAndCards2Activity.this.startActivity(mainIntent);
+        }
+    };
+    View.OnClickListener newPostAction = new View.OnClickListener() {
+        public void onClick(View v) {
+        }
+    };
+    View.OnClickListener handHsakeAction = new View.OnClickListener() {
+        public void onClick(View v) {
         }
     };
 }

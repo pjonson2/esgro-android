@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:gravity="center"
+>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/view59"
+        android:layout_width="290dp"
+        android:layout_height="340dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="80dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView14"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            app:layout_constraintBottom_toBottomOf="@+id/view59"
+            app:layout_constraintEnd_toEndOf="@+id/view59"
+            app:layout_constraintHorizontal_bias="0.493"
+            app:layout_constraintStart_toStartOf="@+id/view59"
+            app:layout_constraintTop_toTopOf="@+id/view59"
+            app:layout_constraintVertical_bias="0.245"
+            app:srcCompat="@drawable/feedback_alert"
+            tools:layout_conversion_absoluteHeight="140dp"
+            tools:layout_conversion_absoluteWidth="140dp" />
+
+        <Button
+            android:id="@+id/feedbackClose"
+            android:layout_width="36dp"
+            android:layout_height="38dp"
+            android:background="@android:color/transparent"
+            android:text="X"
+            android:textColor="#929AAB"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="@+id/view59"
+            app:layout_constraintEnd_toEndOf="@+id/view59"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/view59"
+            app:layout_constraintTop_toTopOf="@+id/view59"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/textView102"
+            android:layout_width="269dp"
+            android:layout_height="39dp"
+            android:text="If you would like to give additional \n feedback please call on following Number"
+            android:textAlignment="center"
+            android:textColor="#393E46"
+            android:textSize="10sp"
+            app:fontFamily="@font/open_sans"
+            app:layout_constraintBottom_toBottomOf="@+id/view59"
+            app:layout_constraintEnd_toEndOf="@+id/view59"
+            app:layout_constraintHorizontal_bias="0.476"
+            app:layout_constraintStart_toStartOf="@+id/view59"
+            app:layout_constraintTop_toTopOf="@+id/view59"
+            app:layout_constraintVertical_bias="0.784" />
+
+        <TextView
+            android:id="@+id/textView101"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thanks for your feedback!"
+            android:textColor="#393E46"
+            android:textSize="12sp"
+            app:fontFamily="@font/open_sans"
+            app:layout_constraintBottom_toBottomOf="@+id/view59"
+            app:layout_constraintEnd_toEndOf="@+id/view59"
+            app:layout_constraintHorizontal_bias="0.492"
+            app:layout_constraintStart_toStartOf="@+id/view59"
+            app:layout_constraintTop_toTopOf="@+id/view59"
+            app:layout_constraintVertical_bias="0.647" />
+
+        <TextView
+            android:id="@+id/textView105"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="(011) 542 3622"
+            android:textSize="14sp"
+            app:fontFamily="@font/open_sans_semibold"
+            app:layout_constraintBottom_toBottomOf="@+id/view59"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/view59"
+            app:layout_constraintVertical_bias="0.9" />
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.constraint.ConstraintLayout>

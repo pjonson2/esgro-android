@@ -12,6 +12,7 @@ public class SignInActivity extends AppCompatActivity {
 
     Button back;
     Button continueBtn;
+    Button getStart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +24,9 @@ public class SignInActivity extends AppCompatActivity {
 
         continueBtn = findViewById(R.id.signInContinueBtn);
         continueBtn.setOnClickListener(continueBtnAction);
+
+        getStart = findViewById(R.id.signIngetStartBtn);
+        getStart.setOnClickListener(getStartBtnAction);
 
     }
     @Override
@@ -49,6 +53,12 @@ public class SignInActivity extends AppCompatActivity {
     View.OnClickListener continueBtnAction = new View.OnClickListener() {
         public void onClick(View v) {
             Intent mainIntent = new Intent(SignInActivity.this,MobileVerificationActivity.class);
+            SignInActivity.this.startActivity(mainIntent);
+        }
+    };
+    View.OnClickListener getStartBtnAction = new View.OnClickListener() {
+        public void onClick(View v) {
+            Intent mainIntent = new Intent(SignInActivity.this,SignUpActivity.class);
             SignInActivity.this.startActivity(mainIntent);
         }
     };

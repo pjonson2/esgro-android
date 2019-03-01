@@ -10,6 +10,7 @@ import com.example.esgro.R;
 
 public class AddCardActivity extends AppCompatActivity {
     Button back;
+    Button addcrd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +20,9 @@ public class AddCardActivity extends AppCompatActivity {
 
         back = findViewById(R.id.addCardBackBtn);
         back.setOnClickListener(addCardBAck);
+
+        addcrd = findViewById(R.id.addCrdBtn);
+        addcrd.setOnClickListener(addCardAction);
 
     }
     @Override
@@ -37,6 +41,12 @@ public class AddCardActivity extends AppCompatActivity {
     View.OnClickListener addCardBAck = new View.OnClickListener() {
         public void onClick(View v) {
             Intent mainIntent = new Intent(AddCardActivity.this, BankAndCards2Activity.class);
+            AddCardActivity.this.startActivity(mainIntent);
+        }
+    };
+    View.OnClickListener addCardAction = new View.OnClickListener() {
+        public void onClick(View v) {
+            Intent mainIntent = new Intent(AddCardActivity.this, HomePageActivity.class);
             AddCardActivity.this.startActivity(mainIntent);
         }
     };

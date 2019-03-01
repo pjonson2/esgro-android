@@ -23,7 +23,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/signIngetStartBtn"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -35,8 +35,8 @@
         android:background="@drawable/white_button"
         android:fontFamily="@font/open_sans_semibold"
         android:text="Get Started"
-        android:textColor="#5BDA31"
         android:textAllCaps="false"
+        android:textColor="#5BDA31"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
