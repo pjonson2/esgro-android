@@ -2,6 +2,7 @@ package com.example.esgro.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.TextViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -27,6 +28,11 @@ public class SignInActivity extends AppCompatActivity {
 
         getStart = findViewById(R.id.signIngetStartBtn);
         getStart.setOnClickListener(getStartBtnAction);
+//        TextViewCompat.setAutoSizeTextTypeUniformWithPresetSizes(int[] presetSizes, int unit);
+
+//// Example
+//        int[] sizes = getContext().getResources().getIntArray(R.array.autosize_text_sizes)
+//        TextViewCompat.setAutoSizeTextTypeUniformWithPresetSizes(myTextView, sizes, TypedValue.COMPLEX_UNIT_SP);
 
     }
     @Override

@@ -7,12 +7,8 @@
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/view4"
-        android:layout_width="411dp"
+        android:layout_width="0dp"
         android:layout_height="60dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
         android:background="@android:color/white"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -94,7 +90,7 @@
 
     <View
         android:id="@+id/headerView3"
-        android:layout_width="412dp"
+        android:layout_width="0dp"
         android:layout_height="215dp"
         android:background="@drawable/layout_bottom"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -105,20 +101,19 @@
 
     <View
         android:id="@+id/midView3"
-        android:layout_width="375dp"
+        android:layout_width="0dp"
         android:layout_height="500dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="116dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
         android:background="@drawable/layout_corner"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/view4"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.775"
+        app:layout_constraintVertical_bias="0.619"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -131,7 +126,7 @@
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/midView3"
         app:layout_constraintEnd_toEndOf="@+id/midView3"
-        app:layout_constraintHorizontal_bias="0.056"
+        app:layout_constraintHorizontal_bias="0.03"
         app:layout_constraintStart_toStartOf="@+id/midView3"
         app:layout_constraintTop_toTopOf="@+id/midView3"
         app:layout_constraintVertical_bias="0.446" />
@@ -168,7 +163,7 @@
 
     <Button
         android:id="@+id/button19"
-        android:layout_width="197dp"
+        android:layout_width="193dp"
         android:layout_height="70dp"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
@@ -183,11 +178,11 @@
         android:textColor="#929AAB"
         android:textSize="12dp"
         app:layout_constraintBottom_toBottomOf="@+id/midView3"
-        app:layout_constraintEnd_toEndOf="@+id/midView3"
-        app:layout_constraintHorizontal_bias="0.602"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.48"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/midView3"
-        app:layout_constraintVertical_bias="0.262"
+        app:layout_constraintVertical_bias="0.23"
         tools:ignore="MissingConstraints" />
 
     <ImageView
@@ -205,13 +200,13 @@
 
     <View
         android:id="@+id/view38"
-        android:layout_width="370dp"
+        android:layout_width="0dp"
         android:layout_height="1dp"
         android:background="#EBEBEB"
         app:layout_constraintBottom_toBottomOf="@+id/midView3"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/midView3"
         app:layout_constraintHorizontal_bias="0.487"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/midView3"
         app:layout_constraintTop_toTopOf="@+id/midView3"
         app:layout_constraintVertical_bias="0.4"
         tools:ignore="MissingConstraints" />
@@ -255,13 +250,13 @@
 
     <View
         android:id="@+id/view37"
-        android:layout_width="370dp"
+        android:layout_width="0dp"
         android:layout_height="1dp"
         android:background="#EBEBEB"
         app:layout_constraintBottom_toBottomOf="@+id/midView3"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/midView3"
         app:layout_constraintHorizontal_bias="0.487"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/midView3"
         app:layout_constraintTop_toTopOf="@+id/midView3"
         app:layout_constraintVertical_bias="0.18"
         tools:ignore="MissingConstraints" />
@@ -292,13 +287,13 @@
 
     <View
         android:id="@+id/view31"
-        android:layout_width="370dp"
+        android:layout_width="0dp"
         android:layout_height="1dp"
         android:background="#EBEBEB"
         app:layout_constraintBottom_toBottomOf="@+id/midView3"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/view38"
         app:layout_constraintHorizontal_bias="0.487"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/view38"
         app:layout_constraintTop_toTopOf="@+id/midView3"
         app:layout_constraintVertical_bias="0.096"
         tools:ignore="MissingConstraints" />
@@ -322,7 +317,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/headerView3"
         tools:ignore="MissingConstraints" />
 
     <ImageView
@@ -340,8 +335,12 @@
 
     <Button
         android:id="@+id/submitBtn"
-        android:layout_width="245dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginRight="80dp"
         android:background="@drawable/light_green_button"
         android:fontFamily="@font/open_sans_semibold"
         android:text="Submit"
@@ -357,20 +356,19 @@
 
     <TextView
         android:id="@+id/textView44"
-        android:layout_width="343dp"
+        android:layout_width="0dp"
         android:layout_height="162dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
         android:background="@drawable/border"
         android:clickable="true"
         android:editable="true"
         android:enabled="true"
         android:hint="Type your message here"
         app:layout_constraintBottom_toBottomOf="@+id/midView3"
-        app:layout_constraintEnd_toEndOf="@+id/view38"
-        app:layout_constraintHorizontal_bias="0.923"
+        app:layout_constraintEnd_toEndOf="@+id/midView3"
         app:layout_constraintStart_toStartOf="@+id/midView3"
         app:layout_constraintTop_toTopOf="@+id/midView3"
         app:layout_constraintVertical_bias="0.742" />

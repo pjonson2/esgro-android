@@ -34,8 +34,6 @@
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:gravity="end"
         android:text="$0.00"
@@ -73,15 +71,17 @@
 
     <View
         android:id="@+id/view49"
-        android:layout_width="375dp"
+        android:layout_width="0dp"
         android:layout_height="1dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:background="#EBEBEB"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view46"
         app:layout_constraintVertical_bias="0.211"
@@ -94,8 +94,6 @@
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:gravity="end"
         android:text="$0.00"
@@ -138,8 +136,6 @@
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:gravity="end"
         android:text="Same day (11/18/2018)"
@@ -156,7 +152,7 @@
 
     <View
         android:id="@+id/view48"
-        android:layout_width="375dp"
+        android:layout_width="0dp"
         android:layout_height="1dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
@@ -172,7 +168,7 @@
 
     <View
         android:id="@+id/view47"
-        android:layout_width="375dp"
+        android:layout_width="0dp"
         android:layout_height="1dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
@@ -230,7 +226,7 @@
 
     <View
         android:id="@+id/view46"
-        android:layout_width="414dp"
+        android:layout_width="0dp"
         android:layout_height="78dp"
         android:background="#2C3251"
         app:layout_constraintBottom_toBottomOf="@+id/view4"
@@ -258,13 +254,13 @@
 
     <Button
         android:id="@+id/button28"
-        android:layout_width="245dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginLeft="70dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginRight="70dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/gray_round_button"
         android:fontFamily="@font/open_sans_semibold"
@@ -285,9 +281,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
+        android:gravity="end"
         android:text="Hendricks"
         android:textAlignment="textEnd"
         android:textColor="#929AAB"
@@ -298,8 +293,7 @@
         app:layout_constraintHorizontal_bias="0.964"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view46"
-        app:layout_constraintVertical_bias="0.008"
-        android:gravity="end" />
+        app:layout_constraintVertical_bias="0.008" />
 
     <TextView
         android:id="@+id/textView80"
@@ -324,13 +318,9 @@
 
     <TextView
         android:id="@+id/textView86"
-        android:layout_width="415dp"
+        android:layout_width="0dp"
         android:layout_height="130dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:background="@android:color/white"
         android:hint="     DESCRIPTION  "

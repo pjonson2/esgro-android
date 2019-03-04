@@ -8,7 +8,7 @@
 
     <View
         android:id="@+id/headerView2"
-        android:layout_width="412dp"
+        android:layout_width="0dp"
         android:layout_height="215dp"
         android:background="@drawable/layout_bottom"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -61,27 +61,27 @@
 
     <View
         android:id="@+id/midView2"
-        tools:ignore="MissingConstraints"
-        android:layout_width="375dp"
-        android:layout_height="500dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="112dp"
+        android:layout_marginTop="80dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="140dp"
+        android:layout_marginBottom="136dp"
         android:background="@drawable/layout_corner"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.444"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/headerView" />
+        app:layout_constraintTop_toTopOf="@+id/headerView2"
+        app:layout_constraintVertical_bias="1.0"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textView48"
-        tools:ignore="MissingConstraints"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="22dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
@@ -96,7 +96,8 @@
         app:layout_constraintBottom_toTopOf="@+id/midView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/headerView2" />
+        app:layout_constraintTop_toTopOf="@+id/headerView2"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textView52"
@@ -115,15 +116,20 @@
 
     <TextView
         android:id="@+id/textView53"
-        android:layout_width="312dp"
-        android:layout_height="405dp"
-        android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
         android:fontFamily="@font/open_sans_semibold"
+        android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="@+id/midView2"
         app:layout_constraintEnd_toEndOf="@+id/midView2"
         app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="@+id/midView2"
-        app:layout_constraintTop_toTopOf="@+id/midView2"
+        app:layout_constraintTop_toBottomOf="@+id/textView52"
         app:layout_constraintVertical_bias="0.568" />
 </android.support.constraint.ConstraintLayout>

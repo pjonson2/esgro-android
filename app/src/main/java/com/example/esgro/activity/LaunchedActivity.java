@@ -3,6 +3,7 @@ package com.example.esgro.activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -17,6 +18,9 @@ public class LaunchedActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+//        ConstraintLayout.LayoutParams params = getLayoutInflater()
+
         onWindowFocusChanged(true);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launched);

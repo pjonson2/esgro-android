@@ -51,7 +51,7 @@
 
     <View
         android:id="@+id/view42"
-        android:layout_width="414dp"
+        android:layout_width="0dp"
         android:layout_height="78dp"
         android:background="#2C3251"
         app:layout_constraintBottom_toBottomOf="@+id/view4"
@@ -80,13 +80,13 @@
 
     <View
         android:id="@+id/view43"
-        android:layout_width="325dp"
+        android:layout_width="0dp"
         android:layout_height="145dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="50dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/layout_corner"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -97,8 +97,8 @@
 
     <TextView
         android:id="@+id/textView74"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="48dp"
+        android:layout_height="16dp"
         android:text="RESERVE"
         android:textColor="#393E46"
         android:textSize="10sp"
@@ -127,9 +127,13 @@
 
     <EditText
         android:id="@+id/editText18"
-        android:layout_width="223dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginLeft="100dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginRight="100dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="$0.00"
@@ -144,8 +148,8 @@
 
     <TextView
         android:id="@+id/textView73"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="33dp"
+        android:layout_height="16dp"
         android:text="$0.00"
         android:textColor="#929AAB"
         android:textSize="10sp"
@@ -159,13 +163,13 @@
 
     <Button
         android:id="@+id/button21"
-        android:layout_width="245dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginLeft="100dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginRight="100dp"
         android:background="@drawable/light_green_button"
         android:fontFamily="@font/open_sans_semibold"
         android:text="Continue"

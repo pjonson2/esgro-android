@@ -8,12 +8,8 @@
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/view4"
-        android:layout_width="411dp"
+        android:layout_width="0dp"
         android:layout_height="60dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
         android:background="@android:color/white"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -134,12 +130,8 @@
 
     <View
         android:id="@+id/view29"
-        android:layout_width="414dp"
+        android:layout_width="0dp"
         android:layout_height="78dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:background="#2C3251"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -170,12 +162,8 @@
 
     <View
         android:id="@+id/view30"
-        android:layout_width="410dp"
+        android:layout_width="0dp"
         android:layout_height="355dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:background="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -246,7 +234,7 @@
 
     <View
         android:id="@+id/view35"
-        android:layout_width="409dp"
+        android:layout_width="0dp"
         android:layout_height="1dp"
         android:background="#EBEBEB"
         app:layout_constraintBottom_toBottomOf="@+id/view30"
@@ -258,7 +246,7 @@
 
     <View
         android:id="@+id/view36"
-        android:layout_width="409dp"
+        android:layout_width="0dp"
         android:layout_height="1dp"
         android:background="#EBEBEB"
         app:layout_constraintBottom_toBottomOf="@+id/view30"
@@ -270,7 +258,7 @@
 
     <View
         android:id="@+id/view34"
-        android:layout_width="409dp"
+        android:layout_width="0dp"
         android:layout_height="1dp"
         android:background="#EBEBEB"
         app:layout_constraintBottom_toBottomOf="@+id/view30"
@@ -354,7 +342,7 @@
 
     <View
         android:id="@+id/view33"
-        android:layout_width="409dp"
+        android:layout_width="0dp"
         android:layout_height="1dp"
         android:background="#EBEBEB"
         app:layout_constraintBottom_toBottomOf="@+id/view30"
@@ -386,7 +374,7 @@
 
     <View
         android:id="@+id/view32"
-        android:layout_width="409dp"
+        android:layout_width="0dp"
         android:layout_height="1dp"
         android:background="#EBEBEB"
         app:layout_constraintBottom_toBottomOf="@+id/view30"
@@ -437,13 +425,13 @@
 
     <Button
         android:id="@+id/button5"
-        android:layout_width="245dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginLeft="100dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginRight="100dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/light_green_button"
         android:fontFamily="@font/open_sans_semibold"
@@ -452,10 +440,11 @@
         android:textAllCaps="false"
         android:textColor="@android:color/white"
         android:textSize="14dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/view4"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view30"
-        app:layout_constraintVertical_bias="0.675" />
+        app:layout_constraintVertical_bias="0.821" />
 
 </android.support.constraint.ConstraintLayout>

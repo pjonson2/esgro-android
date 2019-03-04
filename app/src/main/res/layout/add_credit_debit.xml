@@ -8,7 +8,7 @@
 
     <View
         android:id="@+id/view5"
-        android:layout_width="414dp"
+        android:layout_width="0dp"
         android:layout_height="78dp"
         android:background="#2C3251"
         app:layout_constraintBottom_toBottomOf="@+id/view4"
@@ -80,13 +80,13 @@
 
     <Button
         android:id="@+id/addCrdBtn"
-        android:layout_width="245dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginLeft="60dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginRight="60dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/light_green_button"
         android:fontFamily="@font/open_sans_semibold"
@@ -103,7 +103,7 @@
 
     <View
         android:id="@+id/view12"
-        android:layout_width="410dp"
+        android:layout_width="0dp"
         android:layout_height="195dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
@@ -165,14 +165,13 @@
 
     <View
         android:id="@+id/view15"
-        android:layout_width="386dp"
+        android:layout_width="0dp"
         android:layout_height="1dp"
         android:layout_marginTop="8dp"
         android:background="#EBEBEB"
         app:layout_constraintBottom_toBottomOf="@+id/view12"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.36"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/view12"
+        app:layout_constraintStart_toStartOf="@+id/view12"
         app:layout_constraintTop_toTopOf="@+id/view12"
         app:layout_constraintVertical_bias="0.596"
         tools:ignore="MissingConstraints" />
@@ -221,14 +220,14 @@
 
     <View
         android:id="@+id/view14"
-        android:layout_width="386dp"
+        android:layout_width="0dp"
         android:layout_height="1dp"
         android:layout_marginTop="8dp"
         android:background="#EBEBEB"
         app:layout_constraintBottom_toBottomOf="@+id/view12"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/view12"
         app:layout_constraintHorizontal_bias="0.36"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/view12"
         app:layout_constraintTop_toTopOf="@+id/view12"
         app:layout_constraintVertical_bias="0.387"
         tools:ignore="MissingConstraints" />
@@ -259,14 +258,14 @@
 
     <View
         android:id="@+id/view13"
-        android:layout_width="386dp"
+        android:layout_width="0dp"
         android:layout_height="1dp"
         android:layout_marginTop="8dp"
         android:background="#EBEBEB"
         app:layout_constraintBottom_toBottomOf="@+id/view12"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/view12"
         app:layout_constraintHorizontal_bias="0.48"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/view12"
         app:layout_constraintTop_toTopOf="@+id/view12"
         app:layout_constraintVertical_bias="0.188"
         tools:ignore="MissingConstraints" />
