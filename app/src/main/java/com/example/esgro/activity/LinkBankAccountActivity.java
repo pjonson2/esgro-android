@@ -3,13 +3,16 @@ package com.example.esgro.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.SpannableString;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.esgro.R;
 
 public class LinkBankAccountActivity extends AppCompatActivity {
     Button back;
+    TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +22,9 @@ public class LinkBankAccountActivity extends AppCompatActivity {
         back = findViewById(R.id.linkBankAccountBackBtnn);
         back.setOnClickListener(backAction);
 
+        textView = findViewById(R.id.linkedBankNameTxt);
+        String bankDetails = getIntent().getStringExtra("bankListName");
+        textView.setText(bankDetails);
 
     }
     @Override
@@ -36,7 +42,7 @@ public class LinkBankAccountActivity extends AppCompatActivity {
     }
     View.OnClickListener backAction = new View.OnClickListener() {
         public void onClick(View v) {
-            Intent mainIntent = new Intent(LinkBankAccountActivity.this,BankAndCards2Activity.class);
+            Intent mainIntent = new Intent(LinkBankAccountActivity.this,BankListActivity.class);
             LinkBankAccountActivity.this.startActivity(mainIntent);
         }
     };

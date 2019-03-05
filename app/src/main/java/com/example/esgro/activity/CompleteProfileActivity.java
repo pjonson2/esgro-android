@@ -1,10 +1,13 @@
 package com.example.esgro.activity;
 
 import android.content.Intent;
+import android.graphics.drawable.Icon;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.esgro.R;
@@ -14,9 +17,12 @@ public class CompleteProfileActivity  extends AppCompatActivity {
     Button continueBtn;
     Button plusAddCard;
     Button plusLinkBank;
+    ImageView selectImg;
 
     TextView plusLinkbankAccount;
     TextView plusCrd;
+
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +42,12 @@ public class CompleteProfileActivity  extends AppCompatActivity {
 
         plusLinkBank = findViewById(R.id.plusLinkBankBtn);
         plusLinkBank.setOnClickListener(plusLinkBanks);
+
         plusLinkbankAccount = findViewById(R.id.plusLinkBankLbl);
         plusLinkbankAccount.setOnClickListener(plusLinkBanks);
+
+        selectImg = findViewById(R.id.selectImg);
+        selectImg.setOnClickListener(selectFile);
     }
 
     @Override
@@ -78,4 +88,26 @@ public class CompleteProfileActivity  extends AppCompatActivity {
             CompleteProfileActivity.this.startActivity(mainIntent);
         }
     };
+    View.OnClickListener selectFile = new View.OnClickListener() {
+        public void onClick(View v) {
+            intent = new Intent(Intent.ACTION_GET_CONTENT);
+            intent.setType("*/*");
+            startActivityForResult(intent,10);
+        }
+    };
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        switch (requestCode) {
+            case 10:
+                if (resultCode == RESULT_OK) {
+//                    String path = data.getData().getPath();
+//                    Icon icon= new Icon(p);
+//                    selectImg.setImageIcon();
+
+//                    System.out.println("path is  " + path);
+                }
+                break;
+        }
+    }
 }

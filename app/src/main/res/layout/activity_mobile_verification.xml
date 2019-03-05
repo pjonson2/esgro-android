@@ -35,9 +35,9 @@
             android:background="@drawable/group_10452x"
             app:layout_constraintBottom_toTopOf="@+id/textView13"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.415" />
 
         <TextView
             android:id="@+id/textView12"
@@ -45,7 +45,7 @@
             android:layout_height="24dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginTop="310dp"
+            android:layout_marginTop="256dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:fontFamily="@font/open_sans_semibold"
@@ -54,7 +54,7 @@
             android:textColor="@android:color/black"
             android:textSize="18dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints" />
@@ -62,22 +62,22 @@
         <TextView
             android:id="@+id/textView13"
             android:layout_width="match_parent"
-            android:textAlignment="center"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginTop="280dp"
+            android:layout_marginTop="228dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
+            android:autoSizeMaxTextSize="50dp"
             android:autoSizeMinTextSize="12dp"
             android:autoSizeStepGranularity="2sp"
             android:autoSizeTextType="uniform"
-            android:lines="1"
-            android:autoSizeMaxTextSize="50dp"
             android:fontFamily="@font/open_sans"
+            android:lines="1"
             android:text="Please enter your mobile number"
+            android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -87,17 +87,20 @@
             android:layout_height="42dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginTop="348dp"
+            android:layout_marginTop="296dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:ems="10"
+            android:fontFamily="@font/open_sans_semibold"
             android:inputType="textPersonName"
             android:maxLength="10"
+            android:numeric="integer"
+            android:phoneNumber="true"
             android:text="123456789"
             android:textAlignment="center"
-            android:textSize="18dp"
+            android:textSize="14dp"
             app:layout_constraintEnd_toEndOf="@+id/textView12"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/editText8"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -105,16 +108,16 @@
             android:id="@+id/editText8"
             android:layout_width="36dp"
             android:layout_height="42dp"
-            android:layout_marginTop="348dp"
+            android:layout_marginTop="296dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:ems="10"
             android:inputType="textPersonName"
             android:maxLength="3"
             android:text="+1"
-
+            android:fontFamily="@font/open_sans_semibold"
             android:textAlignment="center"
-            android:textSize="18dp"
+            android:textSize="14dp"
             app:layout_constraintEnd_toEndOf="@+id/textView12"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/textView12"
@@ -140,9 +143,10 @@
             android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.499"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.183" />
+            app:layout_constraintVertical_bias="0.077" />
 
         <Button
             android:id="@+id/verificationBackBtn"

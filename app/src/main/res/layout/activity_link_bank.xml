@@ -236,7 +236,7 @@
         tools:ignore="MissingConstraints" />
 
     <ImageView
-        android:id="@+id/imageView30"
+        android:id="@+id/linkedBankImg"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginTop="8dp"
@@ -250,7 +250,7 @@
         app:layout_constraintVertical_bias="0.352" />
 
     <TextView
-        android:id="@+id/textView39"
+        android:id="@+id/linkedBankNameTxt"
         android:layout_width="wrap_content"
         android:layout_height="21dp"
         android:layout_marginStart="80dp"
