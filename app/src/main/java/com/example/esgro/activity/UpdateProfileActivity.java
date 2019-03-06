@@ -86,12 +86,14 @@ public class UpdateProfileActivity   extends AppCompatActivity {
     };
     View.OnClickListener handshakeAction = new View.OnClickListener() {
         public void onClick(View v) {
-
+            Intent mainIntent = new Intent(UpdateProfileActivity.this,DisputeNoHistoryActivity.class);
+            UpdateProfileActivity.this.startActivity(mainIntent);
         }
     };
     View.OnClickListener newAction = new View.OnClickListener() {
         public void onClick(View v) {
-
+            Intent mainIntent = new Intent(UpdateProfileActivity.this,RequestActivity.class);
+            UpdateProfileActivity.this.startActivity(mainIntent);
         }
     };
 }

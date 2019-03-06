@@ -1,31 +1,26 @@
-package com.example.esgro.activity;
+package com.example.esgro.activity.alert;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
 import com.example.esgro.R;
+import com.example.esgro.activity.LaunchedActivity;
+import com.example.esgro.activity.MainActivity;
 
-public class Request_03_Activity extends AppCompatActivity {
+public class ProcessingAlertActivit extends AppCompatActivity {
 
-    Button back;
-    Button continues;
+    Button close;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         onWindowFocusChanged(true);
         super.onCreate(savedInstanceState);
-
-        setContentView(R.layout.activity_request_3);
-
-        back = findViewById(R.id.request3Back);
-        back.setOnClickListener(requestBack);
-
-
-        continues = findViewById(R.id.request3SendBtn);
-        continues.setOnClickListener(requestContinue);
+        setContentView(R.layout.activity_proessing_alert);
 
 
     }
@@ -42,16 +37,11 @@ public class Request_03_Activity extends AppCompatActivity {
                             | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         }
     }
-    View.OnClickListener requestBack = new View.OnClickListener() {
+    View.OnClickListener closeFeedBackAlert = new View.OnClickListener() {
         public void onClick(View v) {
-            Intent mainIntent = new Intent(Request_03_Activity.this,Request_02_Activity.class);
-            Request_03_Activity.this.startActivity(mainIntent);
-        }
-    };
-    View.OnClickListener requestContinue = new View.OnClickListener() {
-        public void onClick(View v) {
-            Intent mainIntent = new Intent(Request_03_Activity.this,HomePageActivity.class);
-            Request_03_Activity.this.startActivity(mainIntent);
+            closeContextMenu();
         }
     };
 }
+
+

@@ -104,10 +104,14 @@ public class BankAndCards2Activity extends AppCompatActivity {
     };
     View.OnClickListener newPostAction = new View.OnClickListener() {
         public void onClick(View v) {
+            Intent mainIntent = new Intent(BankAndCards2Activity.this,RequestActivity.class);
+            BankAndCards2Activity.this.startActivity(mainIntent);
         }
     };
     View.OnClickListener handHsakeAction = new View.OnClickListener() {
         public void onClick(View v) {
+            Intent mainIntent = new Intent(BankAndCards2Activity.this,DisputeNoHistoryActivity.class);
+            BankAndCards2Activity.this.startActivity(mainIntent);
         }
     };
 }

@@ -9,7 +9,7 @@ import com.example.esgro.R;
 
 public class CancelDisputeAlertActivity extends AppCompatActivity {
 
-
+    Button back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +17,7 @@ public class CancelDisputeAlertActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dispute_cancel_alert);
 
+        back = findViewById(R.id.goBackBtn);
 
     }
     @Override
@@ -33,3 +34,4 @@ public class CancelDisputeAlertActivity extends AppCompatActivity {
         }
     }
 }
+

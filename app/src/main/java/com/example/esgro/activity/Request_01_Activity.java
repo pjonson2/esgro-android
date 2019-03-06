@@ -1,5 +1,6 @@
 package com.example.esgro.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -9,13 +10,21 @@ import com.example.esgro.R;
 
 public class Request_01_Activity extends AppCompatActivity {
 
-    Button submit;
+    Button back;
+    Button continues;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         onWindowFocusChanged(true);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_request_1);
+
+        back = findViewById(R.id.requestBackBtn);
+        back.setOnClickListener(requestBack);
+
+
+        continues = findViewById(R.id.requestContinueBtn);
+        continues.setOnClickListener(requestContinue);
 
 
     }
@@ -32,4 +41,16 @@ public class Request_01_Activity extends AppCompatActivity {
                             | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         }
     }
+    View.OnClickListener requestBack = new View.OnClickListener() {
+        public void onClick(View v) {
+            Intent mainIntent = new Intent(Request_01_Activity.this,RequestActivity.class);
+            Request_01_Activity.this.startActivity(mainIntent);
+        }
+    };
+    View.OnClickListener requestContinue = new View.OnClickListener() {
+        public void onClick(View v) {
+            Intent mainIntent = new Intent(Request_01_Activity.this,Request_02_Activity.class);
+            Request_01_Activity.this.startActivity(mainIntent);
+        }
+    };
 }

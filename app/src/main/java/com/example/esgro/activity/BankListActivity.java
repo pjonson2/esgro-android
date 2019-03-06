@@ -29,8 +29,6 @@ import java.util.List;
 
 public class BankListActivity extends AppCompatActivity {
 
-    RecyclerView recyclerView;
-    //    Adapter adapter;
     List<Bank> bankList;
     public final static String EXTRA_MESSAGE = "com.example.ListViewTest.MESSAGE";
 
@@ -122,7 +120,7 @@ public class BankListActivity extends AppCompatActivity {
         }
     }
 
-        class CustomAdaper extends BaseAdapter{
+    class CustomAdaper extends BaseAdapter{
 
         @Override
         public int getCount() {

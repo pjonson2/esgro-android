@@ -85,12 +85,14 @@ public class ProfileActivity  extends FooterActivity {
     };
     View.OnClickListener handshakeAction = new View.OnClickListener() {
         public void onClick(View v) {
-
+            Intent mainIntent = new Intent(ProfileActivity.this,DisputeNoHistoryActivity.class);
+            ProfileActivity.this.startActivity(mainIntent);
         }
     };
     View.OnClickListener newAction = new View.OnClickListener() {
         public void onClick(View v) {
-
+            Intent mainIntent = new Intent(ProfileActivity.this,RequestActivity.class);
+            ProfileActivity.this.startActivity(mainIntent);
         }
     };
 }

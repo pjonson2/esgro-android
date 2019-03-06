@@ -123,6 +123,10 @@ public class HomePageActivity extends AppCompatActivity {
     };
     View.OnClickListener disputesAction = new View.OnClickListener() {
         public void onClick(View v) {
+
+            Intent mainIntent = new Intent(HomePageActivity.this,DisputeActivity.class);
+            HomePageActivity.this.startActivity(mainIntent);
+
         }
     };
 
@@ -144,12 +148,14 @@ public class HomePageActivity extends AppCompatActivity {
     };
     View.OnClickListener handshake = new View.OnClickListener() {
         public void onClick(View v) {
-
+            Intent mainIntent = new Intent(HomePageActivity.this,DisputeNoHistoryActivity.class);
+            HomePageActivity.this.startActivity(mainIntent);
         }
     };
     View.OnClickListener newAction = new View.OnClickListener() {
         public void onClick(View v) {
-
+            Intent mainIntent = new Intent(HomePageActivity.this,RequestActivity.class);
+            HomePageActivity.this.startActivity(mainIntent);
         }
     };
 }

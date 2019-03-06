@@ -7,13 +7,12 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.esgro.R;
 
-public class DisputeDetails_01_Activity extends AppCompatActivity {
+public class DisputeDetails_No_History_Activity extends AppCompatActivity {
 
     Button back;
     ImageView contactIcon;
@@ -22,45 +21,42 @@ public class DisputeDetails_01_Activity extends AppCompatActivity {
     ImageView newPostIcon;
     ImageView settings;
     Dialog dialog;
-    ImageView likeIconImg;
-    ImageView disputeCancelBtn;
+    ImageView okIconImge;
+    ImageView noDisputeCancelBtn;
     private final int SPLASH_DISPLAY_LENGTH = 4000;
-
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         onWindowFocusChanged(true);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_disputes_details);
+        setContentView(R.layout.activity_disputes_details_no_history);
 
-        contactIcon = findViewById(R.id.disputesContactIcon);
+        contactIcon = findViewById(R.id.noDisputesContactIcon);
         contactIcon.setOnClickListener(contactUs);
 
-        profileIcon = findViewById(R.id.disputesProfileIcon);
+        profileIcon = findViewById(R.id.noDisputesProfileIcon);
         profileIcon.setOnClickListener(profile);
 
-        handshakeIcon = findViewById(R.id.disputesHandshakeIcon);
+        handshakeIcon = findViewById(R.id.noDisputesHandshakeIcon);
         handshakeIcon.setOnClickListener(handshake);
 
-        newPostIcon = findViewById(R.id.disputesNewPostIcon);
+        newPostIcon = findViewById(R.id.noDisputesNewPostIcon);
         newPostIcon.setOnClickListener(newAction);
 
-        settings = findViewById(R.id.disputesSettingsIcon);
+        settings = findViewById(R.id.noDisputesSettingsIcon);
         settings.setOnClickListener(home);
 
-        back = findViewById(R.id.disputeDetailsBack);
+        back = findViewById(R.id.noDisputeDetailsBack);
         back.setOnClickListener(backToTimeLine);
 
-        likeIconImg = findViewById(R.id.likeIconImg);
-        likeIconImg.setOnClickListener(submitAction);
+        okIconImge = findViewById(R.id.okIconImge);
+        okIconImge.setOnClickListener(submitAction);
 
-        disputeCancelBtn = findViewById(R.id.disputeCancelBtn);
-        disputeCancelBtn.setOnClickListener(cancelAction);
+        noDisputeCancelBtn = findViewById(R.id.noDisputeCancelBtn);
+        noDisputeCancelBtn.setOnClickListener(cancelAction);
 
         dialog = new Dialog(this);
-
-
 
     }
     @Override
@@ -81,20 +77,18 @@ public class DisputeDetails_01_Activity extends AppCompatActivity {
             dialog.setContentView(R.layout.activity_proessing_alert);
 
             dialog.show();
-
-                    new Handler().postDelayed(new Runnable(){
-            @Override
-            public void run() {
-                dialog.dismiss();
-            }
-        }, SPLASH_DISPLAY_LENGTH);
+            new Handler().postDelayed(new Runnable(){
+                @Override
+                public void run() {
+                    dialog.dismiss();
+                }
+            }, SPLASH_DISPLAY_LENGTH);
         }
     };
     View.OnClickListener cancelAction = new View.OnClickListener() {
         public void onClick(View v) {
             dialog.setContentView(R.layout.activity_dispute_cancel_alert);
             dialog.show();
-
             Window window = dialog.getWindow();
             Button button;
 
@@ -102,47 +96,49 @@ public class DisputeDetails_01_Activity extends AppCompatActivity {
             button.setOnClickListener(hideUI);
 
         }
+
         View.OnClickListener hideUI = new View.OnClickListener() {
             public void onClick(View v) {
                 dialog.dismiss();
             }
         };
+
     };
     View.OnClickListener contactUs = new View.OnClickListener() {
         public void onClick(View v) {
-            Intent mainIntent = new Intent(DisputeDetails_01_Activity.this,ContactUsActivity.class);
-            DisputeDetails_01_Activity.this.startActivity(mainIntent);
+            Intent mainIntent = new Intent(DisputeDetails_No_History_Activity.this,ContactUsActivity.class);
+            DisputeDetails_No_History_Activity.this.startActivity(mainIntent);
         }
     };
 
     View.OnClickListener profile = new View.OnClickListener() {
         public void onClick(View v) {
-            Intent mainIntent = new Intent(DisputeDetails_01_Activity.this,ProfileActivity.class);
-            DisputeDetails_01_Activity.this.startActivity(mainIntent);
+            Intent mainIntent = new Intent(DisputeDetails_No_History_Activity.this,ProfileActivity.class);
+            DisputeDetails_No_History_Activity.this.startActivity(mainIntent);
         }
     };
     View.OnClickListener home = new View.OnClickListener() {
         public void onClick(View v) {
-            Intent mainIntent = new Intent(DisputeDetails_01_Activity.this,HomePageActivity.class);
-            DisputeDetails_01_Activity.this.startActivity(mainIntent);
+            Intent mainIntent = new Intent(DisputeDetails_No_History_Activity.this,HomePageActivity.class);
+            DisputeDetails_No_History_Activity.this.startActivity(mainIntent);
         }
     };
     View.OnClickListener backToTimeLine = new View.OnClickListener() {
         public void onClick(View v) {
-            Intent mainIntent = new Intent(DisputeDetails_01_Activity.this,DisputeActivity.class);
-            DisputeDetails_01_Activity.this.startActivity(mainIntent);
+            Intent mainIntent = new Intent(DisputeDetails_No_History_Activity.this,DisputeNoHistoryActivity.class);
+            DisputeDetails_No_History_Activity.this.startActivity(mainIntent);
         }
     };
     View.OnClickListener handshake = new View.OnClickListener() {
         public void onClick(View v) {
-            Intent mainIntent = new Intent(DisputeDetails_01_Activity.this,DisputeNoHistoryActivity.class);
-            DisputeDetails_01_Activity.this.startActivity(mainIntent);
+            Intent mainIntent = new Intent(DisputeDetails_No_History_Activity.this,DisputeNoHistoryActivity.class);
+            DisputeDetails_No_History_Activity.this.startActivity(mainIntent);
         }
     };
     View.OnClickListener newAction = new View.OnClickListener() {
         public void onClick(View v) {
-            Intent mainIntent = new Intent(DisputeDetails_01_Activity.this,RequestActivity.class);
-            DisputeDetails_01_Activity.this.startActivity(mainIntent);
+            Intent mainIntent = new Intent(DisputeDetails_No_History_Activity.this,RequestActivity.class);
+            DisputeDetails_No_History_Activity.this.startActivity(mainIntent);
         }
     };
 }

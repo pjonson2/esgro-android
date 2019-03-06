@@ -1,7 +1,11 @@
 package com.example.esgro.activity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.drawable.Icon;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -10,7 +14,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.dushyant.roundedimageviewlibrary.RoundedImageView;
 import com.example.esgro.R;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CompleteProfileActivity  extends AppCompatActivity {
     Button back;
@@ -48,6 +57,31 @@ public class CompleteProfileActivity  extends AppCompatActivity {
 
         selectImg = findViewById(R.id.selectImg);
         selectImg.setOnClickListener(selectFile);
+
+//        RoundedImageView customImageView = findViewById(R.id.image_view);
+//        customImageView.setImageResource(R.drawable.splashbg);
+//        customImageView.setImageScaleType(RoundedImageView.ScaleType.CENTRE_CROP);
+//
+//        //For Single Corner
+//        customImageView.setCornerType(RoundedImageView.CornerType.BOTTOM_RIGHT_CORNER);
+//        customImageView.setCornerType(RoundedImageView.CornerType.BOTTOM_LEFT_CORNER);
+//        customImageView.setCornerType(RoundedImageView.CornerType.TOP_RIGHT_CORNER);
+//        customImageView.setCornerType(RoundedImageView.CornerType.BOTTOM_RIGHT_CORNER);
+//
+//        customImageView.setImagePadding(20);
+//        customImageView.setCanvasPadding(50);
+
+//        customImageView.setBorder(true);
+//        customImageView.setBorderColor(Color.DKGRAY);
+//        customImageView.setBorderWidth(40);
+
+//        customImageView.setCornerRadius(30)30;
+//
+//        //For Multiple Corners
+//        List<RoundedImageView.CornerType> cornerTypes = new ArrayList<>();
+//        cornerTypes.add(RoundedImageView.CornerType.TOP_LEFT_CORNER);
+//        cornerTypes.add(RoundedImageView.CornerType.TOP_RIGHT_CORNER);
+//        customImageView.setCornerTypeList(cornerTypes);
     }
 
     @Override
@@ -101,11 +135,17 @@ public class CompleteProfileActivity  extends AppCompatActivity {
         switch (requestCode) {
             case 10:
                 if (resultCode == RESULT_OK) {
-//                    String path = data.getData().getPath();
-//                    Icon icon= new Icon(p);
-//                    selectImg.setImageIcon();
 
-//                    System.out.println("path is  " + path);
+                    System.out.println("image data inside switch");
+                    Uri selectedImageUri = data.getData();
+//                    String path = selectedImageUri.getPath();
+//
+//                    System.out.println("path iss" + path );
+//
+//                    Bitmap thumbnail = BitmapFactory.decodeFile(path);
+
+                    selectImg.setImageURI(selectedImageUri);
+
                 }
                 break;
         }

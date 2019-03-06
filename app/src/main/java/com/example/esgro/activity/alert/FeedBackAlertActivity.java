@@ -39,6 +39,7 @@ public class FeedBackAlertActivity extends AppCompatActivity {
     }
     View.OnClickListener closeFeedBackAlert = new View.OnClickListener() {
         public void onClick(View v) {
+            closeContextMenu();
         }
     };
 }

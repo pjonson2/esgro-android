@@ -25,7 +25,6 @@ public class SignUpActivity extends AppCompatActivity {
 
     }
 
-
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
         if (hasFocus) {

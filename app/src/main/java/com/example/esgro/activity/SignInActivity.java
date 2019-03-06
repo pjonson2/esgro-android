@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v4.widget.TextViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 
 import com.example.esgro.R;
@@ -28,6 +30,7 @@ public class SignInActivity extends AppCompatActivity {
 
         getStart = findViewById(R.id.signIngetStartBtn);
         getStart.setOnClickListener(getStartBtnAction);
+
 //        TextViewCompat.setAutoSizeTextTypeUniformWithPresetSizes(int[] presetSizes, int unit);
 
 //// Example

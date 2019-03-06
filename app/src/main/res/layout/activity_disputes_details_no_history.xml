@@ -47,7 +47,7 @@
         tools:ignore="MissingConstraints">
 
         <ImageView
-            android:id="@+id/disputesHandshakeIcon"
+            android:id="@+id/noDisputesHandshakeIcon"
             android:layout_width="18dp"
             android:layout_height="18dp"
             android:background="@drawable/shake_colour"
@@ -61,7 +61,7 @@
             tools:layout_conversion_absoluteWidth="18dp" />
 
         <ImageView
-            android:id="@+id/disputesNewPostIcon"
+            android:id="@+id/noDisputesNewPostIcon"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginEnd="8dp"
@@ -73,7 +73,7 @@
             app:layout_constraintTop_toTopOf="@+id/view4" />
 
         <ImageView
-            android:id="@+id/disputesContactIcon"
+            android:id="@+id/noDisputesContactIcon"
             android:layout_width="18dp"
             android:layout_height="18dp"
             android:layout_marginTop="8dp"
@@ -89,7 +89,7 @@
             app:layout_constraintVertical_bias="0.523" />
 
         <ImageView
-            android:id="@+id/disputesSettingsIcon"
+            android:id="@+id/noDisputesSettingsIcon"
             android:layout_width="18dp"
             android:layout_height="18dp"
             android:layout_marginEnd="8dp"
@@ -103,7 +103,7 @@
             app:layout_constraintVertical_bias="0.513" />
 
         <ImageView
-            android:id="@+id/disputesProfileIcon"
+            android:id="@+id/noDisputesProfileIcon"
             android:layout_width="18dp"
             android:layout_height="18dp"
             android:layout_marginEnd="8dp"
@@ -125,10 +125,10 @@
         android:background="#EBEBEB"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.463"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/midView4"
-        app:layout_constraintVertical_bias="0.802"
+        app:layout_constraintVertical_bias="0.681"
         tools:ignore="MissingConstraints" />
 
     <View
@@ -139,10 +139,10 @@
         android:background="#EBEBEB"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.439"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/midView4"
-        app:layout_constraintVertical_bias="0.703"
+        app:layout_constraintVertical_bias="0.58"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -162,13 +162,13 @@
         app:fontFamily="@font/open_sans"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.031"
+        app:layout_constraintHorizontal_bias="0.036"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView64"
-        app:layout_constraintVertical_bias="0.268" />
+        app:layout_constraintVertical_bias="0.138" />
 
     <Button
-        android:id="@+id/disputeDetailsBack"
+        android:id="@+id/noDisputeDetailsBack"
         android:layout_width="64dp"
         android:layout_height="20dp"
         android:layout_marginStart="8dp"
@@ -252,9 +252,9 @@
         android:textColor="#393E46"
         android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="@+id/midView4"
-        app:layout_constraintEnd_toEndOf="@+id/likeIconImg"
-        app:layout_constraintStart_toStartOf="@+id/likeIconImg"
-        app:layout_constraintTop_toBottomOf="@+id/likeIconImg" />
+        app:layout_constraintEnd_toEndOf="@+id/okIconImge"
+        app:layout_constraintStart_toStartOf="@+id/okIconImge"
+        app:layout_constraintTop_toBottomOf="@+id/okIconImge" />
 
     <TextView
         android:id="@+id/textView64"
@@ -279,18 +279,18 @@
         android:text="Cancel"
         android:textColor="#393E46"
         android:textSize="10sp"
-        app:layout_constraintBottom_toBottomOf="@+id/midView4"
-        app:layout_constraintEnd_toEndOf="@+id/disputeCancelBtn"
-        app:layout_constraintStart_toStartOf="@+id/disputeCancelBtn"
-        app:layout_constraintTop_toBottomOf="@+id/disputeCancelBtn"
+        app:layout_constraintBottom_toBottomOf="@+id/textView64"
+        app:layout_constraintEnd_toEndOf="@+id/noDisputeCancelBtn"
+        app:layout_constraintStart_toStartOf="@+id/noDisputeCancelBtn"
+        app:layout_constraintTop_toBottomOf="@+id/noDisputeCancelBtn"
         tools:targetApi="jelly_bean" />
 
     <ImageView
-        android:id="@+id/likeIconImg"
+        android:id="@+id/okIconImge"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginTop="8dp"
-        android:background="@drawable/like"
+        android:background="@drawable/ok"
         app:layout_constraintBottom_toBottomOf="@+id/midView4"
         app:layout_constraintEnd_toEndOf="@+id/midView4"
         app:layout_constraintHorizontal_bias="0.817"
@@ -310,7 +310,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView59" />
 
     <ImageView
-        android:id="@+id/disputeCancelBtn"
+        android:id="@+id/noDisputeCancelBtn"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginTop="8dp"
@@ -349,10 +349,10 @@
         android:textSize="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/midView4"
-        app:layout_constraintHorizontal_bias="0.984"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/midView4"
         app:layout_constraintTop_toBottomOf="@+id/midView4"
-        app:layout_constraintVertical_bias="0.753" />
+        app:layout_constraintVertical_bias="0.623" />
 
     <TextView
         android:id="@+id/textView43"
@@ -442,94 +442,11 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/textView66"
-        android:layout_width="63dp"
-        android:layout_height="16dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="HISTORY"
-        android:textColor="#393E46"
-        android:textSize="12sp"
-        android:textStyle="bold"
-        app:fontFamily="@font/open_sans"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.024"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/midView4"
-        app:layout_constraintVertical_bias="0.004" />
-
-    <TextView
-        android:id="@+id/textView67"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="Kelly created this request"
-        android:textColor="#929AAB"
-        android:textSize="12sp"
-        app:fontFamily="@font/open_sans"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.043"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView64"
-        app:layout_constraintVertical_bias="0.078" />
-
-    <TextView
-        android:id="@+id/textView68"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="You approved this request"
-        android:textColor="#929AAB"
-        android:textSize="12sp"
-        app:fontFamily="@font/open_sans"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.044"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView64"
-        app:layout_constraintVertical_bias="0.125" />
-
-    <TextView
-        android:id="@+id/textView58"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="14dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="You disputed this request"
-        android:textColor="#929AAB"
-        android:textSize="12sp"
-        app:fontFamily="@font/open_sans"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.044"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView64"
-        app:layout_constraintVertical_bias="0.17" />
-
-    <TextView
         android:id="@+id/textView63"
         android:layout_width="0dp"
         android:layout_height="144dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="20dp"
         android:layout_marginRight="20dp"
@@ -540,7 +457,7 @@
         app:fontFamily="@font/open_sans"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/textView58"
+        app:layout_constraintStart_toStartOf="@+id/textView62"
         app:layout_constraintTop_toBottomOf="@+id/textView62"
         app:layout_constraintVertical_bias="0.048" />
 
@@ -561,9 +478,9 @@
         app:fontFamily="@font/open_sans"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.033"
+        app:layout_constraintHorizontal_bias="0.048"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView64"
-        app:layout_constraintVertical_bias="0.76" />
+        app:layout_constraintVertical_bias="0.631" />
 
 </android.support.constraint.ConstraintLayout>

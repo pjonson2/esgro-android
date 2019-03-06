@@ -83,12 +83,14 @@ public class ExportActivity extends AppCompatActivity {
     };
     View.OnClickListener handshake = new View.OnClickListener() {
         public void onClick(View v) {
-
+            Intent mainIntent = new Intent(ExportActivity.this,DisputeNoHistoryActivity.class);
+            ExportActivity.this.startActivity(mainIntent);
         }
     };
     View.OnClickListener newAction = new View.OnClickListener() {
         public void onClick(View v) {
-
+            Intent mainIntent = new Intent(ExportActivity.this,RequestActivity.class);
+            ExportActivity.this.startActivity(mainIntent);
         }
     };
 }
