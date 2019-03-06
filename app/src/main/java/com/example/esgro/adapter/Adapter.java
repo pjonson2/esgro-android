@@ -1,18 +1,16 @@
-package com.example.esgro.modals;
+package com.example.esgro.adapter;
 
 import android.content.Context;
-import android.os.Build;
 import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.esgro.R;
+import com.example.esgro.modals.Bank;
 
 import java.util.List;
 
@@ -50,8 +48,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.BankViewHolder> {
 
         public BankViewHolder(View itemView) {
             super(itemView);
-//            imageView = itemView.findViewById(R.id.bankImg);bankImg
-//            textView = itemView.findViewById(R.id.bankNameTxt);
         }
     }
 }

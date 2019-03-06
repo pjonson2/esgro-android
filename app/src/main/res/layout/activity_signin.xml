@@ -42,10 +42,10 @@
             android:id="@+id/signIngetStartBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="90dp"
-            android:layout_marginLeft="90dp"
-            android:layout_marginEnd="90dp"
-            android:layout_marginRight="90dp"
+            android:layout_marginStart="70dp"
+            android:layout_marginLeft="70dp"
+            android:layout_marginEnd="70dp"
+            android:layout_marginRight="70dp"
             android:layout_marginBottom="24dp"
             android:background="@drawable/white_button"
             android:fontFamily="@font/open_sans_semibold"
@@ -95,7 +95,6 @@
             android:layout_marginTop="40dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
-            android:layout_marginBottom="8dp"
             android:background="@drawable/layout_corner"
             android:bottom="5dp"
             android:clickable="true"
@@ -105,22 +104,20 @@
             android:right="5dp"
             android:shape="rectangle"
             android:top="5dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.309">
+            app:layout_constraintTop_toBottomOf="@+id/textView20">
 
             <Button
                 android:id="@+id/signInContinueBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="80dp"
-                android:layout_marginLeft="80dp"
+                android:layout_marginStart="60dp"
+                android:layout_marginLeft="60dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="80dp"
-                android:layout_marginRight="80dp"
+                android:layout_marginEnd="60dp"
+                android:layout_marginRight="60dp"
                 android:layout_marginBottom="8dp"
                 android:background="@drawable/light_green_button"
                 android:fontFamily="@font/open_sans_semibold"
@@ -148,25 +145,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="MissingConstraints" />
-
-            <EditText
-                android:id="@+id/editText14"
-                android:layout_width="0dp"
-                android:layout_height="42dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="8dp"
-                android:autoSizeTextType="uniform"
-                android:ems="10"
-                android:inputType="textPersonName"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.305" />
 
             <TextView
                 android:id="@+id/textView21"
@@ -201,6 +179,25 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/editText14"
+                android:layout_width="0dp"
+                android:layout_height="42dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                android:autoSizeTextType="uniform"
+                android:ems="10"
+                android:inputType="textPersonName"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.305" />
 
             <TextView
                 android:id="@+id/textView23"

@@ -128,14 +128,13 @@
         android:layout_height="460dp"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="20dp"
         android:layout_marginRight="20dp"
         android:background="@drawable/layout_corner"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.343" />
+        app:layout_constraintTop_toBottomOf="@+id/textView109" />
 
     <TextView
         android:id="@+id/textView112"
@@ -158,7 +157,7 @@
         app:layout_constraintVertical_bias="0.849" />
 
     <EditText
-        android:id="@+id/editText25"
+        android:id="@+id/editText22"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -169,7 +168,7 @@
         android:ems="10"
         android:fontFamily="@font/open_sans"
         android:inputType="textPersonName"
-        android:text="+1 2658463289"
+        android:text="Ben"
         android:textColor="#393E46"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/view57"
@@ -177,7 +176,29 @@
         app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="@+id/view57"
         app:layout_constraintTop_toTopOf="@+id/view57"
-        app:layout_constraintVertical_bias="0.946" />
+        app:layout_constraintVertical_bias="0.374" />
+
+    <EditText
+        android:id="@+id/editText23"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
+        android:ems="10"
+        android:fontFamily="@font/open_sans"
+        android:inputType="textPersonName"
+        android:text="Stark  "
+        android:textColor="#393E46"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/view57"
+        app:layout_constraintEnd_toEndOf="@+id/view57"
+        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintStart_toStartOf="@+id/view57"
+        app:layout_constraintTop_toTopOf="@+id/view57"
+        app:layout_constraintVertical_bias="0.562" />
 
     <EditText
         android:id="@+id/editText24"
@@ -200,6 +221,28 @@
         app:layout_constraintStart_toStartOf="@+id/view57"
         app:layout_constraintTop_toTopOf="@+id/view57"
         app:layout_constraintVertical_bias="0.743" />
+
+    <EditText
+        android:id="@+id/editText25"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
+        android:ems="10"
+        android:fontFamily="@font/open_sans"
+        android:inputType="textPersonName"
+        android:text="+1 2658463289"
+        android:textColor="#393E46"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/view57"
+        app:layout_constraintEnd_toEndOf="@+id/view57"
+        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintStart_toStartOf="@+id/view57"
+        app:layout_constraintTop_toTopOf="@+id/view57"
+        app:layout_constraintVertical_bias="0.946" />
 
     <TextView
         android:id="@+id/textView111"
@@ -240,28 +283,6 @@
         app:layout_constraintStart_toStartOf="@+id/view57"
         app:layout_constraintTop_toTopOf="@+id/view57"
         app:layout_constraintVertical_bias="0.489" />
-
-    <EditText
-        android:id="@+id/editText23"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginRight="30dp"
-        android:ems="10"
-        android:fontFamily="@font/open_sans"
-        android:inputType="textPersonName"
-        android:text="Stark  "
-        android:textColor="#393E46"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/view57"
-        app:layout_constraintEnd_toEndOf="@+id/view57"
-        app:layout_constraintHorizontal_bias="0.489"
-        app:layout_constraintStart_toStartOf="@+id/view57"
-        app:layout_constraintTop_toTopOf="@+id/view57"
-        app:layout_constraintVertical_bias="0.562" />
 
     <View
         android:id="@+id/view56"
@@ -312,7 +333,7 @@
         android:id="@+id/textView109"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="50dp"
         android:layout_marginBottom="8dp"
         android:fontFamily="@font/open_sans_semibold"
         android:text="PROFILE"
@@ -324,29 +345,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.124" />
-
-    <EditText
-        android:id="@+id/editText22"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginRight="30dp"
-        android:ems="10"
-        android:fontFamily="@font/open_sans"
-        android:inputType="textPersonName"
-        android:text="Ben"
-        android:textColor="#393E46"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/view57"
-        app:layout_constraintEnd_toEndOf="@+id/view57"
-        app:layout_constraintHorizontal_bias="0.489"
-        app:layout_constraintStart_toStartOf="@+id/view57"
-        app:layout_constraintTop_toTopOf="@+id/view57"
-        app:layout_constraintVertical_bias="0.374" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/updateSaveBtn"

@@ -19,24 +19,21 @@
 
     <ScrollView
         android:layout_width="0dp"
-        android:layout_height="586dp"
+        android:layout_height="482dp"
         android:layout_marginStart="15dp"
         android:layout_marginLeft="15dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="15dp"
         android:layout_marginRight="15dp"
-        android:layout_marginBottom="60dp"
         android:clipToPadding="true"
         android:fadeScrollbars="true"
         android:fillViewport="true"
         android:isScrollContainer="true"
         android:scrollbarAlwaysDrawHorizontalTrack="true"
-        app:layout_constraintBottom_toTopOf="@+id/view4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView25"
-        app:layout_constraintVertical_bias="0.52">
+        app:layout_constraintTop_toBottomOf="@+id/textView25">
 
         <android.support.constraint.ConstraintLayout
             android:id="@+id/homeView"
@@ -83,7 +80,6 @@
                 android:layout_height="433dp"
                 android:layout_marginStart="15dp"
                 android:layout_marginLeft="15dp"
-                android:layout_marginTop="76dp"
                 android:layout_marginEnd="15dp"
                 android:layout_marginRight="15dp"
                 android:background="@drawable/layout_corner"
@@ -471,10 +467,10 @@
     <TextView
         android:id="@+id/textView25"
         android:layout_width="wrap_content"
-        android:layout_height="22dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="52dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:fontFamily="@font/open_sans_semibold"
