@@ -24,8 +24,8 @@
 
         <Button
             android:id="@+id/siginInBackBtn"
-            android:layout_width="10dp"
-            android:layout_height="18dp"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
             android:layout_marginStart="20dp"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="40dp"
@@ -72,8 +72,9 @@
             android:fontFamily="@font/open_sans"
             android:text="Sign In"
             android:textAlignment="center"
+
             android:textColor="#393E46"
-            android:textSize="24dp"
+            android:textSize="12sp"
             app:fontFamily="@font/open_sans"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.504"
@@ -83,7 +84,7 @@
         <android.support.constraint.ConstraintLayout
             android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
-            android:layout_height="418dp"
+            android:layout_height="388dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
@@ -173,7 +174,6 @@
                 android:ems="10"
                 android:fontFamily="@font/open_sans_semibold"
                 android:inputType="textPersonName"
-                android:textSize="14sp"
                 app:autoSizeMaxTextSize="100sp"
                 app:autoSizeMinTextSize="12sp"
                 app:autoSizeStepGranularity="2sp"
@@ -194,7 +194,6 @@
                 android:autoSizeTextType="uniform"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -225,22 +224,23 @@
 
         <TextView
             android:id="@+id/textView24"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:layout_marginBottom="88dp"
+            android:layout_marginBottom="92dp"
             android:autoSizeMaxTextSize="100dp"
             android:autoSizeMinTextSize="12dp"
             android:autoSizeTextType="uniform"
             android:fontFamily="@font/open_sans"
             android:text="Don't have an account ?"
-            android:textSize="12dp"
+            android:textAlignment="center"
+            android:textSize="10sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent" />
 
     </android.support.constraint.ConstraintLayout>

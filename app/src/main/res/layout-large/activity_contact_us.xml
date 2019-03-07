@@ -19,8 +19,8 @@
 
         <ImageView
             android:id="@+id/contactHandshakeIcon"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:background="@drawable/handshake2x"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/view4"
@@ -45,8 +45,8 @@
 
         <ImageView
             android:id="@+id/contactContactIcon"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
@@ -61,8 +61,8 @@
 
         <ImageView
             android:id="@+id/contactSettingsIcon"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:background="@drawable/settingswhite2x"
@@ -75,8 +75,8 @@
 
         <ImageView
             android:id="@+id/contactProfileIcon"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:background="@drawable/profile2x"
@@ -102,7 +102,7 @@
     <View
         android:id="@+id/midView3"
         android:layout_width="0dp"
-        android:layout_height="449dp"
+        android:layout_height="654dp"
         android:layout_marginStart="30dp"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="40dp"
@@ -117,18 +117,18 @@
 
     <TextView
         android:id="@+id/textView55"
-        android:layout_width="wrap_content"
+        android:layout_width="400dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/open_sans_semibold"
         android:text="GIVE US YOUR FEEDBACK"
         android:textColor="@android:color/black"
-        android:textSize="12sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/midView3"
         app:layout_constraintEnd_toEndOf="@+id/midView3"
-        app:layout_constraintHorizontal_bias="0.03"
+        app:layout_constraintHorizontal_bias="0.076"
         app:layout_constraintStart_toStartOf="@+id/midView3"
         app:layout_constraintTop_toTopOf="@+id/midView3"
-        app:layout_constraintVertical_bias="0.446" />
+        app:layout_constraintVertical_bias="0.447" />
 
     <TextView
         android:id="@+id/textView54"
@@ -137,7 +137,7 @@
         android:fontFamily="@font/open_sans_semibold"
         android:text="ADDRESS"
         android:textColor="@android:color/black"
-        android:textSize="12sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/midView3"
         app:layout_constraintEnd_toEndOf="@+id/midView3"
         app:layout_constraintHorizontal_bias="0.039"
@@ -152,7 +152,7 @@
         android:fontFamily="@font/open_sans_semibold"
         android:text="PHONE"
         android:textColor="@android:color/black"
-        android:textSize="12sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/midView3"
         app:layout_constraintEnd_toEndOf="@+id/midView3"
         app:layout_constraintHorizontal_bias="0.038"
@@ -175,7 +175,7 @@
         android:textAlignment="viewStart"
         android:textAllCaps="false"
         android:textColor="#929AAB"
-        android:textSize="12dp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/midView3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.48"
@@ -186,8 +186,8 @@
 
     <ImageView
         android:id="@+id/imageView37"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
         android:layout_marginTop="3dp"
         android:background="@drawable/address"
         app:layout_constraintBottom_toBottomOf="@+id/midView3"
@@ -225,7 +225,7 @@
         android:textAlignment="viewStart"
         android:textAllCaps="false"
         android:textColor="#929AAB"
-        android:textSize="12dp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/midView3"
         app:layout_constraintEnd_toEndOf="@+id/midView3"
         app:layout_constraintHorizontal_bias="0.482"
@@ -236,8 +236,8 @@
 
     <ImageView
         android:id="@+id/imageView36"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
         android:layout_marginTop="4dp"
         android:background="@drawable/call"
         app:layout_constraintBottom_toBottomOf="@+id/midView3"
@@ -275,7 +275,7 @@
         android:textAlignment="viewStart"
         android:textAllCaps="false"
         android:textColor="#929AAB"
-        android:textSize="12dp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/midView3"
         app:layout_constraintEnd_toEndOf="@+id/midView3"
         app:layout_constraintHorizontal_bias="0.482"
@@ -310,7 +310,7 @@
         android:text="CONTACT US"
         android:textAlignment="center"
         android:textColor="@android:color/white"
-        android:textSize="14dp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/headerView3"
@@ -318,8 +318,8 @@
 
     <ImageView
         android:id="@+id/imageView35"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
         android:layout_marginTop="3dp"
         android:background="@drawable/message"
         app:layout_constraintBottom_toBottomOf="@+id/midView3"
@@ -332,7 +332,7 @@
     <Button
         android:id="@+id/submitBtn"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="55dp"
         android:layout_marginStart="70dp"
         android:layout_marginLeft="70dp"
         android:layout_marginEnd="70dp"
@@ -343,7 +343,8 @@
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="@android:color/white"
-        android:textSize="14dp"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/midView3"
         app:layout_constraintEnd_toEndOf="@+id/midView3"
         app:layout_constraintStart_toStartOf="@+id/midView3"
@@ -352,23 +353,20 @@
 
     <TextView
         android:id="@+id/textView44"
-        android:layout_width="0dp"
-        android:layout_height="140dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_width="472dp"
+        android:layout_height="184dp"
         android:background="@drawable/border"
         android:clickable="true"
         android:editable="true"
         android:enabled="true"
         android:hint="Type your message here"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/midView3"
         app:layout_constraintEnd_toEndOf="@+id/midView3"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.279"
         app:layout_constraintStart_toStartOf="@+id/midView3"
         app:layout_constraintTop_toTopOf="@+id/midView3"
-        app:layout_constraintVertical_bias="0.734" />
+        app:layout_constraintVertical_bias="0.672" />
 
     <TextView
         android:id="@+id/textView45"
@@ -377,7 +375,7 @@
         android:fontFamily="@font/open_sans_semibold"
         android:text="EMAIL"
         android:textColor="@android:color/black"
-        android:textSize="12sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/midView3"
         app:layout_constraintEnd_toEndOf="@+id/midView3"
         app:layout_constraintHorizontal_bias="0.038"

@@ -19,17 +19,16 @@
 
         <ImageView
             android:id="@+id/imageView14"
-            tools:layout_conversion_absoluteHeight="140dp"
-            tools:layout_conversion_absoluteWidth="140dp"
-            android:layout_width="140dp"
-            android:layout_height="140dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             app:layout_constraintBottom_toBottomOf="@+id/view59"
             app:layout_constraintEnd_toEndOf="@+id/view59"
-            app:layout_constraintHorizontal_bias="0.493"
             app:layout_constraintStart_toStartOf="@+id/view59"
             app:layout_constraintTop_toTopOf="@+id/view59"
-            app:layout_constraintVertical_bias="0.245"
-            app:srcCompat="@drawable/message_alert" />
+            app:layout_constraintVertical_bias="0.08"
+            app:srcCompat="@drawable/message_alert"
+            tools:layout_conversion_absoluteHeight="140dp"
+            tools:layout_conversion_absoluteWidth="140dp" />
 
         <Button
             android:id="@+id/feedbackClose"
@@ -48,18 +47,18 @@
 
         <TextView
             android:id="@+id/textView102"
-            android:layout_width="226dp"
-            android:layout_height="79dp"
+            android:layout_width="232dp"
+            android:layout_height="137dp"
             android:text="We have sent you an email to benjamin95@sample.com regarding this dispute, please check your inbox for further instructions"
             android:textAlignment="center"
             android:textColor="#393E46"
-            android:textSize="12sp"
+            android:textSize="16sp"
             app:fontFamily="@font/open_sans"
             app:layout_constraintBottom_toBottomOf="@+id/view59"
             app:layout_constraintEnd_toEndOf="@+id/view59"
             app:layout_constraintStart_toStartOf="@+id/view59"
             app:layout_constraintTop_toTopOf="@+id/view59"
-            app:layout_constraintVertical_bias="0.85" />
+            app:layout_constraintVertical_bias="0.921" />
 
     </android.support.constraint.ConstraintLayout>
 </android.support.constraint.ConstraintLayout>

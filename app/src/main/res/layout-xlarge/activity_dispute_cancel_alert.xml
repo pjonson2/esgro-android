@@ -1,19 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/view59"
         android:layout_width="288dp"
         android:layout_height="340dp"
+        android:background="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.56">
+
+        <RadioButton
+            android:id="@+id/radioButton6"
+            android:layout_width="206dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:checked="false"
+            android:fontFamily="@font/open_sans_semibold"
+            android:text="Give Back"
+            android:textColor="#929AAB"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.56"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView106"
+            app:layout_constraintVertical_bias="0.753" />
+
+        <TextView
+            android:id="@+id/textView119"
+            android:layout_width="100dp"
+            android:layout_height="22dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="$218.56"
+            android:textColor="#393E46"
+            android:textSize="14sp"
+            android:textAlignment="center"
+
+            app:fontFamily="@font/open_sans_semibold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.504"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.45" />
 
         <Button
             android:id="@+id/button13"
@@ -24,10 +67,11 @@
             android:layout_marginTop="8dp"
             android:background="#F7F8FB"
             android:fontFamily="@font/open_sans"
-            android:text="Raise the Dispute"
+            android:text="Forfeit Reserve"
             android:textAlignment="center"
             android:textAllCaps="false"
             android:textColor="#5BDA31"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
@@ -59,9 +103,10 @@
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:fontFamily="@font/open_sans_semibold"
-            android:text="Dispute Reply"
+            android:text="Are you sure you want to cancel?"
             android:textAlignment="center"
             android:textColor="#393E46"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/textView106"
             app:layout_constraintEnd_toEndOf="@+id/textView106"
             app:layout_constraintHorizontal_bias="0.521"
@@ -70,17 +115,18 @@
             app:layout_constraintVertical_bias="0.428" />
 
         <Button
-            android:id="@+id/button7"
+            android:id="@+id/goBackBtn"
             android:layout_width="146dp"
             android:layout_height="55dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:background="#F7F8FB"
-            android:fontFamily="@font/open_sans"
-            android:text="Ignore"
+            android:fontFamily="@font/open_sans_semibold"
+            android:text="Go back"
             android:textAlignment="center"
             android:textAllCaps="false"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -89,21 +135,43 @@
             app:layout_constraintVertical_bias="1.0" />
 
         <TextView
-            android:id="@+id/textView108"
-            android:layout_width="274dp"
-            android:layout_height="157dp"
+            android:id="@+id/textView118"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="Reserve"
+            android:textAlignment="center"
+            android:textSize="14sp"
+            app:fontFamily="@font/open_sans"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.504"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.317" />
+
+        <RadioButton
+            android:id="@+id/radioButton4"
+            android:layout_width="212dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
-            android:fontFamily="@font/open_sans"
-            android:text="Hello Ben,\nI used single color LED lights because color changing LED lights are more expensive than the price I estimated."
-            android:textSize="12dp"
+            android:checked="true"
+            android:fontFamily="@font/open_sans_semibold"
+            android:text="Keep (default)"
+            android:textColor="#393E46"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.633"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textView106" />
+            app:layout_constraintTop_toTopOf="@+id/textView106"
+            app:layout_constraintVertical_bias="0.643" />
+
     </android.support.constraint.ConstraintLayout>
 </android.support.constraint.ConstraintLayout>

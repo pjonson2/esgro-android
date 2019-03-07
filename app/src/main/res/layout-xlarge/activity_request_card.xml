@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/requestUserImg"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="33dp"
+        android:layout_marginLeft="33dp"
+        android:layout_marginTop="20dp"
+        android:adjustViewBounds="true"
+        app:srcCompat="@drawable/despute_card" />
+
+    <TextView
+        android:id="@+id/requestUserName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="118dp"
+        android:layout_marginLeft="118dp"
+        android:layout_marginTop="23dp"
+        android:text="Ben Stark"
+        android:textColor="#393E46"
+        android:textSize="18sp"
+        app:fontFamily="@font/open_sans_semibold" />
+
+    <TextView
+        android:id="@+id/requestDays"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="117dp"
+        android:layout_marginLeft="117dp"
+        android:layout_marginTop="46dp"
+        android:text="3 days ago"
+        android:textColor="#929AAB"
+        android:textSize="18sp"
+        app:fontFamily="@font/open_sans" />
+</RelativeLayout>
