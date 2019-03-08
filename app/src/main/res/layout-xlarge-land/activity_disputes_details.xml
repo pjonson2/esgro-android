@@ -48,8 +48,8 @@
 
         <ImageView
             android:id="@+id/disputesHandshakeIcon"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
             android:background="@drawable/shake_colour"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/view4"
@@ -62,8 +62,8 @@
 
         <ImageView
             android:id="@+id/disputesNewPostIcon"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:background="@drawable/new_rquest_btn2x"
@@ -74,8 +74,8 @@
 
         <ImageView
             android:id="@+id/disputesContactIcon"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
@@ -90,8 +90,8 @@
 
         <ImageView
             android:id="@+id/disputesSettingsIcon"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:background="@drawable/settingswhite2x"
@@ -104,8 +104,8 @@
 
         <ImageView
             android:id="@+id/disputesProfileIcon"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:background="@drawable/profile2x"
@@ -147,8 +147,8 @@
 
     <TextView
         android:id="@+id/textView62"
-        android:layout_width="97dp"
-        android:layout_height="19dp"
+        android:layout_width="150dp"
+        android:layout_height="25dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
@@ -157,15 +157,15 @@
         android:layout_marginBottom="8dp"
         android:text="DESCRIPTION"
         android:textColor="#393E46"
-        android:textSize="12sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:fontFamily="@font/open_sans"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.031"
+        app:layout_constraintHorizontal_bias="0.033"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView64"
-        app:layout_constraintVertical_bias="0.268" />
+        app:layout_constraintVertical_bias="0.326" />
 
     <Button
         android:id="@+id/disputeDetailsBack"
@@ -181,7 +181,7 @@
         android:text="Back"
         android:textAllCaps="false"
         android:textColor="@android:color/white"
-        android:textSize="12dp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/midView4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.048"
@@ -207,12 +207,12 @@
         app:layout_constraintHorizontal_bias="0.021"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.68" />
+        app:layout_constraintVertical_bias="0.7" />
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/midView4"
         android:layout_width="0dp"
-        android:layout_height="191dp"
+        android:layout_height="240dp"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="50dp"
@@ -232,11 +232,12 @@
             android:layout_height="1dp"
             android:layout_marginStart="4dp"
             android:layout_marginLeft="4dp"
-            android:layout_marginTop="108dp"
+            android:layout_marginTop="124dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:background="#EBEBEB"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints" />
@@ -248,9 +249,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/open_sans_semibold"
-        android:text="Accept"
+        android:text="Withdraw Disputes"
         android:textColor="#393E46"
-        android:textSize="10sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/midView4"
         app:layout_constraintEnd_toEndOf="@+id/likeIconImg"
         app:layout_constraintStart_toStartOf="@+id/likeIconImg"
@@ -264,7 +265,7 @@
         android:fontFamily="@font/open_sans_semibold"
         android:text="Contact"
         android:textColor="#393E46"
-        android:textSize="10sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/midView4"
         app:layout_constraintEnd_toEndOf="@+id/imageView40"
         app:layout_constraintStart_toStartOf="@+id/imageView40"
@@ -278,7 +279,7 @@
         android:fontFamily="@font/open_sans_semibold"
         android:text="Cancel"
         android:textColor="#393E46"
-        android:textSize="10sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/midView4"
         app:layout_constraintEnd_toEndOf="@+id/disputeCancelBtn"
         app:layout_constraintStart_toStartOf="@+id/disputeCancelBtn"
@@ -287,10 +288,10 @@
 
     <ImageView
         android:id="@+id/likeIconImg"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:layout_marginTop="8dp"
-        android:background="@drawable/ok"
+        android:background="@drawable/like"
         app:layout_constraintBottom_toBottomOf="@+id/midView4"
         app:layout_constraintEnd_toEndOf="@+id/midView4"
         app:layout_constraintHorizontal_bias="0.817"
@@ -299,8 +300,8 @@
 
     <ImageView
         android:id="@+id/imageView40"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/contact"
         app:layout_constraintBottom_toBottomOf="@+id/midView4"
@@ -311,8 +312,8 @@
 
     <ImageView
         android:id="@+id/disputeCancelBtn"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/no"
         app:layout_constraintBottom_toBottomOf="@+id/midView4"
@@ -329,10 +330,10 @@
         android:fontFamily="@font/open_sans_semibold"
         android:text="Change"
         android:textColor="#F47645"
-        android:textSize="12dp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/midView4"
         app:layout_constraintEnd_toEndOf="@+id/midView4"
-        app:layout_constraintHorizontal_bias="0.945"
+        app:layout_constraintHorizontal_bias="0.969"
         app:layout_constraintStart_toStartOf="@+id/midView4"
         app:layout_constraintTop_toBottomOf="@+id/imageView38"
         app:layout_constraintVertical_bias="0.0" />
@@ -346,7 +347,7 @@
         android:fontFamily="@font/open_sans_semibold"
         android:text="$25.56  "
         android:textColor="#F47645"
-        android:textSize="12dp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/midView4"
         app:layout_constraintHorizontal_bias="0.984"
@@ -357,7 +358,7 @@
     <TextView
         android:id="@+id/textView43"
         android:layout_width="0dp"
-        android:layout_height="27dp"
+        android:layout_height="22dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="32dp"
@@ -367,7 +368,7 @@
         android:text="DETAILS"
         android:textAlignment="center"
         android:textColor="@android:color/white"
-        android:textSize="14dp"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/cardView"
@@ -375,8 +376,8 @@
 
     <ImageView
         android:id="@+id/imageView38"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:background="@drawable/despute_card"
         app:layout_constraintBottom_toBottomOf="@+id/midView4"
         app:layout_constraintEnd_toEndOf="@+id/midView4"
@@ -387,7 +388,7 @@
 
     <TextView
         android:id="@+id/textView56"
-        android:layout_width="189dp"
+        android:layout_width="408dp"
         android:layout_height="50dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
@@ -398,42 +399,42 @@
         android:text="Kelly Riley"
         android:textAlignment="textStart"
         android:textColor="#393E46"
-        android:textSize="14dp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/midView4"
         app:layout_constraintEnd_toEndOf="@+id/midView4"
-        app:layout_constraintHorizontal_bias="0.547"
+        app:layout_constraintHorizontal_bias="0.467"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/midView4"
-        app:layout_constraintVertical_bias="0.152" />
+        app:layout_constraintVertical_bias="0.102" />
 
     <TextView
         android:id="@+id/textView57"
-        android:layout_width="69dp"
+        android:layout_width="104dp"
         android:layout_height="23dp"
         android:layout_marginTop="2dp"
         android:fontFamily="@font/open_sans"
+        android:gravity="end"
         android:text="+$75.46"
-        android:textColor="#5BDA31"
-        android:textSize="16dp"
         android:textAlignment="textEnd"
+        android:textColor="#5BDA31"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/midView4"
         app:layout_constraintEnd_toEndOf="@+id/midView4"
-        app:layout_constraintHorizontal_bias="0.942"
+        app:layout_constraintHorizontal_bias="0.966"
         app:layout_constraintStart_toStartOf="@+id/midView4"
         app:layout_constraintTop_toTopOf="@+id/midView4"
-        app:layout_constraintVertical_bias="0.128"
-        android:gravity="end" />
+        app:layout_constraintVertical_bias="0.134" />
 
     <TextView
         android:id="@+id/textView59"
-        android:layout_width="wrap_content"
+        android:layout_width="92dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/open_sans"
         android:text="2 Days left"
         android:textColor="#F47645"
-        android:textSize="12dp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/midView4"
         app:layout_constraintEnd_toEndOf="@+id/midView4"
         app:layout_constraintHorizontal_bias="0.042"
@@ -443,8 +444,8 @@
 
     <TextView
         android:id="@+id/textView66"
-        android:layout_width="63dp"
-        android:layout_height="16dp"
+        android:layout_width="150dp"
+        android:layout_height="25dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
@@ -453,15 +454,15 @@
         android:layout_marginBottom="8dp"
         android:text="HISTORY"
         android:textColor="#393E46"
-        android:textSize="12sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:fontFamily="@font/open_sans"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.024"
+        app:layout_constraintHorizontal_bias="0.025"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/midView4"
-        app:layout_constraintVertical_bias="0.004" />
+        app:layout_constraintVertical_bias="0.022" />
 
     <TextView
         android:id="@+id/textView67"
@@ -475,14 +476,14 @@
         android:layout_marginBottom="8dp"
         android:text="Kelly created this request"
         android:textColor="#929AAB"
-        android:textSize="12sp"
+        android:textSize="16sp"
         app:fontFamily="@font/open_sans"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.043"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView64"
-        app:layout_constraintVertical_bias="0.078" />
+        app:layout_constraintVertical_bias="0.105" />
 
     <TextView
         android:id="@+id/textView68"
@@ -496,14 +497,14 @@
         android:layout_marginBottom="8dp"
         android:text="You approved this request"
         android:textColor="#929AAB"
-        android:textSize="12sp"
+        android:textSize="16sp"
         app:fontFamily="@font/open_sans"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.044"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView64"
-        app:layout_constraintVertical_bias="0.125" />
+        app:layout_constraintVertical_bias="0.164" />
 
     <TextView
         android:id="@+id/textView58"
@@ -517,37 +518,38 @@
         android:layout_marginBottom="8dp"
         android:text="You disputed this request"
         android:textColor="#929AAB"
-        android:textSize="12sp"
+        android:textSize="16sp"
         app:fontFamily="@font/open_sans"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.044"
+        app:layout_constraintHorizontal_bias="0.043"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView64"
-        app:layout_constraintVertical_bias="0.17" />
+        app:layout_constraintVertical_bias="0.223" />
 
     <TextView
         android:id="@+id/textView63"
-        android:layout_width="0dp"
-        android:layout_height="144dp"
+        android:layout_width="1191dp"
+        android:layout_height="108dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="8dp"
         android:text="llamco nisi sunt velit quis sint anim nisi sunt Lorem in. dignissim, tellus in pellentesque mollis, mauris orci dignissim nisl, id gravida nunc enim quis nibh. Maecenas convallis eros a ante dignissim, vitae elementum metus facilisis. Cras in maximus sem. Praesent libero augue, ornare eget quam sed, "
         android:textColor="#929AAB"
-        android:textSize="13sp"
+        android:textSize="18sp"
         app:fontFamily="@font/open_sans"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textView58"
         app:layout_constraintTop_toBottomOf="@+id/textView62"
-        app:layout_constraintVertical_bias="0.048" />
+        app:layout_constraintVertical_bias="0.054" />
 
     <TextView
         android:id="@+id/textView69"
-        android:layout_width="64dp"
-        android:layout_height="19dp"
+        android:layout_width="150dp"
+        android:layout_height="25dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
@@ -556,7 +558,7 @@
         android:layout_marginBottom="8dp"
         android:text="RESERVE"
         android:textColor="#393E46"
-        android:textSize="12sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:fontFamily="@font/open_sans"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -565,23 +567,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView64"
         app:layout_constraintVertical_bias="0.76" />
-
-    <Button
-        android:id="@+id/chatIcon"
-        android:layout_width="70dp"
-        android:layout_height="22dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:background="@android:color/transparent"
-        android:fontFamily="@font/open_sans"
-        android:text="Chat"
-        android:textAllCaps="false"
-        android:textColor="@android:color/white"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="@+id/textView43"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/textView43"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

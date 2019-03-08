@@ -125,15 +125,15 @@
 
         <Button
             android:id="@+id/mobileVerificNxtBtn"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="105dp"
+            android:layout_height="105dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="380dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
-            android:background="@drawable/light_green_button"
+            android:background="@drawable/round_nxt_icon"
             android:clickable="false"
             android:drawablePadding="6dp"
             android:duplicateParentState="false"
