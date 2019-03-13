@@ -142,6 +142,54 @@
         app:layout_constraintVertical_bias="0.787" />
 
     <EditText
+        android:id="@+id/editText15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@android:color/transparent"
+        android:ems="10"
+        android:fontFamily="@font/open_sans"
+        android:gravity="end"
+        android:hint="0000 0000 0000 0000"
+        android:inputType="number"
+        android:textAlignment="textEnd"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/view12"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view12"
+        app:layout_constraintVertical_bias="0.09"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/editText16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@android:color/transparent"
+        android:ems="10"
+        android:fontFamily="@font/open_sans"
+        android:gravity="end"
+        android:hint="MM/YY"
+        android:inputType="date"
+        android:textAlignment="textEnd"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/view12"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.982"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view12"
+        app:layout_constraintVertical_bias="0.297"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
         android:id="@+id/editText17"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -153,8 +201,8 @@
         android:ems="10"
         android:fontFamily="@font/open_sans"
         android:gravity="end"
-        android:inputType="textPersonName"
-        android:text="CVV"
+        android:hint="CVV"
+        android:inputType="number"
         android:textAlignment="textEnd"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/view12"
@@ -234,30 +282,6 @@
         app:layout_constraintVertical_bias="0.387"
         tools:ignore="MissingConstraints" />
 
-    <EditText
-        android:id="@+id/editText16"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:background="@android:color/transparent"
-        android:ems="10"
-        android:fontFamily="@font/open_sans"
-        android:gravity="end"
-        android:inputType="textPersonName"
-        android:text="MM/YY"
-        android:textAlignment="textEnd"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/view12"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.982"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view12"
-        app:layout_constraintVertical_bias="0.297"
-        tools:ignore="MissingConstraints" />
-
     <View
         android:id="@+id/view13"
         android:layout_width="0dp"
@@ -270,30 +294,6 @@
         app:layout_constraintStart_toStartOf="@+id/view12"
         app:layout_constraintTop_toTopOf="@+id/view12"
         app:layout_constraintVertical_bias="0.188"
-        tools:ignore="MissingConstraints" />
-
-    <EditText
-        android:id="@+id/editText15"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:background="@android:color/transparent"
-        android:ems="10"
-        android:fontFamily="@font/open_sans"
-        android:gravity="end"
-        android:inputType="textPersonName"
-        android:text="0000 0000 0000 0000"
-        android:textAlignment="textEnd"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/view12"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view12"
-        app:layout_constraintVertical_bias="0.09"
         tools:ignore="MissingConstraints" />
 
     <TextView

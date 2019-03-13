@@ -18,7 +18,7 @@
         tools:ignore="MissingConstraints">
 
         <ImageView
-            android:id="@+id/bankCardHandshakeIcon"
+            android:id="@+id/chatHandshakeIcon"
             android:layout_width="18dp"
             android:layout_height="18dp"
             android:background="@drawable/handshake2x"
@@ -32,7 +32,7 @@
             tools:layout_conversion_absoluteWidth="18dp" />
 
         <ImageView
-            android:id="@+id/bankAndCardNewPostIcon"
+            android:id="@+id/chatbankAndCardNewPostIcon"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginEnd="8dp"
@@ -44,7 +44,7 @@
             app:layout_constraintTop_toTopOf="@+id/view4" />
 
         <ImageView
-            android:id="@+id/bankCardContactUsIcon"
+            android:id="@+id/chatContactUsIcon"
             android:layout_width="18dp"
             android:layout_height="18dp"
             android:layout_marginTop="8dp"
@@ -60,7 +60,7 @@
             app:layout_constraintVertical_bias="0.523" />
 
         <ImageView
-            android:id="@+id/bankCardSettingsIcon"
+            android:id="@+id/chatSettingsIcon"
             android:layout_width="18dp"
             android:layout_height="18dp"
             android:layout_marginEnd="8dp"
@@ -74,7 +74,7 @@
             app:layout_constraintVertical_bias="0.513" />
 
         <ImageView
-            android:id="@+id/profileIcon"
+            android:id="@+id/chatprofileIcon"
             android:layout_width="18dp"
             android:layout_height="18dp"
             android:layout_marginEnd="8dp"
@@ -122,12 +122,10 @@
 
     <Button
         android:id="@+id/button21"
-        android:layout_width="0dp"
+        android:layout_width="140dp"
         android:layout_height="45dp"
-        android:layout_marginStart="160dp"
-        android:layout_marginLeft="160dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/light_green_button"
         android:fontFamily="@font/open_sans_semibold"
@@ -135,9 +133,7 @@
         android:textAllCaps="false"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="@+id/midView5"
-        app:layout_constraintEnd_toEndOf="@+id/midView5"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/editText26" />
+        app:layout_constraintEnd_toEndOf="@+id/midView5" />
 
     <TextView
         android:id="@+id/textView120"
@@ -238,13 +234,11 @@
         android:layout_marginRight="30dp"
         android:layout_marginBottom="80dp"
         android:background="@drawable/txt_border"
-        android:editable="true"
-        android:ems="10"
         android:enabled="true"
         android:fontFamily="@font/open_sans"
         android:gravity="top"
+        android:hint="Type your message here"
         android:inputType="textMultiLine"
-        android:text="Type your message here"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/midView5"
         app:layout_constraintEnd_toEndOf="@+id/midView5"
@@ -254,24 +248,20 @@
 
     <RadioButton
         android:id="@+id/disputeRadioBtn"
-        android:layout_width="0dp"
+        android:layout_width="140dp"
         android:layout_height="45dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginEnd="160dp"
-        android:layout_marginRight="160dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/red_border"
         android:drawableStart="@drawable/warning"
+
         android:drawableLeft="@drawable/warning"
         android:fontFamily="@font/open_sans_semibold"
-
         android:gravity="center_horizontal|center_vertical"
         android:text="Dispute"
         android:textColor="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="@+id/midView5"
-        app:layout_constraintEnd_toEndOf="@+id/editText26"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/midView5" />
 
 </android.support.constraint.ConstraintLayout>

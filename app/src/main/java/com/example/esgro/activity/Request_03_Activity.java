@@ -1,7 +1,9 @@
 package com.example.esgro.activity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +14,9 @@ public class Request_03_Activity extends AppCompatActivity {
 
     Button back;
     Button continues;
+    Dialog dialog;
+    private final int SPLASH_DISPLAY_LENGTH = 3000;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +31,7 @@ public class Request_03_Activity extends AppCompatActivity {
 
         continues = findViewById(R.id.request3SendBtn);
         continues.setOnClickListener(requestContinue);
+        dialog = new Dialog(this);
 
 
     }
@@ -50,8 +56,22 @@ public class Request_03_Activity extends AppCompatActivity {
     };
     View.OnClickListener requestContinue = new View.OnClickListener() {
         public void onClick(View v) {
-            Intent mainIntent = new Intent(Request_03_Activity.this,HomePageActivity.class);
-            Request_03_Activity.this.startActivity(mainIntent);
+            dialog.setContentView(R.layout.activity_proessing_alert);
+
+            dialog.show();
+            new Handler().postDelayed(new Runnable(){
+                @Override
+                public void run() {
+                    dialog.dismiss();
+
+                    Intent mainIntent = new Intent(Request_03_Activity.this,DisputeNoHistoryActivity.class);
+                    Request_03_Activity.this.startActivity(mainIntent);
+                }
+            }, SPLASH_DISPLAY_LENGTH);
+
+
+
+
         }
     };
 }

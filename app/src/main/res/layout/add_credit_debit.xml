@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F7F8FB">
+    android:background="#F7F8FB"
+    android:screenOrientation="portrait">
 
     <View
         android:id="@+id/view5"
@@ -152,8 +153,8 @@
         android:ems="10"
         android:fontFamily="@font/open_sans"
         android:gravity="end"
-        android:inputType="textPersonName"
-        android:text="CVV"
+        android:hint="CVV"
+        android:inputType="number"
         android:textAlignment="textEnd"
         android:textSize="12dp"
         app:layout_constraintBottom_toBottomOf="@+id/view12"
@@ -245,8 +246,8 @@
         android:ems="10"
         android:fontFamily="@font/open_sans"
         android:gravity="end"
-        android:inputType="textPersonName"
-        android:text="MM/YY"
+        android:hint="MM/YY"
+        android:inputType="date"
         android:textAlignment="textEnd"
         android:textSize="12dp"
         app:layout_constraintBottom_toBottomOf="@+id/view12"
@@ -283,8 +284,8 @@
         android:ems="10"
         android:fontFamily="@font/open_sans"
         android:gravity="end"
-        android:inputType="textPersonName"
-        android:text="0000 0000 0000 0000"
+        android:hint="0000 0000 0000 0000"
+        android:inputType="number"
         android:textAlignment="textEnd"
         android:textSize="12dp"
         app:layout_constraintBottom_toBottomOf="@+id/view12"

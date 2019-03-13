@@ -152,6 +152,30 @@
         tools:ignore="MissingConstraints" />
 
     <EditText
+        android:id="@+id/editText19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@android:color/transparent"
+        android:ems="10"
+        android:fontFamily="@font/open_sans"
+        android:gravity="end"
+        android:hint="000000000  "
+        android:inputType="number"
+        android:textAlignment="textEnd"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/view20"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.964"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view20"
+        app:layout_constraintVertical_bias="0.174"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
         android:id="@+id/editText20"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -163,8 +187,8 @@
         android:ems="10"
         android:fontFamily="@font/open_sans"
         android:gravity="end"
-        android:inputType="textPersonName"
-        android:text="000000000  "
+        android:hint="000000000  "
+        android:inputType="number"
         android:textAlignment="textEnd"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/view20"
@@ -209,30 +233,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/view20"
         app:layout_constraintVertical_bias="0.347"
-        tools:ignore="MissingConstraints" />
-
-    <EditText
-        android:id="@+id/editText19"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:background="@android:color/transparent"
-        android:ems="10"
-        android:fontFamily="@font/open_sans"
-        android:gravity="end"
-        android:inputType="textPersonName"
-        android:text="000000000  "
-        android:textAlignment="textEnd"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/view20"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.964"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view20"
-        app:layout_constraintVertical_bias="0.174"
         tools:ignore="MissingConstraints" />
 
     <ImageView

@@ -4,15 +4,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 
 import com.example.esgro.R;
 
-public class MobileVerificationActivity  extends AppCompatActivity {
+public class MobileVerificationActivity  extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     Button backBtn;
     Button nextBtn;
+    Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +30,20 @@ public class MobileVerificationActivity  extends AppCompatActivity {
         nextBtn = findViewById(R.id.mobileVerificNxtBtn);
         nextBtn.setOnClickListener(nxtAction);
 
+        spinner = findViewById(R.id.mobileVerificSpinner);
+
+
+        loadSpinner();
+
+    }
+
+    void loadSpinner(){
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.country_names, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
     }
 
     @Override
@@ -53,4 +71,14 @@ public class MobileVerificationActivity  extends AppCompatActivity {
             MobileVerificationActivity.this.startActivity(mainIntent);
         }
     };
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        System.out.println("Select a item from spinner   1");
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+        System.out.println("Select a item from spinner bo  ");
+    }
 }

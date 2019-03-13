@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -20,6 +21,7 @@ import java.util.List;
 public class BankListActivity extends AppCompatActivity {
 
     List<Bank> bankList;
+    Button back;
     public final static String EXTRA_MESSAGE = "com.example.ListViewTest.MESSAGE";
 
     @Override
@@ -27,6 +29,10 @@ public class BankListActivity extends AppCompatActivity {
         onWindowFocusChanged(true);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bank_list);
+
+        back = findViewById(R.id.link_bank_account_backBtn);
+        back.setOnClickListener(backtoHome);
+
         bankList = new ArrayList<>();
         initializeArray();
 
@@ -139,5 +145,11 @@ public class BankListActivity extends AppCompatActivity {
             return convertView;
         }
     }
+    View.OnClickListener backtoHome = new View.OnClickListener() {
+        public void onClick(View v) {
+            Intent mainIntent = new Intent(BankListActivity.this, HomePageActivity.class);
+            BankListActivity.this.startActivity(mainIntent);
+        }
+    };
 
 }

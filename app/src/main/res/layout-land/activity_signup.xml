@@ -10,10 +10,10 @@
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constraintLayout2"
         android:layout_width="0dp"
-        android:layout_height="476dp"
+        android:layout_height="273dp"
         android:layout_marginStart="25dp"
         android:layout_marginLeft="25dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="25dp"
         android:layout_marginRight="25dp"
         android:background="@drawable/layout_corner"
@@ -49,14 +49,14 @@
             android:textSize="12dp"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintHorizontal_bias="0.493"
+            card_view:layout_constraintHorizontal_bias="0.492"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent"
-            card_view:layout_constraintVertical_bias="0.942" />
+            card_view:layout_constraintVertical_bias="0.9" />
 
         <EditText
             android:id="@+id/editText"
-            android:layout_width="0dp"
+            android:layout_width="290dp"
             android:layout_height="39dp"
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
@@ -71,14 +71,15 @@
             android:textSize="14dp"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintHorizontal_bias="0.0"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent"
-            card_view:layout_constraintVertical_bias="0.059"
+            card_view:layout_constraintVertical_bias="0.119"
             tools:ignore="MissingConstraints" />
 
         <EditText
             android:id="@+id/editText2"
-            android:layout_width="0dp"
+            android:layout_width="290dp"
             android:layout_height="39dp"
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
@@ -93,14 +94,15 @@
             android:textSize="14dp"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintHorizontal_bias="0.0"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent"
-            card_view:layout_constraintVertical_bias="0.195"
+            card_view:layout_constraintVertical_bias="0.389"
             tools:ignore="MissingConstraints" />
 
         <EditText
             android:id="@+id/editText3"
-            android:layout_width="0dp"
+            android:layout_width="290dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
@@ -118,12 +120,12 @@
             card_view:layout_constraintHorizontal_bias="0.0"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent"
-            card_view:layout_constraintVertical_bias="0.348"
+            card_view:layout_constraintVertical_bias="0.672"
             tools:ignore="MissingConstraints" />
 
         <EditText
             android:id="@+id/editText4"
-            android:layout_width="0dp"
+            android:layout_width="290dp"
             android:layout_height="36dp"
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
@@ -139,15 +141,15 @@
             android:textSize="14dp"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintHorizontal_bias="0.0"
+            card_view:layout_constraintHorizontal_bias="0.852"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent"
-            card_view:layout_constraintVertical_bias="0.522"
+            card_view:layout_constraintVertical_bias="0.683"
             tools:ignore="MissingConstraints" />
 
         <EditText
             android:id="@+id/editText5"
-            android:layout_width="0dp"
+            android:layout_width="290dp"
             android:layout_height="42dp"
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
@@ -159,10 +161,10 @@
             android:inputType="textPassword"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintHorizontal_bias="0.0"
+            card_view:layout_constraintHorizontal_bias="0.852"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent"
-            card_view:layout_constraintVertical_bias="0.664"
+            card_view:layout_constraintVertical_bias="0.106"
             tools:ignore="MissingConstraints" />
 
         <TextView
@@ -185,7 +187,7 @@
             card_view:layout_constraintHorizontal_bias="0.0"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent"
-            card_view:layout_constraintVertical_bias="0.87" />
+            card_view:layout_constraintVertical_bias="0.781" />
 
         <TextView
             android:id="@+id/textView9"
@@ -204,14 +206,14 @@
             android:textSize="12dp"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintHorizontal_bias="0.0"
+            card_view:layout_constraintHorizontal_bias="0.595"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent"
-            card_view:layout_constraintVertical_bias="0.712" />
+            card_view:layout_constraintVertical_bias="0.24" />
 
         <EditText
             android:id="@+id/editText6"
-            android:layout_width="0dp"
+            android:layout_width="290dp"
             android:layout_height="38dp"
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
@@ -223,10 +225,10 @@
             android:inputType="textPassword"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintHorizontal_bias="0.0"
+            card_view:layout_constraintHorizontal_bias="0.852"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent"
-            card_view:layout_constraintVertical_bias="0.809"
+            card_view:layout_constraintVertical_bias="0.392"
             tools:ignore="MissingConstraints" />
 
         <TextView
@@ -246,10 +248,10 @@
             android:textSize="12dp"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintHorizontal_bias="0.0"
+            card_view:layout_constraintHorizontal_bias="0.546"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent"
-            card_view:layout_constraintVertical_bias="0.587" />
+            card_view:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/textView7"
@@ -268,10 +270,10 @@
             android:textSize="12dp"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintHorizontal_bias="0.0"
+            card_view:layout_constraintHorizontal_bias="0.546"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent"
-            card_view:layout_constraintVertical_bias="0.427" />
+            card_view:layout_constraintVertical_bias="0.506" />
 
         <TextView
             android:id="@+id/textView6"
@@ -293,7 +295,7 @@
             card_view:layout_constraintHorizontal_bias="0.0"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent"
-            card_view:layout_constraintVertical_bias="0.253" />
+            card_view:layout_constraintVertical_bias="0.506" />
 
         <TextView
             android:id="@+id/textView5"
@@ -315,7 +317,7 @@
             card_view:layout_constraintHorizontal_bias="0.0"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent"
-            card_view:layout_constraintVertical_bias="0.122" />
+            card_view:layout_constraintVertical_bias="0.248" />
 
         <TextView
             android:id="@+id/textView4"
@@ -351,15 +353,15 @@
             android:layout_marginBottom="8dp"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintHorizontal_bias="0.972"
+            card_view:layout_constraintHorizontal_bias="0.911"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent"
-            card_view:layout_constraintVertical_bias="0.87" />
+            card_view:layout_constraintVertical_bias="0.813" />
 
         <CheckBox
             android:id="@+id/checkBox"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="26dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
@@ -370,6 +372,7 @@
             android:text="I agree with terms &amp; conditions  "
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintHorizontal_bias="0.498"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent"
             card_view:layout_constraintVertical_bias="1.0" />
@@ -379,9 +382,9 @@
         android:id="@+id/signUpBackBtn"
         android:layout_width="10dp"
         android:layout_height="15dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
         android:background="@drawable/path_467"
         card_view:layout_constraintLeft_toLeftOf="parent"
         card_view:layout_constraintStart_toStartOf="parent"
@@ -409,13 +412,13 @@
     <Button
         android:id="@+id/signUpContinueBtn"
         style="?android:attr/borderlessButtonStyle"
-        android:layout_width="0dp"
+        android:layout_width="323dp"
         android:layout_height="50dp"
         android:layout_marginStart="80dp"
         android:layout_marginLeft="80dp"
         android:layout_marginEnd="80dp"
         android:layout_marginRight="80dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="15dp"
         android:background="@drawable/light_green_button"
         android:fontFamily="@font/open_sans_semibold"
         android:paddingBottom="0dp"
@@ -428,7 +431,6 @@
         android:textSize="14dp"
         card_view:layout_constraintBottom_toBottomOf="parent"
         card_view:layout_constraintEnd_toEndOf="parent"
-        card_view:layout_constraintHorizontal_bias="0.0"
         card_view:layout_constraintLeft_toLeftOf="parent"
         card_view:layout_constraintRight_toRightOf="parent"
         card_view:layout_constraintStart_toStartOf="parent" />

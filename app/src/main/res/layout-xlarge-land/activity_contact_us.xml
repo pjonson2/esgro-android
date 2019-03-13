@@ -125,140 +125,10 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/midView3"
         app:layout_constraintEnd_toEndOf="@+id/midView3"
-        app:layout_constraintHorizontal_bias="0.049"
+        app:layout_constraintHorizontal_bias="0.043"
         app:layout_constraintStart_toStartOf="@+id/midView3"
         app:layout_constraintTop_toTopOf="@+id/midView3"
-        app:layout_constraintVertical_bias="0.445" />
-
-    <TextView
-        android:id="@+id/textView54"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/open_sans_semibold"
-        android:text="ADDRESS"
-        android:textColor="@android:color/black"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/midView3"
-        app:layout_constraintEnd_toEndOf="@+id/midView3"
-        app:layout_constraintHorizontal_bias="0.039"
-        app:layout_constraintStart_toStartOf="@+id/midView3"
-        app:layout_constraintTop_toTopOf="@+id/midView3"
-        app:layout_constraintVertical_bias="0.234" />
-
-    <TextView
-        android:id="@+id/textView46"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/open_sans_semibold"
-        android:text="PHONE"
-        android:textColor="@android:color/black"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/midView3"
-        app:layout_constraintEnd_toEndOf="@+id/midView3"
-        app:layout_constraintHorizontal_bias="0.038"
-        app:layout_constraintStart_toStartOf="@+id/midView3"
-        app:layout_constraintTop_toTopOf="@+id/midView3"
-        app:layout_constraintVertical_bias="0.122" />
-
-    <Button
-        android:id="@+id/button19"
-        android:layout_width="360dp"
-        android:layout_height="96dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:background="@android:color/transparent"
-        android:fontFamily="@font/open_sans_semibold"
-        android:gravity="start"
-        android:text="1240 john Daniel Drive \n Lilbourn \n MO \n Missouri"
-        android:textAlignment="viewStart"
-        android:textAllCaps="false"
-        android:textColor="#929AAB"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/midView3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.576"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/midView3"
-        app:layout_constraintVertical_bias="0.236"
-        tools:ignore="MissingConstraints" />
-
-    <ImageView
-        android:id="@+id/imageView37"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="3dp"
-        android:background="@drawable/address"
-        app:layout_constraintBottom_toBottomOf="@+id/midView3"
-        app:layout_constraintEnd_toEndOf="@+id/midView3"
-        app:layout_constraintHorizontal_bias="0.965"
-        app:layout_constraintStart_toStartOf="@+id/midView3"
-        app:layout_constraintTop_toTopOf="@+id/midView3"
-        app:layout_constraintVertical_bias="0.207" />
-
-    <View
-        android:id="@+id/view38"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:background="#EBEBEB"
-        app:layout_constraintBottom_toBottomOf="@+id/midView3"
-        app:layout_constraintEnd_toEndOf="@+id/midView3"
-        app:layout_constraintHorizontal_bias="0.487"
-        app:layout_constraintStart_toStartOf="@+id/midView3"
-        app:layout_constraintTop_toTopOf="@+id/midView3"
-        app:layout_constraintVertical_bias="0.4"
-        tools:ignore="MissingConstraints" />
-
-    <Button
-        android:id="@+id/button9"
-        android:layout_width="158dp"
-        android:layout_height="31dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:background="@android:color/transparent"
-        android:fontFamily="@font/open_sans_semibold"
-        android:gravity="start"
-        android:text="032 834 89 88"
-        android:textAlignment="viewStart"
-        android:textAllCaps="false"
-        android:textColor="#929AAB"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/midView3"
-        app:layout_constraintEnd_toEndOf="@+id/midView3"
-        app:layout_constraintHorizontal_bias="0.482"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/midView3"
-        app:layout_constraintVertical_bias="0.125"
-        tools:ignore="MissingConstraints" />
-
-    <ImageView
-        android:id="@+id/imageView36"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="4dp"
-        android:background="@drawable/call"
-        app:layout_constraintBottom_toBottomOf="@+id/midView3"
-        app:layout_constraintEnd_toEndOf="@+id/midView3"
-        app:layout_constraintHorizontal_bias="0.965"
-        app:layout_constraintStart_toStartOf="@+id/midView3"
-        app:layout_constraintTop_toTopOf="@+id/midView3"
-        app:layout_constraintVertical_bias="0.104" />
-
-    <View
-        android:id="@+id/view37"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:background="#EBEBEB"
-        app:layout_constraintBottom_toBottomOf="@+id/midView3"
-        app:layout_constraintEnd_toEndOf="@+id/midView3"
-        app:layout_constraintHorizontal_bias="0.487"
-        app:layout_constraintStart_toStartOf="@+id/midView3"
-        app:layout_constraintTop_toTopOf="@+id/midView3"
-        app:layout_constraintVertical_bias="0.18"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintVertical_bias="0.285" />
 
     <Button
         android:id="@+id/button6"
@@ -290,11 +160,11 @@
         android:layout_height="1dp"
         android:background="#EBEBEB"
         app:layout_constraintBottom_toBottomOf="@+id/midView3"
-        app:layout_constraintEnd_toEndOf="@+id/view38"
-        app:layout_constraintHorizontal_bias="0.487"
-        app:layout_constraintStart_toStartOf="@+id/view38"
+        app:layout_constraintEnd_toEndOf="@+id/midView3"
+        app:layout_constraintHorizontal_bias="0.578"
+        app:layout_constraintStart_toStartOf="@+id/midView3"
         app:layout_constraintTop_toTopOf="@+id/midView3"
-        app:layout_constraintVertical_bias="0.096"
+        app:layout_constraintVertical_bias="0.171"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -315,19 +185,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/headerView3"
         tools:ignore="MissingConstraints" />
-
-    <ImageView
-        android:id="@+id/imageView35"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="3dp"
-        android:background="@drawable/message"
-        app:layout_constraintBottom_toBottomOf="@+id/midView3"
-        app:layout_constraintEnd_toEndOf="@+id/midView3"
-        app:layout_constraintHorizontal_bias="0.965"
-        app:layout_constraintStart_toStartOf="@+id/midView3"
-        app:layout_constraintTop_toTopOf="@+id/midView3"
-        app:layout_constraintVertical_bias="0.013" />
 
     <Button
         android:id="@+id/submitBtn"
@@ -351,10 +208,10 @@
         app:layout_constraintTop_toTopOf="@+id/midView3"
         app:layout_constraintVertical_bias="0.946" />
 
-    <TextView
+    <EditText
         android:id="@+id/textView44"
         android:layout_width="1125dp"
-        android:layout_height="161dp"
+        android:layout_height="195dp"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginEnd="10dp"
@@ -363,21 +220,24 @@
         android:clickable="true"
         android:editable="true"
         android:enabled="true"
+        android:gravity="top"
+        android:fontFamily="@font/open_sans"
         android:hint="Type your message here"
+        android:inputType="textMultiLine"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/midView3"
         app:layout_constraintEnd_toEndOf="@+id/midView3"
-        app:layout_constraintHorizontal_bias="0.466"
+        app:layout_constraintHorizontal_bias="0.453"
         app:layout_constraintStart_toStartOf="@+id/midView3"
         app:layout_constraintTop_toTopOf="@+id/midView3"
-        app:layout_constraintVertical_bias="0.703" />
+        app:layout_constraintVertical_bias="0.551" />
 
     <TextView
         android:id="@+id/textView45"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/open_sans_semibold"
-        android:text="EMAIL"
+        android:text="SUBJECT"
         android:textColor="@android:color/black"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/midView3"

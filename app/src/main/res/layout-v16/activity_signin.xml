@@ -24,8 +24,8 @@
 
         <Button
             android:id="@+id/siginInBackBtn"
-            android:layout_width="12dp"
-            android:layout_height="12dp"
+            android:layout_width="10dp"
+            android:layout_height="18dp"
             android:layout_marginStart="20dp"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="40dp"
@@ -74,7 +74,7 @@
             android:textAlignment="center"
 
             android:textColor="#393E46"
-            android:textSize="12sp"
+            android:textSize="23sp"
             app:fontFamily="@font/open_sans"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.504"
@@ -237,7 +237,7 @@
             android:fontFamily="@font/open_sans"
             android:text="Don't have an account ?"
             android:textAlignment="center"
-            android:textSize="10sp"
+            android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"

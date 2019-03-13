@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F7F8FB">
+    android:background="#F7F8FB"
+    android:screenOrientation="portrait">
 
     <TextView
         android:id="@+id/textView84"
@@ -27,16 +28,85 @@
         app:layout_constraintTop_toBottomOf="@+id/view46"
         app:layout_constraintVertical_bias="0.234" />
 
-    <TextView
-        android:id="@+id/textView85"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <EditText
+        android:id="@+id/textView78"
+        android:layout_width="126dp"
+        android:layout_height="20dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
+        android:background="@android:color/transparent"
         android:gravity="end"
-        android:text="$0.00"
+        android:hint="Hendricks"
+        android:textAlignment="textEnd"
+        android:textColor="#929AAB"
+        android:textSize="12sp"
+        app:fontFamily="@font/open_sans"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.964"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view46"
+        app:layout_constraintVertical_bias="0.008" />
+
+    <EditText
+        android:id="@+id/textView79"
+        android:layout_width="179dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@android:color/transparent"
+        android:gravity="end"
+        android:hint="Same day (11/18/2018)"
+        android:textAlignment="textEnd"
+        android:textColor="#929AAB"
+        android:textSize="12sp"
+        app:fontFamily="@font/open_sans"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.964"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view46"
+        app:layout_constraintVertical_bias="0.077" />
+
+    <EditText
+        android:id="@+id/textView83"
+        android:layout_width="122dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@android:color/transparent"
+        android:gravity="end"
+        android:hint="$0.00"
+        android:inputType="number"
+        android:textAlignment="textEnd"
+        android:textColor="#929AAB"
+        android:textSize="12sp"
+        app:fontFamily="@font/open_sans"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.969"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view46"
+        app:layout_constraintVertical_bias="0.155" />
+
+    <EditText
+        android:id="@+id/textView85"
+        android:layout_width="126dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@android:color/transparent"
+        android:gravity="end"
+        android:hint="$0.00"
+        android:inputType="number"
         android:textAlignment="textEnd"
         android:textColor="#929AAB"
         android:textSize="12sp"
@@ -88,27 +158,6 @@
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/textView83"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:gravity="end"
-        android:text="$0.00"
-        android:textAlignment="textEnd"
-        android:textColor="#929AAB"
-        android:textSize="12sp"
-        app:fontFamily="@font/open_sans"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.969"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view46"
-        app:layout_constraintVertical_bias="0.155" />
-
-    <TextView
         android:id="@+id/textView81"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -125,27 +174,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view46"
-        app:layout_constraintVertical_bias="0.077" />
-
-    <TextView
-        android:id="@+id/textView79"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:gravity="end"
-        android:text="Same day (11/18/2018)"
-        android:textAlignment="textEnd"
-        android:textColor="#929AAB"
-        android:textSize="12sp"
-        app:fontFamily="@font/open_sans"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.964"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view46"
         app:layout_constraintVertical_bias="0.077" />
@@ -275,27 +303,6 @@
         app:layout_constraintVertical_bias="0.921" />
 
     <TextView
-        android:id="@+id/textView78"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:gravity="end"
-        android:text="Hendricks"
-        android:textAlignment="textEnd"
-        android:textColor="#929AAB"
-        android:textSize="12sp"
-        app:fontFamily="@font/open_sans"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.964"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view46"
-        app:layout_constraintVertical_bias="0.008" />
-
-    <TextView
         android:id="@+id/textView80"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -316,14 +323,16 @@
         app:layout_constraintTop_toBottomOf="@+id/view46"
         app:layout_constraintVertical_bias="0.008" />
 
-    <TextView
+    <EditText
         android:id="@+id/textView86"
         android:layout_width="0dp"
         android:layout_height="130dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:background="@android:color/white"
+        android:gravity="top"
         android:hint="     DESCRIPTION  "
+        android:inputType="textMultiLine"
         android:textColor="#929AAB"
         android:textSize="12sp"
         app:fontFamily="@font/open_sans_semibold"

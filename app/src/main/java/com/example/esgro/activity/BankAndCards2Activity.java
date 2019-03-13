@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.esgro.R;
 
@@ -20,6 +21,9 @@ public class BankAndCards2Activity extends AppCompatActivity {
     ImageView newPostIcon;
     ImageView bankCardSettingsIcon;
 
+    TextView plusCrd;
+    TextView plusBnk;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         onWindowFocusChanged(true);
@@ -28,8 +32,14 @@ public class BankAndCards2Activity extends AppCompatActivity {
         card = findViewById(R.id.plusCard);
         card.setOnClickListener(plusCard);
 
+        plusCrd = findViewById(R.id.plusAddCardLbl);
+        plusCrd.setOnClickListener(plusCard);
+
         bank = findViewById(R.id.plusBank);
         bank.setOnClickListener(plusBank);
+
+        plusBnk = findViewById(R.id.plusLinkBankAccountLbl);
+        plusBnk.setOnClickListener(plusBank);
 
         back = findViewById(R.id.bankAndCardBackBtn);
         back.setOnClickListener(backAction);

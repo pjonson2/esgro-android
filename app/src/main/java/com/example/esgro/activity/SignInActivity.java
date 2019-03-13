@@ -30,6 +30,11 @@ public class SignInActivity extends AppCompatActivity {
 
         getStart = findViewById(R.id.signIngetStartBtn);
         getStart.setOnClickListener(getStartBtnAction);
+        Runnable mNavHider = new Runnable() {
+            @Override public void run() {
+                onWindowFocusChanged(true);
+            }
+        };
 
 //        TextViewCompat.setAutoSizeTextTypeUniformWithPresetSizes(int[] presetSizes, int unit);
 

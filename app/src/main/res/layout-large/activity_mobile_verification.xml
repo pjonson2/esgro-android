@@ -86,42 +86,19 @@
             android:id="@+id/editText7"
             android:layout_width="105dp"
             android:layout_height="42dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
             android:layout_marginTop="328dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:ems="10"
             android:fontFamily="@font/open_sans_semibold"
-            android:inputType="textPersonName"
+            android:hint="123456789"
+            android:inputType="phone"
             android:maxLength="10"
             android:numeric="integer"
             android:phoneNumber="true"
-            android:text="123456789"
             android:textAlignment="center"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="@+id/textView12"
-            app:layout_constraintHorizontal_bias="0.178"
-            app:layout_constraintStart_toEndOf="@+id/editText8"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <EditText
-            android:id="@+id/editText8"
-            android:layout_width="36dp"
-            android:layout_height="42dp"
-            android:layout_marginTop="328dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:ems="10"
-            android:fontFamily="@font/open_sans_semibold"
-            android:inputType="textPersonName"
-            android:maxLength="3"
-            android:text="+1"
-            android:textAlignment="center"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="@+id/textView12"
-            app:layout_constraintHorizontal_bias="0.084"
-            app:layout_constraintStart_toStartOf="@+id/textView12"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
@@ -163,6 +140,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.064"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Spinner
+            android:id="@+id/mobileVerificSpinner"
+            android:layout_width="76dp"
+            android:layout_height="37dp"
+            android:layout_marginTop="328dp"
+            android:spinnerMode="dropdown"
+            android:fontFamily="@font/open_sans_semibold"
+            app:layout_constraintEnd_toEndOf="@+id/textView12"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/textView12"
             app:layout_constraintTop_toTopOf="parent" />
 
     </android.support.constraint.ConstraintLayout>

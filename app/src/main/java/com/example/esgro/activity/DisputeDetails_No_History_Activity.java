@@ -23,6 +23,7 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
     Dialog dialog;
     ImageView okIconImge;
     ImageView noDisputeCancelBtn;
+    Button chat;
     private final int SPLASH_DISPLAY_LENGTH = 4000;
 
 
@@ -55,6 +56,9 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
 
         noDisputeCancelBtn = findViewById(R.id.noDisputeCancelBtn);
         noDisputeCancelBtn.setOnClickListener(cancelAction);
+
+        chat = findViewById(R.id.chatIcon2);
+        chat.setOnClickListener(chatAction);
 
         dialog = new Dialog(this);
 
@@ -111,6 +115,12 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
         }
     };
 
+    View.OnClickListener chatAction = new View.OnClickListener() {
+        public void onClick(View v) {
+            Intent mainIntent = new Intent(DisputeDetails_No_History_Activity.this,ChatActivity.class);
+            DisputeDetails_No_History_Activity.this.startActivity(mainIntent);
+        }
+    };
     View.OnClickListener profile = new View.OnClickListener() {
         public void onClick(View v) {
             Intent mainIntent = new Intent(DisputeDetails_No_History_Activity.this,ProfileActivity.class);

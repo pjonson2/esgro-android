@@ -20,6 +20,7 @@ public class AboutActivity  extends AppCompatActivity {
         back = findViewById(R.id.aboutBackBtn);
         back.setOnClickListener(backAction);
 
+
     }
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {

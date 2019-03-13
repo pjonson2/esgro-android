@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 
@@ -20,6 +21,7 @@ public class ContactUsActivity extends AppCompatActivity {
     ImageView newPostIcon;
 
     Dialog dialog;
+    Button done;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +64,15 @@ public class ContactUsActivity extends AppCompatActivity {
             dialog.setContentView(R.layout.activity_feedback_alert);
 
             dialog.show();
+            Window window = dialog.getWindow();
+
+            done = window.findViewById(R.id.doneBtn);
+            done.setOnClickListener(hideUI);
+        }
+    };
+    View.OnClickListener hideUI = new View.OnClickListener() {
+        public void onClick(View v) {
+            dialog.dismiss();
         }
     };
 

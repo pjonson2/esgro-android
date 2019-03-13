@@ -381,10 +381,10 @@
         android:textSize="14dp"
         app:layout_constraintBottom_toBottomOf="@+id/view57"
         app:layout_constraintEnd_toEndOf="@+id/view57"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="@+id/view57"
         app:layout_constraintTop_toTopOf="@+id/view57"
-        app:layout_constraintVertical_bias="0.132" />
+        app:layout_constraintVertical_bias="0.1" />
 
     <ImageView
         android:id="@+id/imageView46"

@@ -12,10 +12,11 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo2x"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme"
+        android:label="@string/app_name">
         <activity android:name=".activity.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,31 +24,38 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.LaunchedActivity" >
+        <activity android:name=".activity.LaunchedActivity"
+            android:screenOrientation="portrait">
 
 
         </activity>
-        <activity android:name=".activity.SignUpActivity" >
+        <activity android:name=".activity.SignUpActivity"
+            android:screenOrientation="portrait">
 
 
         </activity>
-        <activity android:name=".activity.SignInActivity" >
+        <activity android:name=".activity.SignInActivity"
+            android:screenOrientation="portrait">
 
 
         </activity>
-        <activity android:name=".activity.MobileVerificationActivity" >
+        <activity android:name=".activity.MobileVerificationActivity"
+            android:screenOrientation="portrait">
 
 
         </activity>
-        <activity android:name=".activity.EnterVerificationActivity" >
+        <activity android:name=".activity.EnterVerificationActivity"
+            android:screenOrientation="portrait">
 
 
         </activity>
-        <activity android:name=".activity.CompleteProfileActivity" >
+        <activity android:name=".activity.CompleteProfileActivity"
+            android:screenOrientation="portrait">
 
 
         </activity>
-        <activity android:name=".activity.HomePageActivity" >
+        <activity android:name=".activity.HomePageActivity"
+            android:screenOrientation="portrait">
 
 
         </activity>
@@ -79,15 +87,18 @@
 
 
         </activity>
-        <activity android:name=".activity.ExportActivity" >
+        <activity android:name=".activity.ExportActivity"
+            android:screenOrientation="portrait">
 
 
         </activity>
-        <activity android:name=".activity.ContactUsActivity" >
+        <activity android:name=".activity.ContactUsActivity"
+            android:screenOrientation="portrait">
 
 
         </activity>
-        <activity android:name=".activity.DisputeDetails_01_Activity" >
+        <activity android:name=".activity.DisputeDetails_01_Activity"
+            android:screenOrientation="portrait">
 
 
         </activity>
@@ -103,15 +114,18 @@
 
 
         </activity>
-        <activity android:name=".activity.ResponedActivity" >
+        <activity android:name=".activity.ResponedActivity"
+            android:screenOrientation="portrait">
 
 
         </activity>
-        <activity android:name=".activity.ProfileActivity" >
+        <activity android:name=".activity.ProfileActivity"
+            android:screenOrientation="portrait">
 
 
         </activity>
-        <activity android:name=".activity.UpdateProfileActivity" >
+        <activity android:name=".activity.UpdateProfileActivity"
+            android:screenOrientation="portrait">
 
 
         </activity>
@@ -144,7 +158,8 @@
 
 
         </activity>
-        <activity android:name=".activity.DisputeDetails_No_History_Activity" >
+        <activity android:name=".activity.DisputeDetails_No_History_Activity"
+            android:screenOrientation="portrait">
 
 
         </activity>

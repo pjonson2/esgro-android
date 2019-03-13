@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
-    <SearchView
+    <EditText
         android:id="@+id/searchView3"
         android:layout_width="0dp"
         android:layout_height="40dp"
@@ -29,14 +29,15 @@
         android:layout_marginBottom="8dp"
         android:background="@drawable/layout_corner"
         android:clickable="true"
-        android:queryHint="Username, Name or Amount"
-        app:defaultQueryHint="asds"
+        android:hint="  Username, Name or Amount"
+        android:textColorHint="@color/lightGreen"
         app:layout_constraintBottom_toTopOf="@+id/dynamicDisputeListView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.07999998" />
+        app:layout_constraintVertical_bias="0.07999998"
+        android:drawableLeft="@drawable/search"/>
 
     <ListView
         android:id="@+id/dynamicShakeListView"

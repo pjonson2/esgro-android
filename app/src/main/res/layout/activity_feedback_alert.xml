@@ -11,7 +11,7 @@
     <android.support.constraint.ConstraintLayout
         android:id="@+id/view59"
         android:layout_width="290dp"
-        android:layout_height="340dp"
+        android:layout_height="362dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,21 +31,6 @@
             tools:layout_conversion_absoluteHeight="140dp"
             tools:layout_conversion_absoluteWidth="140dp" />
 
-        <Button
-            android:id="@+id/feedbackClose"
-            android:layout_width="36dp"
-            android:layout_height="38dp"
-            android:background="@android:color/transparent"
-            android:text="X"
-            android:textColor="#929AAB"
-            android:textSize="15sp"
-            app:layout_constraintBottom_toBottomOf="@+id/view59"
-            app:layout_constraintEnd_toEndOf="@+id/view59"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/view59"
-            app:layout_constraintTop_toTopOf="@+id/view59"
-            app:layout_constraintVertical_bias="0.0" />
-
         <TextView
             android:id="@+id/textView102"
             android:layout_width="269dp"
@@ -57,10 +42,10 @@
             app:fontFamily="@font/open_sans"
             app:layout_constraintBottom_toBottomOf="@+id/view59"
             app:layout_constraintEnd_toEndOf="@+id/view59"
-            app:layout_constraintHorizontal_bias="0.476"
+            app:layout_constraintHorizontal_bias="0.523"
             app:layout_constraintStart_toStartOf="@+id/view59"
             app:layout_constraintTop_toTopOf="@+id/view59"
-            app:layout_constraintVertical_bias="0.784" />
+            app:layout_constraintVertical_bias="0.738" />
 
         <TextView
             android:id="@+id/textView101"
@@ -75,20 +60,39 @@
             app:layout_constraintHorizontal_bias="0.492"
             app:layout_constraintStart_toStartOf="@+id/view59"
             app:layout_constraintTop_toTopOf="@+id/view59"
-            app:layout_constraintVertical_bias="0.647" />
+            app:layout_constraintVertical_bias="0.588" />
 
-        <TextView
+        <Button
             android:id="@+id/textView105"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
+            android:background="@android:color/transparent"
             android:text="(011) 542 3622"
             android:textSize="14sp"
             app:fontFamily="@font/open_sans_semibold"
             app:layout_constraintBottom_toBottomOf="@+id/view59"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/view59"
-            app:layout_constraintVertical_bias="0.9" />
+            app:layout_constraintVertical_bias="0.856" />
+
+        <Button
+            android:id="@+id/doneBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/colorAccent"
+            android:text="Done"
+            android:fontFamily="@font/open_sans_semibold"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.975" />
     </android.support.constraint.ConstraintLayout>
 
 </android.support.constraint.ConstraintLayout>

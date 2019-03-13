@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:screenOrientation="portrait">
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/cardView"
@@ -41,7 +42,7 @@
 
         <TextView
             android:id="@+id/textView12"
-            android:layout_width="162dp"
+            android:layout_width="0dp"
             android:layout_height="24dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
@@ -88,38 +89,34 @@
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="296dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
             android:ems="10"
             android:fontFamily="@font/open_sans_semibold"
-            android:inputType="textPersonName"
+            android:hint="123456789"
+            android:inputType="phone"
             android:maxLength="10"
             android:numeric="integer"
             android:phoneNumber="true"
-            android:text="123456789"
             android:textAlignment="center"
             android:textSize="14dp"
             app:layout_constraintEnd_toEndOf="@+id/textView12"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/editText8"
+            app:layout_constraintHorizontal_bias="0.594"
+            app:layout_constraintStart_toStartOf="@+id/textView12"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
-            android:id="@+id/editText8"
-            android:layout_width="36dp"
-            android:layout_height="42dp"
+        <Spinner
+            android:id="@+id/mobileVerificSpinner"
+            android:layout_width="59dp"
+            android:layout_height="40dp"
             android:layout_marginTop="296dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
             android:ems="10"
+            android:fontFamily="@font/open_sans_semibold"
             android:inputType="textPersonName"
             android:maxLength="3"
             android:text="+1"
-            android:fontFamily="@font/open_sans_semibold"
             android:textAlignment="center"
             android:textSize="14dp"
             app:layout_constraintEnd_toEndOf="@+id/textView12"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.319"
             app:layout_constraintStart_toStartOf="@+id/textView12"
             app:layout_constraintTop_toTopOf="parent" />
 

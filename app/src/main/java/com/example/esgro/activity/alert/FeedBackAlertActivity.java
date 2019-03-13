@@ -1,5 +1,6 @@
 package com.example.esgro.activity.alert;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +14,7 @@ import com.example.esgro.activity.HomePageActivity;
 public class FeedBackAlertActivity extends AppCompatActivity {
 
     Button close;
+    Dialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

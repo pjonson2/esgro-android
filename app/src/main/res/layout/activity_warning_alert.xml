@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent">
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/view59"
         android:layout_width="290dp"
-        android:layout_height="340dp"
-        android:background="@drawable/layout_corner"
+        android:layout_height="362dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,7 +27,7 @@
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
             android:fontFamily="@font/open_sans "
-            android:lineSpacingExtra="8sp"
+            android:lineSpacingExtra="10sp"
             android:text="1. Dispute guidelines goes here\n2. Dispute guidelines goes here\n3. Dispute guidelines goes here"
             android:textAlignment="center"
             android:textColor="#393E46"
@@ -77,11 +76,12 @@
             tools:layout_conversion_absoluteWidth="140dp" />
 
         <Button
-            android:id="@+id/feedbackClose"
+            android:id="@+id/warnigCloseBtn"
             android:layout_width="36dp"
             android:layout_height="38dp"
             android:background="@android:color/transparent"
             android:text="X"
+            android:fontFamily="@font/open_sans_semibold"
             android:textColor="#929AAB"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="@+id/view59"
@@ -115,4 +115,5 @@
             app:layout_constraintVertical_bias="0.0" />
 
     </android.support.constraint.ConstraintLayout>
+
 </android.support.constraint.ConstraintLayout>

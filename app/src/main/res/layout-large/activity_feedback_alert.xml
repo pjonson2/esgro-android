@@ -11,11 +11,28 @@
     <android.support.constraint.ConstraintLayout
         android:id="@+id/view59"
         android:layout_width="290dp"
-        android:layout_height="340dp"
+        android:layout_height="388dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/doneBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/colorAccent"
+            android:text="Done"
+            android:fontFamily="@font/open_sans_semibold"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
 
         <ImageView
             android:id="@+id/imageView14"
@@ -56,10 +73,9 @@
             app:fontFamily="@font/open_sans"
             app:layout_constraintBottom_toBottomOf="@+id/view59"
             app:layout_constraintEnd_toEndOf="@+id/view59"
-            app:layout_constraintHorizontal_bias="0.523"
             app:layout_constraintStart_toStartOf="@+id/view59"
             app:layout_constraintTop_toTopOf="@+id/view59"
-            app:layout_constraintVertical_bias="0.853" />
+            app:layout_constraintVertical_bias="0.8" />
 
         <TextView
             android:id="@+id/textView101"
@@ -74,12 +90,13 @@
             app:layout_constraintHorizontal_bias="0.505"
             app:layout_constraintStart_toStartOf="@+id/view59"
             app:layout_constraintTop_toTopOf="@+id/view59"
-            app:layout_constraintVertical_bias="0.605" />
+            app:layout_constraintVertical_bias="0.56" />
 
-        <TextView
+        <Button
             android:id="@+id/textView105"
             android:layout_width="wrap_content"
             android:layout_height="24dp"
+            android:background="@android:color/transparent"
             android:text="(011) 542 3622"
             android:textSize="16sp"
             app:fontFamily="@font/open_sans_semibold"
@@ -87,7 +104,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/view59"
-            app:layout_constraintVertical_bias="0.949" />
+            app:layout_constraintVertical_bias="0.892" />
     </android.support.constraint.ConstraintLayout>
 
 </android.support.constraint.ConstraintLayout>

@@ -4,4 +4,14 @@
     <string name="get_started">Get Started</string>
     <string name="sign_in">Sign In</string>
     <string name="v1_0">v1.0</string>
+    <string-array name="country_names">
+        <item>US</item>
+        <item>UK</item>
+        <item>SL</item>
+        <item>IND</item>
+        <item>AUS</item>
+        <item>NZ</item>
+        <item>SA</item>
+        <item>PAK</item>
+    </string-array>
 </resources>
