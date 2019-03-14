@@ -14,6 +14,8 @@ public class LinkBankAccountActivity extends AppCompatActivity {
     Button back;
     TextView textView;
 
+    Button save;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         onWindowFocusChanged(true);
@@ -25,6 +27,10 @@ public class LinkBankAccountActivity extends AppCompatActivity {
         textView = findViewById(R.id.linkedBankNameTxt);
         String bankDetails = getIntent().getStringExtra("bankListName");
         textView.setText(bankDetails);
+
+        save = findViewById(R.id.saveAccBtn);
+        save.setOnClickListener(saveAction);
+
 
     }
     @Override
@@ -43,6 +49,12 @@ public class LinkBankAccountActivity extends AppCompatActivity {
     View.OnClickListener backAction = new View.OnClickListener() {
         public void onClick(View v) {
             Intent mainIntent = new Intent(LinkBankAccountActivity.this,BankListActivity.class);
+            LinkBankAccountActivity.this.startActivity(mainIntent);
+        }
+    };
+    View.OnClickListener saveAction = new View.OnClickListener() {
+        public void onClick(View v) {
+            Intent mainIntent = new Intent(LinkBankAccountActivity.this,HomePageActivity.class);
             LinkBankAccountActivity.this.startActivity(mainIntent);
         }
     };

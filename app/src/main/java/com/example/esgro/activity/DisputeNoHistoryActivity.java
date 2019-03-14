@@ -1,6 +1,7 @@
 package com.example.esgro.activity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -21,6 +22,8 @@ public class DisputeNoHistoryActivity extends AppCompatActivity {
 
     List<Dispute> disputeList;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         onWindowFocusChanged(true);
@@ -39,10 +42,16 @@ public class DisputeNoHistoryActivity extends AppCompatActivity {
                                     long id) {
 
                 TextView textView = view.findViewById(R.id.disputeUserName);
+                ImageView imageView = view.findViewById(R.id.disputeUserImage);
+                imageView.buildDrawingCache();
                 String name = textView.getText().toString();
 
                 Intent intent = new Intent(DisputeNoHistoryActivity.this, DisputeDetails_No_History_Activity.class);
                 intent.putExtra("disputeListName", name);
+
+                Bitmap bitmap = imageView.getDrawingCache();
+                intent.putExtra("BitmapImage", bitmap);
+
                 startActivity(intent);
 
 

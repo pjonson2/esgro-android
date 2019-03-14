@@ -2,6 +2,7 @@ package com.example.esgro.activity;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.esgro.R;
 
@@ -24,6 +26,9 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
     ImageView okIconImge;
     ImageView noDisputeCancelBtn;
     Button chat;
+    ImageView getNoDisputeUserImg;
+    TextView disputeNoUserNameTxt;
+
     private final int SPLASH_DISPLAY_LENGTH = 4000;
 
 
@@ -32,6 +37,7 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
         onWindowFocusChanged(true);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_disputes_details_no_history);
+        Bundle extras = getIntent().getExtras();
 
         contactIcon = findViewById(R.id.noDisputesContactIcon);
         contactIcon.setOnClickListener(contactUs);
@@ -60,7 +66,15 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
         chat = findViewById(R.id.chatIcon2);
         chat.setOnClickListener(chatAction);
 
+        getNoDisputeUserImg = findViewById(R.id.disputeNoUserCardImg);
+        disputeNoUserNameTxt = findViewById(R.id.disputeNoUserNameTxt);
+
         dialog = new Dialog(this);
+
+        String value = extras.getString("disputeListName");
+        disputeNoUserNameTxt.setText(value);
+        Bitmap bitmap = getIntent().getParcelableExtra("BitmapImage");
+        getNoDisputeUserImg.setImageBitmap(bitmap);
 
     }
     @Override

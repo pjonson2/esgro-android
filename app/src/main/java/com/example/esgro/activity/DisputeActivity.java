@@ -1,6 +1,7 @@
 package com.example.esgro.activity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -43,8 +44,16 @@ public class DisputeActivity extends AppCompatActivity {
                 TextView textView = view.findViewById(R.id.disputeUserName);
                 String name = textView.getText().toString();
 
+                ImageView imageView = view.findViewById(R.id.disputeUserImage);
+
+
                 Intent intent = new Intent(DisputeActivity.this, DisputeDetails_01_Activity.class);
+//                DisputeDetails_01_Activity.name = name;
                 intent.putExtra("disputeListName", name);
+                imageView.buildDrawingCache();
+                Bitmap bitmap = imageView.getDrawingCache();
+                intent.putExtra("BitmapImage", bitmap);
+
                 startActivity(intent);
 
 

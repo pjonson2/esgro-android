@@ -335,7 +335,7 @@
         app:layout_constraintEnd_toEndOf="@+id/midView4"
         app:layout_constraintHorizontal_bias="0.945"
         app:layout_constraintStart_toStartOf="@+id/midView4"
-        app:layout_constraintTop_toBottomOf="@+id/imageView38"
+        app:layout_constraintTop_toBottomOf="@+id/disputeNoUserCardImg"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
@@ -393,7 +393,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView38"
+        android:id="@+id/disputeNoUserCardImg"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:background="@drawable/despute_card"
@@ -405,7 +405,7 @@
         app:layout_constraintVertical_bias="0.105" />
 
     <TextView
-        android:id="@+id/textView56"
+        android:id="@+id/disputeUserName"
         android:layout_width="408dp"
         android:layout_height="50dp"
         android:layout_marginStart="8dp"
@@ -457,7 +457,7 @@
         app:layout_constraintEnd_toEndOf="@+id/midView4"
         app:layout_constraintHorizontal_bias="0.042"
         app:layout_constraintStart_toStartOf="@+id/midView4"
-        app:layout_constraintTop_toBottomOf="@+id/imageView38"
+        app:layout_constraintTop_toBottomOf="@+id/disputeNoUserCardImg"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
