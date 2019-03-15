@@ -17,11 +17,23 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
-        signUpBackBtn = findViewById(R.id.signUpBackBtn);
-        signUpBackBtn.setOnClickListener(signUpBack);
+        idInitialization();
+        setListeners();
+        setValues();
 
+    }
+
+    void idInitialization(){
+        signUpBackBtn = findViewById(R.id.signUpBackBtn);
         continueBtn = findViewById(R.id.signUpContinueBtn);
+    }
+
+    void setListeners(){
+        signUpBackBtn.setOnClickListener(signUpBack);
         continueBtn.setOnClickListener(continueBtnAction);
+    }
+
+    void setValues(){
 
     }
 

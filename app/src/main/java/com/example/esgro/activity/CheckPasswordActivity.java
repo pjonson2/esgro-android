@@ -19,11 +19,22 @@ public class CheckPasswordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check_password);
 
-        back = findViewById(R.id.checkPasswordBackBtn);
-        back.setOnClickListener(backAction);
+        idInitialization();
+        setListeners();
+        setValues();
 
+    }
+    void idInitialization(){
+        back = findViewById(R.id.checkPasswordBackBtn);
         update = findViewById(R.id.updatePasswordBtn);
+    }
+
+    void setListeners(){
+        back.setOnClickListener(backAction);
         update.setOnClickListener(updatePswrdAction);
+    }
+
+    void setValues(){
 
     }
     @Override

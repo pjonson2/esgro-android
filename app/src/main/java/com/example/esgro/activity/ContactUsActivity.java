@@ -29,23 +29,33 @@ public class ContactUsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_us);
 
-        submit = findViewById(R.id.submitBtn);
-        submit.setOnClickListener(submitAction);
+        idInitialization();
+        setListeners();
+        setValues();
 
-        profileIcon = findViewById(R.id.contactProfileIcon);
-        profileIcon.setOnClickListener(profile);
-
-        handshakeIcon = findViewById(R.id.contactHandshakeIcon);
-        handshakeIcon.setOnClickListener(handshake);
-
-        newPostIcon = findViewById(R.id.contactNewPostIcon);
-        newPostIcon.setOnClickListener(newAction);
-
-        settings = findViewById(R.id.contactSettingsIcon);
-        settings.setOnClickListener(settingsAction);
         dialog = new Dialog(this);
 
     }
+    void idInitialization(){
+        submit = findViewById(R.id.submitBtn);
+        profileIcon = findViewById(R.id.contactProfileIcon);
+        handshakeIcon = findViewById(R.id.contactHandshakeIcon);
+        newPostIcon = findViewById(R.id.contactNewPostIcon);
+        settings = findViewById(R.id.contactSettingsIcon);
+    }
+
+    void setListeners(){
+        submit.setOnClickListener(submitAction);
+        profileIcon.setOnClickListener(profile);
+        handshakeIcon.setOnClickListener(handshake);
+        newPostIcon.setOnClickListener(newAction);
+        settings.setOnClickListener(settingsAction);
+    }
+
+    void setValues(){
+
+    }
+
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);

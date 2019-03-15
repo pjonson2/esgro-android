@@ -23,25 +23,34 @@ public class ExportActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_export);
 
-        back = findViewById(R.id.exportBackBtn2);
-        back.setOnClickListener(backAct);
-
-        contactIcon = findViewById(R.id.exportcontactIcon);
-        contactIcon.setOnClickListener(contactUs);
-
-        profileIcon = findViewById(R.id.exportProfileIcon);
-        profileIcon.setOnClickListener(profile);
-
-        handshakeIcon = findViewById(R.id.exportHandshakeIcon);
-        handshakeIcon.setOnClickListener(handshake);
-
-        newPostIcon = findViewById(R.id.exportNewPostIcon);
-        newPostIcon.setOnClickListener(newAction);
-
-        settings = findViewById(R.id.exportSettingsSettingsIcon);
-        settings.setOnClickListener(home);
+        idInitialization();
+        setListeners();
+        setValues();
 
     }
+
+    void idInitialization(){
+        back = findViewById(R.id.exportBackBtn2);
+        contactIcon = findViewById(R.id.exportcontactIcon);
+        profileIcon = findViewById(R.id.exportProfileIcon);
+        handshakeIcon = findViewById(R.id.exportHandshakeIcon);
+        newPostIcon = findViewById(R.id.exportNewPostIcon);
+        settings = findViewById(R.id.exportSettingsSettingsIcon);
+    }
+
+    void setListeners(){
+        back.setOnClickListener(backAct);
+        contactIcon.setOnClickListener(contactUs);
+        profileIcon.setOnClickListener(profile);
+        handshakeIcon.setOnClickListener(handshake);
+        newPostIcon.setOnClickListener(newAction);
+        settings.setOnClickListener(home);
+    }
+
+    void setValues(){
+
+    }
+
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);

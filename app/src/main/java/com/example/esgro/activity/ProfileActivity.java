@@ -25,26 +25,34 @@ public class ProfileActivity  extends FooterActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-
-        edit = findViewById(R.id.editIcon);
-        edit.setOnClickListener(editAction);
-
-        newPost = findViewById(R.id.profileNewPostIcon);
-        newPost.setOnClickListener(newAction);
-
-        handshake = findViewById(R.id.profileHandshakeIcon);
-        handshake.setOnClickListener(handshakeAction);
-
-        contact = findViewById(R.id.profileContactIcon);
-        contact.setOnClickListener(contactUs);
-
-        settings = findViewById(R.id.profileSettingsIcon);
-        settings.setOnClickListener(settingsAction);
-
-        profile = findViewById(R.id.profileProfileIcon);
-        profile.setOnClickListener(profileActoin);
+        idInitialization();
+        setListeners();
+        setValues();
 
     }
+
+    void idInitialization(){
+        edit = findViewById(R.id.editIcon);
+        newPost = findViewById(R.id.profileNewPostIcon);
+        handshake = findViewById(R.id.profileHandshakeIcon);
+        contact = findViewById(R.id.profileContactIcon);
+        settings = findViewById(R.id.profileSettingsIcon);
+        profile = findViewById(R.id.profileProfileIcon);
+    }
+
+    void setListeners(){
+        edit.setOnClickListener(editAction);
+        newPost.setOnClickListener(newAction);
+        handshake.setOnClickListener(handshakeAction);
+        contact.setOnClickListener(contactUs);
+        settings.setOnClickListener(settingsAction);
+        profile.setOnClickListener(profileActoin);
+    }
+
+    void setValues(){
+
+    }
+
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);

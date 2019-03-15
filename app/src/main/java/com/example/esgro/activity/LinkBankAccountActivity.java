@@ -1,11 +1,13 @@
 package com.example.esgro.activity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.SpannableString;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.esgro.R;
@@ -13,26 +15,44 @@ import com.example.esgro.R;
 public class LinkBankAccountActivity extends AppCompatActivity {
     Button back;
     TextView textView;
+    ImageView linkedBankImg;
 
     Button save;
+    Bitmap bitmap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         onWindowFocusChanged(true);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_link_bank);
-        back = findViewById(R.id.linkBankAccountBackBtnn);
-        back.setOnClickListener(backAction);
 
-        textView = findViewById(R.id.linkedBankNameTxt);
-        String bankDetails = getIntent().getStringExtra("bankListName");
-        textView.setText(bankDetails);
-
-        save = findViewById(R.id.saveAccBtn);
-        save.setOnClickListener(saveAction);
-
+        idInitialization();
+        setListeners();
+        setValues();
 
     }
+
+    void idInitialization(){
+        back = findViewById(R.id.linkBankAccountBackBtnn);
+        textView = findViewById(R.id.linkedBankNameTxt);
+        linkedBankImg = findViewById(R.id.linkedBankImg);
+        save = findViewById(R.id.saveAccBtn);
+    }
+
+    void setListeners(){
+        back.setOnClickListener(backAction);
+        save.setOnClickListener(saveAction);
+    }
+
+    void setValues(){
+        String bankDetails = getIntent().getStringExtra("bankListName");
+        bitmap = getIntent().getParcelableExtra("BitmapImage");
+
+        textView.setText(bankDetails);
+        bitmap = getIntent().getParcelableExtra("bankListImage");
+        linkedBankImg.setImageBitmap(bitmap);
+    }
+
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);

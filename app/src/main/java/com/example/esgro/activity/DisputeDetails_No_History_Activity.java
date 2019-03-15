@@ -28,8 +28,15 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
     Button chat;
     ImageView getNoDisputeUserImg;
     TextView disputeNoUserNameTxt;
-
+    TextView disputeNoUserPriceTxt;
+    TextView disputeNoUserDaysTxt;
+    Bundle extras;
     private final int SPLASH_DISPLAY_LENGTH = 4000;
+
+    String value = "";
+    String disputeDays="";
+    String disputePrice="";
+    Bitmap bitmap;
 
 
     @Override
@@ -37,46 +44,62 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
         onWindowFocusChanged(true);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_disputes_details_no_history);
-        Bundle extras = getIntent().getExtras();
+        extras = getIntent().getExtras();
 
-        contactIcon = findViewById(R.id.noDisputesContactIcon);
-        contactIcon.setOnClickListener(contactUs);
-
-        profileIcon = findViewById(R.id.noDisputesProfileIcon);
-        profileIcon.setOnClickListener(profile);
-
-        handshakeIcon = findViewById(R.id.noDisputesHandshakeIcon);
-        handshakeIcon.setOnClickListener(handshake);
-
-        newPostIcon = findViewById(R.id.noDisputesNewPostIcon);
-        newPostIcon.setOnClickListener(newAction);
-
-        settings = findViewById(R.id.noDisputesSettingsIcon);
-        settings.setOnClickListener(home);
-
-        back = findViewById(R.id.noDisputeDetailsBack);
-        back.setOnClickListener(backToTimeLine);
-
-        okIconImge = findViewById(R.id.okIconImge);
-        okIconImge.setOnClickListener(submitAction);
-
-        noDisputeCancelBtn = findViewById(R.id.noDisputeCancelBtn);
-        noDisputeCancelBtn.setOnClickListener(cancelAction);
-
-        chat = findViewById(R.id.chatIcon2);
-        chat.setOnClickListener(chatAction);
-
-        getNoDisputeUserImg = findViewById(R.id.disputeNoUserCardImg);
-        disputeNoUserNameTxt = findViewById(R.id.disputeNoUserNameTxt);
+        idInitialization();
+        setListeners();
+        setValues();
 
         dialog = new Dialog(this);
 
-        String value = extras.getString("disputeListName");
+    }
+
+    void idInitialization(){
+
+        contactIcon = findViewById(R.id.noDisputesContactIcon);
+        profileIcon = findViewById(R.id.noDisputesProfileIcon);
+        handshakeIcon = findViewById(R.id.noDisputesHandshakeIcon);
+        newPostIcon = findViewById(R.id.noDisputesNewPostIcon);
+        settings = findViewById(R.id.noDisputesSettingsIcon);
+        back = findViewById(R.id.noDisputeDetailsBack);
+        okIconImge = findViewById(R.id.okIconImge);
+        noDisputeCancelBtn = findViewById(R.id.noDisputeCancelBtn);
+        chat = findViewById(R.id.chatIcon2);
+        getNoDisputeUserImg = findViewById(R.id.disputeNoUserCardImg);
+        disputeNoUserNameTxt = findViewById(R.id.disputeNoUserNameTxt);
+        disputeNoUserPriceTxt = findViewById(R.id.disputePrice);
+        disputeNoUserDaysTxt = findViewById(R.id.disputeDay);
+
+    }
+
+    void setListeners(){
+
+        contactIcon.setOnClickListener(contactUs);
+        profileIcon.setOnClickListener(profile);
+        handshakeIcon.setOnClickListener(handshake);
+        newPostIcon.setOnClickListener(newAction);
+        settings.setOnClickListener(home);
+        back.setOnClickListener(backToTimeLine);
+        okIconImge.setOnClickListener(submitAction);
+        noDisputeCancelBtn.setOnClickListener(cancelAction);
+        chat.setOnClickListener(chatAction);
+
+    }
+
+    void setValues(){
+
+        bitmap = getIntent().getParcelableExtra("BitmapImage");
+        value = extras.getString("disputeListName");
+        disputeDays = extras.getString("disputeListDays");
+        disputePrice = extras.getString("disputeListPrice");
+
         disputeNoUserNameTxt.setText(value);
-        Bitmap bitmap = getIntent().getParcelableExtra("BitmapImage");
+        disputeNoUserDaysTxt.setText(disputeDays);
+        disputeNoUserPriceTxt.setText(disputePrice);
         getNoDisputeUserImg.setImageBitmap(bitmap);
 
     }
+
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
@@ -90,10 +113,10 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
                             | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         }
     }
+
     View.OnClickListener submitAction = new View.OnClickListener() {
         public void onClick(View v) {
             dialog.setContentView(R.layout.activity_proessing_alert);
-
             dialog.show();
             new Handler().postDelayed(new Runnable(){
                 @Override
@@ -103,6 +126,7 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
             }, SPLASH_DISPLAY_LENGTH);
         }
     };
+
     View.OnClickListener cancelAction = new View.OnClickListener() {
         public void onClick(View v) {
             dialog.setContentView(R.layout.activity_dispute_cancel_alert);
@@ -114,14 +138,13 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
             button.setOnClickListener(hideUI);
 
         }
-
-        View.OnClickListener hideUI = new View.OnClickListener() {
+     View.OnClickListener hideUI = new View.OnClickListener() {
             public void onClick(View v) {
                 dialog.dismiss();
             }
         };
-
     };
+
     View.OnClickListener contactUs = new View.OnClickListener() {
         public void onClick(View v) {
             Intent mainIntent = new Intent(DisputeDetails_No_History_Activity.this,ContactUsActivity.class);
@@ -131,8 +154,14 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
 
     View.OnClickListener chatAction = new View.OnClickListener() {
         public void onClick(View v) {
-            Intent mainIntent = new Intent(DisputeDetails_No_History_Activity.this,ChatActivity.class);
-            DisputeDetails_No_History_Activity.this.startActivity(mainIntent);
+
+            Intent intent = new Intent(DisputeDetails_No_History_Activity.this,ChatActivity.class);
+            intent.putExtra("disputeListName", value);
+            intent.putExtra("disputeListPrice", disputePrice);
+            intent.putExtra("disputeListDays", disputeDays);
+            intent.putExtra("flowOfEvent","DisputeDetails_No_History_Activity");
+            intent.putExtra("BitmapImage", bitmap);
+            DisputeDetails_No_History_Activity.this.startActivity(intent);
         }
     };
     View.OnClickListener profile = new View.OnClickListener() {

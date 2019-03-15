@@ -29,9 +29,23 @@ public class HomePageActivity extends AppCompatActivity {
         onWindowFocusChanged(true);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
+        idInitialization();
+        setListeners();
+        setValues();
 
         changeBehaviours();
 
+
+    }
+    void idInitialization(){
+
+    }
+
+    void setListeners(){
+
+    }
+
+    void setValues(){
 
     }
     public void changeBehaviours(){

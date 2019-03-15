@@ -27,25 +27,34 @@ public class UpdateProfileActivity   extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_profile);
 
-        updateCancelBtn = findViewById(R.id.updateCancelBtn);
-        updateCancelBtn.setOnClickListener(cancelAction);
-
-        saveBtn = findViewById(R.id.updateSaveBtn);
-        saveBtn.setOnClickListener(saveAction);
-
-        newPost = findViewById(R.id.updateProfileNewPostIcon);
-        newPost.setOnClickListener(newAction);
-
-        handshake = findViewById(R.id.updateProfileHandshakeIcon);
-        handshake.setOnClickListener(handshakeAction);
-
-        contact = findViewById(R.id.updateProfileContactIcon);
-        contact.setOnClickListener(contactUs);
-
-        settings = findViewById(R.id.updateprofileSettingsIcon);
-        settings.setOnClickListener(settingsAction);
+        idInitialization();
+        setListeners();
+        setValues();
 
     }
+
+    void idInitialization(){
+        updateCancelBtn = findViewById(R.id.updateCancelBtn);
+        saveBtn = findViewById(R.id.updateSaveBtn);
+        newPost = findViewById(R.id.updateProfileNewPostIcon);
+        handshake = findViewById(R.id.updateProfileHandshakeIcon);
+        contact = findViewById(R.id.updateProfileContactIcon);
+        settings = findViewById(R.id.updateprofileSettingsIcon);
+    }
+
+    void setListeners(){
+        updateCancelBtn.setOnClickListener(cancelAction);
+        saveBtn.setOnClickListener(saveAction);
+        newPost.setOnClickListener(newAction);
+        handshake.setOnClickListener(handshakeAction);
+        contact.setOnClickListener(contactUs);
+        settings.setOnClickListener(settingsAction);
+    }
+
+    void setValues(){
+
+    }
+
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);

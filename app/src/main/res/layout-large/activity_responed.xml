@@ -21,8 +21,8 @@
 
     <Button
         android:id="@+id/checkPasswordBackBtn2"
-        android:layout_width="64dp"
-        android:layout_height="20dp"
+        android:layout_width="92dp"
+        android:layout_height="22dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
@@ -83,7 +83,7 @@
 
     <View
         android:id="@+id/view51"
-        android:layout_width="740dp"
+        android:layout_width="0dp"
         android:layout_height="200dp"
         android:layout_marginStart="30dp"
         android:layout_marginLeft="30dp"
@@ -120,34 +120,30 @@
         android:id="@+id/view53"
         android:layout_width="0dp"
         android:layout_height="1dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginBottom="1136dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="825dp"
         android:background="#EBEBEB"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/view51"
-        app:layout_constraintHorizontal_bias="0.229"
+        app:layout_constraintEnd_toEndOf="@+id/textView92"
         app:layout_constraintStart_toStartOf="@+id/view51"
         app:layout_constraintTop_toBottomOf="@+id/view46"
-        app:layout_constraintVertical_bias="0.068"
         tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textView88"
-        android:layout_width="508dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginLeft="50dp"
+        android:layout_width="494dp"
+        android:layout_height="28dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:text="These messages won't be recorded on your deal history.  "
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.081"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/view51"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/view51"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.25" />
+        app:layout_constraintVertical_bias="0.259" />
 
     <TextView
         android:id="@+id/textView91"
@@ -161,14 +157,14 @@
         android:textSize="14sp"
         app:fontFamily="@font/open_sans"
         app:layout_constraintEnd_toEndOf="@+id/view51"
-        app:layout_constraintHorizontal_bias="0.061"
+        app:layout_constraintHorizontal_bias="0.09"
         app:layout_constraintStart_toStartOf="@+id/view51"
         app:layout_constraintTop_toTopOf="@+id/view51" />
 
     <TextView
         android:id="@+id/textView92"
-        android:layout_width="667dp"
-        android:layout_height="88dp"
+        android:layout_width="0dp"
+        android:layout_height="82dp"
         android:layout_marginStart="30dp"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="8dp"
@@ -185,7 +181,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/view51"
         app:layout_constraintTop_toTopOf="@+id/view51"
-        app:layout_constraintVertical_bias="0.479"
+        app:layout_constraintVertical_bias="1.0"
         tools:ignore="Deprecated" />
 
     <Button
@@ -222,9 +218,9 @@
         android:background="@drawable/about2x"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.013"
+        app:layout_constraintHorizontal_bias="0.022"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView88"
-        app:layout_constraintVertical_bias="0.001" />
+        app:layout_constraintVertical_bias="0.0" />
 
 </android.support.constraint.ConstraintLayout>

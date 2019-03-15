@@ -26,30 +26,44 @@ public class RequestActivity extends AppCompatActivity {
         onWindowFocusChanged(true);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_request);
+
+        idInitialization();
+        setListeners();
+        setValues();
+
+    }
+    void idInitialization(){
         requestList = new ArrayList<>();
         initializeArray();
-
         back = findViewById(R.id.requestBackBtn);
-        back.setOnClickListener(backFromRequest);
         ListView listView = findViewById(R.id.dynamicRequestList);
 
 
-            RequestActivity.CustomAdaper customAdaper = new RequestActivity.CustomAdaper();
-            listView.setAdapter(customAdaper);
-            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position,
-                                        long id) {
+        RequestActivity.CustomAdaper customAdaper = new RequestActivity.CustomAdaper();
+        listView.setAdapter(customAdaper);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position,
+                                    long id) {
 
-                    TextView textView = view.findViewById(R.id.requestUserName);
-                    String name = textView.getText().toString();
+                TextView textView = view.findViewById(R.id.requestUserName);
+                String name = textView.getText().toString();
 
-                    Intent intent = new Intent(RequestActivity.this, Request_01_Activity.class);
-                    startActivity(intent);
-                }
-            });
+                Intent intent = new Intent(RequestActivity.this, Request_01_Activity.class);
+                startActivity(intent);
+            }
+        });
 
     }
+
+    void setListeners(){
+        back.setOnClickListener(backFromRequest);
+    }
+
+    void setValues(){
+
+    }
+
 
         void initializeArray() {
 
@@ -105,7 +119,7 @@ public class RequestActivity extends AppCompatActivity {
 
     View.OnClickListener backFromRequest = new View.OnClickListener() {
         public void onClick(View v) {
-            Intent mainIntent = new Intent(RequestActivity.this, HomePageActivity.class);
+            Intent mainIntent = new Intent(RequestActivity.this, DisputeNoHistoryActivity.class);
             RequestActivity.this.startActivity(mainIntent);
         }
     };

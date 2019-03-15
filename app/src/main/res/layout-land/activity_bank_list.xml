@@ -21,24 +21,12 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
 
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="21dp"
-            android:layout_height="22dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="15dp"
-            android:layout_marginLeft="15dp"
-            android:background="@drawable/icons8_white"
-            android:fontFamily="@font/open_sans"
-            android:textAllCaps="false"
-            android:textSize="12dp" />
+
 
         <Button
             android:id="@+id/link_bank_account_backBtn"
-            android:layout_width="100dp"
-            android:layout_height="58dp"
+            android:layout_width="70dp"
+            android:layout_height="30dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
@@ -53,7 +41,8 @@
             android:text="Back"
             android:textAllCaps="false"
             android:textColor="@android:color/white"
-            android:textSize="12dp" />
+            android:textSize="12dp"
+            android:drawableLeft="@drawable/icons8_white"/>
 
         <TextView
             android:id="@+id/textView36"

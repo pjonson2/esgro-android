@@ -16,7 +16,24 @@ public class ResponedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_responed);
 
+        idInitialization();
+        setListeners();
+        setValues();
+
     }
+    void idInitialization(){
+
+    }
+
+    void setListeners(){
+
+    }
+
+    void setValues(){
+
+    }
+
+
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);

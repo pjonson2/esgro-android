@@ -1,6 +1,7 @@
 package com.example.esgro.activity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -22,6 +23,7 @@ public class BankListActivity extends AppCompatActivity {
 
     List<Bank> bankList;
     Button back;
+    Bitmap bitmap;
     public final static String EXTRA_MESSAGE = "com.example.ListViewTest.MESSAGE";
 
     @Override
@@ -30,11 +32,13 @@ public class BankListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bank_list);
 
-        back = findViewById(R.id.link_bank_account_backBtn);
-        back.setOnClickListener(backtoHome);
+        idInitialization();
+        setListeners();
+        setValues();
 
-        bankList = new ArrayList<>();
-        initializeArray();
+
+
+
 
         ListView listView = findViewById(R.id.dynamicListView);
 
@@ -47,21 +51,33 @@ public class BankListActivity extends AppCompatActivity {
                                     long id) {
 
                 TextView textView  = view.findViewById(R.id.bankNameText);
-                ImageView imageView  = view.findViewById(R.id.bankIconImg);
                 String name = textView.getText().toString();
-                String imageName = String.valueOf(imageView.getId());
-                System.out.println("bank Image "+imageName);
 
-//
+                ImageView imageView  = view.findViewById(R.id.bankIconImg);
+                imageView.buildDrawingCache();
+                bitmap = imageView.getDrawingCache();
+
                 Intent intent = new Intent(BankListActivity.this, LinkBankAccountActivity.class);
-                intent.putExtra("bankListName", name);
-//                intent.putExtra("bankListImg", imageView.getResources().toString());
-                startActivity(intent);
 
+                intent.putExtra("bankListName", name);
+                intent.putExtra("bankListImage", bitmap);
+
+                startActivity(intent);
             }
         });
+    }
+    void idInitialization(){
+        back = findViewById(R.id.link_bank_account_backBtn);
+        bankList = new ArrayList<>();
+        initializeArray();
 
+    }
 
+    void setListeners(){
+        back.setOnClickListener(backtoHome);
+    }
+
+    void setValues(){
 
     }
 

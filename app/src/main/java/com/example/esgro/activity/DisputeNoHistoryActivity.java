@@ -22,53 +22,78 @@ public class DisputeNoHistoryActivity extends AppCompatActivity {
 
     List<Dispute> disputeList;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         onWindowFocusChanged(true);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dispute_shake);
+
+        idInitialization();
+        setListeners();
+        setValues();
+
+    }
+
+    void idInitialization(){
         disputeList = new ArrayList<>();
         initializeArray();
-
         ListView listView = findViewById(R.id.dynamicShakeListView);
 
         DisputeNoHistoryActivity.CustomAdaper customAdaper = new DisputeNoHistoryActivity.CustomAdaper();
         listView.setAdapter(customAdaper);
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
 
                 TextView textView = view.findViewById(R.id.disputeUserName);
-                ImageView imageView = view.findViewById(R.id.disputeUserImage);
-                imageView.buildDrawingCache();
                 String name = textView.getText().toString();
 
-                Intent intent = new Intent(DisputeNoHistoryActivity.this, DisputeDetails_No_History_Activity.class);
-                intent.putExtra("disputeListName", name);
+                ImageView imageView = view.findViewById(R.id.disputeUserImage);
+                imageView.buildDrawingCache();
+
+                TextView disputePriceTxt = view.findViewById(R.id.disputePriceTxt);
+                String disputePrice = disputePriceTxt.getText().toString();
+
+                TextView disputeDaysTxt = view.findViewById(R.id.disputeDaysTxt);
+                String disputeDays = disputeDaysTxt.getText().toString();
 
                 Bitmap bitmap = imageView.getDrawingCache();
+
+                Intent intent = new Intent(DisputeNoHistoryActivity.this, DisputeDetails_No_History_Activity.class);
+
+                intent.putExtra("disputeListName", name);
                 intent.putExtra("BitmapImage", bitmap);
+                intent.putExtra("disputeListPrice", disputePrice);
+                intent.putExtra("disputeListDays", disputeDays);
 
                 startActivity(intent);
 
 
             }
         });
+
+    }
+
+    void setListeners(){
+
+    }
+
+    void setValues(){
+
     }
 
     void initializeArray(){
 
         disputeList.add(
-                new Dispute("Pamela anderson","","","",R.drawable.user1)
+                new Dispute("Pamel anderson","","","",R.drawable.user1)
         );
         disputeList.add(
-                new Dispute("Nikkal simonze","","","",R.drawable.user2)
+                new Dispute("Nikal simonze","","","",R.drawable.user2)
         );
         disputeList.add(
-                new Dispute("Nations Trust Bank","","","",R.drawable.user3)
+                new Dispute("Sherill Roman","","","",R.drawable.user3)
         );
         disputeList.add(
                 new Dispute("Nicole minaj","","","",R.drawable.user4)

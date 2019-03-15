@@ -25,16 +25,29 @@ public class Request_03_Activity extends AppCompatActivity {
 
         setContentView(R.layout.activity_request_3);
 
-        back = findViewById(R.id.request3Back);
-        back.setOnClickListener(requestBack);
+        idInitialization();
+        setListeners();
+        setValues();
 
 
-        continues = findViewById(R.id.request3SendBtn);
-        continues.setOnClickListener(requestContinue);
         dialog = new Dialog(this);
 
+    }
+
+    void idInitialization(){
+        back = findViewById(R.id.request3Back);
+        continues = findViewById(R.id.request3SendBtn);
+    }
+
+    void setListeners(){
+        back.setOnClickListener(requestBack);
+        continues.setOnClickListener(requestContinue);
+    }
+
+    void setValues(){
 
     }
+
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);

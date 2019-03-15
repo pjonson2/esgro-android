@@ -20,14 +20,26 @@ public class PreferencesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_preferences);
 
-        back = findViewById(R.id.preferenceBackBtn);
-        back.setOnClickListener(backAction);
-
-        changePassword = findViewById(R.id.changePasswordBtn);
-        changePassword.setOnClickListener(changePasswordAction);
-
+        idInitialization();
+        setListeners();
+        setValues();
 
     }
+
+    void idInitialization(){
+        back = findViewById(R.id.preferenceBackBtn);
+        changePassword = findViewById(R.id.changePasswordBtn);
+    }
+
+    void setListeners(){
+        back.setOnClickListener(backAction);
+        changePassword.setOnClickListener(changePasswordAction);
+    }
+
+    void setValues(){
+
+    }
+
     @Override
     public void onWindowFocusChanged ( boolean hasFocus){
         super.onWindowFocusChanged(hasFocus);

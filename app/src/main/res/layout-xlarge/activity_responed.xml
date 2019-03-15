@@ -21,8 +21,8 @@
 
     <Button
         android:id="@+id/checkPasswordBackBtn2"
-        android:layout_width="64dp"
-        android:layout_height="20dp"
+        android:layout_width="70dp"
+        android:layout_height="30dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
@@ -39,27 +39,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.055"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view27" />
+        app:layout_constraintTop_toTopOf="@+id/view27"
+        android:drawableLeft="@drawable/icons8_white"/>
 
-    <Button
-        android:id="@+id/button29"
-        android:layout_width="18dp"
-        android:layout_height="18dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:background="@drawable/icons8_white"
-        android:fontFamily="@font/open_sans"
-        android:textAllCaps="false"
-        android:textSize="12dp"
-        app:layout_constraintBottom_toBottomOf="@+id/view50"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.008"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view50"
-        app:layout_constraintVertical_bias="0.384" />
+
 
     <TextView
         android:id="@+id/textView87"
@@ -84,7 +67,7 @@
     <View
         android:id="@+id/view51"
         android:layout_width="0dp"
-        android:layout_height="200dp"
+        android:layout_height="272dp"
         android:layout_marginStart="30dp"
         android:layout_marginLeft="30dp"
         android:layout_marginEnd="30dp"
@@ -142,10 +125,10 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.035"
+        app:layout_constraintHorizontal_bias="0.096"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.259" />
+        app:layout_constraintVertical_bias="0.258" />
 
     <TextView
         android:id="@+id/textView91"
@@ -183,7 +166,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/view51"
         app:layout_constraintTop_toTopOf="@+id/view51"
-        app:layout_constraintVertical_bias="0.63"
+        app:layout_constraintVertical_bias="0.72"
         tools:ignore="Deprecated" />
 
     <Button
@@ -214,16 +197,15 @@
         android:layout_height="18dp"
         android:layout_marginStart="30dp"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="3dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/about2x"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.026"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView88"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.002" />
 
 </android.support.constraint.ConstraintLayout>

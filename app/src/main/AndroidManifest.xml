@@ -71,7 +71,8 @@
 
 
         </activity>
-        <activity android:name=".activity.LinkBankAccountActivity" >
+        <activity android:name=".activity.LinkBankAccountActivity"
+            android:screenOrientation="portrait">
 
 
         </activity>

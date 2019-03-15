@@ -22,27 +22,35 @@ public class SignInActivity extends AppCompatActivity {
         onWindowFocusChanged(true);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signin );
-        back = findViewById(R.id.siginInBackBtn);
-        back.setOnClickListener(backAction);
 
-        continueBtn = findViewById(R.id.signInContinueBtn);
-        continueBtn.setOnClickListener(continueBtnAction);
+        idInitialization();
+        setListeners();
+        setValues();
 
-        getStart = findViewById(R.id.signIngetStartBtn);
-        getStart.setOnClickListener(getStartBtnAction);
         Runnable mNavHider = new Runnable() {
             @Override public void run() {
                 onWindowFocusChanged(true);
             }
         };
 
-//        TextViewCompat.setAutoSizeTextTypeUniformWithPresetSizes(int[] presetSizes, int unit);
+    }
 
-//// Example
-//        int[] sizes = getContext().getResources().getIntArray(R.array.autosize_text_sizes)
-//        TextViewCompat.setAutoSizeTextTypeUniformWithPresetSizes(myTextView, sizes, TypedValue.COMPLEX_UNIT_SP);
+    void idInitialization(){
+        back = findViewById(R.id.siginInBackBtn);
+        continueBtn = findViewById(R.id.signInContinueBtn);
+        getStart = findViewById(R.id.signIngetStartBtn);
+    }
+
+    void setListeners(){
+        back.setOnClickListener(backAction);
+        continueBtn.setOnClickListener(continueBtnAction);
+        getStart.setOnClickListener(getStartBtnAction);
+    }
+
+    void setValues(){
 
     }
+
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);

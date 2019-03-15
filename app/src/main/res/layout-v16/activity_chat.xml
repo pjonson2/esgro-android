@@ -155,24 +155,6 @@
         app:layout_constraintTop_toTopOf="@+id/headerView6"
         tools:ignore="MissingConstraints" />
 
-    <Button
-        android:id="@+id/button17"
-        android:layout_width="18dp"
-        android:layout_height="18dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="35dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/icons8_white"
-        android:fontFamily="@font/open_sans"
-        android:textAllCaps="false"
-        android:textSize="12dp"
-        app:layout_constraintBottom_toBottomOf="@+id/view29"
-        app:layout_constraintEnd_toEndOf="@+id/textView120"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textView120"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/chatBackBtn"
@@ -192,7 +174,8 @@
         app:layout_constraintHorizontal_bias="0.04"
         app:layout_constraintStart_toStartOf="@+id/headerView6"
         app:layout_constraintTop_toTopOf="@+id/textView120"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        android:drawableLeft="@drawable/icons8_white" />
 
     <ImageView
         android:id="@+id/imageView7"
@@ -206,7 +189,7 @@
         app:srcCompat="@drawable/logo2x" />
 
     <TextView
-        android:id="@+id/textView122"
+        android:id="@+id/chatUserName"
         android:layout_width="173dp"
         android:layout_height="23dp"
         android:layout_marginStart="8dp"

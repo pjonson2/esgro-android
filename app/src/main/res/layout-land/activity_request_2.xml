@@ -6,31 +6,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/button23"
-        android:layout_width="18dp"
-        android:layout_height="18dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/icons8_white"
-        android:fontFamily="@font/open_sans"
-        android:textAllCaps="false"
-        android:textSize="12dp"
-        app:layout_constraintBottom_toBottomOf="@+id/view"
-        app:layout_constraintEnd_toEndOf="@+id/view"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.333" />
+    <!--<Button-->
+        <!--android:id="@+id/button23"-->
+        <!--android:layout_width="18dp"-->
+        <!--android:layout_height="18dp"-->
+        <!--android:layout_marginStart="16dp"-->
+        <!--android:layout_marginLeft="16dp"-->
+        <!--android:layout_marginTop="36dp"-->
+        <!--android:layout_marginEnd="8dp"-->
+        <!--android:layout_marginRight="8dp"-->
+        <!--android:layout_marginBottom="8dp"-->
+        <!--android:background="@drawable/icons8_white"-->
+        <!--android:fontFamily="@font/open_sans"-->
+        <!--android:textAllCaps="false"-->
+        <!--android:textSize="12dp"-->
+        <!--app:layout_constraintBottom_toBottomOf="@+id/view"-->
+        <!--app:layout_constraintEnd_toEndOf="@+id/view"-->
+        <!--app:layout_constraintHorizontal_bias="0.0"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toTopOf="parent"-->
+        <!--app:layout_constraintVertical_bias="0.333" />-->
 
     <Button
         android:id="@+id/request2BackBtn"
-        android:layout_width="64dp"
-        android:layout_height="20dp"
+        android:layout_width="70dp"
+        android:layout_height="30dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
@@ -39,6 +39,7 @@
         android:background="@android:color/transparent"
         android:fontFamily="@font/open_sans"
         android:text="Back"
+        android:drawableLeft="@drawable/icons8_white"
         android:textAllCaps="false"
         android:textColor="@android:color/white"
         android:textSize="12dp"

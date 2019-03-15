@@ -19,14 +19,26 @@ public class Request_02_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_request_2);
 
-        back = findViewById(R.id.request2BackBtn);
-        back.setOnClickListener(requestBack);
-
-        continues = findViewById(R.id.reqiest2ContinueBtn);
-        continues.setOnClickListener(requestContinue);
-
+        idInitialization();
+        setListeners();
+        setValues();
 
     }
+
+    void idInitialization(){
+        back = findViewById(R.id.request2BackBtn);
+        continues = findViewById(R.id.reqiest2ContinueBtn);
+    }
+
+    void setListeners(){
+        back.setOnClickListener(requestBack);
+        continues.setOnClickListener(requestContinue);
+    }
+
+    void setValues(){
+
+    }
+
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);

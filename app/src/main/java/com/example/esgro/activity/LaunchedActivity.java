@@ -18,18 +18,29 @@ public class LaunchedActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-//        ConstraintLayout.LayoutParams params = getLayoutInflater()
-
         onWindowFocusChanged(true);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launched);
-        getStartedBtn = findViewById(R.id.getStartBtn1);
-        signInBtn = findViewById(R.id.signBtn);
+
+        idInitialization();
+        setListeners();
+        setValues();
+
         changeBehaviours();
 
+    }
+
+    void idInitialization(){
+        getStartedBtn = findViewById(R.id.getStartBtn1);
+        signInBtn = findViewById(R.id.signBtn);
+    }
+
+    void setListeners(){
         getStartedBtn.setOnClickListener(getStart);
         signInBtn.setOnClickListener(signIn);
+    }
+
+    void setValues(){
 
     }
 

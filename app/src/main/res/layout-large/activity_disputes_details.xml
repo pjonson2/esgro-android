@@ -169,8 +169,8 @@
 
     <Button
         android:id="@+id/disputeDetailsBack"
-        android:layout_width="64dp"
-        android:layout_height="20dp"
+        android:layout_width="70dp"
+        android:layout_height="25dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
@@ -187,27 +187,10 @@
         app:layout_constraintHorizontal_bias="0.048"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.45" />
+        app:layout_constraintVertical_bias="0.45"
+        android:drawableLeft="@drawable/icons8_white" />
 
-    <Button
-        android:id="@+id/button20"
-        android:layout_width="18dp"
-        android:layout_height="18dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="32dp"
-        android:background="@drawable/icons8_white"
-        android:fontFamily="@font/open_sans"
-        android:textAllCaps="false"
-        android:textSize="12dp"
-        app:layout_constraintBottom_toTopOf="@+id/midView4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.021"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.68" />
+
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/midView4"
@@ -312,7 +295,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/midView4"
         app:layout_constraintEnd_toEndOf="@+id/midView4"
         app:layout_constraintStart_toStartOf="@+id/midView4"
-        app:layout_constraintTop_toBottomOf="@+id/textView59"
+        app:layout_constraintTop_toBottomOf="@+id/disputeDay"
         app:layout_constraintVertical_bias="0.358" />
 
     <ImageView
@@ -325,7 +308,7 @@
         app:layout_constraintEnd_toEndOf="@+id/midView4"
         app:layout_constraintHorizontal_bias="0.189"
         app:layout_constraintStart_toStartOf="@+id/midView4"
-        app:layout_constraintTop_toBottomOf="@+id/textView59"
+        app:layout_constraintTop_toBottomOf="@+id/disputeDay"
         app:layout_constraintVertical_bias="0.358" />
 
     <TextView
@@ -385,14 +368,14 @@
 
     <Button
         android:id="@+id/chatIcon3"
-        android:layout_width="70dp"
+        android:layout_width="40dp"
         android:layout_height="22dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="33dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:background="@android:color/transparent"
         android:fontFamily="@font/open_sans"
-        android:text="Chat"
+        android:drawableLeft="@drawable/chatting"
         android:textAllCaps="false"
         android:textColor="@android:color/white"
         android:textSize="14sp"
@@ -435,7 +418,7 @@
         app:layout_constraintVertical_bias="0.106" />
 
     <TextView
-        android:id="@+id/textView57"
+        android:id="@+id/disputePrice"
         android:layout_width="110dp"
         android:layout_height="23dp"
         android:layout_marginTop="2dp"
@@ -454,7 +437,7 @@
         app:layout_constraintVertical_bias="0.128" />
 
     <TextView
-        android:id="@+id/textView59"
+        android:id="@+id/disputeDay"
         android:layout_width="100dp"
         android:layout_height="30dp"
         android:layout_marginTop="8dp"

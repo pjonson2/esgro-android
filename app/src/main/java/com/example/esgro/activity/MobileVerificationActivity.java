@@ -24,16 +24,25 @@ public class MobileVerificationActivity  extends AppCompatActivity implements Ad
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mobile_verification);
 
-        backBtn = findViewById(R.id.verificationBackBtn);
-        backBtn.setOnClickListener(backAction);
-
-        nextBtn = findViewById(R.id.mobileVerificNxtBtn);
-        nextBtn.setOnClickListener(nxtAction);
-
-        spinner = findViewById(R.id.mobileVerificSpinner);
-
+        idInitialization();
+        setListeners();
+        setValues();
 
         loadSpinner();
+
+    }
+    void idInitialization(){
+        backBtn = findViewById(R.id.verificationBackBtn);
+        nextBtn = findViewById(R.id.mobileVerificNxtBtn);
+        spinner = findViewById(R.id.mobileVerificSpinner);
+    }
+
+    void setListeners(){
+        backBtn.setOnClickListener(backAction);
+        nextBtn.setOnClickListener(nxtAction);
+    }
+
+    void setValues(){
 
     }
 

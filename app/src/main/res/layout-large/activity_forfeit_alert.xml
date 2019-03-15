@@ -9,7 +9,7 @@
     <android.support.constraint.ConstraintLayout
         android:id="@+id/view59"
         android:layout_width="288dp"
-        android:layout_height="340dp"
+        android:layout_height="342dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="80dp"
         app:layout_constraintBottom_toBottomOf="parent"

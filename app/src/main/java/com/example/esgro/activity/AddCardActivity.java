@@ -18,13 +18,26 @@ public class AddCardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_credit_debit);
 
-        back = findViewById(R.id.addCardBackBtn);
-        back.setOnClickListener(addCardBAck);
-
-        addcrd = findViewById(R.id.addCrdBtn);
-        addcrd.setOnClickListener(addCardAction);
+        idInitialization();
+        setListeners();
+        setValues();
 
     }
+
+    void idInitialization(){
+        back = findViewById(R.id.addCardBackBtn);
+        addcrd = findViewById(R.id.addCrdBtn);
+    }
+
+    void setListeners(){
+        back.setOnClickListener(addCardBAck);
+        addcrd.setOnClickListener(addCardAction);
+    }
+
+    void setValues(){
+
+    }
+
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);

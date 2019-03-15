@@ -29,37 +29,42 @@ public class BankAndCards2Activity extends AppCompatActivity {
         onWindowFocusChanged(true);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bank_and_cards2);
-        card = findViewById(R.id.plusCard);
-        card.setOnClickListener(plusCard);
 
-        plusCrd = findViewById(R.id.plusAddCardLbl);
-        plusCrd.setOnClickListener(plusCard);
-
-        bank = findViewById(R.id.plusBank);
-        bank.setOnClickListener(plusBank);
-
-        plusBnk = findViewById(R.id.plusLinkBankAccountLbl);
-        plusBnk.setOnClickListener(plusBank);
-
-        back = findViewById(R.id.bankAndCardBackBtn);
-        back.setOnClickListener(backAction);
-
-        contactIcon = findViewById(R.id.bankCardContactUsIcon);
-        contactIcon.setOnClickListener(contactAction);
-
-        profileIcon = findViewById(R.id.profileIcon);
-        profileIcon.setOnClickListener(profileIconAction);
-
-        bankCardSettingsIcon = findViewById(R.id.bankCardSettingsIcon);
-        bankCardSettingsIcon.setOnClickListener(settingsActoin);
-
-        newPostIcon = findViewById(R.id.bankAndCardNewPostIcon);
-        newPostIcon.setOnClickListener(newPostAction);
-
-        handshakeIcon = findViewById(R.id.bankCardHandshakeIcon);
-        handshakeIcon.setOnClickListener(handHsakeAction);
+        idInitialization();
+        setListeners();
+        setValues();
 
     }
+    void idInitialization(){
+        card = findViewById(R.id.plusCard);
+        plusCrd = findViewById(R.id.plusAddCardLbl);
+        bank = findViewById(R.id.plusBank);
+        plusBnk = findViewById(R.id.plusLinkBankAccountLbl);
+        back = findViewById(R.id.bankAndCardBackBtn);
+        contactIcon = findViewById(R.id.bankCardContactUsIcon);
+        profileIcon = findViewById(R.id.profileIcon);
+        bankCardSettingsIcon = findViewById(R.id.bankCardSettingsIcon);
+        newPostIcon = findViewById(R.id.bankAndCardNewPostIcon);
+        handshakeIcon = findViewById(R.id.bankCardHandshakeIcon);
+    }
+
+    void setListeners(){
+        card.setOnClickListener(plusCard);
+        plusCrd.setOnClickListener(plusCard);
+        bank.setOnClickListener(plusBank);
+        plusBnk.setOnClickListener(plusBank);
+        back.setOnClickListener(backAction);
+        contactIcon.setOnClickListener(contactAction);
+        profileIcon.setOnClickListener(profileIconAction);
+        bankCardSettingsIcon.setOnClickListener(settingsActoin);
+        newPostIcon.setOnClickListener(newPostAction);
+        handshakeIcon.setOnClickListener(handHsakeAction);
+    }
+
+    void setValues(){
+
+    }
+
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);

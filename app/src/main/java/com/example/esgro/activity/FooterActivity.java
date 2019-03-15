@@ -20,13 +20,26 @@ public class FooterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_footer);
 
-        contact = findViewById(R.id.footerContactIcon);
-        contact.setOnClickListener(contacts);
-
-        settingIconInFooter = findViewById(R.id.settingIconInFooter);
-        settingIconInFooter.setOnClickListener(settingAction);
+        idInitialization();
+//        setListeners();
+        setValues();
 
     }
+
+    void idInitialization(){
+        contact = findViewById(R.id.footerContactIcon);
+        settingIconInFooter = findViewById(R.id.settingIconInFooter);
+    }
+
+    void setListeners(){
+        contact.setOnClickListener(contacts);
+        settingIconInFooter.setOnClickListener(settingAction);
+    }
+
+    void setValues(){
+
+    }
+
     View.OnClickListener contacts = new View.OnClickListener() {
         public void onClick(View v) {
             Intent mainIntent = new Intent(FooterActivity.this, ContactUsActivity.class);

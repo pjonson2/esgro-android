@@ -39,7 +39,7 @@
 
     <Button
         android:id="@+id/aboutBackBtn"
-        android:layout_width="64dp"
+        android:layout_width="60dp"
         android:layout_height="20dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"

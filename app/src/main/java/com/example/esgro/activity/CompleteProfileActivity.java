@@ -38,50 +38,35 @@ public class CompleteProfileActivity  extends AppCompatActivity {
         onWindowFocusChanged(true);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_complete_profile);
+
+        idInitialization();
+        setListeners();
+        setValues();
+
+    }
+
+    void idInitialization(){
         back = findViewById(R.id.completeProfileBackBtn2);
-        back.setOnClickListener(backAction);
-
         continueBtn = findViewById(R.id.completeProfileContinueBtn);
-        continueBtn.setOnClickListener(continues);
-
         plusAddCard = findViewById(R.id.plusCompleteAddBankBtn);
-        plusAddCard.setOnClickListener(plusAddBank);
         plusCrd = findViewById(R.id.plusAddCrdLbl);
-        plusCrd.setOnClickListener(plusAddBank);
-
         plusLinkBank = findViewById(R.id.plusLinkBankBtn);
-        plusLinkBank.setOnClickListener(plusLinkBanks);
-
         plusLinkbankAccount = findViewById(R.id.plusLinkBankLbl);
-        plusLinkbankAccount.setOnClickListener(plusLinkBanks);
-
         selectImg = findViewById(R.id.selectImg);
+    }
+
+    void setListeners(){
+        back.setOnClickListener(backAction);
+        continueBtn.setOnClickListener(continues);
+        plusAddCard.setOnClickListener(plusAddBank);
+        plusCrd.setOnClickListener(plusAddBank);
+        plusLinkBank.setOnClickListener(plusLinkBanks);
+        plusLinkbankAccount.setOnClickListener(plusLinkBanks);
         selectImg.setOnClickListener(selectFile);
+    }
 
-//        RoundedImageView customImageView = findViewById(R.id.image_view);
-//        customImageView.setImageResource(R.drawable.splashbg);
-//        customImageView.setImageScaleType(RoundedImageView.ScaleType.CENTRE_CROP);
-//
-//        //For Single Corner
-//        customImageView.setCornerType(RoundedImageView.CornerType.BOTTOM_RIGHT_CORNER);
-//        customImageView.setCornerType(RoundedImageView.CornerType.BOTTOM_LEFT_CORNER);
-//        customImageView.setCornerType(RoundedImageView.CornerType.TOP_RIGHT_CORNER);
-//        customImageView.setCornerType(RoundedImageView.CornerType.BOTTOM_RIGHT_CORNER);
-//
-//        customImageView.setImagePadding(20);
-//        customImageView.setCanvasPadding(50);
+    void setValues(){
 
-//        customImageView.setBorder(true);
-//        customImageView.setBorderColor(Color.DKGRAY);
-//        customImageView.setBorderWidth(40);
-
-//        customImageView.setCornerRadius(30)30;
-//
-//        //For Multiple Corners
-//        List<RoundedImageView.CornerType> cornerTypes = new ArrayList<>();
-//        cornerTypes.add(RoundedImageView.CornerType.TOP_LEFT_CORNER);
-//        cornerTypes.add(RoundedImageView.CornerType.TOP_RIGHT_CORNER);
-//        customImageView.setCornerTypeList(cornerTypes);
     }
 
     @Override

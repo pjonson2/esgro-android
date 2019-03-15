@@ -16,7 +16,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        idInitialization();
+        setListeners();
+        setValues();
 
         new Handler().postDelayed(new Runnable(){
             @Override
@@ -26,6 +28,17 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.this.finish();
             }
         }, SPLASH_DISPLAY_LENGTH);
+
+    }
+    void idInitialization(){
+
+    }
+
+    void setListeners(){
+
+    }
+
+    void setValues(){
 
     }
 

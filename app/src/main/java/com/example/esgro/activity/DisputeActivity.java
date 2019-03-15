@@ -29,6 +29,15 @@ public class DisputeActivity extends AppCompatActivity {
         onWindowFocusChanged(true);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dispute);
+
+        idInitialization();
+        setListeners();
+        setValues();
+
+    }
+
+    void idInitialization(){
+
         disputeList = new ArrayList<>();
         initializeArray();
 
@@ -36,6 +45,7 @@ public class DisputeActivity extends AppCompatActivity {
 
         DisputeActivity.CustomAdaper customAdaper = new DisputeActivity.CustomAdaper();
         listView.setAdapter(customAdaper);
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
@@ -45,26 +55,40 @@ public class DisputeActivity extends AppCompatActivity {
                 String name = textView.getText().toString();
 
                 ImageView imageView = view.findViewById(R.id.disputeUserImage);
+                imageView.buildDrawingCache();
+                Bitmap bitmap = imageView.getDrawingCache();
+
+                TextView disputePriceTxt = view.findViewById(R.id.disputePriceTxt);
+                String disputePrice = disputePriceTxt.getText().toString();
+
+                TextView disputeDaysTxt = view.findViewById(R.id.disputeDaysTxt);
+                String disputeDays = disputeDaysTxt.getText().toString();
 
 
                 Intent intent = new Intent(DisputeActivity.this, DisputeDetails_01_Activity.class);
-//                DisputeDetails_01_Activity.name = name;
+
                 intent.putExtra("disputeListName", name);
-                imageView.buildDrawingCache();
-                Bitmap bitmap = imageView.getDrawingCache();
+                intent.putExtra("disputeListPrice", disputePrice);
+                intent.putExtra("disputeListDays", disputeDays);
                 intent.putExtra("BitmapImage", bitmap);
 
                 startActivity(intent);
-
-
             }
         });
+    }
+
+    void setListeners(){
+
+    }
+
+    void setValues(){
+
     }
 
     void initializeArray(){
 
         disputeList.add(
-                new Dispute("Pamela anderson","","","",R.drawable.user1)
+                new Dispute("Pamel anderson","","","",R.drawable.user1)
         );
         disputeList.add(
                 new Dispute("Nikkal simonze","","","",R.drawable.user2)

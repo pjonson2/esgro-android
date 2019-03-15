@@ -18,11 +18,25 @@ public class EnterVerificationActivity extends AppCompatActivity {
         onWindowFocusChanged(true);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enter_verification);
-        nextBtn = findViewById(R.id.enterVerificNxtBtn2);
-        nextBtn.setOnClickListener(nextActoin);
 
+        idInitialization();
+        setListeners();
+        setValues();
+
+    }
+
+    void idInitialization(){
+        nextBtn = findViewById(R.id.enterVerificNxtBtn2);
         back = findViewById(R.id.enterVerificBackBtn);
+    }
+
+    void setListeners(){
+        nextBtn.setOnClickListener(nextActoin);
         back.setOnClickListener(backAction);
+    }
+
+    void setValues(){
+
     }
 
 

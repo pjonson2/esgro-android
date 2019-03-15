@@ -207,7 +207,7 @@
         app:srcCompat="@drawable/logo2x" />
 
     <TextView
-        android:id="@+id/textView122"
+        android:id="@+id/chatUserName"
         android:layout_width="173dp"
         android:layout_height="23dp"
         android:layout_marginStart="8dp"

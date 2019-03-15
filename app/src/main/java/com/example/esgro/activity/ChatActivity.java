@@ -2,6 +2,7 @@ package com.example.esgro.activity;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.ColorInt;
@@ -11,6 +12,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.TextView;
 
 import com.example.esgro.R;
 
@@ -27,37 +29,50 @@ public class ChatActivity extends AppCompatActivity {
     ImageView profileIcon;
     ImageView settingsIcon;
 
+    Bundle extras;
+
+    String flowOfEvent="";
+
+    TextView chatUserName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         onWindowFocusChanged(true);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
+        extras = getIntent().getExtras();
 
-        back = findViewById(R.id.chatBackBtn);
-        back.setOnClickListener(backAction);
-
-        disputeRadioBtn = findViewById(R.id.disputeRadioBtn);
-        disputeRadioBtn.setOnClickListener(radioAction);
+        idInitialization();
+        setListeners();
+        setValues();
 
         dialog = new Dialog(this);
 
+    }
 
+    void idInitialization(){
+        back = findViewById(R.id.chatBackBtn);
+        disputeRadioBtn = findViewById(R.id.disputeRadioBtn);
         handshake = findViewById(R.id.chatHandshakeIcon);
-        handshake.setOnClickListener(handHsakeAction);
-
         newPost = findViewById(R.id.chatbankAndCardNewPostIcon);
-        newPost.setOnClickListener(newPostAction);
-
         profileIcon = findViewById(R.id.chatprofileIcon);
-        profileIcon.setOnClickListener(profileIconAction);
-
         settingsIcon = findViewById(R.id.chatSettingsIcon);
-        settingsIcon.setOnClickListener(settingsActoin);
-
         contactUs = findViewById(R.id.chatContactUsIcon);
+        chatUserName = findViewById(R.id.chatUserName);
+    }
+
+    void setListeners(){
+        handshake.setOnClickListener(handHsakeAction);
+        newPost.setOnClickListener(newPostAction);
+        profileIcon.setOnClickListener(profileIconAction);
+        settingsIcon.setOnClickListener(settingsActoin);
         contactUs.setOnClickListener(contactAction);
+        back.setOnClickListener(backAction);
+        disputeRadioBtn.setOnClickListener(radioAction);
+    }
 
-
+    void setValues(){
+        chatUserName.setText(extras.getString("disputeListName"));
     }
 
     @Override
@@ -75,8 +90,27 @@ public class ChatActivity extends AppCompatActivity {
     }
     View.OnClickListener backAction = new View.OnClickListener() {
         public void onClick(View v) {
-            Intent mainIntent = new Intent(ChatActivity.this, DisputeDetails_01_Activity.class);
-            ChatActivity.this.startActivity(mainIntent);
+            String value = extras.getString("disputeListName");
+            String disputeDays = extras.getString("disputeListDays");
+            String disputePrice = extras.getString("disputeListPrice");
+            Bitmap bitmap = getIntent().getParcelableExtra("BitmapImage");
+
+            flowOfEvent = extras.getString("flowOfEvent");
+            System.out.println("flowOfEvent   "  +flowOfEvent);
+            Intent intent;
+            if(flowOfEvent.equals("DisputeDetails_01_Activity")){
+                 intent = new Intent(ChatActivity.this, DisputeDetails_01_Activity.class);
+            }else{
+                 intent = new Intent(ChatActivity.this, DisputeDetails_No_History_Activity.class);
+            }
+
+
+            intent.putExtra("disputeListName", value);
+            intent.putExtra("disputeListPrice", disputePrice);
+            intent.putExtra("disputeListDays", disputeDays);
+            intent.putExtra("BitmapImage", bitmap);
+
+            ChatActivity.this.startActivity(intent);
         }
     };
     View.OnClickListener radioAction = new View.OnClickListener() {

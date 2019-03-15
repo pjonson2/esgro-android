@@ -29,6 +29,7 @@
         android:layout_marginBottom="8dp"
         android:background="@drawable/layout_corner"
         android:clickable="true"
+        android:fontFamily="@font/open_sans_semibold"
         android:hint="  Username, Name or Amount"
         android:textColorHint="@color/lightGreen"
         android:drawableStart="@drawable/baseline_search_black_18pt_2x"
