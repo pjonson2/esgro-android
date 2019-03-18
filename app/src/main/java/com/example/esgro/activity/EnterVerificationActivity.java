@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.esgro.R;
 
@@ -12,6 +14,13 @@ public class EnterVerificationActivity extends AppCompatActivity {
 
     Button nextBtn;
     Button back;
+
+    EditText n1TXt;
+    EditText n2Txt;
+    EditText n3Txt;
+    EditText n4Txt;
+
+    TextView timerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +37,11 @@ public class EnterVerificationActivity extends AppCompatActivity {
     void idInitialization(){
         nextBtn = findViewById(R.id.enterVerificNxtBtn2);
         back = findViewById(R.id.enterVerificBackBtn);
+        n1TXt = findViewById(R.id.enterNumber1Txt);
+        n2Txt = findViewById(R.id.enterNumber2Txt);
+        n3Txt = findViewById(R.id.enterNumber3Txt);
+        n4Txt = findViewById(R.id.enterNumber4Txt);
+        timerView = findViewById(R.id.enterTimerLbl);
     }
 
     void setListeners(){

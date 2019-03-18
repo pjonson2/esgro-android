@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
@@ -16,7 +17,10 @@ public class MobileVerificationActivity  extends AppCompatActivity implements Ad
 
     Button backBtn;
     Button nextBtn;
+
     Spinner spinner;
+
+    EditText mobileCerificNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +39,8 @@ public class MobileVerificationActivity  extends AppCompatActivity implements Ad
         backBtn = findViewById(R.id.verificationBackBtn);
         nextBtn = findViewById(R.id.mobileVerificNxtBtn);
         spinner = findViewById(R.id.mobileVerificSpinner);
+        mobileCerificNumber = findViewById(R.id.mobileCerificNumber);
+
     }
 
     void setListeners(){

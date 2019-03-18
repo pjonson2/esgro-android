@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.example.esgro.R;
 
@@ -12,6 +13,8 @@ public class Request_02_Activity extends AppCompatActivity {
 
     Button back;
     Button continues;
+
+    EditText holdingDays;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +31,7 @@ public class Request_02_Activity extends AppCompatActivity {
     void idInitialization(){
         back = findViewById(R.id.request2BackBtn);
         continues = findViewById(R.id.reqiest2ContinueBtn);
+        holdingDays = findViewById(R.id.requestHoldingDaysTxt);
     }
 
     void setListeners(){

@@ -7,18 +7,26 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.SpannableString;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.esgro.R;
 
 public class LinkBankAccountActivity extends AppCompatActivity {
-    Button back;
+
     TextView textView;
+
     ImageView linkedBankImg;
 
     Button save;
+    Button back;
+
     Bitmap bitmap;
+
+    EditText linkBankCardNumber;
+    EditText linkBankAccountNumber;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +45,10 @@ public class LinkBankAccountActivity extends AppCompatActivity {
         textView = findViewById(R.id.linkedBankNameTxt);
         linkedBankImg = findViewById(R.id.linkedBankImg);
         save = findViewById(R.id.saveAccBtn);
+        linkBankCardNumber = findViewById(R.id.linkBankCardNumberTxt);
+        linkBankAccountNumber = findViewById(R.id.linkBankAccountNumber);
+
+
     }
 
     void setListeners(){

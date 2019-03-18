@@ -157,7 +157,7 @@
         app:layout_constraintVertical_bias="0.849" />
 
     <EditText
-        android:id="@+id/editText22"
+        android:id="@+id/updateFirstNameTxt"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -179,7 +179,7 @@
         app:layout_constraintVertical_bias="0.374" />
 
     <EditText
-        android:id="@+id/editText23"
+        android:id="@+id/updateLastNameTxt"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -201,7 +201,7 @@
         app:layout_constraintVertical_bias="0.562" />
 
     <EditText
-        android:id="@+id/editText24"
+        android:id="@+id/updateEmailTxt"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -223,7 +223,7 @@
         app:layout_constraintVertical_bias="0.743" />
 
     <EditText
-        android:id="@+id/editText25"
+        android:id="@+id/updatePhoneTxt"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"

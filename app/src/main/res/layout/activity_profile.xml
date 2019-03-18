@@ -151,7 +151,7 @@
         app:layout_constraintVertical_bias="0.845" />
 
     <TextView
-        android:id="@+id/textView104"
+        android:id="@+id/profileEmailTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="benjamin95@sample.com  "
@@ -166,7 +166,7 @@
         app:layout_constraintVertical_bias="0.89" />
 
     <TextView
-        android:id="@+id/textView99"
+        android:id="@+id/profileUserNameTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="benjamin95"
@@ -211,7 +211,7 @@
         app:layout_constraintVertical_bias="0.532" />
 
     <TextView
-        android:id="@+id/textView98"
+        android:id="@+id/profileLastNameTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Stark  "
@@ -311,7 +311,7 @@
         app:layout_constraintVertical_bias="0.386" />
 
     <TextView
-        android:id="@+id/textView96"
+        android:id="@+id/profileFirstNameTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Ben"

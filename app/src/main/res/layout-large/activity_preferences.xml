@@ -154,8 +154,8 @@
 
     <TextView
         android:id="@+id/changePasswordBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="446dp"
+        android:layout_height="29dp"
         android:layout_marginStart="44dp"
         android:layout_marginLeft="44dp"
         android:layout_marginTop="8dp"
@@ -167,10 +167,10 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/view19"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.064"
+        app:layout_constraintHorizontal_bias="0.262"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/view19"
-        app:layout_constraintVertical_bias="0.902" />
+        app:layout_constraintVertical_bias="0.92" />
 
     <View
         android:id="@+id/view26"

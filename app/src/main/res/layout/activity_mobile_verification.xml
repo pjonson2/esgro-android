@@ -83,7 +83,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/editText7"
+            android:id="@+id/mobileCerificNumber"
             android:layout_width="105dp"
             android:layout_height="42dp"
             android:layout_marginStart="8dp"

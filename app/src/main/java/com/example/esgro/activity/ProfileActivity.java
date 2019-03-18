@@ -6,18 +6,25 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.esgro.R;
 
 public class ProfileActivity  extends FooterActivity {
 
     Button back;
+
     ImageView edit;
     ImageView newPost;
     ImageView handshake;
     ImageView contact;
     ImageView settings;
     ImageView profile;
+
+    TextView firstName;
+    TextView lastName;
+    TextView userName;
+    TextView email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +45,11 @@ public class ProfileActivity  extends FooterActivity {
         contact = findViewById(R.id.profileContactIcon);
         settings = findViewById(R.id.profileSettingsIcon);
         profile = findViewById(R.id.profileProfileIcon);
+
+        firstName = findViewById(R.id.profileFirstNameTxt);
+        lastName = findViewById(R.id.profileLastNameTxt);
+        userName = findViewById(R.id.profileUserNameTxt);
+        email = findViewById(R.id.profileEmailTxt);
     }
 
     void setListeners(){

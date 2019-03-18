@@ -5,12 +5,18 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.example.esgro.R;
 
 public class AddCardActivity extends AppCompatActivity {
+
     Button back;
     Button addcrd;
+
+    EditText cardNumber;
+    EditText expDate;
+    EditText cvv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +33,10 @@ public class AddCardActivity extends AppCompatActivity {
     void idInitialization(){
         back = findViewById(R.id.addCardBackBtn);
         addcrd = findViewById(R.id.addCrdBtn);
+        cardNumber = findViewById(R.id.CardCardNumberTxt);
+        expDate = findViewById(R.id.CardExpDateTxt);
+        cvv = findViewById(R.id.CardCvvTxt);
+
     }
 
     void setListeners(){

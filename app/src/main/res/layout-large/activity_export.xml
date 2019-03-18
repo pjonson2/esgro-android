@@ -174,7 +174,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <RadioButton
-        android:id="@+id/radioButton5"
+        android:id="@+id/exportAllTimeRadio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="11dp"
@@ -194,7 +194,7 @@
         app:layout_constraintVertical_bias="0.98" />
 
     <RadioButton
-        android:id="@+id/radioButton3"
+        android:id="@+id/exportMonthsRadio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -270,7 +270,7 @@
         tools:ignore="MissingConstraints" />
 
     <CheckBox
-        android:id="@+id/checkBox4"
+        android:id="@+id/exportOutgoingCheck"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -290,7 +290,7 @@
         app:layout_constraintVertical_bias="0.442" />
 
     <CheckBox
-        android:id="@+id/checkBox5"
+        android:id="@+id/exportCompletedCheck"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -310,15 +310,15 @@
         app:layout_constraintVertical_bias="0.541" />
 
     <CheckBox
-        android:id="@+id/checkBox6"
+        android:id="@+id/exportRejectedCheck"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:text="Rejected  "
         android:fontFamily="@font/open_sans_semibold"
+        android:text="Rejected  "
 
         android:textColor="#929AAB"
         android:textSize="16sp"
@@ -330,7 +330,7 @@
         app:layout_constraintVertical_bias="0.64" />
 
     <RadioButton
-        android:id="@+id/radioButton2"
+        android:id="@+id/exportAllRequestStatusRadio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -395,7 +395,7 @@
         tools:ignore="MissingConstraints" />
 
     <RadioButton
-        android:id="@+id/radioButton"
+        android:id="@+id/exportAllRequestRadio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -416,15 +416,15 @@
         app:layout_constraintVertical_bias="0.107" />
 
     <CheckBox
-        android:id="@+id/checkBox3"
+        android:id="@+id/exportIncomingCheck"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:text="Incoming  "
         android:fontFamily="@font/open_sans_semibold"
+        android:text="Incoming  "
 
         android:textColor="#929AAB"
         android:textSize="16sp"
@@ -436,7 +436,7 @@
         app:layout_constraintVertical_bias="0.343" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/exportSendBtn"
         android:layout_width="0dp"
         android:layout_height="55dp"
         android:layout_marginStart="100dp"

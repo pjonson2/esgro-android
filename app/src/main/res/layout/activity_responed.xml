@@ -146,7 +146,7 @@
         app:layout_constraintTop_toTopOf="@+id/view51" />
 
     <TextView
-        android:id="@+id/textView92"
+        android:id="@+id/responedDescriptionTxt"
         android:layout_width="307dp"
         android:layout_height="128dp"
         android:layout_marginStart="30dp"

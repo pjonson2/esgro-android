@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.example.esgro.R;
 
@@ -12,6 +13,10 @@ public class CheckPasswordActivity extends AppCompatActivity {
 
     Button back;
     Button update;
+
+    EditText currentPassword;
+    EditText newPassword;
+    EditText confirmpassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +32,9 @@ public class CheckPasswordActivity extends AppCompatActivity {
     void idInitialization(){
         back = findViewById(R.id.checkPasswordBackBtn);
         update = findViewById(R.id.updatePasswordBtn);
+        currentPassword = findViewById(R.id.currentPasswordTxt);
+        newPassword = findViewById(R.id.newPasswordTxt);
+        confirmpassword = findViewById(R.id.confirmPasswordTxt);
     }
 
     void setListeners(){

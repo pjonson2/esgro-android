@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -21,6 +22,7 @@ import java.util.List;
 public class DisputeNoHistoryActivity extends AppCompatActivity {
 
     List<Dispute> disputeList;
+    EditText disputeShakeSearchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,7 @@ public class DisputeNoHistoryActivity extends AppCompatActivity {
     }
 
     void idInitialization(){
+        disputeShakeSearchView = findViewById(R.id.disputeShakeSearchView);
         disputeList = new ArrayList<>();
         initializeArray();
         ListView listView = findViewById(R.id.dynamicShakeListView);

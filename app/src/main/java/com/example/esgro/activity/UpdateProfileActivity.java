@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.example.esgro.R;
@@ -20,6 +21,11 @@ public class UpdateProfileActivity   extends AppCompatActivity {
     ImageView contact;
     ImageView settings;
     ImageView profile;
+
+    EditText firstName;
+    EditText lastName;
+    EditText email;
+    EditText phone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +46,10 @@ public class UpdateProfileActivity   extends AppCompatActivity {
         handshake = findViewById(R.id.updateProfileHandshakeIcon);
         contact = findViewById(R.id.updateProfileContactIcon);
         settings = findViewById(R.id.updateprofileSettingsIcon);
+        firstName = findViewById(R.id.updateFirstNameTxt);
+        lastName = findViewById(R.id.updateLastNameTxt);
+        email = findViewById(R.id.updateEmailTxt);
+        phone = findViewById(R.id.updatePhoneTxt);
     }
 
     void setListeners(){

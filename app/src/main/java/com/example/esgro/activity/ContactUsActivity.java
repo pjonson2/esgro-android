@@ -7,7 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.esgro.R;
 import com.example.esgro.activity.alert.FeedBackAlertActivity;
@@ -15,13 +17,19 @@ import com.example.esgro.activity.alert.FeedBackAlertActivity;
 public class ContactUsActivity extends AppCompatActivity {
 
     Button submit;
+    Button done;
+
     ImageView settings;
     ImageView profileIcon;
     ImageView handshakeIcon;
     ImageView newPostIcon;
 
     Dialog dialog;
-    Button done;
+
+    TextView contactEmailTxt;
+
+    EditText contactMessageTxt;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +50,9 @@ public class ContactUsActivity extends AppCompatActivity {
         handshakeIcon = findViewById(R.id.contactHandshakeIcon);
         newPostIcon = findViewById(R.id.contactNewPostIcon);
         settings = findViewById(R.id.contactSettingsIcon);
+        contactEmailTxt = findViewById(R.id.contactEmailTxt);
+        contactMessageTxt = findViewById(R.id.contactMessageTxt);
+
     }
 
     void setListeners(){

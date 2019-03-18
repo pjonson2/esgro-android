@@ -22,10 +22,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CompleteProfileActivity  extends AppCompatActivity {
+
     Button back;
     Button continueBtn;
     Button plusAddCard;
     Button plusLinkBank;
+
     ImageView selectImg;
 
     TextView plusLinkbankAccount;

@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.example.esgro.R;
 
@@ -14,8 +15,16 @@ public class Request_03_Activity extends AppCompatActivity {
 
     Button back;
     Button continues;
+
     Dialog dialog;
+
     private final int SPLASH_DISPLAY_LENGTH = 3000;
+
+    EditText userName;
+    EditText days;
+    EditText amount;
+    EditText reserve;
+    EditText description;
 
 
     @Override
@@ -37,6 +46,12 @@ public class Request_03_Activity extends AppCompatActivity {
     void idInitialization(){
         back = findViewById(R.id.request3Back);
         continues = findViewById(R.id.request3SendBtn);
+
+        userName = findViewById(R.id.requestToUserNameTxt);
+        days = findViewById(R.id.requestDaysTxt);
+        amount = findViewById(R.id.requestAmountTxt);
+        reserve = findViewById(R.id.requestReserveTxt);
+        description = findViewById(R.id.requestDescriptionTxt);
     }
 
     void setListeners(){

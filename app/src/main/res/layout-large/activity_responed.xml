@@ -125,7 +125,7 @@
         android:layout_marginBottom="825dp"
         android:background="#EBEBEB"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/textView92"
+        app:layout_constraintEnd_toEndOf="@+id/responedDescriptionTxt"
         app:layout_constraintStart_toStartOf="@+id/view51"
         app:layout_constraintTop_toBottomOf="@+id/view46"
         tools:ignore="MissingConstraints" />
@@ -146,7 +146,7 @@
         app:layout_constraintVertical_bias="0.259" />
 
     <TextView
-        android:id="@+id/textView91"
+        android:id="@+id/responedToTxt"
         android:layout_width="55dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -162,7 +162,7 @@
         app:layout_constraintTop_toTopOf="@+id/view51" />
 
     <TextView
-        android:id="@+id/textView92"
+        android:id="@+id/responedDescriptionTxt"
         android:layout_width="0dp"
         android:layout_height="82dp"
         android:layout_marginStart="30dp"

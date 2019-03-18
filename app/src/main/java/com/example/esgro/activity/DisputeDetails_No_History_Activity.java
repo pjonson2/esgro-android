@@ -17,27 +17,31 @@ import com.example.esgro.R;
 public class DisputeDetails_No_History_Activity extends AppCompatActivity {
 
     Button back;
+    Button chat;
+
     ImageView contactIcon;
     ImageView profileIcon;
     ImageView handshakeIcon;
     ImageView newPostIcon;
     ImageView settings;
-    Dialog dialog;
     ImageView okIconImge;
     ImageView noDisputeCancelBtn;
-    Button chat;
+    ImageView noDisputeContactBtn;
     ImageView getNoDisputeUserImg;
+
     TextView disputeNoUserNameTxt;
     TextView disputeNoUserPriceTxt;
     TextView disputeNoUserDaysTxt;
-    Bundle extras;
-    private final int SPLASH_DISPLAY_LENGTH = 4000;
+    TextView disputeNoHistoryDescription;
+    TextView disputeReservePrice;
 
+    Bundle extras;
+    Dialog dialog;
+    private final int SPLASH_DISPLAY_LENGTH = 4000;
     String value = "";
     String disputeDays="";
     String disputePrice="";
     Bitmap bitmap;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +73,9 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
         disputeNoUserNameTxt = findViewById(R.id.disputeNoUserNameTxt);
         disputeNoUserPriceTxt = findViewById(R.id.disputePrice);
         disputeNoUserDaysTxt = findViewById(R.id.disputeDay);
+        disputeNoHistoryDescription = findViewById(R.id.disputeNoHistoryDescriptionTxt);
+        disputeReservePrice = findViewById(R.id.disputeReservePriceTxt);
+        noDisputeContactBtn = findViewById(R.id.disputeContactBtn);
 
     }
 
@@ -83,6 +90,7 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
         okIconImge.setOnClickListener(submitAction);
         noDisputeCancelBtn.setOnClickListener(cancelAction);
         chat.setOnClickListener(chatAction);
+        noDisputeContactBtn.setOnClickListener(contact);
 
     }
 
@@ -194,4 +202,11 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
             DisputeDetails_No_History_Activity.this.startActivity(mainIntent);
         }
     };
+    View.OnClickListener contact = new View.OnClickListener() {
+        public void onClick(View v) {
+//            Intent mainIntent = new Intent(DisputeDetails_No_History_Activity.this,RequestActivity.class);
+//            DisputeDetails_No_History_Activity.this.startActivity(mainIntent);
+        }
+    };
+
 }

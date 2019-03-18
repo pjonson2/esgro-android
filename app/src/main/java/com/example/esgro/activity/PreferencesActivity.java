@@ -11,7 +11,9 @@ import android.widget.TextView;
 import com.example.esgro.R;
 
 public class PreferencesActivity extends AppCompatActivity {
+
     Button back;
+
     TextView changePassword;
 
     @Override

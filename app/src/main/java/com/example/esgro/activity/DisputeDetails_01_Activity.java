@@ -17,25 +17,32 @@ import com.example.esgro.R;
 public class    DisputeDetails_01_Activity extends AppCompatActivity {
 
     Button back;
+    Button chat;
+
     ImageView contactIcon;
     ImageView profileIcon;
     ImageView handshakeIcon;
     ImageView newPostIcon;
     ImageView settings;
-    Dialog dialog;
     ImageView likeIconImg;
     ImageView disputeCancelBtn;
-    Button chat;
     ImageView disputeUserCardImg;
+    ImageView disputeContactBtn;
+
+    Dialog dialog;
+
     TextView disputeDaysTxt;
     TextView disputePriceTxt;
-    private final int SPLASH_DISPLAY_LENGTH = 4000;
-    static String name = "";
-
+    TextView disputeDescriptionView;
+    TextView disputeReservePriceView;
     TextView userName;
+
     Bundle extras;
     String flowOfEvent="";
     Bitmap bitmap;
+    private final int SPLASH_DISPLAY_LENGTH = 4000;
+    static String name = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         onWindowFocusChanged(true);
@@ -67,6 +74,9 @@ public class    DisputeDetails_01_Activity extends AppCompatActivity {
         userName = findViewById(R.id.disputeUserName);
         disputeDaysTxt = findViewById(R.id.disputeDay);
         disputePriceTxt = findViewById(R.id.disputePrice);
+        disputeDescriptionView = findViewById(R.id.disputeDescriptionView);
+        disputeReservePriceView = findViewById(R.id.disputeReservePriceView);
+        disputeContactBtn = findViewById(R.id.disputeContactBtn);
 
     }
 
@@ -81,6 +91,7 @@ public class    DisputeDetails_01_Activity extends AppCompatActivity {
         likeIconImg.setOnClickListener(submitAction);
         disputeCancelBtn.setOnClickListener(cancelAction);
         chat.setOnClickListener(chatAction);
+        disputeContactBtn.setOnClickListener(contact);
 
     }
 
@@ -180,6 +191,12 @@ public class    DisputeDetails_01_Activity extends AppCompatActivity {
         public void onClick(View v) {
             Intent mainIntent = new Intent(DisputeDetails_01_Activity.this,RequestActivity.class);
             DisputeDetails_01_Activity.this.startActivity(mainIntent);
+        }
+    };
+    View.OnClickListener contact = new View.OnClickListener() {
+        public void onClick(View v) {
+//            Intent mainIntent = new Intent(DisputeDetails_01_Activity.this,RequestActivity.class);
+//            DisputeDetails_01_Activity.this.startActivity(mainIntent);
         }
     };
     View.OnClickListener chatAction = new View.OnClickListener() {

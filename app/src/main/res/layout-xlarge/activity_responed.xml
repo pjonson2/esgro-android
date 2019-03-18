@@ -131,7 +131,7 @@
         app:layout_constraintVertical_bias="0.258" />
 
     <TextView
-        android:id="@+id/textView91"
+        android:id="@+id/responedToTxt"
         android:layout_width="55dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -147,7 +147,7 @@
         app:layout_constraintTop_toTopOf="@+id/view51" />
 
     <TextView
-        android:id="@+id/textView92"
+        android:id="@+id/responedDescriptionTxt"
         android:layout_width="688dp"
         android:layout_height="105dp"
         android:layout_marginStart="30dp"

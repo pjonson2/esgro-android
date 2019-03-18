@@ -162,7 +162,7 @@
                 tools:ignore="MissingConstraints" />
 
             <EditText
-                android:id="@+id/editText13"
+                android:id="@+id/signInEmailTxt"
                 android:layout_width="0dp"
                 android:layout_height="41dp"
                 android:layout_marginStart="8dp"
@@ -183,7 +183,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/editText14"
+                android:id="@+id/signInPasswordTxt"
                 android:layout_width="0dp"
                 android:layout_height="42dp"
                 android:layout_marginStart="8dp"
@@ -203,7 +203,7 @@
                 app:layout_constraintVertical_bias="0.305" />
 
             <TextView
-                android:id="@+id/textView23"
+                android:id="@+id/forgotLbl"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"

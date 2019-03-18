@@ -130,8 +130,8 @@
         app:layout_constraintTop_toTopOf="@+id/midView3"
         app:layout_constraintVertical_bias="0.149" />
 
-    <Button
-        android:id="@+id/button6"
+    <TextView
+        android:id="@+id/contactEmailTxt"
         android:layout_width="158dp"
         android:layout_height="31dp"
         android:layout_marginStart="32dp"
@@ -208,7 +208,7 @@
         app:layout_constraintVertical_bias="0.946" />
 
     <EditText
-        android:id="@+id/textView44"
+        android:id="@+id/contactMessageTxt"
         android:layout_width="690dp"
         android:layout_height="389dp"
         android:layout_marginStart="10dp"
@@ -218,8 +218,8 @@
         android:background="@drawable/border"
         android:clickable="true"
         android:editable="true"
-        android:fontFamily="@font/open_sans"
         android:enabled="true"
+        android:fontFamily="@font/open_sans"
         android:gravity="top"
         android:hint="Type your message here"
         android:textSize="18sp"

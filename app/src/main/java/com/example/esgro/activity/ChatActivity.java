@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -20,8 +21,8 @@ public class ChatActivity extends AppCompatActivity {
 
     Button back;
     RadioButton disputeRadioBtn;
-    Dialog dialog;
     Button close;
+    Button feedBackSendBtn;
 
     ImageView handshake;
     ImageView contactUs;
@@ -30,10 +31,13 @@ public class ChatActivity extends AppCompatActivity {
     ImageView settingsIcon;
 
     Bundle extras;
-
     String flowOfEvent="";
 
     TextView chatUserName;
+
+    EditText chatTxt;
+
+    Dialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +63,8 @@ public class ChatActivity extends AppCompatActivity {
         settingsIcon = findViewById(R.id.chatSettingsIcon);
         contactUs = findViewById(R.id.chatContactUsIcon);
         chatUserName = findViewById(R.id.chatUserName);
+        chatTxt = findViewById(R.id.chatTxt);
+        feedBackSendBtn = findViewById(R.id.feedBackSendBtn);
     }
 
     void setListeners(){
@@ -69,6 +75,7 @@ public class ChatActivity extends AppCompatActivity {
         contactUs.setOnClickListener(contactAction);
         back.setOnClickListener(backAction);
         disputeRadioBtn.setOnClickListener(radioAction);
+        feedBackSendBtn.setOnClickListener(send);
     }
 
     void setValues(){
@@ -161,6 +168,12 @@ public class ChatActivity extends AppCompatActivity {
         public void onClick(View v) {
             Intent mainIntent = new Intent(ChatActivity.this,DisputeNoHistoryActivity.class);
             ChatActivity.this.startActivity(mainIntent);
+        }
+    };
+    View.OnClickListener send = new View.OnClickListener() {
+        public void onClick(View v) {
+//            Intent mainIntent = new Intent(ChatActivity.this,DisputeNoHistoryActivity.class);
+//            ChatActivity.this.startActivity(mainIntent);
         }
     };
 }

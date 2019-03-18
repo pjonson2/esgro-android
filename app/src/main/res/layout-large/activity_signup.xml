@@ -56,7 +56,7 @@
             card_view:layout_constraintVertical_bias="0.956" />
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/signUpFirstNameTxt"
             android:layout_width="0dp"
             android:layout_height="39dp"
             android:layout_marginStart="10dp"
@@ -79,7 +79,7 @@
             tools:ignore="MissingConstraints" />
 
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/signUpLastNameTxt"
             android:layout_width="0dp"
             android:layout_height="42dp"
             android:layout_marginStart="10dp"
@@ -102,7 +102,7 @@
             tools:ignore="MissingConstraints" />
 
         <EditText
-            android:id="@+id/editText3"
+            android:id="@+id/signUpEmailTxt"
             android:layout_width="0dp"
             android:layout_height="52dp"
             android:layout_marginStart="10dp"
@@ -125,7 +125,7 @@
             tools:ignore="MissingConstraints" />
 
         <EditText
-            android:id="@+id/editText4"
+            android:id="@+id/signUpUserNameTxt"
             android:layout_width="0dp"
             android:layout_height="42dp"
             android:layout_marginStart="10dp"
@@ -149,7 +149,7 @@
             tools:ignore="MissingConstraints" />
 
         <EditText
-            android:id="@+id/editText5"
+            android:id="@+id/signUpPswrdTxt"
             android:layout_width="0dp"
             android:layout_height="42dp"
             android:layout_marginStart="10dp"
@@ -214,7 +214,7 @@
             card_view:layout_constraintVertical_bias="0.712" />
 
         <EditText
-            android:id="@+id/editText6"
+            android:id="@+id/signUpPswrdReTypeTxt"
             android:layout_width="0dp"
             android:layout_height="46dp"
             android:layout_marginStart="10dp"
@@ -345,7 +345,7 @@
             card_view:layout_constraintVertical_bias="0.0" />
 
         <Switch
-            android:id="@+id/switch1"
+            android:id="@+id/signUpSwitch"
             android:layout_width="44dp"
             android:layout_height="27dp"
             android:layout_marginStart="8dp"
@@ -362,7 +362,7 @@
             card_view:layout_constraintVertical_bias="0.879" />
 
         <CheckBox
-            android:id="@+id/checkBox"
+            android:id="@+id/signUpCheckBox"
             android:layout_width="wrap_content"
             android:layout_height="31dp"
             android:layout_marginStart="8dp"

@@ -28,7 +28,7 @@
         app:layout_constraintVertical_bias="0.234" />
 
     <EditText
-        android:id="@+id/textView78"
+        android:id="@+id/requestToUserNameTxt"
         android:layout_width="260dp"
         android:layout_height="28dp"
         android:layout_marginStart="8dp"
@@ -50,7 +50,7 @@
         app:layout_constraintVertical_bias="0.008" />
 
     <EditText
-        android:id="@+id/textView79"
+        android:id="@+id/requestDaysTxt"
         android:layout_width="330dp"
         android:layout_height="35dp"
         android:layout_marginStart="8dp"
@@ -72,7 +72,7 @@
         app:layout_constraintVertical_bias="0.077" />
 
     <EditText
-        android:id="@+id/textView83"
+        android:id="@+id/requestAmountTxt"
         android:layout_width="242dp"
         android:layout_height="36dp"
         android:layout_marginStart="8dp"
@@ -95,7 +95,7 @@
         app:layout_constraintVertical_bias="0.155" />
 
     <EditText
-        android:id="@+id/textView85"
+        android:id="@+id/requestReserveTxt"
         android:layout_width="235dp"
         android:layout_height="38dp"
         android:layout_marginStart="8dp"
@@ -302,15 +302,15 @@
         app:layout_constraintVertical_bias="0.008" />
 
     <EditText
-        android:id="@+id/textView86"
+        android:id="@+id/requestDescriptionTxt"
         android:layout_width="0dp"
         android:layout_height="130dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:background="@android:color/white"
+        android:gravity="top"
         android:hint="     DESCRIPTION  "
         android:textColor="#929AAB"
-        android:gravity="top"
         android:textSize="18sp"
         app:fontFamily="@font/open_sans_semibold"
         app:layout_constraintBottom_toBottomOf="parent"

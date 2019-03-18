@@ -15,6 +15,7 @@ public class BankAndCards2Activity extends AppCompatActivity {
     Button card;
     Button bank;
     Button back;
+
     ImageView contactIcon;
     ImageView profileIcon;
     ImageView handshakeIcon;

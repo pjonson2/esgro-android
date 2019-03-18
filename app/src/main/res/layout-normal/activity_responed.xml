@@ -21,7 +21,6 @@
 
     <Button
         android:id="@+id/checkPasswordBackBtn2"
-        android:layout_width="64dp"
         android:layout_height="20dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
@@ -39,27 +38,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.04"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view27" />
+        app:layout_constraintTop_toTopOf="@+id/view27"
+        android:drawableLeft="@drawable/icons8_white"
+        android:layout_width="60dp" />
 
-    <Button
-        android:id="@+id/button29"
-        android:layout_width="18dp"
-        android:layout_height="18dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:background="@drawable/icons8_white"
-        android:fontFamily="@font/open_sans"
-        android:textAllCaps="false"
-        android:textSize="12dp"
-        app:layout_constraintBottom_toBottomOf="@+id/view50"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.008"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view50"
-        app:layout_constraintVertical_bias="0.384" />
+
 
     <TextView
         android:id="@+id/textView87"
@@ -148,7 +131,7 @@
         app:layout_constraintVertical_bias="0.532" />
 
     <TextView
-        android:id="@+id/textView91"
+        android:id="@+id/responedToTxt"
         android:layout_width="55dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -164,7 +147,7 @@
         app:layout_constraintTop_toTopOf="@+id/view51" />
 
     <TextView
-        android:id="@+id/textView92"
+        android:id="@+id/responedDescriptionTxt"
         android:layout_width="304dp"
         android:layout_height="133dp"
         android:layout_marginStart="30dp"

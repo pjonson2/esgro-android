@@ -252,9 +252,9 @@
         android:textColor="#393E46"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/midView4"
-        app:layout_constraintEnd_toEndOf="@+id/imageView40"
-        app:layout_constraintStart_toStartOf="@+id/imageView40"
-        app:layout_constraintTop_toBottomOf="@+id/imageView40"
+        app:layout_constraintEnd_toEndOf="@+id/disputeContactBtn"
+        app:layout_constraintStart_toStartOf="@+id/disputeContactBtn"
+        app:layout_constraintTop_toBottomOf="@+id/disputeContactBtn"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
@@ -287,7 +287,7 @@
         app:layout_constraintVertical_bias="0.358" />
 
     <ImageView
-        android:id="@+id/imageView40"
+        android:id="@+id/disputeContactBtn"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_marginTop="8dp"
@@ -330,7 +330,7 @@
         android:gravity="end" />
 
     <TextView
-        android:id="@+id/textView70"
+        android:id="@+id/disputeReservePriceView"
         android:layout_width="96dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -538,7 +538,7 @@
         app:layout_constraintVertical_bias="0.204" />
 
     <TextView
-        android:id="@+id/textView63"
+        android:id="@+id/disputeDescriptionView"
         android:layout_width="0dp"
         android:layout_height="144dp"
         android:layout_marginTop="8dp"

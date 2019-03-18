@@ -141,7 +141,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/midView5"
         app:layout_constraintEnd_toEndOf="@+id/midView5"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/editText26" />
+        app:layout_constraintStart_toStartOf="@+id/chatTxt" />
 
     <TextView
         android:id="@+id/textView120"
@@ -233,9 +233,9 @@
         app:layout_constraintTop_toTopOf="@+id/midView5" />
 
     <EditText
-        android:id="@+id/editText26"
+        android:id="@+id/chatTxt"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="338dp"
         android:layout_marginStart="30dp"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="20dp"
@@ -276,7 +276,7 @@
         android:textColor="@color/colorAccent"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/midView5"
-        app:layout_constraintEnd_toEndOf="@+id/editText26"
+        app:layout_constraintEnd_toEndOf="@+id/chatTxt"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/midView5" />
 

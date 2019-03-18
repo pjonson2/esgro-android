@@ -22,8 +22,10 @@ import java.util.List;
 public class BankListActivity extends AppCompatActivity {
 
     List<Bank> bankList;
+
     Button back;
     Bitmap bitmap;
+
     public final static String EXTRA_MESSAGE = "com.example.ListViewTest.MESSAGE";
 
     @Override
