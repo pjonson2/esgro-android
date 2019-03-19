@@ -26,6 +26,11 @@ public class Request_03_Activity extends AppCompatActivity {
     EditText reserve;
     EditText description;
 
+    Bundle extras;
+
+    String charging_amount;
+    String holding_days;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,11 +38,11 @@ public class Request_03_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_request_3);
+        extras = getIntent().getExtras();
 
         idInitialization();
         setListeners();
         setValues();
-
 
         dialog = new Dialog(this);
 
@@ -57,10 +62,14 @@ public class Request_03_Activity extends AppCompatActivity {
     void setListeners(){
         back.setOnClickListener(requestBack);
         continues.setOnClickListener(requestContinue);
+        userName.setText(extras.getString("request_user"));
     }
 
     void setValues(){
-
+        holding_days = extras.getString("holding_days");
+        charging_amount = extras.getString("charging_amount");
+        amount.setText("$"+charging_amount);
+        days.setText(holding_days);
     }
 
     @Override
@@ -78,7 +87,15 @@ public class Request_03_Activity extends AppCompatActivity {
     }
     View.OnClickListener requestBack = new View.OnClickListener() {
         public void onClick(View v) {
+
+            String days = extras.getString("holding_days");
+            String prices = extras.getString("charging_amount");
+
             Intent mainIntent = new Intent(Request_03_Activity.this,Request_02_Activity.class);
+            mainIntent.putExtra("holding_days",days);
+            mainIntent.putExtra("charging_amount",prices);
+            mainIntent.putExtra("request_user",userName.getText().toString());
+
             Request_03_Activity.this.startActivity(mainIntent);
         }
     };
@@ -96,9 +113,6 @@ public class Request_03_Activity extends AppCompatActivity {
                     Request_03_Activity.this.startActivity(mainIntent);
                 }
             }, SPLASH_DISPLAY_LENGTH);
-
-
-
 
         }
     };

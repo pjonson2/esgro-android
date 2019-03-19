@@ -20,15 +20,17 @@
 
         <Button
             android:id="@+id/completeProfileBackBtn2"
-            android:layout_width="10dp"
-            android:layout_height="18dp"
+            android:layout_width="28dp"
+            android:layout_height="17dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="45dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
             android:background="@android:color/transparent"
             android:drawableBottom="@drawable/path_467"
+            app:layout_constraintBottom_toBottomOf="@+id/textView18"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.044"
             app:layout_constraintStart_toStartOf="parent"
@@ -54,10 +56,10 @@
 
             <TextView
                 android:id="@+id/plusLinkBankLbl"
-                android:layout_width="163dp"
+                android:layout_width="0dp"
                 android:layout_height="20dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginLeft="50dp"
                 android:layout_marginTop="42dp"
                 android:layout_marginEnd="118dp"
                 android:layout_marginRight="118dp"
@@ -131,10 +133,10 @@
 
             <TextView
                 android:id="@+id/plusAddCrdLbl"
-                android:layout_width="163dp"
+                android:layout_width="0dp"
                 android:layout_height="20dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginLeft="50dp"
                 android:layout_marginTop="42dp"
                 android:layout_marginEnd="118dp"
                 android:layout_marginRight="118dp"

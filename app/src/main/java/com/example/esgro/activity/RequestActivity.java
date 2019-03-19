@@ -51,6 +51,7 @@ public class RequestActivity extends AppCompatActivity {
                 String name = textView.getText().toString();
 
                 Intent intent = new Intent(RequestActivity.this, Request_01_Activity.class);
+                intent.putExtra("request_user",name);
                 startActivity(intent);
             }
         });
@@ -69,37 +70,37 @@ public class RequestActivity extends AppCompatActivity {
         void initializeArray() {
 
             requestList.add(
-                    new Request("Pamela anderson", "3 days ago", R.drawable.user1)
+                    new Request("Pamela anderson", "3 days ago","-238.12", R.drawable.user1)
             );
             requestList.add(
-                    new Request("Nikkal simonze", "6 days ago", R.drawable.user2)
+                    new Request("Nikkal simonze", "6 days ago","1200.00", R.drawable.user2)
             );
             requestList.add(
-                    new Request("Katharina Kaif", "1 Week ago", R.drawable.user3)
+                    new Request("Katharina Kaif", "1 Week ago","-164.12", R.drawable.user3)
             );
             requestList.add(
-                    new Request("Nicole minaj", "3 days ago", R.drawable.user4)
+                    new Request("Nicole minaj", "3 days ago","-60.43", R.drawable.user4)
             );
             requestList.add(
-                    new Request("camilla cibello", "2 hours ago", R.drawable.user5)
+                    new Request("camilla cibello", "2 hours ago","-422.32", R.drawable.user5)
             );
             requestList.add(
-                    new Request("Selena gomez", "3 days ago", R.drawable.user6)
+                    new Request("Selena gomez", "3 days ago", "76.32",R.drawable.user6)
             );
             requestList.add(
-                    new Request("Maria shomnix", "5 days ago", R.drawable.user7)
+                    new Request("Maria shomnix", "5 days ago","-455.32", R.drawable.user7)
             );
             requestList.add(
-                    new Request("joudge bush", "1 weeks ago", R.drawable.user8)
+                    new Request("joudge bush", "1 weeks ago","-255.43", R.drawable.user8)
             );
             requestList.add(
-                    new Request("SGrahams Smith", "3 days ago", R.drawable.user9)
+                    new Request("SGrahams Smith", "3 days ago", "-98.43",R.drawable.user9)
             );
             requestList.add(
-                    new Request("Michel clark", "1 days ago", R.drawable.user1)
+                    new Request("Michel clark", "1 days ago","-32", R.drawable.user1)
             );
             requestList.add(
-                    new Request("James Anderson", "2 days ago", R.drawable.user6)
+                    new Request("James Anderson", "2 days ago","-234.32", R.drawable.user6)
             );
 
         }

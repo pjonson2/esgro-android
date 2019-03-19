@@ -3,12 +3,14 @@ package com.example.esgro.modals;
 public class Request {
     private String name;
     private String days;
+    private String price;
     private int image;
 
-    public Request(String name, String days, int image) {
+    public Request(String name, String days, String price,int image) {
         this.name = name;
         this.days = days;
         this.image = image;
+        this.price = price;
     }
 
     public Request() {
@@ -28,6 +30,14 @@ public class Request {
 
     public void setDays(String days) {
         this.days = days;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
     }
 
     public int getImage() {

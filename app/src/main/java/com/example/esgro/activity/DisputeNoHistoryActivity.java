@@ -2,6 +2,7 @@ package com.example.esgro.activity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -90,37 +91,37 @@ public class DisputeNoHistoryActivity extends AppCompatActivity {
     void initializeArray(){
 
         disputeList.add(
-                new Dispute("Pamel anderson","","","",R.drawable.user1)
+                new Dispute("Pamel anderson","","-238.12","waiting",R.drawable.user1)
         );
         disputeList.add(
-                new Dispute("Nikal simonze","","","",R.drawable.user2)
+                new Dispute("Nikkal simonze","","1200.32","2 Days Left",R.drawable.user2)
         );
         disputeList.add(
-                new Dispute("Sherill Roman","","","",R.drawable.user3)
+                new Dispute("sunny leon","","164.12","2 Days Left",R.drawable.user3)
         );
         disputeList.add(
-                new Dispute("Nicole minaj","","","",R.drawable.user4)
+                new Dispute("Nicole minaj","","-60.12","3 Days Left",R.drawable.user4)
         );
         disputeList.add(
-                new Dispute("camilla cibello","","","",R.drawable.user5)
+                new Dispute("camilla cibello","","-422.22","6 Days Left",R.drawable.user5)
         );
         disputeList.add(
-                new Dispute("Selena gomez","","","",R.drawable.user6)
+                new Dispute("Selena gomez","","-76.32","6 Days Left",R.drawable.user6)
         );
         disputeList.add(
-                new Dispute("Maria shomnix","","","",R.drawable.user7)
+                new Dispute("Maria shomnix","","-255.43","1 Week Left",R.drawable.user7)
         );
         disputeList.add(
-                new Dispute("joudge bush","","","",R.drawable.user8)
+                new Dispute("joudge bush","","-432.12","1 Week Left",R.drawable.user8)
         );
         disputeList.add(
-                new Dispute("SGrahams Smith","","","",R.drawable.user9)
+                new Dispute("SGrahams Smith","","-98.32"," 1 Week Left",R.drawable.user9)
         );
         disputeList.add(
-                new Dispute("Michel clark","","","",R.drawable.user1)
+                new Dispute("Michel clark","","-234.32","Completed",R.drawable.user1)
         );
         disputeList.add(
-                new Dispute("James Anderson","","","",R.drawable.user6)
+                new Dispute("James Anderson","","-455.32","Canceled",R.drawable.user6)
         );
 
     }
@@ -159,11 +160,27 @@ public class DisputeNoHistoryActivity extends AppCompatActivity {
             convertView = getLayoutInflater().inflate(R.layout.activity_dispute_card,null);
 
             TextView bankNameView = convertView.findViewById(R.id.disputeUserName);
+
+            TextView disputePrice = convertView.findViewById(R.id.disputePriceTxt);
+            TextView disputedays = convertView.findViewById(R.id.disputeDaysTxt);
             ImageView deisputeImg = convertView.findViewById(R.id.disputeUserImage);
 
             Dispute dispute = disputeList.get(position);
             deisputeImg.setImageResource(dispute.getImage());
             bankNameView.setText(dispute.getName());
+            disputedays.setText(dispute.getDays());
+            disputePrice.setText(dispute.getPrice());
+
+            if(Double.parseDouble(dispute.getPrice())<0){
+                disputePrice.setTextColor(Color.RED);
+            }
+            if(Double.parseDouble(dispute.getPrice())>0){
+                disputePrice.setTextColor(Color.parseColor("#5BDA31"));
+            }
+            if (dispute.getDays().equals("Canceled")|| dispute.getDays().equals("Completed")){
+                convertView.setBackgroundColor(Color.parseColor("#ECECF5"));
+
+            }
             return convertView;
         }
     }
