@@ -3,8 +3,11 @@ package com.example.esgro.activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
@@ -38,11 +41,13 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
     Bundle extras;
     Dialog dialog;
     private final int SPLASH_DISPLAY_LENGTH = 4000;
+    private final int SPLASH_DISPLAY_LENGTH_1 = 2000;
     String value = "";
     String disputeDays="";
     String disputePrice="";
     Bitmap bitmap;
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         onWindowFocusChanged(true);
@@ -94,6 +99,7 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     void setValues(){
 
         bitmap = getIntent().getParcelableExtra("BitmapImage");
@@ -105,6 +111,18 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
         disputeNoUserDaysTxt.setText(disputeDays);
         disputeNoUserPriceTxt.setText(disputePrice);
         getNoDisputeUserImg.setImageBitmap(bitmap);
+
+
+
+        if (Double.parseDouble(disputePrice)>0){
+            disputeNoUserPriceTxt.setTextColor(Color.BLACK);
+            okIconImge.setEnabled(false);
+            okIconImge.setImageDrawable(getDrawable(R.drawable.ok_gray));
+        }else{
+            disputeNoUserPriceTxt.setTextColor(Color.GRAY);
+
+        }
+
 
     }
 
@@ -126,10 +144,44 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
         public void onClick(View v) {
             dialog.setContentView(R.layout.activity_proessing_alert);
             dialog.show();
+            Window window = dialog.getWindow();
+
+           final TextView weLbl = window.findViewById(R.id.weLbl);
+           final TextView esgroLbl = window.findViewById(R.id.esgroLbl);
+           final TextView themLbl = window.findViewById(R.id.themLbl);
+
+
+            weLbl.setText(disputePrice);
+            esgroLbl.setText(disputePrice);
+            themLbl.setText(disputePrice);
+
+            new Handler().postDelayed(new Runnable(){
+
+
+                @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+                @Override
+                public void run() {
+
+                    if(Double.parseDouble(disputePrice)<0 && disputeDays.equals("waiting")){
+                        esgroLbl.setTextColor(Color.parseColor("#929AAB"));
+                        weLbl.setTextColor(Color.parseColor("#7FE239"));
+                        okIconImge.setImageDrawable(getDrawable(R.drawable.ok_gray));
+                        disputeNoUserPriceTxt.setTextColor(Color.BLACK);
+                    }
+                    if(Double.parseDouble(disputePrice)<0){
+                        esgroLbl.setTextColor(Color.parseColor("#929AAB"));
+                        weLbl.setTextColor(Color.parseColor("#7FE239"));
+                        okIconImge.setImageDrawable(getDrawable(R.drawable.ok_gray));
+                        disputeNoUserPriceTxt.setTextColor(Color.BLACK);
+                    }
+                }
+            }, SPLASH_DISPLAY_LENGTH_1);
+
             new Handler().postDelayed(new Runnable(){
                 @Override
                 public void run() {
                     dialog.dismiss();
+                    okIconImge.setEnabled(false);
                 }
             }, SPLASH_DISPLAY_LENGTH);
         }

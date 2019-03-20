@@ -99,10 +99,10 @@
                 android:background="@drawable/icons8_more_than"
                 app:layout_constraintBottom_toBottomOf="@+id/midView"
                 app:layout_constraintEnd_toEndOf="@+id/midView"
-                app:layout_constraintHorizontal_bias="0.941"
+                app:layout_constraintHorizontal_bias="0.94"
                 app:layout_constraintStart_toStartOf="@+id/midView"
                 app:layout_constraintTop_toTopOf="@+id/midView"
-                app:layout_constraintVertical_bias="0.284" />
+                app:layout_constraintVertical_bias="0.171" />
 
             <View
                 android:id="@+id/view9"
@@ -111,9 +111,10 @@
                 android:background="#EBEBEB"
                 app:layout_constraintBottom_toBottomOf="@+id/midView"
                 app:layout_constraintEnd_toEndOf="@+id/view7"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/view7"
                 app:layout_constraintTop_toTopOf="@+id/midView"
-                app:layout_constraintVertical_bias="0.539" />
+                app:layout_constraintVertical_bias="0.461" />
 
             <View
                 android:id="@+id/view11"
@@ -125,27 +126,6 @@
                 app:layout_constraintStart_toStartOf="@+id/midView"
                 app:layout_constraintTop_toTopOf="@+id/midView"
                 app:layout_constraintVertical_bias="0.118" />
-
-            <Button
-                android:id="@+id/disputesBtn"
-                android:layout_width="0dp"
-                android:layout_height="31dp"
-                android:layout_marginStart="50dp"
-                android:layout_marginLeft="50dp"
-                android:layout_marginEnd="50dp"
-                android:layout_marginRight="50dp"
-                android:background="@android:color/transparent"
-                android:fontFamily="@font/open_sans_semibold"
-                android:gravity="start"
-                android:text="DISPUTES"
-                android:textAlignment="viewStart"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="@+id/midView"
-                app:layout_constraintEnd_toEndOf="@+id/midView"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/midView"
-                app:layout_constraintTop_toTopOf="@+id/midView"
-                app:layout_constraintVertical_bias="0.167" />
 
             <ImageView
                 android:id="@+id/imageView22"
@@ -179,7 +159,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/midView"
                 app:layout_constraintTop_toTopOf="@+id/midView"
-                app:layout_constraintVertical_bias="0.602" />
+                app:layout_constraintVertical_bias="0.527" />
 
             <ImageView
                 android:id="@+id/imageView49"
@@ -189,10 +169,10 @@
                 android:background="@drawable/icons8_more_than"
                 app:layout_constraintBottom_toBottomOf="@+id/midView"
                 app:layout_constraintEnd_toEndOf="@+id/midView"
-                app:layout_constraintHorizontal_bias="0.941"
+                app:layout_constraintHorizontal_bias="0.938"
                 app:layout_constraintStart_toStartOf="@+id/midView"
                 app:layout_constraintTop_toTopOf="@+id/midView"
-                app:layout_constraintVertical_bias="0.603" />
+                app:layout_constraintVertical_bias="0.528" />
 
             <Button
                 android:id="@+id/exportReqBtn"
@@ -213,7 +193,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/midView"
                 app:layout_constraintTop_toTopOf="@+id/midView"
-                app:layout_constraintVertical_bias="0.498" />
+                app:layout_constraintVertical_bias="0.416" />
 
             <View
                 android:id="@+id/view10"
@@ -222,9 +202,10 @@
                 android:background="#EBEBEB"
                 app:layout_constraintBottom_toBottomOf="@+id/midView"
                 app:layout_constraintEnd_toEndOf="@+id/midView"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/midView"
                 app:layout_constraintTop_toTopOf="@+id/midView"
-                app:layout_constraintVertical_bias="0.649" />
+                app:layout_constraintVertical_bias="0.577" />
 
             <Button
                 android:id="@+id/signOutBtn"
@@ -253,27 +234,27 @@
                 android:id="@+id/imageView20"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginLeft="15dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginLeft="12dp"
                 android:layout_marginTop="6dp"
                 android:background="@drawable/export_req"
                 app:layout_constraintBottom_toBottomOf="@+id/midView"
                 app:layout_constraintStart_toStartOf="@+id/midView"
                 app:layout_constraintTop_toTopOf="@+id/midView"
-                app:layout_constraintVertical_bias="0.487" />
+                app:layout_constraintVertical_bias="0.402" />
 
             <ImageView
                 android:id="@+id/imageView18"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginLeft="15dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginLeft="12dp"
                 android:layout_marginTop="3dp"
                 android:background="@drawable/canceld"
                 app:layout_constraintBottom_toBottomOf="@+id/midView"
                 app:layout_constraintStart_toStartOf="@+id/midView"
                 app:layout_constraintTop_toTopOf="@+id/midView"
-                app:layout_constraintVertical_bias="0.28" />
+                app:layout_constraintVertical_bias="0.167" />
 
             <View
                 android:id="@+id/view7"
@@ -282,9 +263,10 @@
                 android:background="#EBEBEB"
                 app:layout_constraintBottom_toBottomOf="@+id/midView"
                 app:layout_constraintEnd_toEndOf="@+id/midView"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/midView"
                 app:layout_constraintTop_toTopOf="@+id/midView"
-                app:layout_constraintVertical_bias="0.338" />
+                app:layout_constraintVertical_bias="0.23" />
 
             <Button
                 android:id="@+id/cancelAndCompletedBtn"
@@ -306,7 +288,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/midView"
                 app:layout_constraintTop_toTopOf="@+id/midView"
-                app:layout_constraintVertical_bias="0.26999998" />
+                app:layout_constraintVertical_bias="0.153" />
 
             <ImageView
                 android:id="@+id/imageView25"
@@ -316,34 +298,10 @@
                 android:background="@drawable/icons8_more_than"
                 app:layout_constraintBottom_toBottomOf="@+id/midView"
                 app:layout_constraintEnd_toEndOf="@+id/midView"
-                app:layout_constraintHorizontal_bias="0.941"
+                app:layout_constraintHorizontal_bias="0.938"
                 app:layout_constraintStart_toStartOf="@+id/midView"
                 app:layout_constraintTop_toTopOf="@+id/midView"
-                app:layout_constraintVertical_bias="0.387" />
-
-            <View
-                android:id="@+id/view6"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:background="#EBEBEB"
-                app:layout_constraintBottom_toBottomOf="@+id/midView"
-                app:layout_constraintEnd_toEndOf="@+id/midView"
-                app:layout_constraintStart_toStartOf="@+id/midView"
-                app:layout_constraintTop_toTopOf="@+id/midView"
-                app:layout_constraintVertical_bias="0.228" />
-
-            <ImageView
-                android:id="@+id/imageView17"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="3dp"
-                android:background="@drawable/disputes"
-                app:layout_constraintBottom_toBottomOf="@+id/midView"
-                app:layout_constraintStart_toStartOf="@+id/midView"
-                app:layout_constraintTop_toTopOf="@+id/midView"
-                app:layout_constraintVertical_bias="0.176" />
+                app:layout_constraintVertical_bias="0.284" />
 
             <Button
                 android:id="@+id/preferenceaBtn"
@@ -365,20 +323,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/midView"
                 app:layout_constraintTop_toTopOf="@+id/midView"
-                app:layout_constraintVertical_bias="0.38" />
-
-            <ImageView
-                android:id="@+id/imageView23"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginTop="3dp"
-                android:background="@drawable/icons8_more_than"
-                app:layout_constraintBottom_toBottomOf="@+id/midView"
-                app:layout_constraintEnd_toEndOf="@+id/midView"
-                app:layout_constraintHorizontal_bias="0.941"
-                app:layout_constraintStart_toStartOf="@+id/midView"
-                app:layout_constraintTop_toTopOf="@+id/midView"
-                app:layout_constraintVertical_bias="0.176" />
+                app:layout_constraintVertical_bias="0.289" />
 
             <ImageView
                 android:id="@+id/imageView26"
@@ -387,10 +332,10 @@
                 android:background="@drawable/icons8_more_than"
                 app:layout_constraintBottom_toBottomOf="@+id/midView"
                 app:layout_constraintEnd_toEndOf="@+id/view8"
-                app:layout_constraintHorizontal_bias="0.941"
+                app:layout_constraintHorizontal_bias="0.936"
                 app:layout_constraintStart_toStartOf="@+id/view8"
                 app:layout_constraintTop_toTopOf="@+id/midView"
-                app:layout_constraintVertical_bias="0.492" />
+                app:layout_constraintVertical_bias="0.408" />
 
             <View
                 android:id="@+id/view8"
@@ -399,33 +344,34 @@
                 android:background="#EBEBEB"
                 app:layout_constraintBottom_toBottomOf="@+id/midView"
                 app:layout_constraintEnd_toEndOf="@+id/view10"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/view10"
                 app:layout_constraintTop_toTopOf="@+id/midView"
-                app:layout_constraintVertical_bias="0.44" />
+                app:layout_constraintVertical_bias="0.352" />
 
             <ImageView
                 android:id="@+id/imageView19"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginLeft="15dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginLeft="12dp"
                 android:background="@drawable/preference"
                 app:layout_constraintBottom_toBottomOf="@+id/midView"
                 app:layout_constraintStart_toStartOf="@+id/midView"
                 app:layout_constraintTop_toTopOf="@+id/midView"
-                app:layout_constraintVertical_bias="0.385" />
+                app:layout_constraintVertical_bias="0.29" />
 
             <ImageView
                 android:id="@+id/imageView21"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginLeft="15dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginLeft="12dp"
                 android:background="@drawable/about2x"
                 app:layout_constraintBottom_toBottomOf="@+id/midView"
                 app:layout_constraintStart_toStartOf="@+id/midView"
                 app:layout_constraintTop_toTopOf="@+id/midView"
-                app:layout_constraintVertical_bias="0.603" />
+                app:layout_constraintVertical_bias="0.529" />
 
             <Button
                 android:id="@+id/bankAndCard"

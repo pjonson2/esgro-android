@@ -109,11 +109,13 @@
 
 
         </activity>
-        <activity android:name=".activity.Request_01_Activity" >
+        <activity android:name=".activity.Request_01_Activity"
+            android:screenOrientation="portrait">
 
 
         </activity>
-        <activity android:name=".activity.Request_02_Activity" >
+        <activity android:name=".activity.Request_02_Activity"
+            android:screenOrientation="portrait">
 
 
         </activity>
@@ -176,7 +178,8 @@
 
         </activity>
 
-        <activity android:name=".activity.alert.ProcessingAlertActivit" >
+        <activity android:name=".activity.alert.ProcessingAlertActivit"
+            android:screenOrientation="portrait">
 
 
         </activity>

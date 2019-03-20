@@ -172,12 +172,14 @@ public class DisputeNoHistoryActivity extends AppCompatActivity {
             disputePrice.setText(dispute.getPrice());
 
             if(Double.parseDouble(dispute.getPrice())<0){
-                disputePrice.setTextColor(Color.RED);
+                disputePrice.setTextColor(Color.GRAY);
             }
             if(Double.parseDouble(dispute.getPrice())>0){
-                disputePrice.setTextColor(Color.parseColor("#5BDA31"));
+                disputePrice.setTextColor(Color.BLACK);
+//                disputePrice.setTextColor(Color.parseColor("#5BDA31"));
             }
             if (dispute.getDays().equals("Canceled")|| dispute.getDays().equals("Completed")){
+                disputePrice.setTextColor(Color.parseColor("#929AAB"));
                 convertView.setBackgroundColor(Color.parseColor("#ECECF5"));
 
             }

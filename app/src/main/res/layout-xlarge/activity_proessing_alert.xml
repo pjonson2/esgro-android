@@ -36,7 +36,7 @@
             app:srcCompat="@drawable/maria_gomesz" />
 
         <TextView
-            android:id="@+id/textView117"
+            android:id="@+id/themLbl"
             android:layout_width="82dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -77,7 +77,7 @@
             app:srcCompat="@drawable/logo2x" />
 
         <TextView
-            android:id="@+id/textView116"
+            android:id="@+id/esgroLbl"
             android:layout_width="87dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -134,7 +134,7 @@
             app:srcCompat="@drawable/despute_card" />
 
         <TextView
-            android:id="@+id/textView115"
+            android:id="@+id/weLbl"
             android:layout_width="85dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"

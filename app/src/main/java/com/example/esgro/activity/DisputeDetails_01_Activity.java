@@ -3,8 +3,10 @@ package com.example.esgro.activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
@@ -43,6 +45,7 @@ public class    DisputeDetails_01_Activity extends AppCompatActivity {
     private final int SPLASH_DISPLAY_LENGTH = 4000;
     static String name = "";
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         onWindowFocusChanged(true);
@@ -95,6 +98,7 @@ public class    DisputeDetails_01_Activity extends AppCompatActivity {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     void setValues(){
 
         String value = extras.getString("disputeListName");
@@ -107,6 +111,11 @@ public class    DisputeDetails_01_Activity extends AppCompatActivity {
         userName.setText(value);
         disputeDaysTxt.setText(disputeDays);
         disputePriceTxt.setText(disputePrice);
+
+        if (Double.parseDouble(disputePrice)>0){
+            likeIconImg.setEnabled(false);
+            likeIconImg.setImageDrawable(getDrawable(R.drawable.ok_gray));
+        }
 
     }
 
@@ -129,6 +138,15 @@ public class    DisputeDetails_01_Activity extends AppCompatActivity {
         public void onClick(View v) {
             dialog.setContentView(R.layout.activity_proessing_alert);
             dialog.show();
+            Window window = dialog.getWindow();
+
+            final TextView weLbl = window.findViewById(R.id.weLbl);
+            final TextView esgroLbl = window.findViewById(R.id.esgroLbl);
+            final TextView themLbl = window.findViewById(R.id.themLbl);
+
+            weLbl.setText(disputePriceTxt.getText().toString());
+            esgroLbl.setText(disputePriceTxt.getText().toString());
+            themLbl.setText(disputePriceTxt.getText().toString());
 
                     new Handler().postDelayed(new Runnable(){
             @Override

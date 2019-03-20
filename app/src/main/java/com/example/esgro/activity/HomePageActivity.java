@@ -68,8 +68,8 @@ public class HomePageActivity extends AppCompatActivity {
         cancelAndCompletedBtn = findViewById(R.id.cancelAndCompletedBtn);
         cancelAndCompletedBtn.setOnClickListener(cancelAndCompletedAction);
 
-        disputesBtn = findViewById(R.id.disputesBtn);
-        disputesBtn.setOnClickListener(disputesAction);
+//        disputesBtn = findViewById(R.id.disputesBtn);
+//        disputesBtn.setOnClickListener(disputesAction);
 
         contactIcon = findViewById(R.id.contactIcon);
         contactIcon.setOnClickListener(contactUs);
