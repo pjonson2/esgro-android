@@ -240,11 +240,11 @@
 
     <TextView
         android:id="@+id/textView74"
-        android:layout_width="70dp"
-        android:layout_height="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="34dp"
         android:text="RESERVE"
         android:textColor="#393E46"
-        android:textSize="16sp"
+        android:textSize="18sp"
         app:fontFamily="@font/open_sans_semibold"
         app:layout_constraintBottom_toBottomOf="@+id/view43"
         app:layout_constraintEnd_toEndOf="@+id/view43"
@@ -259,7 +259,7 @@
         android:layout_height="wrap_content"
         android:text="AMOUNT"
         android:textColor="#393E46"
-        android:textSize="14sp"
+        android:textSize="20sp"
         app:fontFamily="@font/open_sans_semibold"
         app:layout_constraintBottom_toBottomOf="@+id/view43"
         app:layout_constraintEnd_toEndOf="@+id/view43"
@@ -290,13 +290,14 @@
         app:layout_constraintTop_toTopOf="@+id/view43"
         app:layout_constraintVertical_bias="0.322" />
 
-    <TextView
+    <EditText
         android:id="@+id/textView73"
-        android:layout_width="70dp"
-        android:layout_height="20dp"
-        android:text="$0.00"
+        android:layout_width="83dp"
+        android:layout_height="45dp"
+        android:hint="$0.00"
         android:textColor="#929AAB"
-        android:textSize="16sp"
+        android:textAlignment="center"
+        android:textSize="18sp"
         app:fontFamily="@font/open_sans_semibold"
         app:layout_constraintBottom_toBottomOf="@+id/view43"
         app:layout_constraintEnd_toEndOf="@+id/view43"

@@ -125,7 +125,7 @@
         android:inputType="textPersonName"
         android:textAlignment="center"
         android:textColor="#929AAB"
-        android:textSize="16sp"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="@+id/view45"
         app:layout_constraintEnd_toEndOf="@+id/view45"
         app:layout_constraintStart_toStartOf="@+id/view45"

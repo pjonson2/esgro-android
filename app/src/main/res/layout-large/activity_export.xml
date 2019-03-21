@@ -21,14 +21,14 @@
         <ImageView
             android:id="@+id/exportHandshakeIcon"
             android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:background="@drawable/handshake2x"
+            android:layout_height="50dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/view4"
             app:layout_constraintHorizontal_bias="0.11"
             app:layout_constraintStart_toStartOf="@+id/view4"
             app:layout_constraintTop_toTopOf="@+id/view4"
             app:layout_constraintVertical_bias="0.523"
+            app:srcCompat="@drawable/handshake2x"
             tools:layout_conversion_absoluteHeight="18dp"
             tools:layout_conversion_absoluteWidth="18dp" />
 
@@ -47,46 +47,46 @@
         <ImageView
             android:id="@+id/exportcontactIcon"
             android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_height="50dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
-            android:background="@drawable/feedback2x"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/view4"
             app:layout_constraintHorizontal_bias="0.296"
             app:layout_constraintStart_toStartOf="@+id/view4"
             app:layout_constraintTop_toTopOf="@+id/view4"
-            app:layout_constraintVertical_bias="0.523" />
+            app:layout_constraintVertical_bias="0.523"
+            app:srcCompat="@drawable/feedback2x" />
 
         <ImageView
             android:id="@+id/exportSettingsSettingsIcon"
             android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_height="50dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:background="@drawable/settingswhite2x"
             app:layout_constraintBottom_toBottomOf="@+id/view4"
             app:layout_constraintEnd_toEndOf="@+id/view4"
             app:layout_constraintHorizontal_bias="0.881"
             app:layout_constraintStart_toStartOf="@+id/view4"
             app:layout_constraintTop_toTopOf="@+id/view4"
-            app:layout_constraintVertical_bias="0.513" />
+            app:layout_constraintVertical_bias="0.513"
+            app:srcCompat="@drawable/settingswhite2x" />
 
         <ImageView
             android:id="@+id/exportProfileIcon"
             android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_height="50dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:background="@drawable/profile2x"
             app:layout_constraintBottom_toBottomOf="@+id/view4"
             app:layout_constraintEnd_toEndOf="@+id/view4"
             app:layout_constraintHorizontal_bias="0.711"
             app:layout_constraintStart_toStartOf="@+id/view4"
             app:layout_constraintTop_toTopOf="@+id/view4"
-            app:layout_constraintVertical_bias="0.513" />
+            app:layout_constraintVertical_bias="0.513"
+            app:srcCompat="@drawable/profile2x" />
     </android.support.constraint.ConstraintLayout>
 
     <Button

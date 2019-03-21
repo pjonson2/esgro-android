@@ -6,6 +6,88 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/view4"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:background="@android:color/white"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints">
+
+        <ImageView
+            android:id="@+id/disputesHandshakeIcon"
+            android:layout_width="30dp"
+            android:layout_height="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/view4"
+            app:layout_constraintHorizontal_bias="0.11"
+            app:layout_constraintStart_toStartOf="@+id/view4"
+            app:layout_constraintTop_toTopOf="@+id/view4"
+            app:layout_constraintVertical_bias="0.523"
+            app:srcCompat="@drawable/shake_colour"
+            tools:layout_conversion_absoluteHeight="18dp"
+            tools:layout_conversion_absoluteWidth="18dp" />
+
+        <ImageView
+            android:id="@+id/disputesNewPostIcon"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/new_rquest_btn2x"
+            app:layout_constraintBottom_toBottomOf="@+id/view4"
+            app:layout_constraintEnd_toEndOf="@+id/view4"
+            app:layout_constraintStart_toStartOf="@+id/view4"
+            app:layout_constraintTop_toTopOf="@+id/view4" />
+
+        <ImageView
+            android:id="@+id/disputesContactIcon"
+            android:layout_width="30dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/view4"
+            app:layout_constraintHorizontal_bias="0.296"
+            app:layout_constraintStart_toStartOf="@+id/view4"
+            app:layout_constraintTop_toTopOf="@+id/view4"
+            app:layout_constraintVertical_bias="0.523"
+            app:srcCompat="@drawable/feedback2x" />
+
+        <ImageView
+            android:id="@+id/disputesSettingsIcon"
+            android:layout_width="30dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/view4"
+            app:layout_constraintEnd_toEndOf="@+id/view4"
+            app:layout_constraintHorizontal_bias="0.881"
+            app:layout_constraintStart_toStartOf="@+id/view4"
+            app:layout_constraintTop_toTopOf="@+id/view4"
+            app:layout_constraintVertical_bias="0.513"
+            app:srcCompat="@drawable/settingswhite2x" />
+
+        <ImageView
+            android:id="@+id/disputesProfileIcon"
+            android:layout_width="30dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/view4"
+            app:layout_constraintEnd_toEndOf="@+id/view4"
+            app:layout_constraintHorizontal_bias="0.711"
+            app:layout_constraintStart_toStartOf="@+id/view4"
+            app:layout_constraintTop_toTopOf="@+id/view4"
+            app:layout_constraintVertical_bias="0.513"
+            app:srcCompat="@drawable/profile2x" />
+    </android.support.constraint.ConstraintLayout>
+
     <View
         android:id="@+id/headerView5"
         android:layout_width="0dp"
@@ -21,26 +103,22 @@
         android:id="@+id/disputeShakeSearchView"
         android:layout_width="0dp"
         android:layout_height="40dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/layout_corner"
         android:clickable="true"
+        android:drawableStart="@drawable/baseline_search_black_18pt_2x"
+        android:drawableLeft="@drawable/baseline_search_black_18pt_2x"
         android:fontFamily="@font/open_sans_semibold"
-        android:textSize="18dp"
         android:hint="  Username, Name or Amount"
         android:textColorHint="@color/lightGreen"
-        android:drawableStart="@drawable/baseline_search_black_18pt_2x"
+        android:textSize="18dp"
         app:layout_constraintBottom_toTopOf="@+id/dynamicDisputeListView"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/dynamicShakeListView"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/dynamicShakeListView"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.07999998"
-        android:drawableLeft="@drawable/baseline_search_black_18pt_2x" />
+        app:layout_constraintVertical_bias="0.07999998" />
 
     <ListView
         android:id="@+id/dynamicShakeListView"
@@ -48,13 +126,13 @@
         android:layout_height="0dp"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="100dp"
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/layout_corner"
+        android:layout_marginBottom="65dp"
+        android:background="@android:color/transparent"
         android:divider="@android:color/transparent"
-        android:dividerHeight="20dp"
+        android:dividerHeight="7dp"
         android:footerDividersEnabled="false"
         android:headerDividersEnabled="false"
         android:scrollbars="horizontal|vertical"
@@ -62,6 +140,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/disputeShakeSearchView"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="@+id/headerView5" />
 </android.support.constraint.ConstraintLayout>

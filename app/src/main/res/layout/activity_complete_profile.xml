@@ -56,27 +56,28 @@
 
             <TextView
                 android:id="@+id/plusLinkBankLbl"
-                android:layout_width="0dp"
-                android:layout_height="20dp"
+                android:layout_width="285dp"
+                android:layout_height="57dp"
                 android:layout_marginStart="50dp"
                 android:layout_marginLeft="50dp"
-                android:layout_marginTop="42dp"
+                android:layout_marginTop="41dp"
                 android:layout_marginEnd="118dp"
                 android:layout_marginRight="118dp"
-                android:layout_marginBottom="37dp"
+                android:layout_marginBottom="38dp"
                 android:fontFamily="@font/open_sans_semibold"
-                android:gravity="start"
+                android:gravity="center"
                 android:text="Link Bank Account  "
                 android:textAlignment="textStart"
                 android:textColor="#393E46"
                 android:textSize="12dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.15"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/imageView9"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.676" />
+                app:layout_constraintVertical_bias="0.513" />
 
             <ImageView
                 android:id="@+id/imageView9"
@@ -92,24 +93,24 @@
 
             <Button
                 android:id="@+id/plusLinkBankBtn"
-                android:layout_width="32dp"
-                android:layout_height="37dp"
+                android:layout_width="515dp"
+                android:layout_height="81dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
-                android:layout_marginTop="2dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/open_sans_semibold"
-                android:text="+"
+                android:text="   "
                 android:textColor="#5BDA31"
                 android:textSize="22dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.976"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.304" />
+                card_view:layout_constraintBottom_toBottomOf="parent"
+                card_view:layout_constraintEnd_toEndOf="parent"
+                card_view:layout_constraintHorizontal_bias="0.976"
+                card_view:layout_constraintStart_toStartOf="parent"
+                card_view:layout_constraintTop_toTopOf="parent"
+                card_view:layout_constraintVertical_bias="0.39" />
 
         </android.support.constraint.ConstraintLayout>
 
@@ -133,8 +134,8 @@
 
             <TextView
                 android:id="@+id/plusAddCrdLbl"
-                android:layout_width="0dp"
-                android:layout_height="20dp"
+                android:layout_width="285dp"
+                android:layout_height="54dp"
                 android:layout_marginStart="50dp"
                 android:layout_marginLeft="50dp"
                 android:layout_marginTop="42dp"
@@ -142,18 +143,20 @@
                 android:layout_marginRight="118dp"
                 android:layout_marginBottom="37dp"
                 android:fontFamily="@font/open_sans_semibold"
-                android:gravity="start"
+                android:gravity="center"
                 android:text="Add Debit or Credit Card  "
                 android:textAlignment="textStart"
                 android:textColor="#393E46"
                 android:textSize="12dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.15"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/imageView12"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.617" />
+                app:layout_constraintVertical_bias="0.535"
+                tools:ignore="RtlCompat" />
 
             <ImageView
                 android:id="@+id/imageView12"
@@ -169,8 +172,8 @@
 
             <Button
                 android:id="@+id/plusCompleteAddBankBtn"
-                android:layout_width="29dp"
-                android:layout_height="26dp"
+                android:layout_width="686dp"
+                android:layout_height="102dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="2dp"
@@ -178,15 +181,15 @@
                 android:layout_marginRight="8dp"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/open_sans_semibold"
-                android:text="+"
+                android:text="   "
                 android:textColor="#5BDA31"
-                android:textSize="22dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.977"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.264" />
+                android:textSize="25sp"
+                card_view:layout_constraintBottom_toBottomOf="parent"
+                card_view:layout_constraintEnd_toEndOf="parent"
+                card_view:layout_constraintHorizontal_bias="0.977"
+                card_view:layout_constraintStart_toStartOf="parent"
+                card_view:layout_constraintTop_toTopOf="parent"
+                card_view:layout_constraintVertical_bias="0.41000003" />
 
         </android.support.constraint.ConstraintLayout>
 

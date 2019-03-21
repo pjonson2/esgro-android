@@ -129,7 +129,7 @@
         app:layout_constraintTop_toTopOf="@+id/midView3"
         app:layout_constraintVertical_bias="0.325" />
 
-    <TextView
+    <EditText
         android:id="@+id/contactEmailTxt"
         android:layout_width="158dp"
         android:layout_height="31dp"

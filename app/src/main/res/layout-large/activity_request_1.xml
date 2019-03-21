@@ -243,18 +243,18 @@
 
     <TextView
         android:id="@+id/textView74"
-        android:layout_width="60dp"
-        android:layout_height="18dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="RESERVE"
         android:textColor="#393E46"
-        android:textSize="14sp"
+        android:textSize="16sp"
         app:fontFamily="@font/open_sans_semibold"
         app:layout_constraintBottom_toBottomOf="@+id/view43"
         app:layout_constraintEnd_toEndOf="@+id/view43"
-        app:layout_constraintHorizontal_bias="0.963"
+        app:layout_constraintHorizontal_bias="0.965"
         app:layout_constraintStart_toStartOf="@+id/view43"
         app:layout_constraintTop_toTopOf="@+id/view43"
-        app:layout_constraintVertical_bias="0.891" />
+        app:layout_constraintVertical_bias="0.857" />
 
     <TextView
         android:id="@+id/textView72"
@@ -293,13 +293,14 @@
         app:layout_constraintTop_toTopOf="@+id/view43"
         app:layout_constraintVertical_bias="0.322" />
 
-    <TextView
+    <EditText
         android:id="@+id/textView73"
-        android:layout_width="40dp"
-        android:layout_height="18dp"
-        android:text="$0.00"
+        android:layout_width="83dp"
+        android:layout_height="wrap_content"
+        android:hint="$0.00"
+        android:textAlignment="center"
         android:textColor="#929AAB"
-        android:textSize="14sp"
+        android:textSize="16sp"
         app:fontFamily="@font/open_sans_semibold"
         app:layout_constraintBottom_toBottomOf="@+id/view43"
         app:layout_constraintEnd_toEndOf="@+id/view43"

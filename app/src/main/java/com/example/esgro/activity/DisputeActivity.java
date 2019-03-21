@@ -93,35 +93,36 @@ public class DisputeActivity extends AppCompatActivity {
                 new Dispute("Pamel anderson","","-238.12","waiting",R.drawable.user1)
         );
         disputeList.add(
-                new Dispute("Nikkal simonze","","1200.32","2 Days Left",R.drawable.user2)
+                new Dispute("Nikkal simonze","","-200.32","2 Days Left",R.drawable.user2)
         );
         disputeList.add(
-                new Dispute("sunny leon","","164.12","2 Days Left",R.drawable.user3)
+                new Dispute("sunny leon","","-164.12","2 Days Left",R.drawable.user3)
         );
         disputeList.add(
                 new Dispute("Nicole minaj","","-60.12","3 Days Left",R.drawable.user4)
         );
         disputeList.add(
-                new Dispute("camilla cibello","","-422.22","6 Days Left",R.drawable.user5)
+                new Dispute("camilla cibello","","+422.22","6 Days Left",R.drawable.user5)
         );
         disputeList.add(
-                new Dispute("Selena gomez","","-76.32","6 Days Left",R.drawable.user6)
+                new Dispute("Selena gomez","","+76.32","6 Days Left",R.drawable.user6)
         );
         disputeList.add(
-                new Dispute("Maria shomnix","","-255.43","1 Week Left",R.drawable.user7)
+                new Dispute("Maria shomnix","","+255.43","1 Week Left",R.drawable.user7)
         );
         disputeList.add(
-                new Dispute("joudge bush","","-432.12","1 Week Left",R.drawable.user8)
+                new Dispute("joudge bush","","+432.12","1 Week Left",R.drawable.user8)
         );
         disputeList.add(
-                new Dispute("SGrahams Smith","","-98.32"," 1 Week Left",R.drawable.user9)
+                new Dispute("SGrahams Smith","","+98.32","Completed",R.drawable.user9)
         );
         disputeList.add(
-                new Dispute("Michel clark","","-234.32","Completed",R.drawable.user1)
+                new Dispute("Michel clark","","+234.32","Completed",R.drawable.user1)
         );
         disputeList.add(
                 new Dispute("James Anderson","","-455.32","Canceled",R.drawable.user6)
         );
+
 
     }
     @Override
@@ -172,11 +173,12 @@ public class DisputeActivity extends AppCompatActivity {
             disputePrice.setText(dispute.getPrice());
 
             if(Double.parseDouble(dispute.getPrice())<0){
-                disputePrice.setTextColor(Color.BLACK);
+                disputePrice.setTextColor(Color.RED);
             }
             if(Double.parseDouble(dispute.getPrice())>0){
-                disputePrice.setTextColor(Color.parseColor("#5BDA31"));
+                disputePrice.setTextColor(getResources().getColor(R.color.lightGreen));
             }
+
             if (dispute.getDays().equals("Canceled")|| dispute.getDays().equals("Completed")){
                 disputePrice.setTextColor(Color.parseColor("#929AAB"));
                 convertView.setBackgroundColor(Color.parseColor("#ECECF5"));

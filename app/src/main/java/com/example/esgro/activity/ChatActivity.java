@@ -39,6 +39,8 @@ public class ChatActivity extends AppCompatActivity {
 
     Dialog dialog;
 
+    int count=0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         onWindowFocusChanged(true);
@@ -122,16 +124,21 @@ public class ChatActivity extends AppCompatActivity {
     };
     View.OnClickListener radioAction = new View.OnClickListener() {
         public void onClick(View v) {
-            dialog.setContentView(R.layout.activity_warning_alert);
-            dialog.show();
-            Window window = dialog.getWindow();
+        count++;
+            if (disputeRadioBtn.isChecked() && count ==1){
+                System.out.println("checked");
+                dialog.setContentView(R.layout.activity_warning_alert);
+                dialog.show();
+                Window window = dialog.getWindow();
+                close = window.findViewById(R.id.warnigCloseBtn);
+                close.setOnClickListener(hideUI);
+            }
 
-            close = window.findViewById(R.id.warnigCloseBtn);
-            close.setOnClickListener(hideUI);
+            if (count!=1){
+                disputeRadioBtn.setChecked(false);
+                count = 0;
+            }
 
-            disputeRadioBtn.setSelected(true);
-            disputeRadioBtn.setBackgroundResource(R.drawable.light_red_button);
-            disputeRadioBtn.setTextColor(Color.WHITE);
         }
     };
     View.OnClickListener hideUI = new View.OnClickListener() {
@@ -172,8 +179,30 @@ public class ChatActivity extends AppCompatActivity {
     };
     View.OnClickListener send = new View.OnClickListener() {
         public void onClick(View v) {
-//            Intent mainIntent = new Intent(ChatActivity.this,DisputeNoHistoryActivity.class);
-//            ChatActivity.this.startActivity(mainIntent);
+
+            if (count == 1) {
+
+                String value = extras.getString("disputeListName");
+                String disputeDays = extras.getString("disputeListDays");
+                String disputePrice = extras.getString("disputeListPrice");
+                Bitmap bitmap = getIntent().getParcelableExtra("BitmapImage");
+
+                flowOfEvent = extras.getString("flowOfEvent");
+                System.out.println("flowOfEvent   " + flowOfEvent);
+                Intent intent;
+                if (flowOfEvent.equals("DisputeDetails_01_Activity")) {
+                    intent = new Intent(ChatActivity.this, DisputeDetails_01_Activity.class);
+                } else {
+                    intent = new Intent(ChatActivity.this, DisputeDetails_No_History_Activity.class);
+                }
+
+                intent.putExtra("disputeListName", value);
+                intent.putExtra("disputeListPrice", disputePrice);
+                intent.putExtra("disputeListDays", disputeDays);
+                intent.putExtra("BitmapImage", bitmap);
+
+                ChatActivity.this.startActivity(intent);
+            }
         }
     };
 }

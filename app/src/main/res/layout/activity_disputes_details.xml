@@ -192,10 +192,9 @@
         android:drawableLeft="@drawable/icons8_white"/>
 
 
-
     <android.support.constraint.ConstraintLayout
         android:id="@+id/midView4"
-        android:layout_width="0dp"
+        android:layout_width="389dp"
         android:layout_height="191dp"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
@@ -513,20 +512,21 @@
     <TextView
         android:id="@+id/disputeDescriptionView"
         android:layout_width="0dp"
-        android:layout_height="144dp"
-        android:layout_marginTop="8dp"
+        android:layout_height="104dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="8dp"
-        android:text="llamco nisi sunt velit quis sint anim nisi sunt Lorem in. dignissim, tellus in pellentesque mollis, mauris orci dignissim nisl, id gravida nunc enim quis nibh. Maecenas convallis eros a ante dignissim, vitae elementum metus facilisis. Cras in maximus sem. Praesent libero augue, ornare eget quam sed, "
+        android:text="llamco nisi sunt velit quis sint anim nisi sunt Lorem in. dignissim, tellus in pellentesque mollis, mauris orci dignissim nisl, id gravida nunc enim quis nibh. Maecenas convallis eros a ante dignissim, vitae elementum metus facilisis. Cras in maximus sem. Praesent libero augue, ornare eget quam"
         android:textColor="#929AAB"
         android:textSize="13sp"
         app:fontFamily="@font/open_sans"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textView58"
         app:layout_constraintTop_toBottomOf="@+id/textView62"
-        app:layout_constraintVertical_bias="0.048" />
+        app:layout_constraintVertical_bias="0.116" />
 
     <TextView
         android:id="@+id/textView69"
@@ -558,7 +558,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:background="@android:color/transparent"
-        android:drawableLeft="@drawable/chatting"
+        android:drawableLeft="@drawable/file_contract_solid"
         android:fontFamily="@font/open_sans"
         android:text="Help"
         android:textAllCaps="false"

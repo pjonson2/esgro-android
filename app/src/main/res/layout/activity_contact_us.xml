@@ -19,8 +19,8 @@
 
         <ImageView
             android:id="@+id/contactHandshakeIcon"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
+            android:layout_width="21dp"
+            android:layout_height="50dp"
             android:clickable="true"
             android:longClickable="true"
             android:scaleType="centerInside"
@@ -48,47 +48,48 @@
 
         <ImageView
             android:id="@+id/contactContactIcon"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
+            android:layout_width="19dp"
+            android:layout_height="50dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
-            android:background="@drawable/feedback_color2x"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/view4"
             app:layout_constraintHorizontal_bias="0.296"
             app:layout_constraintStart_toStartOf="@+id/view4"
             app:layout_constraintTop_toTopOf="@+id/view4"
-            app:layout_constraintVertical_bias="0.523" />
+            app:layout_constraintVertical_bias="0.523"
+            app:srcCompat="@drawable/feedback_color2x" />
 
         <ImageView
             android:id="@+id/contactSettingsIcon"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
+            android:layout_width="20dp"
+            android:layout_height="50dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:background="@drawable/settingswhite2x"
             app:layout_constraintBottom_toBottomOf="@+id/view4"
             app:layout_constraintEnd_toEndOf="@+id/view4"
             app:layout_constraintHorizontal_bias="0.881"
             app:layout_constraintStart_toStartOf="@+id/view4"
             app:layout_constraintTop_toTopOf="@+id/view4"
-            app:layout_constraintVertical_bias="0.513" />
+            app:layout_constraintVertical_bias="0.513"
+            app:srcCompat="@drawable/settingswhite2x" />
 
         <ImageView
             android:id="@+id/contactProfileIcon"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
+            android:layout_width="17dp"
+            android:layout_height="50dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:background="@drawable/profile2x"
             app:layout_constraintBottom_toBottomOf="@+id/view4"
             app:layout_constraintEnd_toEndOf="@+id/view4"
             app:layout_constraintHorizontal_bias="0.711"
             app:layout_constraintStart_toStartOf="@+id/view4"
             app:layout_constraintTop_toTopOf="@+id/view4"
-            app:layout_constraintVertical_bias="0.513" />
+            app:layout_constraintVertical_bias="0.513"
+            app:srcCompat="@drawable/profile2x"
+            tools:srcCompat="@drawable/profile2x" />
     </android.support.constraint.ConstraintLayout>
 
     <View
@@ -133,41 +134,28 @@
         app:layout_constraintTop_toTopOf="@+id/midView3"
         app:layout_constraintVertical_bias="0.258" />
 
-    <TextView
+    <EditText
         android:id="@+id/contactEmailTxt"
-        android:layout_width="158dp"
-        android:layout_height="31dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:background="@android:color/transparent"
+        android:layout_width="0dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/border"
         android:fontFamily="@font/open_sans_semibold"
         android:gravity="start"
-        android:text="info@esgro.com"
+        android:hint="Subject of the message"
         android:textAlignment="viewStart"
         android:textAllCaps="false"
         android:textColor="#929AAB"
         android:textSize="12dp"
         app:layout_constraintBottom_toBottomOf="@+id/midView3"
         app:layout_constraintEnd_toEndOf="@+id/midView3"
-        app:layout_constraintHorizontal_bias="0.482"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/midView3"
-        app:layout_constraintVertical_bias="0.036"
-        tools:ignore="MissingConstraints" />
-
-    <View
-        android:id="@+id/view31"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:background="#EBEBEB"
-        app:layout_constraintBottom_toBottomOf="@+id/midView3"
-        app:layout_constraintEnd_toEndOf="@+id/midView3"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.615"
         app:layout_constraintStart_toStartOf="@+id/midView3"
         app:layout_constraintTop_toTopOf="@+id/midView3"
-        app:layout_constraintVertical_bias="0.125"
+        app:layout_constraintVertical_bias="0.100000024"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -214,21 +202,21 @@
         android:id="@+id/contactMessageTxt"
         android:layout_width="0dp"
         android:layout_height="140dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
         android:background="@drawable/border"
         android:clickable="true"
         android:enabled="true"
-        android:fontFamily="@font/open_sans"
+        android:fontFamily="@font/open_sans_semibold"
         android:gravity="top"
         android:hint="Type your message here"
         android:inputType="textMultiLine"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/midView3"
         app:layout_constraintEnd_toEndOf="@+id/midView3"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/midView3"
         app:layout_constraintTop_toTopOf="@+id/midView3"
         app:layout_constraintVertical_bias="0.472" />

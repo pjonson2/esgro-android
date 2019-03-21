@@ -31,12 +31,14 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
     ImageView noDisputeCancelBtn;
     ImageView noDisputeContactBtn;
     ImageView getNoDisputeUserImg;
+    ImageView disputeNotification;
 
     TextView disputeNoUserNameTxt;
     TextView disputeNoUserPriceTxt;
     TextView disputeNoUserDaysTxt;
     TextView disputeNoHistoryDescription;
     TextView disputeReservePrice;
+    TextView historyField;
 
     Bundle extras;
     Dialog dialog;
@@ -46,6 +48,7 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
     String disputeDays="";
     String disputePrice="";
     Bitmap bitmap;
+
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -81,6 +84,8 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
         disputeNoHistoryDescription = findViewById(R.id.disputeNoHistoryDescriptionTxt);
         disputeReservePrice = findViewById(R.id.disputeReservePriceTxt);
         noDisputeContactBtn = findViewById(R.id.disputeContactBtn);
+        historyField = findViewById(R.id.historyField);
+        disputeNotification = findViewById(R.id.disputeNotification);
 
     }
 
@@ -96,6 +101,8 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
         noDisputeCancelBtn.setOnClickListener(cancelAction);
         chat.setOnClickListener(chatAction);
         noDisputeContactBtn.setOnClickListener(contact);
+        disputeReservePrice.setOnClickListener(reserve);
+        disputeNotification.setOnClickListener(notification);
 
     }
 
@@ -111,15 +118,20 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
         disputeNoUserDaysTxt.setText(disputeDays);
         disputeNoUserPriceTxt.setText(disputePrice);
         getNoDisputeUserImg.setImageBitmap(bitmap);
+        historyField.setVisibility(View.INVISIBLE);
 
 
 
         if (Double.parseDouble(disputePrice)>0){
-            disputeNoUserPriceTxt.setTextColor(Color.BLACK);
+            disputeNoUserPriceTxt.setTextColor(getResources().getColor(R.color.lightGreen));
             okIconImge.setEnabled(false);
             okIconImge.setImageDrawable(getDrawable(R.drawable.ok_gray));
         }else{
-            disputeNoUserPriceTxt.setTextColor(Color.GRAY);
+            disputeNoUserPriceTxt.setTextColor(Color.RED);
+            if(disputeDays.equals("waiting") || disputeDays.equals("Canceled") || disputeDays.equals("Completed") ){
+                disputeNoUserPriceTxt.setTextColor(Color.GRAY);
+                disputeNoUserDaysTxt.setTextColor(Color.GRAY);
+            }
 
         }
 
@@ -166,13 +178,13 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
                         esgroLbl.setTextColor(Color.parseColor("#929AAB"));
                         weLbl.setTextColor(Color.parseColor("#7FE239"));
                         okIconImge.setImageDrawable(getDrawable(R.drawable.ok_gray));
-                        disputeNoUserPriceTxt.setTextColor(Color.BLACK);
+                        disputeNoUserPriceTxt.setTextColor(getResources().getColor(R.color.lightGreen));
                     }
                     if(Double.parseDouble(disputePrice)<0){
                         esgroLbl.setTextColor(Color.parseColor("#929AAB"));
                         weLbl.setTextColor(Color.parseColor("#7FE239"));
                         okIconImge.setImageDrawable(getDrawable(R.drawable.ok_gray));
-                        disputeNoUserPriceTxt.setTextColor(Color.BLACK);
+                        disputeNoUserPriceTxt.setTextColor(getResources().getColor(R.color.lightGreen));
                     }
                 }
             }, SPLASH_DISPLAY_LENGTH_1);
@@ -209,6 +221,22 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
         public void onClick(View v) {
             Intent mainIntent = new Intent(DisputeDetails_No_History_Activity.this,ContactUsActivity.class);
             DisputeDetails_No_History_Activity.this.startActivity(mainIntent);
+        }
+    };
+    View.OnClickListener notification = new View.OnClickListener() {
+        public void onClick(View v) {
+            dialog.setContentView(R.layout.activity_notification_alert);
+            dialog.show();
+
+        }
+    };
+    View.OnClickListener reserve = new View.OnClickListener() {
+        public void onClick(View v) {
+            dialog.setContentView(R.layout.activity_reserve_alert);
+            dialog.show();
+            Window window = dialog.getWindow();
+            Button button;
+
         }
     };
 

@@ -3,9 +3,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="fill_vertical"
+    android:layout_height="105dp"
+    android:background="@drawable/layout_low_corner_radious"
     android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/disputeDiscription"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="109dp"
+        android:layout_marginLeft="109dp"
+        android:layout_marginTop="-5dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginRight="80dp"
+        android:layout_toStartOf="@+id/disputeDaysTxt"
+        android:layout_toLeftOf="@+id/disputeDaysTxt"
+        android:text="     "
+        android:textColor="#929AAB"
+        android:textSize="16sp"
+        app:fontFamily="@font/open_sans" />
+
 
     <ImageView
         android:id="@+id/disputeUserImage"
