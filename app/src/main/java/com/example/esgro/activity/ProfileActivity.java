@@ -1,9 +1,12 @@
 package com.example.esgro.activity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -13,6 +16,7 @@ import com.example.esgro.R;
 public class ProfileActivity  extends FooterActivity {
 
     Button back;
+    Button transfer;
 
     ImageView edit;
     ImageView newPost;
@@ -26,11 +30,15 @@ public class ProfileActivity  extends FooterActivity {
     TextView userName;
     TextView email;
 
+    Dialog dialog;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         onWindowFocusChanged(true);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        dialog = new Dialog(this);
 
         idInitialization();
         setListeners();
@@ -50,6 +58,7 @@ public class ProfileActivity  extends FooterActivity {
         lastName = findViewById(R.id.profileLastNameTxt);
         userName = findViewById(R.id.profileUserNameTxt);
         email = findViewById(R.id.profileEmailTxt);
+        transfer = findViewById(R.id.transferBtn);
     }
 
     void setListeners(){
@@ -59,6 +68,7 @@ public class ProfileActivity  extends FooterActivity {
         contact.setOnClickListener(contactUs);
         settings.setOnClickListener(settingsAction);
         profile.setOnClickListener(profileActoin);
+        transfer.setOnClickListener(transferAction);
     }
 
     void setValues(){
@@ -114,5 +124,47 @@ public class ProfileActivity  extends FooterActivity {
             Intent mainIntent = new Intent(ProfileActivity.this,RequestActivity.class);
             ProfileActivity.this.startActivity(mainIntent);
         }
+    };
+    View.OnClickListener transferAction = new View.OnClickListener() {
+        public void onClick(View v) {
+            dialog.setContentView(R.layout.activity_transfer_alert);
+            dialog.show();
+            Window window = dialog.getWindow();
+
+
+            ConstraintLayout bankLayout;
+            ConstraintLayout cardLayout;
+
+            TextView bankLayoutLbl;
+            TextView cardLayoutLbl;
+
+            bankLayout = window.findViewById(R.id.bankAccountView);
+            cardLayout = window.findViewById(R.id.bankCardView);
+
+            bankLayout.setOnClickListener(bankLayoutAction);
+            cardLayout.setOnClickListener(cardLayoutAction);
+
+
+            bankLayoutLbl = window.findViewById(R.id.bankAccountLbl);
+            cardLayoutLbl = window.findViewById(R.id.cardLbl);
+
+            bankLayoutLbl.setOnClickListener(bankLayoutAction);
+            cardLayoutLbl.setOnClickListener(cardLayoutAction);
+
+        }
+
+            View.OnClickListener cardLayoutAction = new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent mainIntent = new Intent(ProfileActivity.this, TransferToCardActivity.class);
+                    ProfileActivity.this.startActivity(mainIntent);
+                }
+            };
+            View.OnClickListener bankLayoutAction = new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent mainIntent = new Intent(ProfileActivity.this, TransferToBankActivity.class);
+                    ProfileActivity.this.startActivity(mainIntent);
+                }
+            };
+
     };
 }

@@ -192,6 +192,23 @@
 
         </activity>
 
+        <activity android:name=".activity.TransferToBankActivity" >
+
+
+        </activity>
+        <activity android:name=".activity.TransferToCardActivity" >
+
+
+        </activity>
+        <activity android:name=".activity.alert.TransferAlert" >
+
+
+        </activity>
+        <activity android:name=".activity.alert.ContactUsAlert" >
+
+
+        </activity>
+
 
 
         <meta-data

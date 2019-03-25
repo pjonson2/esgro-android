@@ -27,6 +27,7 @@ public class CompleteProfileActivity  extends AppCompatActivity {
     Button continueBtn;
     Button plusAddCard;
     Button plusLinkBank;
+    Button skip;
 
     ImageView selectImg;
 
@@ -55,6 +56,7 @@ public class CompleteProfileActivity  extends AppCompatActivity {
         plusLinkBank = findViewById(R.id.plusLinkBankBtn);
         plusLinkbankAccount = findViewById(R.id.plusLinkBankLbl);
         selectImg = findViewById(R.id.selectImg);
+        skip = findViewById(R.id.skipNowBtn);
     }
 
     void setListeners(){
@@ -62,9 +64,10 @@ public class CompleteProfileActivity  extends AppCompatActivity {
         continueBtn.setOnClickListener(continues);
         plusAddCard.setOnClickListener(plusAddBank);
         plusCrd.setOnClickListener(plusAddBank);
-        plusLinkBank.setOnClickListener(plusLinkBanks);
+//        plusLinkBank.setOnClickListener(plusLinkBanks);
         plusLinkbankAccount.setOnClickListener(plusLinkBanks);
         selectImg.setOnClickListener(selectFile);
+        skip.setOnClickListener(skipAction);
     }
 
     void setValues(){
@@ -114,6 +117,12 @@ public class CompleteProfileActivity  extends AppCompatActivity {
             intent = new Intent(Intent.ACTION_GET_CONTENT);
             intent.setType("*/*");
             startActivityForResult(intent,10);
+        }
+    };
+    View.OnClickListener skipAction = new View.OnClickListener() {
+        public void onClick(View v) {
+            Intent mainIntent = new Intent(CompleteProfileActivity.this,ProfileActivity.class);
+            CompleteProfileActivity.this.startActivity(mainIntent);
         }
     };
 

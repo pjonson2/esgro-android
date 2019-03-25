@@ -10,12 +10,20 @@ import android.os.Handler;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.esgro.R;
+import com.example.esgro.activity.alert.NotificationAlert;
+import com.example.esgro.modals.Notification;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DisputeDetails_No_History_Activity extends AppCompatActivity {
 
@@ -48,6 +56,7 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
     String disputeDays="";
     String disputePrice="";
     Bitmap bitmap;
+    List<Notification> notificationList;
 
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -227,7 +236,17 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
         public void onClick(View v) {
             dialog.setContentView(R.layout.activity_notification_alert);
             dialog.show();
+            Window window = dialog.getWindow();
+            Button close = window.findViewById(R.id.feedbackClose);
 
+            loadNotifications(window);
+            close.setOnClickListener(closeNotificationUI);
+
+        }
+    };
+    View.OnClickListener closeNotificationUI = new View.OnClickListener() {
+        public void onClick(View v) {
+            dialog.dismiss();
         }
     };
     View.OnClickListener reserve = new View.OnClickListener() {
@@ -235,8 +254,14 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
             dialog.setContentView(R.layout.activity_reserve_alert);
             dialog.show();
             Window window = dialog.getWindow();
-            Button button;
+            Button button = window.findViewById(R.id.feedbackClose);
+            button.setOnClickListener(reserveAlertClose);
 
+        }
+    };
+    View.OnClickListener reserveAlertClose = new View.OnClickListener() {
+        public void onClick(View v) {
+            dialog.dismiss();
         }
     };
 
@@ -284,9 +309,70 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
     };
     View.OnClickListener contact = new View.OnClickListener() {
         public void onClick(View v) {
-//            Intent mainIntent = new Intent(DisputeDetails_No_History_Activity.this,RequestActivity.class);
-//            DisputeDetails_No_History_Activity.this.startActivity(mainIntent);
+            dialog.setContentView(R.layout.activity_contact_us_popup);
+            dialog.show();
+            Window window = dialog.getWindow();
+            Button button;
         }
     };
 
+    void loadNotifications(Window window){
+        notificationList = new ArrayList<>();
+        initializeArray();
+
+        ListView listView = window.findViewById(R.id.notificationListView);
+
+        DisputeDetails_No_History_Activity.CustomAdaper customAdaper = new DisputeDetails_No_History_Activity.CustomAdaper();
+        listView.setAdapter(customAdaper);
+    }
+    void initializeArray(){
+
+        notificationList.add(new Notification("dispute notifications","",""));
+
+        notificationList.add(new Notification("dispute notifications","",""));
+
+        notificationList.add(new Notification("dispute notifications","",""));
+
+        notificationList.add(new Notification("dispute notifications","",""));
+
+        notificationList.add(new Notification("dispute notifications","",""));
+
+        notificationList.add(new Notification("dispute notifications","",""));
+
+        notificationList.add(new Notification("dispute notifications","",""));
+
+        notificationList.add(new Notification("dispute notifications","",""));
+
+        notificationList.add(new Notification("dispute notifications","",""));
+
+        notificationList.add(new Notification("dispute notifications","",""));
+
+        notificationList.add(new Notification("dispute notifications","",""));
+
+
+    }
+    class CustomAdaper extends BaseAdapter {
+
+        @Override
+        public int getCount() {
+            return notificationList.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            convertView = getLayoutInflater().inflate(R.layout.activity_notification_card,null);
+
+            return convertView;
+        }
+    }
 }

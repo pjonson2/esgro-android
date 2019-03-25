@@ -91,6 +91,52 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <Button
+                android:id="@+id/aboutBtn3"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginEnd="50dp"
+                android:layout_marginRight="50dp"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/open_sans_semibold"
+                android:gravity="start"
+                android:text="NOTIFICATION HISTORY"
+                android:textAlignment="viewStart"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/midView"
+                app:layout_constraintEnd_toEndOf="@+id/midView"
+                app:layout_constraintHorizontal_bias="0.739"
+                app:layout_constraintStart_toStartOf="@+id/midView"
+                app:layout_constraintTop_toTopOf="@+id/midView"
+                app:layout_constraintVertical_bias="0.52" />
+
+            <View
+                android:id="@+id/view64"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="2dp"
+                android:background="#EBEBEB"
+                app:layout_constraintBottom_toBottomOf="@+id/midView"
+                app:layout_constraintEnd_toEndOf="@+id/midView"
+                app:layout_constraintStart_toStartOf="@+id/midView"
+                app:layout_constraintTop_toTopOf="@+id/midView"
+                app:layout_constraintVertical_bias="0.56" />
+
+            <ImageView
+                android:id="@+id/imageView35"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/icons8_more_than"
+                app:layout_constraintBottom_toBottomOf="@+id/midView"
+                app:layout_constraintEnd_toEndOf="@+id/midView"
+                app:layout_constraintHorizontal_bias="0.936"
+                app:layout_constraintStart_toStartOf="@+id/midView"
+                app:layout_constraintTop_toTopOf="@+id/midView"
+                app:layout_constraintVertical_bias="0.507" />
+
             <ImageView
                 android:id="@+id/imageView50"
                 android:layout_width="20dp"
@@ -159,7 +205,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/midView"
                 app:layout_constraintTop_toTopOf="@+id/midView"
-                app:layout_constraintVertical_bias="0.527" />
+                app:layout_constraintVertical_bias="0.621" />
 
             <ImageView
                 android:id="@+id/imageView49"
@@ -169,10 +215,10 @@
                 android:background="@drawable/icons8_more_than"
                 app:layout_constraintBottom_toBottomOf="@+id/midView"
                 app:layout_constraintEnd_toEndOf="@+id/midView"
-                app:layout_constraintHorizontal_bias="0.938"
+                app:layout_constraintHorizontal_bias="0.936"
                 app:layout_constraintStart_toStartOf="@+id/midView"
                 app:layout_constraintTop_toTopOf="@+id/midView"
-                app:layout_constraintVertical_bias="0.528" />
+                app:layout_constraintVertical_bias="0.61" />
 
             <Button
                 android:id="@+id/exportReqBtn"
@@ -205,7 +251,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/midView"
                 app:layout_constraintTop_toTopOf="@+id/midView"
-                app:layout_constraintVertical_bias="0.577" />
+                app:layout_constraintVertical_bias="0.657" />
 
             <Button
                 android:id="@+id/signOutBtn"
@@ -371,7 +417,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/midView"
                 app:layout_constraintStart_toStartOf="@+id/midView"
                 app:layout_constraintTop_toTopOf="@+id/midView"
-                app:layout_constraintVertical_bias="0.529" />
+                app:layout_constraintVertical_bias="0.613" />
 
             <Button
                 android:id="@+id/bankAndCard"

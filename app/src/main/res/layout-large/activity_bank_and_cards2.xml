@@ -43,12 +43,12 @@
 
     <Button
         android:id="@+id/plusCard"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="558dp"
+        android:layout_height="59dp"
         android:layout_marginTop="5dp"
         android:background="@android:color/transparent"
         android:fontFamily="@font/open_sans_semibold"
-        android:text="+"
+        android:text="   "
         android:textAlignment="center"
         android:textColor="#5BDA31"
         android:textSize="20sp"
@@ -301,12 +301,12 @@
 
     <Button
         android:id="@+id/plusBank"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="560dp"
+        android:layout_height="65dp"
         android:layout_marginTop="2dp"
         android:background="@android:color/transparent"
         android:fontFamily="@font/open_sans_semibold"
-        android:text="+"
+        android:text="  "
         android:textAlignment="center"
         android:textColor="#5BDA31"
         android:textSize="20sp"

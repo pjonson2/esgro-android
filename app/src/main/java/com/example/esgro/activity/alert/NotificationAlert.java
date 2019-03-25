@@ -20,7 +20,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NotificationAlert extends AppCompatActivity {
-    List<Notification> notificationList;
 
 
     @Override
@@ -29,41 +28,8 @@ public class NotificationAlert extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification_alert);
 
-        notificationList = new ArrayList<>();
-        initializeArray();
-
-        ListView listView = findViewById(R.id.notificationListView);
-
-        NotificationAlert.CustomAdaper customAdaper = new NotificationAlert.CustomAdaper();
-        listView.setAdapter(customAdaper);
-
     }
-    void initializeArray(){
 
-        notificationList.add(new Notification("","",""));
-
-        notificationList.add(new Notification("","",""));
-
-        notificationList.add(new Notification("","",""));
-
-        notificationList.add(new Notification("","",""));
-
-        notificationList.add(new Notification("","",""));
-
-        notificationList.add(new Notification("","",""));
-
-        notificationList.add(new Notification("","",""));
-
-        notificationList.add(new Notification("","",""));
-
-        notificationList.add(new Notification("","",""));
-
-        notificationList.add(new Notification("","",""));
-
-        notificationList.add(new Notification("","",""));
-
-
-    }
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
@@ -75,33 +41,6 @@ public class NotificationAlert extends AppCompatActivity {
                             | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                             | View.SYSTEM_UI_FLAG_FULLSCREEN
                             | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
-        }
-    }
-
-
-
-    class CustomAdaper extends BaseAdapter {
-
-        @Override
-        public int getCount() {
-            return 10;
-        }
-
-        @Override
-        public Object getItem(int position) {
-            return null;
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return 0;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            convertView = getLayoutInflater().inflate(R.layout.activity_notification_card,null);
-
-            return convertView;
         }
     }
 }
