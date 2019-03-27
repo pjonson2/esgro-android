@@ -208,6 +208,18 @@
 
 
         </activity>
+        <activity android:name=".activity.alert.TransferSuccessFullAlert" >
+
+
+        </activity>
+        <activity android:name=".activity.alert.RequestSentAlert" >
+
+
+        </activity>
+        <activity android:name=".activity.CancelledAndCompleted" >
+
+
+        </activity>
 
 
 

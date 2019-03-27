@@ -304,7 +304,7 @@
         app:layout_constraintEnd_toEndOf="@+id/midView4"
         app:layout_constraintHorizontal_bias="0.812"
         app:layout_constraintStart_toStartOf="@+id/midView4"
-        app:layout_constraintTop_toBottomOf="@+id/textView60"
+        app:layout_constraintTop_toBottomOf="@+id/changeBtn"
         app:layout_constraintVertical_bias="0.488" />
 
     <ImageView
@@ -333,7 +333,7 @@
         app:layout_constraintVertical_bias="0.525" />
 
     <TextView
-        android:id="@+id/textView60"
+        android:id="@+id/changeBtn"
         android:layout_width="103dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"

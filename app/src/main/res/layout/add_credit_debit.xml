@@ -298,4 +298,37 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view5"
         app:layout_constraintVertical_bias="0.05" />
+
+    <RadioGroup
+        android:layout_width="194dp"
+        android:layout_height="97dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view12" >
+
+        <RadioButton
+            android:id="@+id/radioButton"
+            android:layout_width="182dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="true"
+            android:fontFamily="@font/open_sans_semibold"
+            android:text="Default Card"
+            android:textSize="14sp" />
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="183dp"
+            android:fontFamily="@font/open_sans_semibold"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Default Payment"
+            android:textSize="14sp" />
+    </RadioGroup>
 </android.support.constraint.ConstraintLayout>

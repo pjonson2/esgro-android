@@ -79,14 +79,14 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginBottom="110dp"
+        android:layout_marginBottom="100dp"
         android:background="@drawable/layout_corner"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView83"
-        app:layout_constraintVertical_bias="0.061" />
+        app:layout_constraintVertical_bias="0.079" />
 
     <TextView
         android:id="@+id/textView83"
@@ -94,7 +94,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
@@ -104,9 +104,9 @@
         app:fontFamily="@font/open_sans"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.023"
+        app:layout_constraintHorizontal_bias="0.025"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view61"
+        app:layout_constraintTop_toBottomOf="@+id/toAddCardView"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
@@ -125,13 +125,13 @@
         app:fontFamily="@font/open_sans"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.023"
+        app:layout_constraintHorizontal_bias="0.024"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/view60"
-        app:layout_constraintVertical_bias="0.012" />
+        app:layout_constraintVertical_bias="0.112" />
 
     <View
-        android:id="@+id/view61"
+        android:id="@+id/toAddCardView"
         android:layout_width="0dp"
         android:layout_height="75dp"
         android:layout_marginStart="16dp"
@@ -142,20 +142,20 @@
         android:background="@drawable/layout_corner"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.153"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView79"
-        app:layout_constraintVertical_bias="0.016" />
+        app:layout_constraintVertical_bias="0.009" />
 
     <Button
 
-        android:id="@+id/button6"
-        android:fontFamily="@font/open_sans_semibold"
+        android:id="@+id/transferBtn"
         android:layout_width="246dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/light_green_button"
+        android:fontFamily="@font/open_sans_semibold"
         android:text="Transfer"
         android:textAllCaps="false"
         android:textColor="@android:color/white"
@@ -171,11 +171,11 @@
         android:layout_height="30dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/view61"
-        app:layout_constraintEnd_toEndOf="@+id/view61"
+        app:layout_constraintBottom_toBottomOf="@+id/toAddCardView"
+        app:layout_constraintEnd_toEndOf="@+id/toAddCardView"
         app:layout_constraintHorizontal_bias="0.036"
-        app:layout_constraintStart_toStartOf="@+id/view61"
-        app:layout_constraintTop_toTopOf="@+id/view61"
+        app:layout_constraintStart_toStartOf="@+id/toAddCardView"
+        app:layout_constraintTop_toTopOf="@+id/toAddCardView"
         app:layout_constraintVertical_bias="0.514"
         app:srcCompat="@drawable/group_10512x" />
 
@@ -193,9 +193,49 @@
         android:textSize="14sp"
         app:fontFamily="@font/open_sans"
         app:layout_constraintBottom_toBottomOf="@+id/imageView30"
-        app:layout_constraintEnd_toEndOf="@+id/view61"
+        app:layout_constraintEnd_toEndOf="@+id/toAddCardView"
         app:layout_constraintHorizontal_bias="0.24"
         app:layout_constraintStart_toEndOf="@+id/imageView30"
         app:layout_constraintTop_toTopOf="@+id/imageView30" />
+
+    <TextView
+        android:id="@+id/textView115"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Transferring Amount"
+        android:textSize="14sp"
+        app:fontFamily="@font/open_sans"
+        app:layout_constraintBottom_toTopOf="@+id/textView79"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.03"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view60"
+        app:layout_constraintVertical_bias="0.05" />
+
+    <TextView
+        android:id="@+id/textView117"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="$100.00"
+        android:textColor="@color/solid_black"
+        app:fontFamily="@font/open_sans"
+        app:layout_constraintBottom_toTopOf="@+id/textView79"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.058"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView115"
+        app:layout_constraintVertical_bias="0.0" />
 
 </android.support.constraint.ConstraintLayout>

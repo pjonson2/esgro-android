@@ -134,6 +134,9 @@ public class HomePageActivity extends AppCompatActivity {
     };
     View.OnClickListener cancelAndCompletedAction = new View.OnClickListener() {
         public void onClick(View v) {
+
+            Intent mainIntent = new Intent(HomePageActivity.this,CancelledAndCompleted.class);
+            HomePageActivity.this.startActivity(mainIntent);
         }
     };
     View.OnClickListener disputesAction = new View.OnClickListener() {

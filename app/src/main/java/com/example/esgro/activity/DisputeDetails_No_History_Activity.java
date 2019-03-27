@@ -47,6 +47,7 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
     TextView disputeNoHistoryDescription;
     TextView disputeReservePrice;
     TextView historyField;
+    TextView change;
 
     Bundle extras;
     Dialog dialog;
@@ -95,6 +96,7 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
         noDisputeContactBtn = findViewById(R.id.disputeContactBtn);
         historyField = findViewById(R.id.historyField);
         disputeNotification = findViewById(R.id.disputeNotification);
+        change = findViewById(R.id.changeBtn);
 
     }
 
@@ -112,6 +114,7 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
         noDisputeContactBtn.setOnClickListener(contact);
         disputeReservePrice.setOnClickListener(reserve);
         disputeNotification.setOnClickListener(notification);
+        change.setOnClickListener(changeAction);
 
     }
 
@@ -231,6 +234,29 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
             Intent mainIntent = new Intent(DisputeDetails_No_History_Activity.this,ContactUsActivity.class);
             DisputeDetails_No_History_Activity.this.startActivity(mainIntent);
         }
+    };
+    View.OnClickListener changeAction = new View.OnClickListener() {
+        public void onClick(View v) {
+            dialog.setContentView(R.layout.activity_holding_period_alert);
+            dialog.show();
+            Window window = dialog.getWindow();
+            Button button = window.findViewById(R.id.sendBtn);
+            button.setOnClickListener(afterClickSendAction);
+//            dialog.dismiss();
+        }
+        View.OnClickListener afterClickSendAction = new View.OnClickListener() {
+            public void onClick(View v) {
+                dialog.setContentView(R.layout.activity_request_sent_alert);
+                dialog.show();
+
+                new Handler().postDelayed(new Runnable(){
+                    @Override
+                    public void run() {
+                        dialog.dismiss();
+                    }
+                }, SPLASH_DISPLAY_LENGTH);
+            }
+        };
     };
     View.OnClickListener notification = new View.OnClickListener() {
         public void onClick(View v) {

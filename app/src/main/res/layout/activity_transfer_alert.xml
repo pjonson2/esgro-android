@@ -50,9 +50,11 @@
                 android:clickable="true"
                 android:gravity="center_vertical"
                 android:text="Card"
+                app:fontFamily="@font/open_sans"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.333"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/imageView23"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
@@ -121,6 +123,7 @@
                 android:clickable="true"
                 android:gravity="center_vertical"
                 android:text="Bank Account"
+                app:fontFamily="@font/open_sans"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.6"

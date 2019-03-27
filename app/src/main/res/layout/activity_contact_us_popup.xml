@@ -9,30 +9,11 @@
     <android.support.constraint.ConstraintLayout
         android:id="@+id/view59"
         android:layout_width="290dp"
-        android:layout_height="297dp"
+        android:layout_height="331dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
-        <ImageButton
-            android:id="@+id/imageButton5"
-            android:layout_width="190dp"
-            android:layout_height="36dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/gray_round_button"
-            android:clickable="true"
-            android:contentDescription="Dismiss"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view38"
-            app:layout_constraintVertical_bias="0.958" />
 
         <ImageButton
             android:id="@+id/imageButton4"
@@ -112,6 +93,22 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.026" />
 
+
+        <Button
+            android:id="@+id/button8"
+            android:layout_width="110dp"
+            android:layout_height="37dp"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/open_sans_semibold"
+            android:gravity="center_vertical"
+            android:text="Call"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="@+id/imageButton2"
+            app:layout_constraintEnd_toEndOf="@+id/imageButton2"
+            app:layout_constraintStart_toStartOf="@+id/imageButton2"
+            app:layout_constraintTop_toTopOf="@+id/imageButton2"
+            tools:ignore="MissingConstraints" />
+
         <ImageButton
             android:id="@+id/imageButton2"
             android:layout_width="134dp"
@@ -132,6 +129,57 @@
             app:layout_constraintTop_toBottomOf="@+id/view38"
             app:layout_constraintVertical_bias="0.115"
             app:srcCompat="@drawable/callicon" />
+
+        <Button
+            android:id="@+id/button15"
+            android:layout_width="110dp"
+            android:layout_height="30dp"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/open_sans_semibold"
+            android:gravity="center_vertical"
+            android:text="Text"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="@+id/imageButton3"
+            app:layout_constraintEnd_toEndOf="@+id/imageButton3"
+            app:layout_constraintStart_toStartOf="@+id/imageButton3"
+            app:layout_constraintTop_toTopOf="@+id/imageButton3" />
+
+        <Button
+            android:id="@+id/button18"
+            android:layout_width="110dp"
+            android:layout_height="29dp"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/open_sans_semibold"
+            android:gravity="center_vertical"
+            android:text="Email"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="@+id/imageButton4"
+            app:layout_constraintEnd_toEndOf="@+id/imageButton4"
+            app:layout_constraintStart_toStartOf="@+id/imageButton4"
+            app:layout_constraintTop_toTopOf="@+id/imageButton4" />
+
+        <Button
+            android:id="@+id/dissmissBtn"
+            android:layout_width="189dp"
+            android:layout_height="42dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/gray_round_button"
+            android:fontFamily="@font/open_sans_semibold"
+            android:text="Dismiss"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView63"
+            app:layout_constraintVertical_bias="0.97" />
+
 
     </android.support.constraint.ConstraintLayout>
 
