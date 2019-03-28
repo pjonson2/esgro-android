@@ -25,6 +25,7 @@ public class BankListActivity extends AppCompatActivity {
 
     Button back;
     Bitmap bitmap;
+    String identifier="";
 
     public final static String EXTRA_MESSAGE = "com.example.ListViewTest.MESSAGE";
 
@@ -33,6 +34,9 @@ public class BankListActivity extends AppCompatActivity {
         onWindowFocusChanged(true);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bank_list);
+
+
+        identifier = getIntent().getStringExtra("identifier");
 
         idInitialization();
         setListeners();
@@ -63,6 +67,7 @@ public class BankListActivity extends AppCompatActivity {
 
                 intent.putExtra("bankListName", name);
                 intent.putExtra("bankListImage", bitmap);
+                intent.putExtra("identifier", identifier);
 
                 startActivity(intent);
             }
@@ -165,8 +170,22 @@ public class BankListActivity extends AppCompatActivity {
     }
     View.OnClickListener backtoHome = new View.OnClickListener() {
         public void onClick(View v) {
-            Intent mainIntent = new Intent(BankListActivity.this, HomePageActivity.class);
-            BankListActivity.this.startActivity(mainIntent);
+
+            if (identifier.equals("TransferToBankActivity")){
+                Intent mainIntent = new Intent(BankListActivity.this, TransferToBankActivity.class);
+                BankListActivity.this.startActivity(mainIntent);
+            }
+
+            if (identifier.equals("BankAndCards2Activity")){
+                Intent mainIntent = new Intent(BankListActivity.this, BankAndCards2Activity.class);
+                BankListActivity.this.startActivity(mainIntent);
+            }
+
+            if (identifier.equals("CompleteProfileActivity")){
+                Intent mainIntent = new Intent(BankListActivity.this, CompleteProfileActivity.class);
+                BankListActivity.this.startActivity(mainIntent);
+            }
+
         }
     };
 

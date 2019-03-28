@@ -34,6 +34,7 @@
             android:text="X"
             android:textColor="#929AAB"
             android:textSize="15sp"
+            android:fontFamily="@font/open_sans"
             app:layout_constraintBottom_toBottomOf="@+id/view59"
             app:layout_constraintEnd_toEndOf="@+id/view59"
             app:layout_constraintHorizontal_bias="1.0"

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:background="@drawable/layout_low_gray_border"
+    android:layout_height="80dp">
+
+    <ImageView
+        android:id="@+id/bankImage"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="13dp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginTop="7dp"
+        app:srcCompat="@drawable/nopath_copy2x" />
+
+    <TextView
+        android:id="@+id/bankDetailsTxt"
+        android:layout_width="281dp"
+        android:layout_height="20dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="26dp"
+        android:layout_marginLeft="26dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="41dp"
+        android:layout_marginRight="41dp"
+        android:layout_toEndOf="@+id/bankImage"
+        android:layout_toRightOf="@+id/bankImage"
+        android:text="Bank Start 123476532"
+        android:textColor="@color/solid_black"
+        app:fontFamily="@font/open_sans" />
+
+    <TextView
+        android:id="@+id/bankNameTxt"
+        android:layout_width="178dp"
+        android:layout_height="18dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="26dp"
+        android:layout_marginLeft="26dp"
+        android:layout_marginTop="31dp"
+        android:layout_marginEnd="142dp"
+        android:layout_marginRight="142dp"
+        android:layout_toEndOf="@+id/bankImage"
+        android:layout_toRightOf="@+id/bankImage"
+        android:text="Bank Of America"
+        app:fontFamily="@font/open_sans" />
+
+    <TextView
+        android:id="@+id/textView132"
+        android:layout_width="240dp"
+        android:layout_height="15dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="92dp"
+        android:layout_marginLeft="92dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="79dp"
+        android:layout_marginRight="79dp"
+        android:text="      " />
+</RelativeLayout>

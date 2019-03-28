@@ -18,11 +18,15 @@ public class AddCardActivity extends AppCompatActivity {
     EditText expDate;
     EditText cvv;
 
+    String identifier = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         onWindowFocusChanged(true);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_credit_debit);
+
+        identifier = getIntent().getStringExtra("identifier");
 
         idInitialization();
         setListeners();
@@ -63,8 +67,23 @@ public class AddCardActivity extends AppCompatActivity {
     }
     View.OnClickListener addCardBAck = new View.OnClickListener() {
         public void onClick(View v) {
-            Intent mainIntent = new Intent(AddCardActivity.this, BankAndCards2Activity.class);
-            AddCardActivity.this.startActivity(mainIntent);
+
+            if (identifier.equals("TransferToCardActivity")){
+                Intent mainIntent = new Intent(AddCardActivity.this, TransferToCardActivity.class);
+                AddCardActivity.this.startActivity(mainIntent);
+            }
+
+            if (identifier.equals("BankAndCards2Activity")){
+                Intent mainIntent = new Intent(AddCardActivity.this, BankAndCards2Activity.class);
+                AddCardActivity.this.startActivity(mainIntent);
+            }
+
+            if (identifier.equals("CompleteProfileActivity")){
+                Intent mainIntent = new Intent(AddCardActivity.this, CompleteProfileActivity.class);
+                AddCardActivity.this.startActivity(mainIntent);
+            }
+
+
         }
     };
     View.OnClickListener addCardAction = new View.OnClickListener() {

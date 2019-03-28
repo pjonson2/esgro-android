@@ -7,7 +7,7 @@
     android:background="#F7F8FB">
 
     <Button
-        android:id="@+id/button9"
+        android:id="@+id/setDefaultBtn"
         android:layout_width="wrap_content"
         android:layout_height="32dp"
         android:layout_marginStart="16dp"
@@ -16,9 +16,9 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:background="@android:color/transparent"
+        android:fontFamily="@font/open_sans_semibold"
         android:text="Select Default"
         android:textAllCaps="false"
-        android:fontFamily="@font/open_sans_semibold"
         android:textColor="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.959"
@@ -343,7 +343,7 @@
         android:layout_marginEnd="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/layout_low_gray_corner"
+        android:background="@drawable/layout_low_gray_border"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -360,7 +360,7 @@
         android:layout_marginRight="8dp"
         android:text="Bank Of America"
         android:textColor="@android:color/darker_gray"
-        app:fontFamily="@font/open_sans_semibold"
+        app:fontFamily="@font/open_sans"
         app:layout_constraintBottom_toBottomOf="@+id/view72"
         app:layout_constraintEnd_toEndOf="@+id/view72"
         app:layout_constraintStart_toEndOf="@+id/imageView51"
@@ -368,7 +368,7 @@
         app:layout_constraintVertical_bias="0.77" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/viewMoreBtn"
         android:layout_width="wrap_content"
         android:layout_height="32dp"
         android:layout_marginStart="16dp"
@@ -387,18 +387,22 @@
         app:layout_constraintTop_toBottomOf="@+id/view72" />
 
     <ListView
+        android:id="@+id/dynamicBankListView"
         android:layout_width="0dp"
-        android:layout_height="243dp"
+        android:layout_height="0dp"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="25dp"
+        android:background="@android:color/transparent"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="5dp"
         app:layout_constraintBottom_toTopOf="@+id/view4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/viewMoreBtn" />
 
     <ImageView
         android:id="@+id/imageView51"
@@ -421,7 +425,7 @@
         android:layout_marginRight="8dp"
         android:text="Bank Start 13242343432"
         android:textColor="@color/solid_black"
-        app:fontFamily="@font/open_sans_semibold"
+        app:fontFamily="@font/open_sans"
         app:layout_constraintBottom_toBottomOf="@+id/view72"
         app:layout_constraintEnd_toEndOf="@+id/view72"
         app:layout_constraintStart_toEndOf="@+id/imageView51"

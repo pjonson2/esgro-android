@@ -103,12 +103,14 @@ public class CompleteProfileActivity  extends AppCompatActivity {
     View.OnClickListener plusAddBank = new View.OnClickListener() {
         public void onClick(View v) {
             Intent mainIntent = new Intent(CompleteProfileActivity.this, AddCardActivity.class);
+            mainIntent.putExtra("identifier","CompleteProfileActivity");
             CompleteProfileActivity.this.startActivity(mainIntent);
         }
     };
     View.OnClickListener plusLinkBanks = new View.OnClickListener() {
         public void onClick(View v) {
             Intent mainIntent = new Intent(CompleteProfileActivity.this,BankListActivity.class);
+            mainIntent.putExtra("identifier","CompleteProfileActivity");
             CompleteProfileActivity.this.startActivity(mainIntent);
         }
     };

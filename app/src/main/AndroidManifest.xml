@@ -65,15 +65,18 @@
 
 
         </activity>
-        <activity android:name=".activity.BankAndCards2Activity" >
+        <activity android:name=".activity.BankAndCards2Activity"
+            android:screenOrientation="portrait">
 
 
         </activity>
-        <activity android:name=".activity.AddCardActivity" >
+        <activity android:name=".activity.AddCardActivity"
+            android:screenOrientation="portrait">
 
 
         </activity>
-        <activity android:name=".activity.BankListActivity" >
+        <activity android:name=".activity.BankListActivity"
+            android:screenOrientation="portrait">
 
 
         </activity>
@@ -82,11 +85,13 @@
 
 
         </activity>
-        <activity android:name=".activity.PreferencesActivity" >
+        <activity android:name=".activity.PreferencesActivity"
+            android:screenOrientation="portrait">
 
 
         </activity>
-        <activity android:name=".activity.CheckPasswordActivity" >
+        <activity android:name=".activity.CheckPasswordActivity"
+            android:screenOrientation="portrait">
 
 
         </activity>
@@ -119,7 +124,8 @@
 
 
         </activity>
-        <activity android:name=".activity.Request_03_Activity" >
+        <activity android:name=".activity.Request_03_Activity"
+            android:screenOrientation="portrait">
 
 
         </activity>
@@ -138,32 +144,39 @@
 
 
         </activity>
-        <activity android:name=".activity.FooterActivity" >
+        <activity android:name=".activity.FooterActivity"
+            android:screenOrientation="portrait">
 
 
         </activity>
-        <activity android:name=".activity.alert.FeedBackAlertActivity" >
+        <activity android:name=".activity.alert.FeedBackAlertActivity"
+            android:screenOrientation="portrait">
 
 
         </activity>
-        <activity android:name=".activity.alert.CancelDisputeAlertActivity" >
+        <activity android:name=".activity.alert.CancelDisputeAlertActivity"
+            android:screenOrientation="portrait">
 
 
         </activity>
-        <activity android:name=".activity.alert.ForfeitAlertActivity" >
+        <activity android:name=".activity.alert.ForfeitAlertActivity"
+            android:screenOrientation="portrait">
 
 
         </activity>
-        <activity android:name=".activity.alert.ReplyDisputeAlertActivity" >
+        <activity android:name=".activity.alert.ReplyDisputeAlertActivity"
+            android:screenOrientation="portrait">
 
 
         </activity>
-        <activity android:name=".activity.DisputeActivity" >
+        <activity android:name=".activity.DisputeActivity"
+            android:screenOrientation="portrait">
 
 
         </activity>
 
-        <activity android:name=".activity.RequestActivity" >
+        <activity android:name=".activity.RequestActivity"
+            android:screenOrientation="portrait">
 
 
         </activity>
@@ -173,7 +186,8 @@
 
         </activity>
 
-        <activity android:name=".activity.DisputeNoHistoryActivity" >
+        <activity android:name=".activity.DisputeNoHistoryActivity"
+            android:screenOrientation="portrait">
 
 
         </activity>
@@ -187,36 +201,49 @@
 
 
         </activity>
-        <activity android:name=".activity.alert.WarningAlertActivity" >
+        <activity android:name=".activity.alert.WarningAlertActivity"
+            android:screenOrientation="portrait">
 
 
         </activity>
 
-        <activity android:name=".activity.TransferToBankActivity" >
+        <activity android:name=".activity.TransferToBankActivity"
+            android:screenOrientation="portrait">
 
 
         </activity>
-        <activity android:name=".activity.TransferToCardActivity" >
+        <activity android:name=".activity.TransferToCardActivity"
+            android:screenOrientation="portrait">
 
 
         </activity>
-        <activity android:name=".activity.alert.TransferAlert" >
+        <activity android:name=".activity.alert.TransferAlert"
+            android:screenOrientation="portrait">
 
 
         </activity>
-        <activity android:name=".activity.alert.ContactUsAlert" >
+        <activity android:name=".activity.alert.ContactUsAlert"
+            android:screenOrientation="portrait">
 
 
         </activity>
-        <activity android:name=".activity.alert.TransferSuccessFullAlert" >
+        <activity android:name=".activity.alert.TransferSuccessFullAlert"
+            android:screenOrientation="portrait">
 
 
         </activity>
-        <activity android:name=".activity.alert.RequestSentAlert" >
+        <activity android:name=".activity.alert.RequestSentAlert"
+            android:screenOrientation="portrait">
 
 
         </activity>
-        <activity android:name=".activity.CancelledAndCompleted" >
+        <activity android:name=".activity.CancelledAndCompleted"
+            android:screenOrientation="portrait">
+
+
+        </activity>
+        <activity android:name=".activity.alert.DefaultOptionAlert"
+            android:screenOrientation="portrait">
 
 
         </activity>

@@ -27,12 +27,15 @@ public class LinkBankAccountActivity extends AppCompatActivity {
     EditText linkBankCardNumber;
     EditText linkBankAccountNumber;
 
+    String identifier="";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         onWindowFocusChanged(true);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_link_bank);
+
 
         idInitialization();
         setListeners();
@@ -80,7 +83,9 @@ public class LinkBankAccountActivity extends AppCompatActivity {
     }
     View.OnClickListener backAction = new View.OnClickListener() {
         public void onClick(View v) {
+            identifier = getIntent().getStringExtra("identifier");
             Intent mainIntent = new Intent(LinkBankAccountActivity.this,BankListActivity.class);
+            mainIntent.putExtra("identifier", identifier);
             LinkBankAccountActivity.this.startActivity(mainIntent);
         }
     };

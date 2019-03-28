@@ -70,7 +70,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="100dp"
-        android:background="@drawable/layout_corner"
+        android:background="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="@+id/view67"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -235,5 +235,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView86"
         app:layout_constraintVertical_bias="0.333" />
+
+    <ListView
+        android:id="@+id/transferBankList"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@android:color/transparent"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/view69"
+        app:layout_constraintEnd_toEndOf="@+id/view69"
+        app:layout_constraintStart_toStartOf="@+id/view69"
+        app:layout_constraintTop_toTopOf="@+id/view69" />
 
 </android.support.constraint.ConstraintLayout>

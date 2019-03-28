@@ -6,7 +6,7 @@ import android.widget.Button;
 
 import com.example.esgro.R;
 
-public class ContactUsAlert extends AppCompatActivity {
+public class DefaultOptionAlert extends AppCompatActivity {
 
     Button back;
 
@@ -14,6 +14,6 @@ public class ContactUsAlert extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         onWindowFocusChanged(true);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_contact_us_popup);
+        setContentView(R.layout.activity_set_defalut_alert);
     }
 }
