@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_contact_us_popup"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -95,23 +96,8 @@
             app:layout_constraintVertical_bias="0.026" />
 
 
-        <Button
-            android:id="@+id/button8"
-            android:layout_width="110dp"
-            android:layout_height="37dp"
-            android:background="@android:color/transparent"
-            android:fontFamily="@font/open_sans"
-            android:gravity="center_vertical"
-            android:text="Call"
-            android:textAllCaps="false"
-            app:layout_constraintBottom_toBottomOf="@+id/imageButton2"
-            app:layout_constraintEnd_toEndOf="@+id/imageButton2"
-            app:layout_constraintStart_toStartOf="@+id/imageButton2"
-            app:layout_constraintTop_toTopOf="@+id/imageButton2"
-            tools:ignore="MissingConstraints" />
-
         <ImageButton
-            android:id="@+id/imageButton2"
+            android:id="@+id/callBtn"
             android:layout_width="134dp"
             android:layout_height="36dp"
             android:layout_marginStart="8dp"
@@ -132,7 +118,22 @@
             app:srcCompat="@drawable/callicon" />
 
         <Button
-            android:id="@+id/button15"
+            android:id="@+id/callBtn1"
+            android:layout_width="110dp"
+            android:layout_height="37dp"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/open_sans"
+            android:gravity="center_vertical"
+            android:text="Call"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="@+id/callBtn"
+            app:layout_constraintEnd_toEndOf="@+id/callBtn"
+            app:layout_constraintStart_toStartOf="@+id/callBtn"
+            app:layout_constraintTop_toTopOf="@+id/callBtn"
+            tools:ignore="MissingConstraints" />
+
+        <Button
+            android:id="@+id/textBtn"
             android:layout_width="110dp"
             android:layout_height="30dp"
             android:background="@android:color/transparent"
@@ -146,7 +147,7 @@
             app:layout_constraintTop_toTopOf="@+id/imageButton3" />
 
         <Button
-            android:id="@+id/button18"
+            android:id="@+id/emailBtn"
             android:layout_width="110dp"
             android:layout_height="29dp"
             android:background="@android:color/transparent"

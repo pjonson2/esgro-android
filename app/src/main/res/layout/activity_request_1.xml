@@ -2,30 +2,31 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_request_1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F7F8FB">
 
     <!--<Button-->
-        <!--android:id="@+id/button15"-->
-        <!--android:layout_width="18dp"-->
-        <!--android:layout_height="18dp"-->
-        <!--android:layout_marginStart="16dp"-->
-        <!--android:layout_marginLeft="16dp"-->
-        <!--android:layout_marginTop="36dp"-->
-        <!--android:layout_marginEnd="8dp"-->
-        <!--android:layout_marginRight="8dp"-->
-        <!--android:layout_marginBottom="8dp"-->
-        <!--android:background="@drawable/icons8_white"-->
-        <!--android:fontFamily="@font/open_sans"-->
-        <!--android:textAllCaps="false"-->
-        <!--android:textSize="12dp"-->
-        <!--app:layout_constraintBottom_toBottomOf="@+id/view"-->
-        <!--app:layout_constraintEnd_toEndOf="@+id/view"-->
-        <!--app:layout_constraintHorizontal_bias="0.0"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintTop_toTopOf="parent"-->
-        <!--app:layout_constraintVertical_bias="0.333" />-->
+    <!--android:id="@+id/button15"-->
+    <!--android:layout_width="18dp"-->
+    <!--android:layout_height="18dp"-->
+    <!--android:layout_marginStart="16dp"-->
+    <!--android:layout_marginLeft="16dp"-->
+    <!--android:layout_marginTop="36dp"-->
+    <!--android:layout_marginEnd="8dp"-->
+    <!--android:layout_marginRight="8dp"-->
+    <!--android:layout_marginBottom="8dp"-->
+    <!--android:background="@drawable/icons8_white"-->
+    <!--android:fontFamily="@font/open_sans"-->
+    <!--android:textAllCaps="false"-->
+    <!--android:textSize="12dp"-->
+    <!--app:layout_constraintBottom_toBottomOf="@+id/view"-->
+    <!--app:layout_constraintEnd_toEndOf="@+id/view"-->
+    <!--app:layout_constraintHorizontal_bias="0.0"-->
+    <!--app:layout_constraintStart_toStartOf="parent"-->
+    <!--app:layout_constraintTop_toTopOf="parent"-->
+    <!--app:layout_constraintVertical_bias="0.333" />-->
 
     <Button
         android:id="@+id/requestBackBtn"
@@ -37,12 +38,12 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:background="@android:color/transparent"
+        android:drawableLeft="@drawable/icons8_white"
         android:fontFamily="@font/open_sans"
         android:text="Back"
         android:textAllCaps="false"
         android:textColor="@android:color/white"
         android:textSize="12dp"
-        android:drawableLeft="@drawable/icons8_white"
         app:layout_constraintBottom_toBottomOf="@+id/view42"
         app:layout_constraintEnd_toEndOf="@+id/view"
         app:layout_constraintHorizontal_bias="0.003"
@@ -54,7 +55,7 @@
         android:id="@+id/view42"
         android:layout_width="0dp"
         android:layout_height="78dp"
-        android:background="#2C3251"
+        android:background="@drawable/layout_bottom"
         app:layout_constraintBottom_toBottomOf="@+id/view4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -136,10 +137,11 @@
         android:layout_marginEnd="50dp"
         android:layout_marginRight="50dp"
         android:ems="10"
+        android:fontFamily="@font/open_sans"
         android:hint="$0.00"
         android:inputType="number"
         android:textAlignment="center"
-        android:textColor="#929AAB"
+        android:textColor="@color/solid_black"
         android:textSize="40dp"
         app:layout_constraintBottom_toBottomOf="@+id/view43"
         app:layout_constraintEnd_toEndOf="@+id/view43"
@@ -148,12 +150,13 @@
         app:layout_constraintVertical_bias="0.322" />
 
     <EditText
-        android:id="@+id/textView73"
+        android:id="@+id/reserveTxt"
         android:layout_width="48dp"
         android:layout_height="wrap_content"
         android:hint="$0.00"
+        android:inputType="number"
         android:textAlignment="center"
-        android:textColor="#929AAB"
+        android:textColor="@color/solid_black"
         android:textSize="10sp"
         app:fontFamily="@font/open_sans_semibold"
         app:layout_constraintBottom_toBottomOf="@+id/view43"
@@ -169,9 +172,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="90dp"
         android:layout_marginLeft="90dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="90dp"
         android:layout_marginRight="90dp"
+        android:layout_marginBottom="40dp"
         android:background="@drawable/light_green_button"
         android:fontFamily="@font/open_sans_semibold"
         android:text="Continue"
@@ -180,9 +183,7 @@
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view43"
-        app:layout_constraintVertical_bias="0.898" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <android.support.v7.widget.GridLayout
         android:layout_width="wrap_content"
@@ -335,11 +336,27 @@
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
             android:drawableRight="@drawable/icons8_back"
+            android:fontFamily="@font/open_sans_semibold"
             android:gravity="center"
             android:tag="x"
-            android:fontFamily="@font/open_sans_semibold"
             app:layout_column="2"
             app:layout_row="3" />
     </android.support.v7.widget.GridLayout>
+
+    <Button
+        android:id="@+id/iClick"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/about2x"
+        app:layout_constraintBottom_toBottomOf="@+id/reserveTxt"
+        app:layout_constraintEnd_toStartOf="@+id/textView74"
+        app:layout_constraintHorizontal_bias="0.011"
+        app:layout_constraintStart_toEndOf="@+id/reserveTxt"
+        app:layout_constraintTop_toTopOf="@+id/reserveTxt"
+        app:layout_constraintVertical_bias="0.636" />
 
 </android.support.constraint.ConstraintLayout>

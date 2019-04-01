@@ -291,7 +291,7 @@
         app:layout_constraintVertical_bias="0.322" />
 
     <EditText
-        android:id="@+id/textView73"
+        android:id="@+id/reserveTxt"
         android:layout_width="83dp"
         android:layout_height="45dp"
         android:hint="$0.00"

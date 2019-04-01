@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F7F8FB"
+    android:id="@+id/activity_profile"
     android:screenOrientation="portrait">
 
     <android.support.constraint.ConstraintLayout
@@ -94,7 +95,7 @@
         android:id="@+id/view52"
         android:layout_width="0dp"
         android:layout_height="215dp"
-        android:background="#2C3251"
+        android:background="@drawable/layout_bottom"
         app:layout_constraintBottom_toBottomOf="@+id/view4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -145,7 +146,7 @@
         app:fontFamily="@font/open_sans_semibold"
         app:layout_constraintBottom_toBottomOf="@+id/view54"
         app:layout_constraintEnd_toEndOf="@+id/view54"
-        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintStart_toStartOf="@+id/view54"
         app:layout_constraintTop_toTopOf="@+id/view54"
         app:layout_constraintVertical_bias="0.845" />
@@ -160,10 +161,10 @@
         app:fontFamily="@font/open_sans"
         app:layout_constraintBottom_toBottomOf="@+id/view54"
         app:layout_constraintEnd_toEndOf="@+id/view54"
-        app:layout_constraintHorizontal_bias="0.08"
-        app:layout_constraintStart_toStartOf="@+id/view54"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/profileUserNameTxt"
         app:layout_constraintTop_toTopOf="@+id/view54"
-        app:layout_constraintVertical_bias="0.89" />
+        app:layout_constraintVertical_bias="0.894" />
 
     <TextView
         android:id="@+id/profileUserNameTxt"
@@ -175,8 +176,8 @@
         app:fontFamily="@font/open_sans"
         app:layout_constraintBottom_toBottomOf="@+id/view54"
         app:layout_constraintEnd_toEndOf="@+id/view54"
-        app:layout_constraintHorizontal_bias="0.07"
-        app:layout_constraintStart_toStartOf="@+id/view54"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/profileLastNameTxt"
         app:layout_constraintTop_toTopOf="@+id/view54"
         app:layout_constraintVertical_bias="0.74" />
 
@@ -220,8 +221,8 @@
         app:fontFamily="@font/open_sans"
         app:layout_constraintBottom_toBottomOf="@+id/view54"
         app:layout_constraintEnd_toEndOf="@+id/view54"
-        app:layout_constraintHorizontal_bias="0.073"
-        app:layout_constraintStart_toStartOf="@+id/view54"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/profileFirstNameTxt"
         app:layout_constraintTop_toTopOf="@+id/view54"
         app:layout_constraintVertical_bias="0.579" />
 
@@ -229,12 +230,12 @@
         android:id="@+id/view55"
         android:layout_width="0dp"
         android:layout_height="1dp"
+        android:layout_marginBottom="9dp"
         android:background="#EBEBEB"
         app:layout_constraintBottom_toTopOf="@+id/textView95"
         app:layout_constraintEnd_toEndOf="@+id/view54"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/view54"
-        app:layout_constraintVertical_bias="0.769"
         tools:ignore="MissingConstraints" />
 
     <ImageView

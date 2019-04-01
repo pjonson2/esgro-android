@@ -45,7 +45,7 @@ public class ExportActivity extends AppCompatActivity {
     }
 
     void idInitialization(){
-        back = findViewById(R.id.exportBackBtn2);
+        back = findViewById(R.id.exportBackBtn);
         contactIcon = findViewById(R.id.exportcontactIcon);
         profileIcon = findViewById(R.id.exportProfileIcon);
         handshakeIcon = findViewById(R.id.exportHandshakeIcon);

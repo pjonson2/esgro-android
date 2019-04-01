@@ -3,6 +3,9 @@
     package="com.example.esgro" >
 
     <uses-permission android:name="android.permission.SEND_SMS"/>
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.hardware.touchscreen"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.INTERNET" />
@@ -247,12 +250,26 @@
 
 
         </activity>
+        <activity android:name=".activity.alert.IClickPopUpAlert"
+            android:screenOrientation="portrait">
+
+
+        </activity>
+
+
 
 
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+        <receiver android:name=".activity.sms.SmsReceiver">
+            <intent-filter>
+                <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
+            </intent-filter>
+        </receiver>
+
     </application>
 
 </manifest>

@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:id="@+id/activity_request_card"
+    android:layout_height="85dp">
 
     <ImageView
         android:id="@+id/requestUserImg"
@@ -11,9 +12,9 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="33dp"
-        android:layout_marginLeft="33dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="14dp"
         android:adjustViewBounds="true"
         app:srcCompat="@drawable/despute_card" />
 
@@ -24,9 +25,9 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="118dp"
-        android:layout_marginLeft="118dp"
-        android:layout_marginTop="23dp"
+        android:layout_marginStart="107dp"
+        android:layout_marginLeft="107dp"
+        android:layout_marginTop="16dp"
         android:text="Ben Stark"
         android:textColor="#393E46"
         android:textSize="14sp"
@@ -39,11 +40,29 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="117dp"
-        android:layout_marginLeft="117dp"
-        android:layout_marginTop="46dp"
+        android:layout_marginStart="106dp"
+        android:layout_marginLeft="106dp"
+        android:layout_marginTop="39dp"
         android:text="3 days ago"
         android:textColor="#929AAB"
         android:textSize="14sp"
         app:fontFamily="@font/open_sans" />
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="match_parent"
+        android:layout_height="18dp"
+        android:layout_below="@+id/requestDays"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginBottom="0dp"
+        android:text="                                                                    " />
 </RelativeLayout>

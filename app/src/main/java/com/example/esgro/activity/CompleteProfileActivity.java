@@ -96,7 +96,7 @@ public class CompleteProfileActivity  extends AppCompatActivity {
     };
     View.OnClickListener continues = new View.OnClickListener() {
         public void onClick(View v) {
-            Intent mainIntent = new Intent(CompleteProfileActivity.this,DisputeNoHistoryActivity.class);
+            Intent mainIntent = new Intent(CompleteProfileActivity.this,ProfileActivity.class);
             CompleteProfileActivity.this.startActivity(mainIntent);
         }
     };
@@ -123,7 +123,7 @@ public class CompleteProfileActivity  extends AppCompatActivity {
     };
     View.OnClickListener skipAction = new View.OnClickListener() {
         public void onClick(View v) {
-            Intent mainIntent = new Intent(CompleteProfileActivity.this,ProfileActivity.class);
+            Intent mainIntent = new Intent(CompleteProfileActivity.this,DisputeNoHistoryActivity.class);
             CompleteProfileActivity.this.startActivity(mainIntent);
         }
     };

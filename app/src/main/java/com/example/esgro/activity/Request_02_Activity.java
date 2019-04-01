@@ -30,6 +30,7 @@ public class Request_02_Activity extends AppCompatActivity {
     String days="";
     Bundle extras;
     String amount="";
+    String reserveAmount = "";
     String request_user= "";
 
     EditText holdingDays;
@@ -85,6 +86,7 @@ public class Request_02_Activity extends AppCompatActivity {
     void setValues(){
         amount = extras.getString("charging_amount");
         request_user = extras.getString("request_user");
+        reserveAmount = extras.getString("reserve_amount");
         System.out.println("request_user    "+request_user);
         try{
             days = extras.getString("holding_days");
@@ -116,6 +118,7 @@ public class Request_02_Activity extends AppCompatActivity {
             Intent mainIntent = new Intent(Request_02_Activity.this, Request_01_Activity.class);
             mainIntent.putExtra("charging_amount",amount);
             mainIntent.putExtra("request_user",extras.getString("request_user"));
+            mainIntent.putExtra("reserve_amount",reserveAmount);
             Request_02_Activity.this.startActivity(mainIntent);
         }
     };
@@ -128,6 +131,7 @@ public class Request_02_Activity extends AppCompatActivity {
                 mainIntent.putExtra("holding_days",holdings);
                 mainIntent.putExtra("request_user",request_user);
                 mainIntent.putExtra("charging_amount",amount);
+                mainIntent.putExtra("reserve_amount",reserveAmount);
                 Request_02_Activity.this.startActivity(mainIntent);
             }else{
                 AlertDialog alertDialog = new AlertDialog.Builder(Request_02_Activity.this).create();

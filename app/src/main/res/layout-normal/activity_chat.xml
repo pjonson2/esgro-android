@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/activity_chat"
     android:layout_height="match_parent">
 
     <android.support.constraint.ConstraintLayout
@@ -222,7 +223,7 @@
         android:enabled="true"
         android:fontFamily="@font/open_sans"
         android:gravity="top"
-        android:hint="Type your message here"
+        android:hint="  Type your message here"
         android:inputType="textMultiLine"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/midView5"

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/view59"
+        android:layout_width="290dp"
+        android:layout_height="182dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView102"
+            android:layout_width="226dp"
+            android:layout_height="109dp"
+            android:gravity="start"
+            android:text="This is the amount that you are guaranteed to receive. "
+            android:textAlignment="center"
+            android:textColor="#393E46"
+            android:textSize="12sp"
+
+            app:fontFamily="@font/open_sans"
+            app:layout_constraintBottom_toBottomOf="@+id/view59"
+            app:layout_constraintEnd_toEndOf="@+id/view59"
+            app:layout_constraintHorizontal_bias="0.437"
+            app:layout_constraintStart_toStartOf="@+id/view59"
+            app:layout_constraintTop_toTopOf="@+id/view59"
+            app:layout_constraintVertical_bias="0.78" />
+
+        <Button
+            android:id="@+id/reserveCloseBtn"
+            android:layout_width="142dp"
+            android:layout_height="38dp"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/open_sans"
+            android:text="Dismiss"
+            android:textAllCaps="false"
+            android:textColor="@color/solid_black"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="@+id/view59"
+            app:layout_constraintEnd_toEndOf="@+id/view59"
+            app:layout_constraintStart_toStartOf="@+id/view59"
+            app:layout_constraintTop_toTopOf="@+id/view59"
+            app:layout_constraintVertical_bias="0.888" />
+
+    </android.support.constraint.ConstraintLayout>
+</android.support.constraint.ConstraintLayout>

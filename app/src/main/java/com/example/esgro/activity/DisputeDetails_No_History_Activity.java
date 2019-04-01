@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -130,7 +131,6 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
         disputeNoUserDaysTxt.setText(disputeDays);
         disputeNoUserPriceTxt.setText(disputePrice);
         getNoDisputeUserImg.setImageBitmap(bitmap);
-        historyField.setVisibility(View.INVISIBLE);
 
 
 
@@ -338,9 +338,38 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
             dialog.setContentView(R.layout.activity_contact_us_popup);
             dialog.show();
             Window window = dialog.getWindow();
-            Button button;
+            Button callBtn = window.findViewById(R.id.callBtn1);
+            Button textBtn = window.findViewById(R.id.textBtn);
+            Button emailBtn = window.findViewById(R.id.emailBtn);
+
+            callBtn.setOnClickListener(calling);
+            textBtn.setOnClickListener(sending);
+            emailBtn.setOnClickListener(emailing);
         }
     };
+    View.OnClickListener calling = new View.OnClickListener() {
+        public void onClick(View v) {
+            Intent intent = new Intent(Intent.ACTION_DIAL);
+            intent.setData(Uri.parse("tel:0123456789"));
+            startActivity(intent);
+        }
+    };
+    View.OnClickListener sending = new View.OnClickListener() {
+        public void onClick(View v) {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("sms:" + "0771231232"));
+            intent.putExtra("sms_body", "upventrix");
+            startActivity(intent);
+        }
+    };
+    View.OnClickListener emailing = new View.OnClickListener() {
+        public void onClick(View v) {
+            Intent emailIntent = new Intent(Intent.ACTION_SEND);
+            emailIntent.setType("text/plain");
+            startActivity(emailIntent);
+        }
+    };
+
+
 
     void loadNotifications(Window window){
         notificationList = new ArrayList<>();

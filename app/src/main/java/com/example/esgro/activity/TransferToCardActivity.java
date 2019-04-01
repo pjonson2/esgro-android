@@ -68,7 +68,9 @@ public class TransferToCardActivity  extends AppCompatActivity {
     };
     View.OnClickListener dismissAction = new View.OnClickListener() {
         public void onClick(View v) {
-            dialog.dismiss();
+//            dialog.dismiss();
+            Intent mainIntent = new Intent(TransferToCardActivity.this, ProfileActivity.class);
+            TransferToCardActivity.this.startActivity(mainIntent);
         }
     };
     View.OnClickListener toAddCard = new View.OnClickListener() {

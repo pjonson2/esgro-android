@@ -36,6 +36,7 @@ public class Request_03_Activity extends AppCompatActivity {
 
     String charging_amount;
     String holding_days;
+    String reservePrice;
 
 
     @Override
@@ -68,14 +69,17 @@ public class Request_03_Activity extends AppCompatActivity {
     void setListeners(){
         back.setOnClickListener(requestBack);
         continues.setOnClickListener(requestContinue);
+        userName.setOnClickListener(goToSelectAgain);
         userName.setText(extras.getString("request_user"));
     }
 
     void setValues(){
         holding_days = extras.getString("holding_days");
         charging_amount = extras.getString("charging_amount");
-        amount.setText("$"+charging_amount);
+        reservePrice = extras.getString("reserve_amount");
+        amount.setText(charging_amount);
         days.setText(holding_days);
+        reserve.setText(reservePrice);
 
     }
 
@@ -97,12 +101,20 @@ public class Request_03_Activity extends AppCompatActivity {
 
             String days = extras.getString("holding_days");
             String prices = extras.getString("charging_amount");
+            String rePrice = extras.getString("reserve_amount");
 
             Intent mainIntent = new Intent(Request_03_Activity.this,Request_02_Activity.class);
             mainIntent.putExtra("holding_days",days);
             mainIntent.putExtra("charging_amount",prices);
+            mainIntent.putExtra("reserve_amount",rePrice);
             mainIntent.putExtra("request_user",userName.getText().toString());
 
+            Request_03_Activity.this.startActivity(mainIntent);
+        }
+    };
+    View.OnClickListener goToSelectAgain = new View.OnClickListener() {
+        public void onClick(View v) {
+            Intent mainIntent = new Intent(Request_03_Activity.this,RequestActivity.class);
             Request_03_Activity.this.startActivity(mainIntent);
         }
     };
@@ -110,6 +122,13 @@ public class Request_03_Activity extends AppCompatActivity {
         public void onClick(View v) {
             dialog.setContentView(R.layout.activity_proessing_alert);
             dialog.setContentView(R.layout.activity_proessing_alert);
+
+            String[] ss = charging_amount.split("");
+
+
+
+            final StringBuilder builder = new StringBuilder(charging_amount);
+            builder.replace(0,1,"");
 
             dialog.show();
             Window window = dialog.getWindow();
@@ -131,7 +150,7 @@ public class Request_03_Activity extends AppCompatActivity {
                 @Override
                 public void run() {
 
-                    if(Double.parseDouble(charging_amount)>0){
+                    if(Double.parseDouble(builder.toString())>0){
                         weLbl.setTextColor(Color.parseColor("#929AAB"));
                         esgroLbl.setTextColor(Color.parseColor("#7FE239"));
                     }

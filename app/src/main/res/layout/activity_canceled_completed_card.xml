@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="80dp"
+    android:id="@+id/activity_canceled_completed_card"
     android:background="@drawable/layout_gray_corner"
     android:orientation="vertical">
 

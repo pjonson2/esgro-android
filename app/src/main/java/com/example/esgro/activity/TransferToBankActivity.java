@@ -103,7 +103,9 @@ public class TransferToBankActivity extends AppCompatActivity {
     };
     View.OnClickListener dismissAction = new View.OnClickListener() {
         public void onClick(View v) {
-            dialog.dismiss();
+//            dialog.dismiss();
+            Intent mainIntent = new Intent(TransferToBankActivity.this, ProfileActivity.class);
+            TransferToBankActivity.this.startActivity(mainIntent);
         }
     };
     View.OnClickListener backAction = new View.OnClickListener() {

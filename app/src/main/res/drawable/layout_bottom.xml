@@ -3,7 +3,6 @@
     <item>
     <shape>
         <stroke />
-        <corners android:bottomLeftRadius="10dp" android:bottomRightRadius="10dp" />
         <padding android:left="0dp" android:top="0dp" android:right="0dp" android:bottom="0dp"  />
         <gradient android:angle="-90" android:startColor="#3B5F7A" android:endColor="#2C3251"  />
 

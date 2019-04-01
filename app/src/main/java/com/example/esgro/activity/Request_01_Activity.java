@@ -1,11 +1,13 @@
 package com.example.esgro.activity;
 
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -27,11 +29,16 @@ public class Request_01_Activity extends AppCompatActivity {
     Button n9;
     Button n10;
     Button n11;
+    Button iClick;
 
     EditText requestChargingAmount;
+    EditText reserveTxt;
 
-    String amount="";
+    String amount="$";
+    String amount2="$";
+
     Bundle extras;
+    Dialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +70,10 @@ public class Request_01_Activity extends AppCompatActivity {
         n10 =  findViewById(R.id.n10);
         n11 =  findViewById(R.id.n11);
         n0 =  findViewById(R.id.n0);
+        iClick = findViewById(R.id.iClick);
+
+        reserveTxt = findViewById(R.id.reserveTxt);
+        dialog = new Dialog(this);
 
 
     }
@@ -82,6 +93,7 @@ public class Request_01_Activity extends AppCompatActivity {
         n10.setOnClickListener(numberPad);
         n11.setOnClickListener(numberPad);
         n0.setOnClickListener(numberPad);
+        iClick.setOnClickListener(iClickAction);
 
 
     }
@@ -89,6 +101,7 @@ public class Request_01_Activity extends AppCompatActivity {
     void setValues(){
         try{
             requestChargingAmount.setText(extras.getString("charging_amount"));
+            reserveTxt.setText(extras.getString("reserve_amount"));
         }catch (Exception e){}
     }
 
@@ -111,10 +124,25 @@ public class Request_01_Activity extends AppCompatActivity {
             Request_01_Activity.this.startActivity(mainIntent);
         }
     };
+    View.OnClickListener iClickAction = new View.OnClickListener() {
+        public void onClick(View v) {
+            dialog.setContentView(R.layout.activity_iclick_reserve_alert);
+            dialog.show();
+            Window window = dialog.getWindow();
+
+            Button closeBtn = window.findViewById(R.id.reserveCloseBtn);
+            closeBtn.setOnClickListener(reserveCloseAction);
+        }
+    };
+    View.OnClickListener reserveCloseAction = new View.OnClickListener() {
+        public void onClick(View v) {dialog.dismiss();
+        }
+    };
     View.OnClickListener requestContinue = new View.OnClickListener() {
         public void onClick(View v) {
 
             String price = requestChargingAmount.getText().toString();
+            String reserve_price = reserveTxt.getText().toString();
             String userName = extras.getString("request_user");
 
             if (price.equals("")){
@@ -132,6 +160,7 @@ public class Request_01_Activity extends AppCompatActivity {
                 Intent mainIntent = new Intent(Request_01_Activity.this,Request_02_Activity.class);
                 mainIntent.putExtra("charging_amount", price);
                 mainIntent.putExtra("request_user", userName);
+                mainIntent.putExtra("reserve_amount", reserve_price);
                 Request_01_Activity.this.startActivity(mainIntent);
             }
         }
@@ -139,22 +168,78 @@ public class Request_01_Activity extends AppCompatActivity {
     View.OnClickListener numberPad = new View.OnClickListener() {
         public void onClick(View v) {
             Object tag = v.getTag();
-            try {
 
-                if (v.getTag().toString().equals("x")) {
-                    if (amount != "") {
-                        amount = amount.substring(0, amount.length() - 1);
-                    }
+            if  (requestChargingAmount.isFocused()){
 
-                } else {
-                    amount = amount + tag.toString();
+                if (amount.equals("")) amount = "$";
+
+                if (v.getTag().toString().equals(".")) {
+
+                    int i = countChar(requestChargingAmount.getText().toString(), '.');
+                    if (i>0) return;
+
                 }
 
-                requestChargingAmount.setText(amount);
-                requestChargingAmount.setSelection(amount.length());
-            }catch (Exception ex){
+                try {
 
+                    if (v.getTag().toString().equals("x")) {
+                        if (amount != "") {
+                            amount = amount.substring(0, amount.length() - 1);
+                        }else{
+                        }
+
+                    } else {
+                        amount = amount + tag.toString();
+                    }
+
+                    requestChargingAmount.setText(amount);
+                    requestChargingAmount.setSelection(amount.length());
+                }catch (Exception ex){
+
+                }
             }
+
+            if(reserveTxt.isFocused()){
+
+                if (amount2.equals("")) amount2 = "$";
+
+                if (v.getTag().toString().equals(".")) {
+
+                    int i = countChar(reserveTxt.getText().toString(), '.');
+                    if (i>0) return;
+
+                }
+
+                try {
+
+                    if (v.getTag().toString().equals("x")) {
+                        if (amount2 != "") {
+                            amount2 = amount2.substring(0, amount2.length() - 1);
+                        }else{
+                        }
+
+                    } else {
+                        amount2 = amount2 + tag.toString();
+                    }
+
+                    reserveTxt.setText(amount2);
+                    reserveTxt.setSelection(amount2.length());
+                }catch (Exception ex){
+
+                }
+            }
+
         }
     };
+    public int countChar(String str, char c)
+    {
+        int count = 0;
+
+        for(int i=0; i < str.length(); i++)
+        {    if(str.charAt(i) == c)
+            count++;
+        }
+
+        return count;
+    }
 }

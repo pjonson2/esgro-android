@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/activity_update_profile"
     android:screenOrientation="portrait">
 
     <android.support.constraint.ConstraintLayout
@@ -93,7 +94,7 @@
         android:id="@+id/view58"
         android:layout_width="0dp"
         android:layout_height="178dp"
-        android:background="#2C3251"
+        android:background="@drawable/layout_bottom"
         app:layout_constraintBottom_toBottomOf="@+id/view4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.666"

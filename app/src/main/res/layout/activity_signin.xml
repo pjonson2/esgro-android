@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/activity_signin"
     android:layout_height="match_parent"
     android:screenOrientation="portrait">
 
@@ -21,7 +22,8 @@
         android:layout_marginTop="0dp"
         android:layout_marginEnd="1dp"
         android:layout_marginRight="1dp"
-        android:layout_marginBottom="0dp">
+        android:layout_marginBottom="0dp"
+        android:background="#F7F8FB">
 
         <Button
             android:id="@+id/siginInBackBtn"
@@ -42,7 +44,7 @@
         <Button
             android:id="@+id/signIngetStartBtn"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:layout_marginStart="70dp"
             android:layout_marginLeft="70dp"
             android:layout_marginEnd="70dp"
@@ -97,11 +99,11 @@
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             android:background="@drawable/layout_corner"
-            android:bottom="5dp"
             android:clickable="true"
+            android:elevation="2dp"
             android:focusable="true"
             android:left="5dp"
-            android:radius="11dp"
+            android:paddingBottom="5dp"
             android:right="5dp"
             android:shape="rectangle"
             android:top="5dp"
@@ -113,7 +115,7 @@
             <Button
                 android:id="@+id/signInContinueBtn"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
                 android:layout_marginStart="60dp"
                 android:layout_marginLeft="60dp"
                 android:layout_marginTop="8dp"
@@ -146,6 +148,7 @@
                 android:fontFamily="@font/open_sans_semibold"
                 android:hint="Email"
                 android:inputType="textPersonName"
+                android:textColor="#393E46"
                 android:textSize="14sp"
                 app:autoSizeMaxTextSize="100sp"
                 app:autoSizeMinTextSize="12sp"
@@ -167,6 +170,7 @@
                 android:autoSizeTextType="uniform"
                 android:hint="Password"
                 android:inputType="textPassword"
+                android:textColor="#393E46"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
