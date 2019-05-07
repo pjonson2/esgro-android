@@ -4,7 +4,11 @@
     <string name="get_started">Get Started</string>
     <string name="sign_in">Sign In</string>
     <string name="v1_0">v1.0</string>
-    <string name="url">www.miosito.net?prova%26reg=bis</string>
+    <string name="url">https://esgro-api.herokuapp.com</string>
+    <string name="userdata">userdata</string>
+    <string name="userid">userid</string>
+
+
     <string-array name="country_names">
         <item>US</item>
         <item>UK</item>
@@ -15,4 +19,5 @@
         <item>SA</item>
         <item>PAK</item>
     </string-array>
+
 </resources>

@@ -32,5 +32,11 @@ dependencies {
     compile 'com.github.DushyantMainwal:RoundedImageView-Library:0.3.0'
     implementation 'dev.dworks.libs:volleyplus:0.1.4'
     implementation 'com.google.code.gson:gson:2.8.2'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.9.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.8.0'
+    compile 'com.squareup.retrofit2:converter-gson:<latest-version>'
+
 
 }
