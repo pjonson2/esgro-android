@@ -4,41 +4,23 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.error.AuthFailureError;
-import com.android.volley.error.VolleyError;
-import com.android.volley.request.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.esgro.R;
 import com.example.esgro.modals.User;
 import com.example.esgro.resource.Config;
-import com.example.esgro.resource.LocaData;
+import com.example.esgro.resource.LocalData;
 import com.example.esgro.services.UserService;
-import com.google.gson.JsonElement;
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.concurrent.TimeUnit;
-
-import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -110,6 +92,7 @@ public class SignUpActivity extends AppCompatActivity {
             SignUpActivity.this.startActivity(mainIntent);
         }
     };
+
     View.OnClickListener continueBtnAction = new View.OnClickListener() {
         public void onClick(View v) {
 
@@ -127,7 +110,6 @@ public class SignUpActivity extends AppCompatActivity {
                 public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
 
                     String status = null;
-                    System.out.println("response.body()  "+response.body());
                     try {
                         status = response.body().get("status").getAsString();
                     } catch (Exception e) {
@@ -136,11 +118,15 @@ public class SignUpActivity extends AppCompatActivity {
                     if (status.equals("success")){
 
                         JsonObject userData = response.body().getAsJsonObject("userdata");
-                        SharedPreferences sharedPref = getSharedPreferences(key, MODE_PRIVATE);
-                        new LocaData(sharedPref,key,userData);
 
+                        // set local user data
+                        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                        new LocalData().setLocalData(sharedPref,userData);
+
+                        // re-direct next form
                          Intent mainIntent = new Intent(SignUpActivity.this,MobileVerificationActivity.class);
                          SignUpActivity.this.startActivity(mainIntent);
+
                     }else{
                         System.out.println(status);
                     }

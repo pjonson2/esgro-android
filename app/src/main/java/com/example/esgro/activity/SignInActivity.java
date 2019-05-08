@@ -18,14 +18,11 @@ public class SignInActivity extends AppCompatActivity {
     EditText email;
     EditText password;
 
-    String url;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         onWindowFocusChanged(true);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signin );
-        url = getResources().getString(R.string.url)+"/user";
 
         idInitialization();
         setListeners();
@@ -76,19 +73,8 @@ public class SignInActivity extends AppCompatActivity {
     View.OnClickListener continueBtnAction = new View.OnClickListener() {
         public void onClick(View v) {
 
-//           new UserController().check(url,
-//                    email.getText().toString(),
-//                    password.getText().toString()
-//            );
-
-//           if (isCheck) {
-//
-//               Intent mainIntent = new Intent(SignInActivity.this,MobileVerificationActivity.class);
-//               SignInActivity.this.startActivity(mainIntent);
-//
-//            }else{
-//               System.out.println("User Not Found");
-//           }
+               Intent mainIntent = new Intent(SignInActivity.this,MobileVerificationActivity.class);
+               SignInActivity.this.startActivity(mainIntent);
 
         }
     };
