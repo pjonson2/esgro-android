@@ -30,6 +30,11 @@ public class User {
     public User() {
     }
 
+    public User(String email, String ur_key) {
+        this.email = email;
+        this.ur_key = ur_key;
+    }
+
     public User( String firstname,String lastname, String username, String email, String ur_key){
         this.username = username;
         this.firstname = firstname;
