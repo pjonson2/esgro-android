@@ -52,7 +52,6 @@ public class SignInActivity extends AppCompatActivity {
         password= findViewById(R.id.signInPasswordTxt);
         service = Config.getInstance().create(UserService.class);
 
-
     }
 
     void setListeners(){
@@ -113,7 +112,7 @@ public class SignInActivity extends AppCompatActivity {
                         new LocalData().setLocalData(sharedPref,userData);
 
                         // re-direct next form
-                        Intent mainIntent = new Intent(SignInActivity.this,MobileVerificationActivity.class);
+                        Intent mainIntent = new Intent(SignInActivity.this,CompleteProfileActivity.class);
                         SignInActivity.this.startActivity(mainIntent);
 
                     }else{

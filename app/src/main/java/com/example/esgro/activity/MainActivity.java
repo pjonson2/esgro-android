@@ -1,12 +1,15 @@
 package com.example.esgro.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 
 import com.example.esgro.R;
+import com.example.esgro.resource.LocalData;
 
 public class MainActivity extends AppCompatActivity {
     private final int SPLASH_DISPLAY_LENGTH = 3000;
@@ -23,6 +26,16 @@ public class MainActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable(){
             @Override
             public void run() {
+                SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
+                String s = new LocalData().getlocalData(sharedPref, "userdata");
+                System.out.println(s);
+                if (!s.equals("")){
+                    Intent mainIntent = new Intent(MainActivity.this,DisputeNoHistoryActivity.class);
+                    MainActivity.this.startActivity(mainIntent);
+                    MainActivity.this.finish();
+                    return;
+                }
                 Intent mainIntent = new Intent(MainActivity.this,LaunchedActivity.class);
                 MainActivity.this.startActivity(mainIntent);
                 MainActivity.this.finish();

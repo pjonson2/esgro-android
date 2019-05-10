@@ -18,8 +18,14 @@ public class LocalData {
     }
 
     public String getlocalData(SharedPreferences appSharedPrefs,String key){
-        String json = appSharedPrefs.getString("userdata", ""); //  get json object as a string
+        String json = appSharedPrefs.getString(key, ""); //  get json object as a string
         return json;
+    }
+
+    public void setVerificationId(SharedPreferences sharedPref, int verificationId){
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putInt("verification_id", verificationId); // save verification_id as a string
+        editor.commit();
     }
 
 }

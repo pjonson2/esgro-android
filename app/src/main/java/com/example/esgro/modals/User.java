@@ -27,7 +27,23 @@ public class User {
     @SerializedName("profileImgUrl")
     private String imageUrl;
 
+    @SerializedName("veri_id")
+    private int veri_id;
+
+    @SerializedName("pin")
+    private int pin;
+
     public User() {
+    }
+
+    public User(int veri_id,int pin) {
+        this.veri_id = veri_id;
+        this.pin = pin;
+    }
+
+    public User(String mobile,int userID) {
+        this.mobile = mobile;
+        this.userID = userID;
     }
 
     public User(String email, String ur_key) {

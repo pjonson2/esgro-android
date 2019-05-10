@@ -148,4 +148,13 @@ public class CompleteProfileActivity  extends AppCompatActivity {
                 break;
         }
     }
+    @Override
+    public void onBackPressed() {
+        System.out.println("You clicked back button");
+//        if (!shouldAllowBack()) {
+//            doSomething();
+//        } else {
+//            super.onBackPressed();
+//        }
+    }
 }

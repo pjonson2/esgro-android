@@ -1,12 +1,16 @@
 package com.example.esgro.activity;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
@@ -16,9 +20,24 @@ import android.widget.TextView;
 
 import com.example.esgro.R;
 import com.example.esgro.modals.Dispute;
+import com.example.esgro.modals.User;
+import com.example.esgro.resource.Config;
+import com.example.esgro.resource.LocalData;
+import com.example.esgro.services.DealService;
+import com.example.esgro.services.UserService;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class DisputeNoHistoryActivity extends AppCompatActivity {
 
@@ -29,16 +48,16 @@ public class DisputeNoHistoryActivity extends AppCompatActivity {
     ImageView profileIcon;
     ImageView newPostIcon;
     ImageView settings;
+    DealService service = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         onWindowFocusChanged(true);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dispute_shake);
-
+        hideKeyboard(this);
         idInitialization();
         setListeners();
-        setValues();
 
     }
 
@@ -48,9 +67,11 @@ public class DisputeNoHistoryActivity extends AppCompatActivity {
         profileIcon = findViewById(R.id.disputesProfileIcon);
         newPostIcon = findViewById(R.id.disputesNewPostIcon);
         settings = findViewById(R.id.disputesSettingsIcon);
+        service = Config.getInstance().create(DealService.class);
 
         disputeList = new ArrayList<>();
-        initializeArray();
+        setValues();
+
         ListView listView = findViewById(R.id.dynamicShakeListView);
 
         DisputeNoHistoryActivity.CustomAdaper customAdaper = new DisputeNoHistoryActivity.CustomAdaper();
@@ -84,7 +105,6 @@ public class DisputeNoHistoryActivity extends AppCompatActivity {
 
                 startActivity(intent);
 
-
             }
         });
 
@@ -99,45 +119,55 @@ public class DisputeNoHistoryActivity extends AppCompatActivity {
 
     void setValues(){
 
+        final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String userData = new LocalData().getlocalData(sharedPref, "userdata");
+        int userid = 0;
+        try {
+            JSONObject jsonObj = new JSONObject(userData);
+            userid = jsonObj.getInt("userid");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+        Call<JsonObject> userCall = service.dealAll(""+userid);
+          userCall.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                String status = null;
+                try {
+                    status = response.body().get("status").getAsString();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                if (status.equals("success")){
+
+                    JsonArray dealsList = response.body().getAsJsonArray("deals");
+
+                        for (JsonElement value : dealsList) {
+                        disputeList.add(
+                                new Dispute(
+                                        value.getAsJsonObject().get("firstname").getAsString()+" "+value.getAsJsonObject().get("lastname").getAsString(),
+                                        value.getAsJsonObject().get("description").getAsString(),
+                                        value.getAsJsonObject().get("total_cost").getAsDouble()+"",
+                                        value.getAsJsonObject().get("status").getAsString(),
+                                        R.drawable.user1
+                                )
+                        );
+                    }
+
+                }else{
+                    System.out.println(status);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                System.out.println("Error "+t.getMessage());
+            }
+        });
     }
 
-    void initializeArray(){
-
-        disputeList.add(
-                new Dispute("Pamel anderson","","-238.12","waiting",R.drawable.user1)
-        );
-        disputeList.add(
-                new Dispute("Nikkal simonze","","-200.32","2 Days Left",R.drawable.user2)
-        );
-        disputeList.add(
-                new Dispute("sunny leon","","-164.12","3 Days Left",R.drawable.user3)
-        );
-        disputeList.add(
-                new Dispute("Nicole minaj","","-60.12","2 Days Left",R.drawable.user4)
-        );
-        disputeList.add(
-                new Dispute("camilla cibello","","+422.22","6 Days Left",R.drawable.user5)
-        );
-        disputeList.add(
-                new Dispute("Selena gomez","","+76.32","1 Days Left",R.drawable.user6)
-        );
-        disputeList.add(
-                new Dispute("Maria shomnix","","+255.43","1 Week Left",R.drawable.user7)
-        );
-        disputeList.add(
-                new Dispute("joudge bush","","+432.12","2 Week Left",R.drawable.user8)
-        );
-        disputeList.add(
-                new Dispute("SGrahams Smith","","+98.32","Completed",R.drawable.user9)
-        );
-        disputeList.add(
-                new Dispute("Michel clark","","+234.32","Completed",R.drawable.user1)
-        );
-        disputeList.add(
-                new Dispute("James Anderson","","-455.32","Canceled",R.drawable.user6)
-        );
-
-    }
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
@@ -170,12 +200,14 @@ public class DisputeNoHistoryActivity extends AppCompatActivity {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
+
             convertView = getLayoutInflater().inflate(R.layout.activity_dispute_card,null);
 
             TextView bankNameView = convertView.findViewById(R.id.disputeUserName);
 
             TextView disputePrice = convertView.findViewById(R.id.disputePriceTxt);
             TextView disputedays = convertView.findViewById(R.id.disputeDaysTxt);
+            TextView disputeDesc = convertView.findViewById(R.id.disputeDiscription);
             ImageView deisputeImg = convertView.findViewById(R.id.disputeUserImage);
 
             Dispute dispute = disputeList.get(position);
@@ -183,6 +215,8 @@ public class DisputeNoHistoryActivity extends AppCompatActivity {
             bankNameView.setText(dispute.getName());
             disputedays.setText(dispute.getDays());
             disputePrice.setText(dispute.getPrice());
+            disputeDesc.setText(dispute.getDiscrption());
+
 
             if(Double.parseDouble(dispute.getPrice())<0){
                 disputePrice.setTextColor(Color.RED);
@@ -231,4 +265,17 @@ public class DisputeNoHistoryActivity extends AppCompatActivity {
             DisputeNoHistoryActivity.this.startActivity(mainIntent);
         }
     };
+
+    public void hideKeyboard(Activity activity) {
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        //Find the currently focused view, so we can grab the correct window token from it.
+        View view = activity.getCurrentFocus();
+        //If no view currently has focus, create a new one, just so we can grab a window token from it
+        if (view == null) {
+            view = new View(activity);
+        }
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+
+    }
+
 }

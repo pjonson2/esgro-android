@@ -190,6 +190,7 @@
         </activity>
 
         <activity android:name=".activity.DisputeNoHistoryActivity"
+            android:windowSoftInputMode="stateAlwaysHidden"
             android:screenOrientation="portrait">
 
 

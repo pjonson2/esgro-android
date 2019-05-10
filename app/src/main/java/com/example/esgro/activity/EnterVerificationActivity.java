@@ -1,7 +1,9 @@
 package com.example.esgro.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -12,6 +14,18 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.esgro.R;
+import com.example.esgro.modals.User;
+import com.example.esgro.resource.Config;
+import com.example.esgro.resource.LocalData;
+import com.example.esgro.services.UserService;
+import com.google.gson.JsonObject;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class EnterVerificationActivity extends AppCompatActivity {
 
@@ -24,6 +38,10 @@ public class EnterVerificationActivity extends AppCompatActivity {
     EditText n4Txt;
 
     TextView timerView;
+    UserService service = null;
+
+    Bundle extras;
+    int verification_id = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +63,9 @@ public class EnterVerificationActivity extends AppCompatActivity {
         n3Txt = findViewById(R.id.enterNumber3Txt);
         n4Txt = findViewById(R.id.enterNumber4Txt);
         timerView = findViewById(R.id.enterTimerLbl);
+        service = Config.getInstance().create(UserService.class);
+        extras = getIntent().getExtras();
+
     }
 
     void setListeners() {
@@ -61,7 +82,8 @@ public class EnterVerificationActivity extends AppCompatActivity {
         n3Txt.addTextChangedListener(n3Change);
         n4Txt.addTextChangedListener(n4Change);
 
-//        n2Txt.requestFocus();
+        verification_id = extras.getInt("verification_id");
+
     }
 
     void setValues() {
@@ -90,10 +112,39 @@ public class EnterVerificationActivity extends AppCompatActivity {
 
             } else {
 
-                Intent mainIntent = new Intent(EnterVerificationActivity.this, CompleteProfileActivity.class);
-                EnterVerificationActivity.this.startActivity(mainIntent);
+                int pin = Integer.parseInt(n1TXt.getText() + "" + n2Txt.getText() + "" + n3Txt.getText() + "" + n4Txt.getText());
+
+                Call<JsonObject> userCall = service.confirm(
+                            new User(
+                                     verification_id,
+                                     pin
+                            ));
+                    userCall.enqueue(new Callback<JsonObject>() {
+                        @Override
+                        public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+
+                            String status = null;
+
+                            try {
+                                status = response.body().get("status").getAsString();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+
+                            if (status.equals("success")){
+
+                                Intent mainIntent = new Intent(EnterVerificationActivity.this, CompleteProfileActivity.class);
+                                EnterVerificationActivity.this.startActivity(mainIntent);
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<JsonObject> call, Throwable t) {
+
+                        }
+                    });
+                }
             }
-        }
     };
     View.OnClickListener backAction = new View.OnClickListener() {
         public void onClick(View v) {
@@ -206,4 +257,14 @@ public class EnterVerificationActivity extends AppCompatActivity {
 
         }
     };
+
+    @Override
+    public void onBackPressed() {
+        System.out.println("You clicked back button");
+//        if (!shouldAllowBack()) {
+//            doSomething();
+//        } else {
+//            super.onBackPressed();
+//        }
+    }
 }
