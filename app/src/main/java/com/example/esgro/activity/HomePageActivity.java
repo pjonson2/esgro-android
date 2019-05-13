@@ -1,13 +1,19 @@
 package com.example.esgro.activity;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.esgro.R;
+import com.example.esgro.resource.LocalData;
 
 public class HomePageActivity extends AppCompatActivity {
 
@@ -122,8 +128,8 @@ public class HomePageActivity extends AppCompatActivity {
     };
     View.OnClickListener signOutAction = new View.OnClickListener() {
         public void onClick(View v) {
-            Intent mainIntent = new Intent(HomePageActivity.this,LaunchedActivity.class);
-            HomePageActivity.this.startActivity(mainIntent);
+
+            vewAlert("Confirm","Are you sure want to signout?",HomePageActivity.this);
         }
     };
     View.OnClickListener exportAction = new View.OnClickListener() {
@@ -176,5 +182,37 @@ public class HomePageActivity extends AppCompatActivity {
             HomePageActivity.this.startActivity(mainIntent);
         }
     };
+
+
+
+
+    public void vewAlert(final String title, String message, final Context context){
+        final AlertDialog alertDialog = new AlertDialog.Builder(context).create();
+        alertDialog.setTitle(title);
+        alertDialog.setMessage(message);
+        alertDialog.setCanceledOnTouchOutside(false);
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                        new LocalData().setLocalData(sharedPref,null);
+
+                        dialog.dismiss();
+                        if (title.equals("Confirm")) {
+                            Intent mainIntent = new Intent(context,LaunchedActivity.class);
+                            context.startActivity(mainIntent);
+                        }
+                    }
+                });
+        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Cancel",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        alertDialog.show();
+    }
+
 }
 

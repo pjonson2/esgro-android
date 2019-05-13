@@ -3,6 +3,7 @@ package com.example.esgro.activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Handler;
@@ -28,17 +29,25 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
-                String s = new LocalData().getlocalData(sharedPref, "userdata");
-                System.out.println(s);
-                if (!s.equals("")){
+                String sf = new LocalData().getlocalData(sharedPref, "userdata");
+                System.out.println("USER DATA "+sf);
+                System.out.println("USER DATA "+sf);
+                //boolean isEmpty = sf == null || sf.trim().length() == 0;
+
+                //System.out.println("check :"+ isEmpty);
+
+                if (sf.length() == 4) {
+                    System.out.println("user data null");
+                    Intent mainIntent = new Intent(MainActivity.this, LaunchedActivity.class);
+                    MainActivity.this.startActivity(mainIntent);
+                    MainActivity.this.finish();
+                }else {
+                    System.out.println("user data not null");
                     Intent mainIntent = new Intent(MainActivity.this,DisputeNoHistoryActivity.class);
                     MainActivity.this.startActivity(mainIntent);
                     MainActivity.this.finish();
-                    return;
+
                 }
-                Intent mainIntent = new Intent(MainActivity.this,LaunchedActivity.class);
-                MainActivity.this.startActivity(mainIntent);
-                MainActivity.this.finish();
             }
         }, SPLASH_DISPLAY_LENGTH);
 
@@ -53,6 +62,10 @@ public class MainActivity extends AppCompatActivity {
 
     void setValues(){
 
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Main Method..................");
     }
 
     @Override

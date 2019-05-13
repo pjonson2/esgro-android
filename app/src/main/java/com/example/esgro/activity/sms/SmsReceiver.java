@@ -22,9 +22,9 @@ public class SmsReceiver extends BroadcastReceiver {
 
             String sender = smsMessage.getDisplayOriginatingAddress();
 
-            if (sender.equals("upventrix"))
+            if (sender.equals("Anywheresms"))
             {
-
+                System.out.println("Some SMS Received");
                 String messageBody = smsMessage.getMessageBody();
 
                 //Pass the message text to interface

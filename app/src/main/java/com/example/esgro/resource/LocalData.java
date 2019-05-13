@@ -18,7 +18,7 @@ public class LocalData {
     }
 
     public String getlocalData(SharedPreferences appSharedPrefs,String key){
-        String json = appSharedPrefs.getString(key, ""); //  get json object as a string
+        String json = appSharedPrefs.getString(key, null); //  get json object as a string
         return json;
     }
 
