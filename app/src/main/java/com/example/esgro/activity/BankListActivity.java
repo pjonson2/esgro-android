@@ -91,37 +91,37 @@ public class BankListActivity extends AppCompatActivity {
 
     void initializeArray(){
         bankList.add(
-                new Bank("Bank of Ceylon",R.drawable.nopath_360)
+                new Bank(1,1,"Bank of Ceylon",R.drawable.nopath_360)
         );
         bankList.add(
-                new Bank("Peoples Bank",R.drawable.bank_of_america)
+                new Bank(1,1,"Peoples Bank",R.drawable.bank_of_america)
         );
         bankList.add(
-                new Bank("Nations Trust Bank",R.drawable.nopath_blue)
+                new Bank(1,1,"Nations Trust Bank",R.drawable.nopath_blue)
         );
         bankList.add(
-                new Bank("DfCC Bank",R.drawable.nopath_copy2x)
+                new Bank(1,1,"DfCC Bank",R.drawable.nopath_copy2x)
         );
         bankList.add(
-                new Bank("NSB",R.drawable.nopath_360)
+                new Bank(1,1,"NSB",R.drawable.nopath_360)
         );
         bankList.add(
-                new Bank("Union Bank",R.drawable.nopath_blue)
+                new Bank(1,1,"Union Bank",R.drawable.nopath_blue)
         );
         bankList.add(
-                new Bank("RDB",R.drawable.nopath_360)
+                new Bank(1,1,"RDB",R.drawable.nopath_360)
         );
         bankList.add(
-                new Bank("Commercial Bank",R.drawable.nopath_copy2x)
+                new Bank(1,1,"Commercial Bank",R.drawable.nopath_copy2x)
         );
         bankList.add(
-                new Bank("Sampth Bank",R.drawable.nopath_360)
+                new Bank(1,1,"Sampth Bank",R.drawable.nopath_360)
         );
         bankList.add(
-                new Bank("Bank Of Asia",R.drawable.nopath_360)
+                new Bank(1,1,"Bank Of Asia",R.drawable.nopath_360)
         );
         bankList.add(
-                new Bank("Bank Of America",R.drawable.nopath_blue)
+                new Bank(1,1,"Bank Of America",R.drawable.nopath_blue)
         );
 
     }
@@ -163,8 +163,8 @@ public class BankListActivity extends AppCompatActivity {
             TextView bankNameView = convertView.findViewById(R.id.bankNameText);
             ImageView bankImg = convertView.findViewById(R.id.bankIconImg);
             Bank bank = bankList.get(position);
-            bankImg.setImageResource(bank.getImage());
-            bankNameView.setText(bank.getBankName());
+            bankImg.setImageResource(bank.getUserid());
+            bankNameView.setText(bank.getAcc_name());
             return convertView;
         }
     }

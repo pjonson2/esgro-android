@@ -1,16 +1,23 @@
 package com.example.esgro.modals;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Request {
+
+    @SerializedName("userid")
+    private int userid;
+
     private String name;
+
     private String days;
-    private String price;
+
     private int image;
 
-    public Request(String name, String days, String price,int image) {
+    public Request(int userid, String name, String days, int image) {
+        this.userid = userid;
         this.name = name;
         this.days = days;
         this.image = image;
-        this.price = price;
     }
 
     public Request() {
@@ -32,19 +39,19 @@ public class Request {
         this.days = days;
     }
 
-    public String getPrice() {
-        return price;
-    }
-
-    public void setPrice(String price) {
-        this.price = price;
-    }
-
     public int getImage() {
         return image;
     }
 
     public void setImage(int image) {
         this.image = image;
+    }
+
+    public int getUserid() {
+        return userid;
+    }
+
+    public void setUserid(int userid) {
+        this.userid = userid;
     }
 }

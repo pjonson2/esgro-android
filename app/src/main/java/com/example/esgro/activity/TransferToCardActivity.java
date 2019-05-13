@@ -102,16 +102,16 @@ public class TransferToCardActivity  extends AppCompatActivity {
     }
     void initializeArray() {
         bankList.add(
-                new Bank("Bank of Ceylon", R.drawable.nopath_360)
+                new Bank(1,1,"Bank of Ceylon", R.drawable.nopath_360)
         );
         bankList.add(
-                new Bank("Peoples Bank", R.drawable.bank_of_america)
+                new Bank(1,1,"Peoples Bank", R.drawable.bank_of_america)
         );
         bankList.add(
-                new Bank("Nations Trust Bank", R.drawable.nopath_blue)
+                new Bank(1,1,"Nations Trust Bank", R.drawable.nopath_blue)
         );
         bankList.add(
-                new Bank("DfCC Bank", R.drawable.nopath_copy2x)
+                new Bank(1,1,"DfCC Bank", R.drawable.nopath_copy2x)
         );
 
 
@@ -143,8 +143,8 @@ public class TransferToCardActivity  extends AppCompatActivity {
 
             ImageView bankImg = convertView.findViewById(R.id.bankImage);
             Bank bank = bankList.get(position);
-            bankImg.setImageResource(bank.getImage());
-            bankNameView.setText(bank.getBankName());
+//            bankImg.setImageResource(bank.getImage());
+            bankNameView.setText(bank.getUserid());
             bankDetails.setText("Card no. ends in 5651");
             return convertView;
         }

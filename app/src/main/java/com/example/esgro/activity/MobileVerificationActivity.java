@@ -130,7 +130,6 @@ public class MobileVerificationActivity  extends AppCompatActivity implements Ad
                      if (status.equals("success")){
 
                          verificationId = response.body().get("verification_id").getAsInt();
-                         new LocalData().setVerificationId(sharedPref,verificationId);
 
                          Intent mainIntent = new Intent(MobileVerificationActivity.this,EnterVerificationActivity.class);
                          mainIntent.putExtra("verification_id", verificationId);

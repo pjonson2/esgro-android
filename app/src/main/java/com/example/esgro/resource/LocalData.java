@@ -22,10 +22,4 @@ public class LocalData {
         return json;
     }
 
-    public void setVerificationId(SharedPreferences sharedPref, int verificationId){
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putInt("verification_id", verificationId); // save verification_id as a string
-        editor.commit();
-    }
-
 }

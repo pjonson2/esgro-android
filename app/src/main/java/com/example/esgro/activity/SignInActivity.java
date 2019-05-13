@@ -1,9 +1,12 @@
 package com.example.esgro.activity;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -111,12 +114,12 @@ public class SignInActivity extends AppCompatActivity {
                         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                         new LocalData().setLocalData(sharedPref,userData);
 
-                        // re-direct next form
-                        Intent mainIntent = new Intent(SignInActivity.this,CompleteProfileActivity.class);
-                        SignInActivity.this.startActivity(mainIntent);
+                        vewAlert("Successfully","Press ok to continue",SignInActivity.this);
 
                     }else{
                         System.out.println(status);
+                        vewAlert("Warnings","Failed to login. Try again",SignInActivity.this);
+
                     }
                 }
 
@@ -135,4 +138,23 @@ public class SignInActivity extends AppCompatActivity {
             SignInActivity.this.startActivity(mainIntent);
         }
     };
+    public void vewAlert(final String title, String message, Context context){
+        AlertDialog alertDialog = new AlertDialog.Builder(context).create();
+        alertDialog.setTitle(title);
+        alertDialog.setMessage(message);
+        alertDialog.setCanceledOnTouchOutside(false);
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        // re-direct next form
+                        if (title.equals("Successfully")){
+                            Intent mainIntent = new Intent(SignInActivity.this, CompleteProfileActivity.class);
+                            SignInActivity.this.startActivity(mainIntent);
+                        }
+                    }
+                });
+        alertDialog.show();
+    }
+
 }

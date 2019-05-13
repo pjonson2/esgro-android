@@ -13,14 +13,26 @@ import android.widget.ListView;
 import android.widget.TextView;
 import com.example.esgro.R;
 import com.example.esgro.modals.Request;
+import com.example.esgro.resource.Config;
+import com.example.esgro.services.DealService;
+import com.example.esgro.services.UserService;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class RequestActivity extends AppCompatActivity {
 
     Button back;
 
     List<Request> requestList;
+    private UserService service;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,12 +42,12 @@ public class RequestActivity extends AppCompatActivity {
 
         idInitialization();
         setListeners();
-        setValues();
 
     }
     void idInitialization(){
+        service = Config.getInstance().create(UserService.class);
         requestList = new ArrayList<>();
-        initializeArray();
+        setValues();
         back = findViewById(R.id.requestBackBtn);
         ListView listView = findViewById(R.id.dynamicRequestList);
 
@@ -63,47 +75,44 @@ public class RequestActivity extends AppCompatActivity {
     }
 
     void setValues(){
+        Call<JsonObject> userCall = service.usersList();
+        userCall.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                String status = null;
+                try {
+                    status = response.body().get("status").getAsString();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                if (status.equals("success")){
 
+                    JsonArray userslist = response.body().getAsJsonArray("userslist");
+
+                    for (JsonElement value : userslist) {
+                        requestList.add(
+                            new Request(
+                                value.getAsJsonObject().get("userid").getAsInt(),
+                                value.getAsJsonObject().get("firstname").getAsString()+" "+value.getAsJsonObject().get("lastname").getAsString(),
+                                "3 days ago",
+                                R.drawable.user1
+                            )
+                        );
+                    }
+
+                }else{
+                    System.out.println(status);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                System.out.println("Error "+t.getMessage());
+            }
+        });
     }
 
 
-        void initializeArray() {
-
-            requestList.add(
-                    new Request("Pamela anderson", "3 days ago","-238.12", R.drawable.user1)
-            );
-            requestList.add(
-                    new Request("Nikkal simonze", "6 days ago","1200.00", R.drawable.user2)
-            );
-            requestList.add(
-                    new Request("Katharina Kaif", "1 Week ago","-164.12", R.drawable.user3)
-            );
-            requestList.add(
-                    new Request("Nicole minaj", "3 days ago","-60.43", R.drawable.user4)
-            );
-            requestList.add(
-                    new Request("camilla cibello", "2 hours ago","-422.32", R.drawable.user5)
-            );
-            requestList.add(
-                    new Request("Selena gomez", "3 days ago", "76.32",R.drawable.user6)
-            );
-            requestList.add(
-                    new Request("Maria shomnix", "5 days ago","-455.32", R.drawable.user7)
-            );
-            requestList.add(
-                    new Request("joudge bush", "1 weeks ago","-255.43", R.drawable.user8)
-            );
-            requestList.add(
-                    new Request("SGrahams Smith", "3 days ago", "-98.43",R.drawable.user9)
-            );
-            requestList.add(
-                    new Request("Michel clark", "1 days ago","-32", R.drawable.user1)
-            );
-            requestList.add(
-                    new Request("James Anderson", "2 days ago","-234.32", R.drawable.user6)
-            );
-
-        }
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {

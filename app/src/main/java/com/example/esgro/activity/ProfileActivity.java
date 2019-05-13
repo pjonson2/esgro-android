@@ -2,7 +2,9 @@ package com.example.esgro.activity;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -12,6 +14,20 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.esgro.R;
+import com.example.esgro.modals.Dispute;
+import com.example.esgro.resource.Config;
+import com.example.esgro.resource.LocalData;
+import com.example.esgro.services.UserService;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ProfileActivity  extends FooterActivity {
 
@@ -31,6 +47,7 @@ public class ProfileActivity  extends FooterActivity {
     TextView email;
 
     Dialog dialog;
+    UserService service;
 
 
     @Override
@@ -59,6 +76,8 @@ public class ProfileActivity  extends FooterActivity {
         userName = findViewById(R.id.profileUserNameTxt);
         email = findViewById(R.id.profileEmailTxt);
         transfer = findViewById(R.id.transferBtn);
+
+        service = Config.getInstance().create(UserService.class);
     }
 
     void setListeners(){
@@ -72,7 +91,34 @@ public class ProfileActivity  extends FooterActivity {
     }
 
     void setValues(){
+        final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String userData = new LocalData().getlocalData(sharedPref, "userdata");
+        int userid = 0;
+        try {
+            JSONObject jsonObj = new JSONObject(userData);
+            userid = jsonObj.getInt("userid");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
+
+        Call<JsonObject> userCall = service.details(""+userid);
+        userCall.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+
+                firstName.setText(response.body().get("firstname").getAsString());
+                lastName.setText(response.body().get("lastname").getAsString());
+                userName.setText(response.body().get("username").getAsString());
+                email.setText(response.body().get("email").getAsString());
+
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                System.out.println("Error "+t.getMessage());
+            }
+        });
     }
 
     @Override

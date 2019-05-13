@@ -3,6 +3,8 @@ package com.example.esgro.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -40,6 +42,7 @@ public class AddCardActivity extends AppCompatActivity {
         cardNumber = findViewById(R.id.CardCardNumberTxt);
         expDate = findViewById(R.id.CardExpDateTxt);
         cvv = findViewById(R.id.CardCvvTxt);
+        cardNumber.addTextChangedListener(checkNumbers);
 
     }
 
@@ -92,4 +95,31 @@ public class AddCardActivity extends AppCompatActivity {
             AddCardActivity.this.startActivity(mainIntent);
         }
     };
+
+    TextWatcher checkNumbers = new TextWatcher() {
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            if (cardNumber.getText().toString().length() == 4){
+
+            }
+            if (cardNumber.getText().toString().length() == 9){
+
+            }
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+            System.out.println("afterTextChanged");
+
+        }
+    };
+
 }

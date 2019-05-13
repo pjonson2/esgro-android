@@ -105,7 +105,6 @@ public class ChatActivity extends AppCompatActivity {
             Bitmap bitmap = getIntent().getParcelableExtra("BitmapImage");
 
             flowOfEvent = extras.getString("flowOfEvent");
-            System.out.println("flowOfEvent   "  +flowOfEvent);
             Intent intent;
             if(flowOfEvent.equals("DisputeDetails_01_Activity")){
                  intent = new Intent(ChatActivity.this, DisputeDetails_01_Activity.class);

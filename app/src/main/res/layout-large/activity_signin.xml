@@ -168,6 +168,7 @@
                 android:layout_marginBottom="8dp"
                 android:autoSizeTextType="uniform"
                 android:ems="10"
+                android:textSize="16sp"
                 android:fontFamily="@font/open_sans"
                 android:hint="Password"
                 android:inputType="textPassword"

@@ -102,21 +102,21 @@ public class BankAndCards2Activity extends AppCompatActivity {
     }
     void initializeArray(){
         bankList.add(
-                new Bank("Bank of Ceylon",R.drawable.nopath_360)
+                new Bank(1,1,"Bank of Ceylon",R.drawable.nopath_360)
         );
         bankList.add(
-                new Bank("Peoples Bank",R.drawable.bank_of_america)
+                new Bank(1,1,"Peoples Bank",R.drawable.bank_of_america)
         );
         bankList.add(
-                new Bank("Nations Trust Bank",R.drawable.nopath_blue)
+                new Bank(1,1,"Nations Trust Bank",R.drawable.nopath_blue)
         ); bankList.add(
-                new Bank("Bank of Ceylon",R.drawable.nopath_360)
+                new Bank(1,1,"Bank of Ceylon",R.drawable.nopath_360)
         );
         bankList.add(
-                new Bank("Peoples Bank",R.drawable.bank_of_america)
+                new Bank(1,1,"Peoples Bank",R.drawable.bank_of_america)
         );
         bankList.add(
-                new Bank("Nations Trust Bank",R.drawable.nopath_blue)
+                new Bank(1,1,"Nations Trust Bank",R.drawable.nopath_blue)
         );
     }
 
@@ -240,8 +240,8 @@ public class BankAndCards2Activity extends AppCompatActivity {
             TextView bankNameView = convertView.findViewById(R.id.bankNameTxt);
             ImageView bankImg = convertView.findViewById(R.id.bankImage);
             Bank bank = bankList.get(position);
-            bankImg.setImageResource(bank.getImage());
-            bankNameView.setText(bank.getBankName());
+//            bankImg.setImageResource(bank.getImage());
+            bankNameView.setText(bank.getUserid());
             return convertView;
         }
     }

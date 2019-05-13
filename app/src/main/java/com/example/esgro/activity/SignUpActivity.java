@@ -1,11 +1,21 @@
 package com.example.esgro.activity;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.RectShape;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.RequiresApi;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,6 +24,7 @@ import com.example.esgro.R;
 import com.example.esgro.modals.User;
 import com.example.esgro.resource.Config;
 import com.example.esgro.resource.LocalData;
+import com.example.esgro.resource.Validations;
 import com.example.esgro.services.UserService;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -51,16 +62,13 @@ public class SignUpActivity extends AppCompatActivity {
     void idInitialization(){
         signUpBackBtn = findViewById(R.id.signUpBackBtn);
         continueBtn = findViewById(R.id.signUpContinueBtn);
-
         firstName = findViewById(R.id.signUpFirstNameTxt);
         lastName = findViewById(R.id.signUpLastNameTxt);
         userName = findViewById(R.id.signUpUserNameTxt);
         email = findViewById(R.id.signUpEmailTxt);
         password = findViewById(R.id.signUpPswrdTxt);
         passwordReType = findViewById(R.id.signUpPswrdReTypeTxt);
-
         service = Config.getInstance().create(UserService.class);
-
         key = getResources().getString(R.string.userdata);
 
     }
@@ -94,7 +102,24 @@ public class SignUpActivity extends AppCompatActivity {
     };
 
     View.OnClickListener continueBtnAction = new View.OnClickListener() {
+        @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
         public void onClick(View v) {
+
+            boolean emailValid = new Validations().isEmailValid(email.getText().toString());
+            if (!emailValid){
+//                ShapeDrawable shape = new ShapeDrawable(new RectShape());
+//                shape.getPaint().setColor(Color.RED);
+//                shape.getPaint().setStyle(Paint.Style.STROKE);
+//                shape.getPaint().setStrokeWidth(3);
+                // Assign the created border to EditText widget
+//                email.setBackground(shape);
+                vewAlert("Warnings","Invalid email address",SignUpActivity.this);
+                return;
+            }
+            if(!password.getText().toString().equals(passwordReType.getText().toString())){
+                vewAlert("Warnings","Password doesn't matched",SignUpActivity.this);
+                return;
+            }
 
             Call<JsonObject> userCall = service.saveUser(
                     new User(
@@ -118,17 +143,15 @@ public class SignUpActivity extends AppCompatActivity {
                     if (status.equals("success")){
 
                         JsonObject userData = response.body().getAsJsonObject("userdata");
-
                         // set local user data
                         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                         new LocalData().setLocalData(sharedPref,userData);
 
                         // re-direct next form
-                         Intent mainIntent = new Intent(SignUpActivity.this,MobileVerificationActivity.class);
-                         SignUpActivity.this.startActivity(mainIntent);
+                        vewAlert("Successfully","Your details successfully saved",SignUpActivity.this);
 
                     }else{
-                        System.out.println(status);
+                        vewAlert("Warnings","Your details saving failed",SignUpActivity.this);
                     }
                 }
 
@@ -140,4 +163,24 @@ public class SignUpActivity extends AppCompatActivity {
 
         }
     };
+
+    public void vewAlert(final String title, String message, final Context context){
+        final AlertDialog alertDialog = new AlertDialog.Builder(context).create();
+        alertDialog.setTitle(title);
+        alertDialog.setMessage(message);
+        alertDialog.setCanceledOnTouchOutside(false);
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        if (title.equals("Successfully")) {
+                            Intent mainIntent = new Intent(context, MobileVerificationActivity.class);
+                            context.startActivity(mainIntent);
+                        }
+                    }
+                });
+        alertDialog.show();
+    }
+
+
 }
