@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.esgro" >
+    package="com.upventrix.esgro" >
 
     <uses-permission android:name="android.permission.SEND_SMS"/>
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
@@ -19,247 +19,255 @@
         android:xlargeScreens="true" />
 
 
+
     <application
+
+
+
         android:allowBackup="true"
         android:icon="@drawable/logo2x"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:label="@string/app_name">
-        <activity android:name=".activity.MainActivity" >
+        <activity android:name="com.upventrix.esgro.activity.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.LaunchedActivity"
+        <activity android:name="com.upventrix.esgro.activity.LaunchedActivity"
             android:screenOrientation="portrait">
 
 
         </activity>
-        <activity android:name=".activity.SignUpActivity"
+        <activity android:name="com.upventrix.esgro.activity.SignUpActivity"
             android:screenOrientation="portrait">
 
 
         </activity>
-        <activity android:name=".activity.SignInActivity"
+        <activity android:name="com.upventrix.esgro.activity.SignInActivity"
             android:screenOrientation="portrait">
 
 
         </activity>
-        <activity android:name=".activity.MobileVerificationActivity"
+        <activity android:name="com.upventrix.esgro.activity.MobileVerificationActivity"
             android:screenOrientation="portrait">
 
 
         </activity>
-        <activity android:name=".activity.EnterVerificationActivity"
+        <activity android:name="com.upventrix.esgro.activity.EnterVerificationActivity"
             android:screenOrientation="portrait">
 
 
         </activity>
-        <activity android:name=".activity.CompleteProfileActivity"
+        <activity android:name="com.upventrix.esgro.activity.CompleteProfileActivity"
             android:screenOrientation="portrait">
 
 
         </activity>
-        <activity android:name=".activity.HomePageActivity"
+        <activity android:name="com.upventrix.esgro.activity.HomePageActivity"
             android:screenOrientation="portrait">
 
 
         </activity>
-        <activity android:name=".activity.BankAndCards2Activity"
+        <activity android:name="com.upventrix.esgro.activity.BankAndCards2Activity"
             android:screenOrientation="portrait">
 
 
         </activity>
-        <activity android:name=".activity.AddCardActivity"
+        <activity android:name="com.upventrix.esgro.activity.AddCardActivity"
             android:screenOrientation="portrait">
 
 
         </activity>
-        <activity android:name=".activity.BankListActivity"
+        <activity android:name="com.upventrix.esgro.activity.BankListActivity"
             android:screenOrientation="portrait">
 
 
         </activity>
-        <activity android:name=".activity.LinkBankAccountActivity"
+        <activity android:name="com.upventrix.esgro.activity.LinkBankAccountActivity"
             android:screenOrientation="portrait">
 
 
         </activity>
-        <activity android:name=".activity.PreferencesActivity"
+        <activity android:name="com.upventrix.esgro.activity.PreferencesActivity"
             android:screenOrientation="portrait">
 
 
         </activity>
-        <activity android:name=".activity.CheckPasswordActivity"
+        <activity android:name="com.upventrix.esgro.activity.CheckPasswordActivity"
             android:screenOrientation="portrait">
 
 
         </activity>
-        <activity android:name=".activity.AboutActivity" >
+        <activity android:name="com.upventrix.esgro.activity.AboutActivity" >
 
 
         </activity>
-        <activity android:name=".activity.ExportActivity"
+        <activity android:name="com.upventrix.esgro.activity.ExportActivity"
             android:screenOrientation="portrait">
 
 
         </activity>
-        <activity android:name=".activity.ContactUsActivity"
+        <activity android:name="com.upventrix.esgro.activity.ContactUsActivity"
             android:screenOrientation="portrait">
 
 
         </activity>
-        <activity android:name=".activity.DisputeDetails_01_Activity"
+        <activity android:name="com.upventrix.esgro.activity.DisputeDetails_01_Activity"
             android:screenOrientation="portrait">
 
 
         </activity>
-        <activity android:name=".activity.Request_01_Activity"
+        <activity android:name="com.upventrix.esgro.activity.Request_01_Activity"
             android:screenOrientation="portrait">
 
 
         </activity>
-        <activity android:name=".activity.Request_02_Activity"
+        <activity android:name="com.upventrix.esgro.activity.Request_02_Activity"
             android:screenOrientation="portrait">
 
 
         </activity>
-        <activity android:name=".activity.Request_03_Activity"
+        <activity android:name="com.upventrix.esgro.activity.Request_03_Activity"
             android:screenOrientation="portrait">
 
 
         </activity>
-        <activity android:name=".activity.ResponedActivity"
+        <activity android:name="com.upventrix.esgro.activity.ResponedActivity"
             android:screenOrientation="portrait">
 
 
         </activity>
-        <activity android:name=".activity.ProfileActivity"
+        <activity android:name="com.upventrix.esgro.activity.ProfileActivity"
             android:screenOrientation="portrait">
 
 
         </activity>
-        <activity android:name=".activity.UpdateProfileActivity"
+        <activity android:name="com.upventrix.esgro.activity.UpdateProfileActivity"
             android:screenOrientation="portrait">
 
 
         </activity>
-        <activity android:name=".activity.FooterActivity"
+        <activity android:name="com.upventrix.esgro.activity.FooterActivity"
             android:screenOrientation="portrait">
 
 
         </activity>
-        <activity android:name=".activity.alert.FeedBackAlertActivity"
+        <activity android:name="com.upventrix.esgro.activity.alert.FeedBackAlertActivity"
             android:screenOrientation="portrait">
 
 
         </activity>
-        <activity android:name=".activity.alert.CancelDisputeAlertActivity"
+        <activity android:name="com.upventrix.esgro.activity.alert.CancelDisputeAlertActivity"
             android:screenOrientation="portrait">
 
 
         </activity>
-        <activity android:name=".activity.alert.ForfeitAlertActivity"
+        <activity android:name="com.upventrix.esgro.activity.alert.ForfeitAlertActivity"
             android:screenOrientation="portrait">
 
 
         </activity>
-        <activity android:name=".activity.alert.ReplyDisputeAlertActivity"
+        <activity android:name="com.upventrix.esgro.activity.alert.ReplyDisputeAlertActivity"
             android:screenOrientation="portrait">
 
 
         </activity>
-        <activity android:name=".activity.DisputeActivity"
-            android:screenOrientation="portrait">
-
-
-        </activity>
-
-        <activity android:name=".activity.RequestActivity"
-            android:screenOrientation="portrait">
-
-
-        </activity>
-        <activity android:name=".activity.DisputeDetails_No_History_Activity"
+        <activity android:name="com.upventrix.esgro.activity.DisputeActivity"
             android:screenOrientation="portrait">
 
 
         </activity>
 
-        <activity android:name=".activity.DisputeNoHistoryActivity"
+        <activity android:name="com.upventrix.esgro.activity.RequestActivity"
+            android:screenOrientation="portrait">
+
+
+        </activity>
+        <activity android:name="com.upventrix.esgro.activity.DisputeDetails_No_History_Activity"
+            android:screenOrientation="portrait">
+
+
+        </activity>
+
+        <activity android:name="com.upventrix.esgro.activity.DisputeNoHistoryActivity"
             android:windowSoftInputMode="stateAlwaysHidden"
             android:screenOrientation="portrait">
 
 
         </activity>
 
-        <activity android:name=".activity.alert.ProcessingAlertActivit"
+        <activity android:name="com.upventrix.esgro.activity.alert.ProcessingAlertActivit"
             android:screenOrientation="portrait">
 
 
         </activity>
-        <activity android:name=".activity.ChatActivity" >
+        <activity android:name="com.upventrix.esgro.activity.ChatActivity" >
 
 
         </activity>
-        <activity android:name=".activity.alert.WarningAlertActivity"
-            android:screenOrientation="portrait">
-
-
-        </activity>
-
-        <activity android:name=".activity.TransferToBankActivity"
-            android:screenOrientation="portrait">
-
-
-        </activity>
-        <activity android:name=".activity.TransferToCardActivity"
-            android:screenOrientation="portrait">
-
-
-        </activity>
-        <activity android:name=".activity.alert.TransferAlert"
-            android:screenOrientation="portrait">
-
-
-        </activity>
-        <activity android:name=".activity.alert.ContactUsAlert"
-            android:screenOrientation="portrait">
-
-
-        </activity>
-        <activity android:name=".activity.alert.TransferSuccessFullAlert"
-            android:screenOrientation="portrait">
-
-
-        </activity>
-        <activity android:name=".activity.alert.RequestSentAlert"
-            android:screenOrientation="portrait">
-
-
-        </activity>
-        <activity android:name=".activity.CancelledAndCompleted"
-            android:screenOrientation="portrait">
-
-
-        </activity>
-        <activity android:name=".activity.alert.DefaultOptionAlert"
-            android:screenOrientation="portrait">
-
-
-        </activity>
-        <activity android:name=".activity.alert.IClickPopUpAlert"
+        <activity android:name="com.upventrix.esgro.activity.alert.WarningAlertActivity"
             android:screenOrientation="portrait">
 
 
         </activity>
 
+        <activity android:name="com.upventrix.esgro.activity.TransferToBankActivity"
+            android:screenOrientation="portrait">
+
+
+        </activity>
+        <activity android:name="com.upventrix.esgro.activity.TransferToCardActivity"
+            android:screenOrientation="portrait">
+
+
+        </activity>
+        <activity android:name="com.upventrix.esgro.activity.alert.TransferAlert"
+            android:screenOrientation="portrait">
+
+
+        </activity>
+        <activity android:name="com.upventrix.esgro.activity.alert.ContactUsAlert"
+            android:screenOrientation="portrait">
+
+
+        </activity>
+        <activity android:name="com.upventrix.esgro.activity.alert.TransferSuccessFullAlert"
+            android:screenOrientation="portrait">
+
+
+        </activity>
+        <activity android:name="com.upventrix.esgro.activity.alert.RequestSentAlert"
+            android:screenOrientation="portrait">
+
+
+        </activity>
+        <activity android:name="com.upventrix.esgro.activity.CancelledAndCompleted"
+            android:screenOrientation="portrait">
+
+
+        </activity>
+        <activity android:name="com.upventrix.esgro.activity.alert.DefaultOptionAlert"
+            android:screenOrientation="portrait">
+
+
+        </activity>
+        <activity android:name="com.upventrix.esgro.activity.alert.IClickPopUpAlert"
+            android:screenOrientation="portrait">
+
+
+        </activity>
 
 
 
+        <service android:name=".services.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
 
 
         <meta-data

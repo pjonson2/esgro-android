@@ -8,6 +8,7 @@
     <string name="userdata">userdata</string>
     <string name="userid">userid</string>
 
+    <string name="fcm_token">FCM Token: %s</string>
 
     <string-array name="country_names">
         <item>US</item>

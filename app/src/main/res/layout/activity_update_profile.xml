@@ -127,13 +127,15 @@
     <View
         android:id="@+id/view57"
         android:layout_width="0dp"
-        android:layout_height="460dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="25dp"
         android:background="@drawable/layout_corner"
+        app:layout_constraintBottom_toTopOf="@+id/view4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView109" />
@@ -303,6 +305,7 @@
         android:id="@+id/imageView45"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/roshen_kanishka"
         app:layout_constraintBottom_toBottomOf="@+id/view57"
         app:layout_constraintEnd_toEndOf="parent"
@@ -376,29 +379,31 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:fontFamily="@font/open_sans_semibold"
         android:text="Change"
         android:textAlignment="center"
         android:textColor="@android:color/white"
         android:textSize="14dp"
-        app:layout_constraintBottom_toBottomOf="@+id/view57"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView45"
         app:layout_constraintEnd_toEndOf="@+id/view57"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="@+id/view57"
         app:layout_constraintTop_toTopOf="@+id/view57"
-        app:layout_constraintVertical_bias="0.132" />
+        app:layout_constraintVertical_bias="0.92" />
 
     <ImageView
         android:id="@+id/imageView46"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/cam"
-        app:layout_constraintBottom_toBottomOf="@+id/view57"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView45"
         app:layout_constraintEnd_toEndOf="@+id/view57"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="@+id/view57"
         app:layout_constraintTop_toTopOf="@+id/view57"
-        app:layout_constraintVertical_bias="0.061" />
+        app:layout_constraintVertical_bias="0.609" />
 
 </android.support.constraint.ConstraintLayout>
