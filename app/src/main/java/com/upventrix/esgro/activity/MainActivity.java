@@ -42,23 +42,23 @@ public class MainActivity extends AppCompatActivity {
         onWindowFocusChanged(true);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        FirebaseApp.initializeApp(MainActivity.this);
-//        FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
-//                           @Override
-//                           public void onComplete(@NonNull Task<InstanceIdResult> task) {
-//                               if (!task.isSuccessful()) {
-//                                //To do//
-//                                    return;
-//                               }
-//
-//                               // Get the Instance ID token//
-//
-//                               String token = "AAAAGANzyh4:APA91bFL5sE5iet_P4fYvTo71q6J0bVrAK-Ewy4mN6ZnuzSOHaI7jlZHH9AWcfEXh9rMOvZQtIlD47R4RJIyjvhl4wd8KiAvAkZHBYdx1ApaMhBABv15kDBYukd-wSWsSlaZrR7ega6f";
-//                               String msg = getString(R.string.fcm_token, token);
-//                               Log.d(TAG, msg);
-//
-//                           }
-//                      });
+        FirebaseApp.initializeApp(MainActivity.this);
+        FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                           @Override
+                           public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                               if (!task.isSuccessful()) {
+                                //To do//
+                                    return;
+                               }
+
+                               // Get the Instance ID token//
+
+                               String token = "AAAAGANzyh4:APA91bFL5sE5iet_P4fYvTo71q6J0bVrAK-Ewy4mN6ZnuzSOHaI7jlZHH9AWcfEXh9rMOvZQtIlD47R4RJIyjvhl4wd8KiAvAkZHBYdx1ApaMhBABv15kDBYukd-wSWsSlaZrR7ega6f";
+                               String msg = getString(R.string.fcm_token, token);
+                               Log.d(TAG, msg);
+
+                           }
+                      });
 
 
 

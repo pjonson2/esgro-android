@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "103137135134",
+    "firebase_url": "https://esgro-app-c80fd.firebaseio.com",
+    "project_id": "esgro-app-c80fd",
+    "storage_bucket": "esgro-app-c80fd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:103137135134:android:59deb33fa2447e37",
+        "android_client_info": {
+          "package_name": "com.upventrix.esgro"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "103137135134-kkas57a4ehqpsskq20c78p3bj93phhfr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCU7iD3EbjgRKkapb23xWhhhZLYw43MC3Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "103137135134-kkas57a4ehqpsskq20c78p3bj93phhfr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

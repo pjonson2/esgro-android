@@ -14,11 +14,31 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     @Override
     public void onMessageReceived(RemoteMessage message) {
+
+        System.out.println("From "+message.getFrom());
+
+        if (message.getData().size()>0){
+            System.out.println("Message Data Payload "+message.getData());
+
+        }
+
+        if (message.getNotification()!=null){
+            System.out.println("Message Notification Body "+message.getNotification().getBody());
+
+            String title = message.getNotification().getTitle();
+            String msg = message.getNotification().getBody();
+
+            System.out.println("Title "+title +"  /  "+msg);
+
+        }
         super.onMessageReceived(message);
-        FirebaseApp.initializeApp(this);
+        show( message.getNotification().getTitle(), message.getNotification().getBody());
+    }
+
+    public void show(String titile,String msg){
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, "channel_id")
-                .setContentTitle(message.getNotification().getTitle())
-                .setContentText(message.getNotification().getBody())
+                .setContentTitle(titile)
+                .setContentText(msg)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setStyle(new NotificationCompat.BigTextStyle())
                 .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
@@ -28,6 +48,36 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-        notificationManager.notify(0, notificationBuilder.build());
+        notificationManager.notify(999, notificationBuilder.build());
+        System.out.println("titel "+titile+"  "+msg);
+
+    }
+    public MyFirebaseMessagingService() {
+        super();
+        System.out.println("MyFirebaseMessagingService");
+    }
+
+    @Override
+    public void onDeletedMessages() {
+        super.onDeletedMessages();
+        System.out.println("onDeletedMessages");
+    }
+
+    @Override
+    public void onMessageSent(String s) {
+        super.onMessageSent(s);
+        System.out.println("onMessageSent");
+    }
+
+    @Override
+    public void onSendError(String s, Exception e) {
+        super.onSendError(s, e);
+        System.out.println("onSendError");
+    }
+
+    @Override
+    public void onNewToken(String s) {
+        super.onNewToken(s);
+        System.out.println("onNewToken  "+s);
     }
 }
