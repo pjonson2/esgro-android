@@ -144,6 +144,7 @@ public class Request_01_Activity extends AppCompatActivity {
             String price = requestChargingAmount.getText().toString();
             String reserve_price = reserveTxt.getText().toString();
             String userName = extras.getString("request_user");
+            String userId = extras.getString("request_userId");
 
             if (price.equals("")){
                 AlertDialog alertDialog = new AlertDialog.Builder(Request_01_Activity.this).create();
@@ -161,6 +162,7 @@ public class Request_01_Activity extends AppCompatActivity {
                 mainIntent.putExtra("charging_amount", price);
                 mainIntent.putExtra("request_user", userName);
                 mainIntent.putExtra("reserve_amount", reserve_price);
+                mainIntent.putExtra("request_userId",userId);
                 Request_01_Activity.this.startActivity(mainIntent);
             }
         }

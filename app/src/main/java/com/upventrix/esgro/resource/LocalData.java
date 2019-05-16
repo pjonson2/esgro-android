@@ -21,4 +21,11 @@ public class LocalData {
         return json;
     }
 
+    public void setNotificationToken(SharedPreferences sharedPref, String token){
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString("notification_token", token); // save token as a string
+        editor.commit();
+    }
+
+
 }

@@ -103,7 +103,7 @@ public class SignInActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
 
-                    String status = null;
+                    String status = "";
                     try {
                         status = response.body().get("status").getAsString();
                     } catch (Exception e) {
@@ -154,7 +154,7 @@ public class SignInActivity extends AppCompatActivity {
 
                         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
-                        String userData = new LocalData().getlocalData(sharedPref, "userdata");
+                        String userData = new LocalData().getlocalData(sharedPref, "userdata")+"";
                         int userid = 0;
                         try {
                             JSONObject jsonObj = new JSONObject(userData);

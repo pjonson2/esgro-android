@@ -4,7 +4,6 @@ import com.google.gson.annotations.SerializedName;
 
 public class Request {
 
-    @SerializedName("userid")
     private int userid;
 
     private String name;

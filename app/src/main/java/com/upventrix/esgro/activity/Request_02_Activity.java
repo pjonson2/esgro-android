@@ -32,6 +32,7 @@ public class Request_02_Activity extends AppCompatActivity {
     String amount="";
     String reserveAmount = "";
     String request_user= "";
+    String userId = "";
 
     EditText holdingDays;
 
@@ -87,7 +88,8 @@ public class Request_02_Activity extends AppCompatActivity {
         amount = extras.getString("charging_amount");
         request_user = extras.getString("request_user");
         reserveAmount = extras.getString("reserve_amount");
-        System.out.println("request_user    "+request_user);
+        userId = extras.getString("request_userId");
+        System.out.println("request_userId    "+userId);
         try{
             days = extras.getString("holding_days");
             if (days.equals(null)){
@@ -119,19 +121,21 @@ public class Request_02_Activity extends AppCompatActivity {
             mainIntent.putExtra("charging_amount",amount);
             mainIntent.putExtra("request_user",extras.getString("request_user"));
             mainIntent.putExtra("reserve_amount",reserveAmount);
+            mainIntent.putExtra("request_userId",userId);
             Request_02_Activity.this.startActivity(mainIntent);
         }
     };
     View.OnClickListener requestContinue = new View.OnClickListener() {
         public void onClick(View v) {
             String holdings = holdingDays.getText().toString();
-            String userName = extras.getString("request_user");
+
             if (!holdings.equals("")){
                 Intent mainIntent = new Intent(Request_02_Activity.this, Request_03_Activity.class);
                 mainIntent.putExtra("holding_days",holdings);
                 mainIntent.putExtra("request_user",request_user);
                 mainIntent.putExtra("charging_amount",amount);
                 mainIntent.putExtra("reserve_amount",reserveAmount);
+                mainIntent.putExtra("request_userId",userId);
                 Request_02_Activity.this.startActivity(mainIntent);
             }else{
                 AlertDialog alertDialog = new AlertDialog.Builder(Request_02_Activity.this).create();

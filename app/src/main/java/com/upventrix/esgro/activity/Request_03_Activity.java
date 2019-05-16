@@ -1,12 +1,17 @@
 package com.upventrix.esgro.activity;
 
 import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.annotation.RequiresApi;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
@@ -14,7 +19,21 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.gson.JsonObject;
 import com.upventrix.esgro.R;
+import com.upventrix.esgro.modals.Deal;
+import com.upventrix.esgro.modals.User;
+import com.upventrix.esgro.resource.Config;
+import com.upventrix.esgro.resource.LocalData;
+import com.upventrix.esgro.services.DealService;
+import com.upventrix.esgro.services.UserService;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Request_03_Activity extends AppCompatActivity {
 
@@ -37,7 +56,9 @@ public class Request_03_Activity extends AppCompatActivity {
     String charging_amount;
     String holding_days;
     String reservePrice;
+    String userId;
 
+    DealService service;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +76,7 @@ public class Request_03_Activity extends AppCompatActivity {
 
     }
 
-    void idInitialization(){
+    void idInitialization() {
         back = findViewById(R.id.request3Back);
         continues = findViewById(R.id.request3SendBtn);
 
@@ -64,23 +85,26 @@ public class Request_03_Activity extends AppCompatActivity {
         amount = findViewById(R.id.requestAmountTxt);
         reserve = findViewById(R.id.requestReserveTxt);
         description = findViewById(R.id.requestDescriptionTxt);
+        service = Config.getInstance().create(DealService.class);
     }
 
-    void setListeners(){
+    void setListeners() {
         back.setOnClickListener(requestBack);
         continues.setOnClickListener(requestContinue);
         userName.setOnClickListener(goToSelectAgain);
         userName.setText(extras.getString("request_user"));
     }
 
-    void setValues(){
+    void setValues() {
         holding_days = extras.getString("holding_days");
         charging_amount = extras.getString("charging_amount");
         reservePrice = extras.getString("reserve_amount");
+        userId = extras.getString("request_userId");
         amount.setText(charging_amount);
         days.setText(holding_days);
         reserve.setText(reservePrice);
 
+        System.out.println("User Id is a  " + userId);
     }
 
     @Override
@@ -96,78 +120,138 @@ public class Request_03_Activity extends AppCompatActivity {
                             | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         }
     }
+
     View.OnClickListener requestBack = new View.OnClickListener() {
         public void onClick(View v) {
 
             String days = extras.getString("holding_days");
             String prices = extras.getString("charging_amount");
             String rePrice = extras.getString("reserve_amount");
+            String userId = extras.getString("request_userId");
 
-            Intent mainIntent = new Intent(Request_03_Activity.this,Request_02_Activity.class);
-            mainIntent.putExtra("holding_days",days);
-            mainIntent.putExtra("charging_amount",prices);
-            mainIntent.putExtra("reserve_amount",rePrice);
-            mainIntent.putExtra("request_user",userName.getText().toString());
+            Intent mainIntent = new Intent(Request_03_Activity.this, Request_02_Activity.class);
+            mainIntent.putExtra("holding_days", days);
+            mainIntent.putExtra("charging_amount", prices);
+            mainIntent.putExtra("reserve_amount", rePrice);
+            mainIntent.putExtra("request_userId", userId);
+            mainIntent.putExtra("request_user", userName.getText().toString());
 
             Request_03_Activity.this.startActivity(mainIntent);
         }
     };
     View.OnClickListener goToSelectAgain = new View.OnClickListener() {
         public void onClick(View v) {
-            Intent mainIntent = new Intent(Request_03_Activity.this,RequestActivity.class);
+            Intent mainIntent = new Intent(Request_03_Activity.this, RequestActivity.class);
             Request_03_Activity.this.startActivity(mainIntent);
         }
     };
     View.OnClickListener requestContinue = new View.OnClickListener() {
         public void onClick(View v) {
-            dialog.setContentView(R.layout.activity_proessing_alert);
-            dialog.setContentView(R.layout.activity_proessing_alert);
-
-            String[] ss = charging_amount.split("");
-
-
-
-            final StringBuilder builder = new StringBuilder(charging_amount);
-            builder.replace(0,1,"");
-
-            dialog.show();
-            Window window = dialog.getWindow();
-
-            final TextView weLbl = window.findViewById(R.id.weLbl);
-            final TextView esgroLbl = window.findViewById(R.id.esgroLbl);
-            final TextView themLbl = window.findViewById(R.id.themLbl);
-            esgroLbl.setTextColor(Color.parseColor("#929AAB"));
-            weLbl.setTextColor(Color.parseColor("#7FE239"));
-
-            weLbl.setText(charging_amount);
-            esgroLbl.setText(charging_amount);
-            themLbl.setText(charging_amount);
-
-            new Handler().postDelayed(new Runnable(){
+            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+            String userData = new LocalData().getlocalData(sharedPref, "userdata") + "";
+            int userid = 0;
+            try {
+                JSONObject jsonObj = new JSONObject(userData);
+                userid = jsonObj.getInt("userid");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
 
 
-                @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+            Call<JsonObject> userCall = service.saveDEal(
+                    new Deal(
+                            description.getText().toString(),
+                            123,
+                           54,
+                            days.getText().toString(),
+                            userid,
+                            Integer.parseInt(userId.toString())
+                    ));
+
+            userCall.enqueue(new Callback<JsonObject>() {
                 @Override
-                public void run() {
+                public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
 
-                    if(Double.parseDouble(builder.toString())>0){
-                        weLbl.setTextColor(Color.parseColor("#929AAB"));
-                        esgroLbl.setTextColor(Color.parseColor("#7FE239"));
+                    Boolean status = false;
+                    try {
+                        status = response.body().get("status").getAsBoolean();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    if (status) {
+
+                        JsonObject userData = response.body().getAsJsonObject("userdata");
+                        // set local user data
+                        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                        new LocalData().setLocalData(sharedPref, userData);
+
+                        // re-direct next form
+                        vewAlert("Successfully", "Your deal successfully saved", Request_03_Activity.this);
+
+                    } else {
+                        vewAlert("Warnings", "Your deal saving failed", Request_03_Activity.this);
                     }
                 }
-            }, SPLASH_DISPLAY_LENGTH_1);
 
-            dialog.show();
-            new Handler().postDelayed(new Runnable(){
                 @Override
-                public void run() {
-                    dialog.dismiss();
-
-                    Intent mainIntent = new Intent(Request_03_Activity.this,DisputeNoHistoryActivity.class);
-                    Request_03_Activity.this.startActivity(mainIntent);
+                public void onFailure(Call<JsonObject> call, Throwable t) {
+                    System.out.println("Error " + t.getMessage());
                 }
-            }, SPLASH_DISPLAY_LENGTH);
-
+            });
         }
     };
+
+        public void vewAlert(final String title, String message, final Context context) {
+            final AlertDialog alertDialog = new AlertDialog.Builder(context).create();
+            alertDialog.setTitle(title);
+            alertDialog.setMessage(message);
+            alertDialog.setCanceledOnTouchOutside(false);
+            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                    (dialog1, which) -> {
+                        dialog1.dismiss();
+                        if (title.equals("Successfully")) {
+
+                            dialog.setContentView(R.layout.activity_proessing_alert);
+                            dialog.setContentView(R.layout.activity_proessing_alert);
+
+                            String[] ss = charging_amount.split("");
+
+
+
+                            final StringBuilder builder = new StringBuilder(charging_amount);
+                            builder.replace(0,1,"");
+
+                            dialog.show();
+                            Window window = dialog.getWindow();
+
+                            final TextView weLbl = window.findViewById(R.id.weLbl);
+                            final TextView esgroLbl = window.findViewById(R.id.esgroLbl);
+                            final TextView themLbl = window.findViewById(R.id.themLbl);
+                            esgroLbl.setTextColor(Color.parseColor("#929AAB"));
+                            weLbl.setTextColor(Color.parseColor("#7FE239"));
+
+                            weLbl.setText(charging_amount);
+                            esgroLbl.setText(charging_amount);
+                            themLbl.setText(charging_amount);
+
+                            new Handler().postDelayed(() -> {
+
+                                if(Double.parseDouble(builder.toString())>0){
+                                    weLbl.setTextColor(Color.parseColor("#929AAB"));
+                                    esgroLbl.setTextColor(Color.parseColor("#7FE239"));
+                                }
+                            }, SPLASH_DISPLAY_LENGTH_1);
+
+                            dialog.show();
+                            new Handler().postDelayed(() -> {
+                                dialog.dismiss();
+
+                                Intent mainIntent = new Intent(Request_03_Activity.this,DisputeNoHistoryActivity.class);
+                                Request_03_Activity.this.startActivity(mainIntent);
+                            }, SPLASH_DISPLAY_LENGTH);
+
+                        }
+                        });
+            alertDialog.show();
+        }
 }

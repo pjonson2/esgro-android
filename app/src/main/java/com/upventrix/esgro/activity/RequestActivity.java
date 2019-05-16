@@ -19,6 +19,8 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,10 +61,14 @@ public class RequestActivity extends AppCompatActivity {
                                     long id) {
 
                 TextView textView = view.findViewById(R.id.requestUserName);
+                TextView useridTxt = view.findViewById(R.id.userIdTxt);
+
                 String name = textView.getText().toString();
+                String userId = useridTxt.getText().toString();
 
                 Intent intent = new Intent(RequestActivity.this, Request_01_Activity.class);
                 intent.putExtra("request_user",name);
+                intent.putExtra("request_userId",userId);
                 startActivity(intent);
             }
         });
@@ -97,6 +103,7 @@ public class RequestActivity extends AppCompatActivity {
                                 R.drawable.user1
                             )
                         );
+                        System.out.println(value.getAsJsonObject().get("userid").getAsInt());
                     }
 
                 }else{
@@ -158,11 +165,14 @@ public class RequestActivity extends AppCompatActivity {
             TextView bankNameView = convertView.findViewById(R.id.requestUserName);
             ImageView requestImg = convertView.findViewById(R.id.requestUserImg);
             TextView daysTxt = convertView.findViewById(R.id.requestDays);
+            TextView userIdTxt = convertView.findViewById(R.id.userIdTxt);
 
             Request request = requestList.get(position);
+            System.out.println("request.getUserid()  "+request.getUserid());
             requestImg.setImageResource(request.getImage());
             bankNameView.setText(request.getName());
             daysTxt.setText(request.getDays());
+            userIdTxt.setText(request.getUserid()+"");
             return convertView;
         }
     }

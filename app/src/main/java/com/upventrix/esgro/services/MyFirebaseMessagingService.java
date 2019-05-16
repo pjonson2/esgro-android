@@ -2,13 +2,16 @@ package com.upventrix.esgro.services;
 
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.media.RingtoneManager;
+import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.upventrix.esgro.R;
+import com.upventrix.esgro.resource.LocalData;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
@@ -78,6 +81,12 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     @Override
     public void onNewToken(String s) {
         super.onNewToken(s);
+//        sendRegistrationToServer(token);
+
         System.out.println("onNewToken  "+s);
+
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        new LocalData().setNotificationToken(sharedPref,s);
+
     }
 }

@@ -5,9 +5,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.TouchDelegate;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
@@ -18,14 +20,18 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.upventrix.esgro.R;
 import com.upventrix.esgro.modals.Dispute;
+import com.upventrix.esgro.modals.UserToken;
 import com.upventrix.esgro.resource.Config;
 import com.upventrix.esgro.resource.LocalData;
 import com.upventrix.esgro.services.DealService;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.upventrix.esgro.services.UserService;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -47,6 +53,7 @@ public class DisputeNoHistoryActivity extends AppCompatActivity {
     ImageView newPostIcon;
     ImageView settings;
     DealService service = null;
+    UserService userService = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +63,58 @@ public class DisputeNoHistoryActivity extends AppCompatActivity {
         hideKeyboard(this);
         idInitialization();
         setListeners();
+        setToken();
+        setHitArea();
+    }
+
+    private void setToken() {
+        FirebaseApp.initializeApp(DisputeNoHistoryActivity.this);
+        FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(task -> {
+            if (!task.isSuccessful()) {
+                //To do//
+                System.out.println("Unsuccessful");
+                return;
+            }
+            final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+            String userData = new LocalData().getlocalData(sharedPref, "userdata");
+            int userid = 0;
+            try {
+                JSONObject jsonObj = new JSONObject(userData);
+                userid = jsonObj.getInt("userid");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            String token1 = task.getResult().getToken()+"";
+            System.out.println("Current Token   "+token1);
+
+            String notification_token = new LocalData().getlocalData(sharedPref, "notification_token")+"";
+            System.out.println("notification_token   "+notification_token);
+
+
+            if (!notification_token.equals(token1)){
+                System.out.println("Tokens Not Matched. Calling Api .........");
+
+                // call api
+                Call<JsonObject> userCall = userService.setToken(new UserToken(token1,userid));
+                userCall.enqueue(new Callback<JsonObject>() {
+                    @Override
+                    public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+
+                        String ok = response.body().get("status").toString();
+                        System.out.println("Api Called and"+ok);
+                        new LocalData().setNotificationToken(sharedPref, token1);
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonObject> call, Throwable t) {
+                        System.out.println("Error "+t.getMessage());
+                    }
+                });
+            }else{
+                System.out.println("Tokens  Matched. Not Calling Api .........");
+            }
+        });
 
     }
 
@@ -66,6 +125,7 @@ public class DisputeNoHistoryActivity extends AppCompatActivity {
         newPostIcon = findViewById(R.id.disputesNewPostIcon);
         settings = findViewById(R.id.disputesSettingsIcon);
         service = Config.getInstance().create(DealService.class);
+        userService = Config.getInstance().create(UserService.class);
 
         disputeList = new ArrayList<>();
         setValues();
@@ -165,6 +225,55 @@ public class DisputeNoHistoryActivity extends AppCompatActivity {
             }
         });
     }
+
+        public void setHitArea(){
+            {
+                View parent = (View) settings.getParent();  // button: the view you want to enlarge hit area
+                parent.post(new Runnable() {
+                    public   void run() {
+                        Rect rect = new Rect();
+                        settings.getHitRect(rect);
+                        rect.top -= 80;    // increase top hit area
+                        rect.left -= 80;   // increase left hit area
+                        rect.bottom += 80; // increase bottom hit area
+                        rect.right += 80;  // increase right hit area
+                        parent.setTouchDelegate(new TouchDelegate(rect, settings));
+                        System.out.println("Thread 1");
+                    }
+                });
+            }  {
+                View parent = (View) profileIcon.getParent();  // button: the view you want to enlarge hit area
+                parent.post(new Runnable() {
+                    public   void run() {
+                        Rect rect = new Rect();
+                        profileIcon.getHitRect(rect);
+                        rect.top -= 80;    // increase top hit area
+                        rect.left -= 80;   // increase left hit area
+                        rect.bottom += 80; // increase bottom hit area
+                        rect.right += 80;  // increase right hit area
+                        profileIcon.setTouchDelegate(new TouchDelegate(rect, profileIcon));
+                        System.out.println("Thread 2");
+
+                    }
+                });
+            }  {
+                View parent = (View) contactIcon.getParent();  // button: the view you want to enlarge hit area
+                parent.post(new Runnable() {
+                    public   void run() {
+                        Rect rect = new Rect();
+                        contactIcon.getHitRect(rect);
+                        rect.top -= 80;    // increase top hit area
+                        rect.left -= 80;   // increase left hit area
+                        rect.bottom += 80; // increase bottom hit area
+                        rect.right += 80;  // increase right hit area
+                        contactIcon.setTouchDelegate(new TouchDelegate(rect, contactIcon));
+                        System.out.println("Thread 3");
+
+                    }
+                });
+            }
+
+        }
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {

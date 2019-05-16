@@ -15,6 +15,7 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 import com.upventrix.esgro.R;
+import com.upventrix.esgro.modals.UserToken;
 import com.upventrix.esgro.resource.Config;
 import com.upventrix.esgro.resource.LocalData;
 import com.upventrix.esgro.services.UserService;
@@ -35,31 +36,13 @@ public class MainActivity extends AppCompatActivity {
     private final int SPLASH_DISPLAY_LENGTH = 3000;
     private  UserService service;
     private static final String TAG = "MainActivity";
-
+    int userid = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         onWindowFocusChanged(true);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        FirebaseApp.initializeApp(MainActivity.this);
-        FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
-                           @Override
-                           public void onComplete(@NonNull Task<InstanceIdResult> task) {
-                               if (!task.isSuccessful()) {
-                                //To do//
-                                    return;
-                               }
-
-                               // Get the Instance ID token//
-
-                               String token = "AAAAGANzyh4:APA91bFL5sE5iet_P4fYvTo71q6J0bVrAK-Ewy4mN6ZnuzSOHaI7jlZHH9AWcfEXh9rMOvZQtIlD47R4RJIyjvhl4wd8KiAvAkZHBYdx1ApaMhBABv15kDBYukd-wSWsSlaZrR7ega6f";
-                               String msg = getString(R.string.fcm_token, token);
-                               Log.d(TAG, msg);
-
-                           }
-                      });
-
 
 
         service = Config.getInstance().create(UserService.class);
@@ -71,13 +54,23 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                String userData = new LocalData().getlocalData(sharedPref, "userdata")+"";
+                if (userData.length() == 4) {
+                    System.out.println("user data null");
+                    Intent mainIntent = new Intent(MainActivity.this, LaunchedActivity.class);
+                    MainActivity.this.startActivity(mainIntent);
+                    MainActivity.this.finish();
+                    return;
+                }
+                try {
+                    JSONObject jsonObj = new JSONObject(userData);
+                    userid = jsonObj.getInt("userid");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
                 String sf = new LocalData().getlocalData(sharedPref, "userdata")+"";
                 System.out.println("USER DATA "+sf);
-                System.out.println("USER DATA "+sf);
-                //boolean isEmpty = sf == null || sf.trim().length() == 0;
-
-                //System.out.println("check :"+ isEmpty);
 
                 if (sf.length() == 4) {
                     System.out.println("user data null");
@@ -87,20 +80,12 @@ public class MainActivity extends AppCompatActivity {
                 }else {
                     System.out.println("user data not null");
 
-                    String userData = new LocalData().getlocalData(sharedPref, "userdata");
-                    int userid = 0;
-                    try {
-                        JSONObject jsonObj = new JSONObject(userData);
-                        userid = jsonObj.getInt("userid");
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-
-
                     Call<JsonObject> userCall = service.details(""+userid);
                     userCall.enqueue(new Callback<JsonObject>() {
                         @Override
                         public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+
+                            System.out.println("response "+response);
 
                             String number = response.body().get("mobile").toString();
                             if (number.length()==4){

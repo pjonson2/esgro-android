@@ -135,7 +135,7 @@ public class SignUpActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
 
-                    String status = null;
+                    String status = "";
                     try {
                         status = response.body().get("status").getAsString();
                     } catch (Exception e) {
