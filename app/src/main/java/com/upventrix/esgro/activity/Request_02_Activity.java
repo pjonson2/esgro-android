@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -46,7 +48,17 @@ public class Request_02_Activity extends AppCompatActivity {
         idInitialization();
         setListeners();
         setValues();
+        holdingDays.setOnTouchListener(new View.OnTouchListener(){
 
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                int inType = holdingDays.getInputType(); // backup the input type
+                holdingDays.setInputType(InputType.TYPE_NULL); // disable soft input
+                holdingDays.onTouchEvent(event); // call native handler
+                holdingDays.setInputType(inType); // restore input type
+                return true; // consume touch even
+            }
+        });
     }
 
 //    @SuppressLint("ClickableViewAccessibility")

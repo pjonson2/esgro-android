@@ -60,6 +60,8 @@ public class RequestActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
 
+                System.out.println("onItemClick()");
+
                 TextView textView = view.findViewById(R.id.requestUserName);
                 TextView useridTxt = view.findViewById(R.id.userIdTxt);
 
@@ -90,6 +92,7 @@ public class RequestActivity extends AppCompatActivity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                System.out.println("setValues()");
                 if (status.equals("success")){
 
                     JsonArray userslist = response.body().getAsJsonArray("userslist");
@@ -160,6 +163,7 @@ public class RequestActivity extends AppCompatActivity {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
+            System.out.println("getView method()");
             convertView = getLayoutInflater().inflate(R.layout.activity_request_card,null);
 
             TextView bankNameView = convertView.findViewById(R.id.requestUserName);

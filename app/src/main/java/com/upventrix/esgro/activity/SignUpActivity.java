@@ -15,6 +15,8 @@ import android.preference.PreferenceManager;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -44,7 +46,7 @@ public class SignUpActivity extends AppCompatActivity {
     EditText passwordReType;
     UserService service = null;
     String key = null;
-
+    View viewById;
     protected void onCreate(Bundle savedInstanceState) {
         onWindowFocusChanged(true);
         super.onCreate(savedInstanceState);
@@ -54,6 +56,17 @@ public class SignUpActivity extends AppCompatActivity {
         setListeners();
         setValues();
 
+        viewById.setOnTouchListener(new View.OnTouchListener(){
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                int inType = email.getInputType(); // backup the input type
+                email.setInputType(InputType.TYPE_NULL); // disable soft input
+                email.onTouchEvent(event); // call native handler
+                email.setInputType(inType); // restore input type
+                return true; // consume touch even
+            }
+        });
     }
 
     @SuppressLint("ResourceType")
@@ -66,6 +79,7 @@ public class SignUpActivity extends AppCompatActivity {
         email = findViewById(R.id.signUpEmailTxt);
         password = findViewById(R.id.signUpPswrdTxt);
         passwordReType = findViewById(R.id.signUpPswrdReTypeTxt);
+        viewById = findViewById(R.id.constraintLayout2);
         service = Config.getInstance().create(UserService.class);
         key = getResources().getString(R.string.userdata);
 

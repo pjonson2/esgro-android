@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -50,7 +52,29 @@ public class Request_01_Activity extends AppCompatActivity {
         idInitialization();
         setListeners();
         setValues();
+        requestChargingAmount.setOnTouchListener(new View.OnTouchListener(){
 
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                int inType = requestChargingAmount.getInputType(); // backup the input type
+                requestChargingAmount.setInputType(InputType.TYPE_NULL); // disable soft input
+                requestChargingAmount.onTouchEvent(event); // call native handler
+                requestChargingAmount.setInputType(inType); // restore input type
+                return true; // consume touch even
+            }
+        });
+
+        reserveTxt.setOnTouchListener(new View.OnTouchListener(){
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                int inType = reserveTxt.getInputType(); // backup the input type
+                reserveTxt.setInputType(InputType.TYPE_NULL); // disable soft input
+                reserveTxt.onTouchEvent(event); // call native handler
+                reserveTxt.setInputType(inType); // restore input type
+                return true; // consume touch even
+            }
+        });
     }
 
     void idInitialization(){
@@ -95,8 +119,9 @@ public class Request_01_Activity extends AppCompatActivity {
         n0.setOnClickListener(numberPad);
         iClick.setOnClickListener(iClickAction);
 
-
     }
+
+
 
     void setValues(){
         try{
