@@ -3,6 +3,7 @@
   <component name="AndroidLayouts">
     <shared>
       <config>
+        <device id="pixel_2" />
         <device id="pixel" />
       </config>
     </shared>
@@ -125,17 +126,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="290a13cf-264c-4937-a334-d55acd8ae546" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/fileChanges/last-build.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/fileContent/fileContent.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/fileHashes/fileHashes.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/fileHashes/fileHashes.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/fileHashes/resourceHashesCache.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/gc.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/javaCompile/classAnalysis.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/javaCompile/javaCompile.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/javaCompile/taskHistory.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/taskHistory/taskHistory.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/taskHistory/taskHistory.lock" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.bin" afterDir="false" />
@@ -143,15 +133,20 @@
       <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/classAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/ContactUsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/ContactUsActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/DisputeNoHistoryActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/DisputeNoHistoryActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/RequestActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/RequestActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/Request_01_Activity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/Request_01_Activity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/Request_02_Activity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/Request_02_Activity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/Request_03_Activity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/Request_03_Activity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/SignInActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/SignInActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/SignUpActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/SignUpActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/UpdateProfileActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/UpdateProfileActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout-v16/activity_signin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout-v16/activity_signin.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_dispute_shake.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_dispute_shake.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_request.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_request.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_signin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_signin.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_signup.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_signup.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -176,16 +171,60 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/SignUpActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="65" column="21" selection-start-line="65" selection-start-column="21" selection-end-line="65" selection-end-column="21" />
+            <state relative-caret-position="429">
+              <caret line="96" selection-start-line="96" selection-end-line="100" selection-end-column="5" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-xlarge/activity_signup.xml">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/UpdateProfileActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="55" selection-start-line="55" selection-end-line="59" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/DisputeNoHistoryActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="84" column="13" lean-forward="true" selection-start-line="84" selection-start-column="13" selection-end-line="84" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_dispute_shake.xml">
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="1890">
+              <caret line="126" column="13" selection-start-line="126" selection-start-column="13" selection-end-line="126" selection-end-column="13" />
+            </state>
+          </provider>
+          <provider selected="true" editor-type-id="android-designer2" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_update_profile.xml">
           <provider editor-type-id="text-editor" />
           <provider selected="true" editor-type-id="android-designer2" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-normal/activity_update_profile.xml">
+          <provider editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="android-designer2" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_contact_us.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="4" column="16" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer2" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -195,56 +234,25 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-land/activity_signup.xml">
-          <provider editor-type-id="text-editor" />
-          <provider selected="true" editor-type-id="android-designer2" />
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/SignInActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="477">
+              <caret line="78" selection-start-line="78" selection-end-line="78" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_signup.xml">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-v16/activity_signin.xml">
           <provider editor-type-id="text-editor">
-            <state relative-caret-position="1890">
-              <caret line="126" column="8" selection-start-line="126" selection-start-column="8" selection-end-line="126" selection-end-column="8" />
+            <state relative-caret-position="196">
+              <caret line="220" column="8" selection-start-line="220" selection-start-column="8" selection-end-line="220" selection-end-column="8" />
             </state>
           </provider>
           <provider selected="true" editor-type-id="android-designer2" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/Request_03_Activity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="496">
-              <caret line="182" selection-start-line="182" selection-end-line="182" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-          <provider editor-type-id="android-manifest" />
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="203">
-              <caret line="258" column="49" lean-forward="true" selection-start-line="258" selection-start-column="49" selection-end-line="258" selection-end-column="49" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/AboutActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="38" column="1" lean-forward="true" selection-start-line="38" selection-start-column="1" selection-end-line="43" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/Request_02_Activity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="50" column="5" selection-start-line="50" selection-start-column="5" selection-end-line="60" selection-end-column="11" />
-            </state>
-          </provider>
         </entry>
       </file>
     </leaf>
@@ -266,6 +274,8 @@
       <find>From</find>
       <find>MyFirebaseMessagingService</find>
       <find>token</find>
+      <find>getCurrentFocus</find>
+      <find>state</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -274,13 +284,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/esgro/modals/Bank.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/esgro/activity/BankListActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/esgro/activity/MobileVerificationActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/esgro/activity/TransferToBankActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/esgro/activity/TransferToCardActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/esgro/activity/BankAndCards2Activity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/esgro/modals/Request.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/esgro/modals/Token.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/esgro/activity/RequestActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/esgro/resource/Validations.java" />
@@ -302,7 +305,6 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/esgro/activity/SignUpActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/esgro/activity/LaunchedActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/esgro/activity/MainActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
@@ -310,25 +312,33 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/services/MyFirebaseMessagingService.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/LaunchedActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/HitArea.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/DisputeNoHistoryActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout-large/activity_request_card.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout-xlarge/activity_request_card.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_request_card.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/modals/Request.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/services/DealService.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/modals/Deal.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/SignInActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/RequestActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/Request_01_Activity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/Request_02_Activity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/SignUpActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/Request_03_Activity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/AboutActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_request.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_dispute_shake.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_signup.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_signin.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout-v16/activity_signin.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/RequestActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/Request_03_Activity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/ContactUsActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/SignInActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/SignUpActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/UpdateProfileActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/DisputeNoHistoryActivity.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="width" value="1910" />
     <option name="height" value="1080" />
   </component>
@@ -338,7 +348,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -395,13 +407,11 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="android.sdk.path" value="$USER_HOME$/Android/Sdk" />
-    <property name="device.picker.selection" value="bb149b66" />
+    <property name="device.picker.selection" value="520018258dbe168f" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.17" />
@@ -678,7 +688,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1920" height="1080" extended-state="7" />
+    <frame x="0" y="0" width="1920" height="1080" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2113127" />
@@ -692,7 +702,7 @@
       <window_info id="Resources Explorer" order="8" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32944915" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.24258475" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.2404661" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -702,9 +712,9 @@
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50213444" side_tool="true" weight="0.3089947" />
       <window_info anchor="bottom" id="Logcat" order="10" weight="0.32944915" />
       <window_info anchor="bottom" id="Version Control" order="11" />
-      <window_info anchor="bottom" id="Terminal" order="12" weight="0.4814815" />
+      <window_info anchor="bottom" id="Terminal" order="12" weight="0.48042327" />
       <window_info anchor="bottom" id="Messages" order="13" sideWeight="0.49786553" weight="0.3089947" />
-      <window_info anchor="bottom" id="Build" order="14" visible="true" weight="0.19597457" />
+      <window_info anchor="bottom" id="Build" order="14" visible="true" weight="0.39088982" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -754,82 +764,6 @@
     </layout-to-restore>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/sms/SmsReceiver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="29" column="52" selection-start-line="29" selection-start-column="52" selection-end-line="29" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-      <provider editor-type-id="text-editor" />
-      <provider selected="true" editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_homepage.xml">
-      <provider editor-type-id="text-editor" />
-      <provider selected="true" editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-normal/activity_update_profile.xml">
-      <provider editor-type-id="text-editor" />
-      <provider selected="true" editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_update_profile.xml">
-      <provider editor-type-id="text-editor" />
-      <provider selected="true" editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_profile.xml">
-      <provider editor-type-id="text-editor" />
-      <provider selected="true" editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/ProfileActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="75" column="65" selection-start-line="75" selection-start-column="8" selection-end-line="75" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/6164485a8f2e0e0534bc28a79371ae7c/jars/classes.jar!/android/support/v4/app/NotificationCompat.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
-          <caret line="927" column="15" selection-start-line="927" selection-start-column="15" selection-end-line="927" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/ee3a04a04e9e6733e1b5aef276ca6d65/jars/classes.jar!/com/google/firebase/iid/FirebaseInstanceId.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="32" column="42" selection-start-line="32" selection-start-column="37" selection-end-line="32" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/2ced34286bbca511b655d19b943fec2e/jars/classes.jar!/com/google/firebase/iid/FirebaseInstanceId.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Android/Sdk/sources/android-28/android/content/Context.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7710">
-          <caret line="592" column="24" selection-start-line="592" selection-start-column="24" selection-end-line="592" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c4325dfc68055a3b246091a023297807/jars/classes.jar!/com/google/android/gms/tasks/OnCompleteListener.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="9" column="41" selection-start-line="9" selection-start-column="41" selection-end-line="9" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="42" selection-start-line="10" selection-start-column="42" selection-end-line="10" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -896,10 +830,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_dispute_shake.xml">
-      <provider editor-type-id="text-editor" />
-      <provider selected="true" editor-type-id="android-designer2" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/HitArea.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -914,13 +844,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2790">
           <caret line="199" selection-start-line="199" selection-end-line="199" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/DisputeNoHistoryActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="106" column="21" selection-start-line="106" selection-start-column="21" selection-end-line="106" selection-end-column="21" />
         </state>
       </provider>
     </entry>
@@ -947,16 +870,6 @@
         </state>
       </provider>
       <provider selected="true" editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/SignInActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1980">
-          <caret line="156" column="96" selection-start-line="156" selection-start-column="96" selection-end-line="156" selection-end-column="96" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/modals/User.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -986,13 +899,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/RequestActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="180" column="9" selection-start-line="180" selection-start-column="9" selection-end-line="180" selection-end-column="9" />
         </state>
       </provider>
     </entry>
@@ -1046,73 +952,188 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/Request_01_Activity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="54" column="5" selection-start-line="54" selection-start-column="5" selection-end-line="64" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/Request_02_Activity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="50" column="5" selection-start-line="50" selection-start-column="5" selection-end-line="60" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_signup.xml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="1890">
-          <caret line="126" column="8" selection-start-line="126" selection-start-column="8" selection-end-line="126" selection-end-column="8" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_blank.xml" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/BlankFragment.java" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-xlarge/activity_signup.xml">
+      <provider editor-type-id="text-editor" />
       <provider selected="true" editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-land/activity_signup.xml">
       <provider editor-type-id="text-editor" />
       <provider selected="true" editor-type-id="android-designer2" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-large/activity_signup.xml">
-      <provider editor-type-id="text-editor" />
-      <provider selected="true" editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-xlarge/activity_signup.xml">
-      <provider editor-type-id="text-editor" />
-      <provider selected="true" editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/SignUpActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="65" column="21" selection-start-line="65" selection-start-column="21" selection-end-line="65" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_blank.xml">
-      <provider editor-type-id="text-editor" />
-      <provider selected="true" editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/BlankFragment.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/Request_03_Activity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="496">
-          <caret line="182" selection-start-line="182" selection-end-line="182" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/AboutActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
-          <caret line="38" column="1" lean-forward="true" selection-start-line="38" selection-start-column="1" selection-end-line="43" selection-end-column="6" />
+          <caret line="38" column="1" selection-start-line="38" selection-start-column="1" selection-end-line="43" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/Request_02_Activity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="585">
+          <caret line="50" column="5" selection-start-line="50" selection-start-column="5" selection-end-line="60" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/TransferToCardActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/Request_01_Activity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-270">
+          <caret line="55" selection-start-line="55" selection-end-line="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-large/activity_request.xml">
+      <provider editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-xlarge/activity_request.xml">
+      <provider editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$USER_HOME$/Android/Sdk/sources/android-28/android/view/inputmethod/InputMethodManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="164">
+          <caret line="1123" column="19" selection-start-line="1123" selection-start-column="19" selection-end-line="1123" selection-end-column="19" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
       <provider editor-type-id="android-manifest" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="258" column="49" lean-forward="true" selection-start-line="258" selection-start-column="49" selection-end-line="258" selection-end-column="49" />
+        <state relative-caret-position="259">
+          <caret line="186" column="12" selection-start-line="186" selection-start-column="12" selection-end-line="186" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_request.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="86" column="42" selection-start-line="86" selection-start-column="42" selection-end-line="86" selection-end-column="42" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_signin.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="114" column="12" selection-start-line="114" selection-start-column="12" selection-end-line="114" selection-end-column="12" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_request_3.xml">
+      <provider editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/RequestActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="69" column="1" selection-start-line="69" selection-start-column="1" selection-end-line="73" />
+          <folding>
+            <element signature="e#3214#3215#0" expanded="true" />
+            <element signature="e#3270#3271#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/Request_03_Activity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="321">
+          <caret line="91" selection-start-line="91" selection-end-line="96" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/ContactUsActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="60" column="3" selection-start-line="60" selection-start-column="3" selection-end-line="63" selection-end-column="5" />
+          <folding>
+            <element signature="e#3642#3643#0" expanded="true" />
+            <element signature="e#3682#3683#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_signup.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="1890">
+          <caret line="127" column="8" selection-start-line="127" selection-start-column="8" selection-end-line="127" selection-end-column="8" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-v16/activity_signin.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="220" column="8" selection-start-line="220" selection-start-column="8" selection-end-line="220" selection-end-column="8" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/SignInActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="477">
+          <caret line="78" selection-start-line="78" selection-end-line="78" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_contact_us.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="16" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-large/activity_signup.xml">
+      <provider editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/SignUpActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="429">
+          <caret line="96" selection-start-line="96" selection-end-line="100" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-normal/activity_update_profile.xml">
+      <provider editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_update_profile.xml">
+      <provider editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/UpdateProfileActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="55" selection-start-line="55" selection-end-line="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_dispute_shake.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="1890">
+          <caret line="126" column="13" selection-start-line="126" selection-start-column="13" selection-end-line="126" selection-end-column="13" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/upventrix/esgro/activity/DisputeNoHistoryActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="84" column="13" lean-forward="true" selection-start-line="84" selection-start-column="13" selection-end-line="84" selection-end-column="13" />
         </state>
       </provider>
     </entry>

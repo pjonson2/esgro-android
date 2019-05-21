@@ -6,11 +6,15 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 
 import com.upventrix.esgro.R;
 import com.upventrix.esgro.modals.User;
@@ -36,6 +40,10 @@ public class SignInActivity extends AppCompatActivity {
     EditText password;
     UserService service = null;
 
+    ProgressBar progressBar;
+
+    ConstraintLayout constraintLayout;
+    ConstraintLayout constraintLayout2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +54,32 @@ public class SignInActivity extends AppCompatActivity {
         idInitialization();
         setListeners();
         setValues();
+        constraintLayout = findViewById(R.id.constraintLayout);
+        constraintLayout2 = findViewById(R.id.cardView);
 
+        constraintLayout.setOnTouchListener(new View.OnTouchListener()
+        {
+            @Override
+            public boolean onTouch(View view, MotionEvent ev)
+            {
+                hideKeyboard(view);
+                return false;
+            }
+        });
+        constraintLayout2.setOnTouchListener(new View.OnTouchListener()
+        {
+            @Override
+            public boolean onTouch(View view, MotionEvent ev)
+            {
+                hideKeyboard(view);
+                return false;
+            }
+        });
+    }
+
+    private void hideKeyboard(View view) {
+        InputMethodManager in = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        in.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
     void idInitialization(){
@@ -56,6 +89,7 @@ public class SignInActivity extends AppCompatActivity {
         getStart = findViewById(R.id.signIngetStartBtn);
         email = findViewById(R.id.signInEmailTxt);
         password= findViewById(R.id.signInPasswordTxt);
+        progressBar = findViewById(R.id.progressBar4);
         service = Config.getInstance().create(UserService.class);
 
     }
@@ -64,6 +98,7 @@ public class SignInActivity extends AppCompatActivity {
         back.setOnClickListener(backAction);
         continueBtn.setOnClickListener(continueBtnAction);
         getStart.setOnClickListener(getStartBtnAction);
+        progressBar.setVisibility(View.GONE);
     }
 
     void setValues(){
@@ -93,7 +128,7 @@ public class SignInActivity extends AppCompatActivity {
 
     View.OnClickListener continueBtnAction = new View.OnClickListener() {
         public void onClick(View v) {
-
+            progressBar.setVisibility(View.VISIBLE);
             String e = email.getText().toString();
             String p = password.getText().toString();
 
@@ -117,10 +152,11 @@ public class SignInActivity extends AppCompatActivity {
                         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                         new LocalData().setLocalData(sharedPref,userData);
 
+                        progressBar.setVisibility(View.GONE);
                         vewAlert("Successfully","Press ok to continue",SignInActivity.this);
 
                     }else{
-                        System.out.println(status);
+                        progressBar.setVisibility(View.GONE);
                         vewAlert("Warnings","Failed to login. Try again",SignInActivity.this);
 
                     }

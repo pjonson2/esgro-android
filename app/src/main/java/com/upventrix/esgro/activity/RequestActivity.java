@@ -1,15 +1,22 @@
 package com.upventrix.esgro.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import com.upventrix.esgro.R;
 import com.upventrix.esgro.modals.Request;
@@ -31,30 +38,51 @@ import retrofit2.Response;
 public class RequestActivity extends AppCompatActivity {
 
     Button back;
+    ProgressBar progressBar;
 
     List<Request> requestList;
     private UserService service;
+
+    EditText searchView;
+    ConstraintLayout constraintLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         onWindowFocusChanged(true);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_request);
+        constraintLayout = findViewById(R.id.activity_request);
 
         idInitialization();
+        searchView.requestFocus();
         setListeners();
-
+        constraintLayout.setOnTouchListener(new View.OnTouchListener()
+        {
+            @Override
+            public boolean onTouch(View view, MotionEvent ev)
+            {
+                hideKeyboard(view);
+                return false;
+            }
+        });
     }
+
+    private void hideKeyboard(View view) {
+        InputMethodManager in = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        in.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+    }
+
+
     void idInitialization(){
+        searchView = findViewById(R.id.searchView);
+        progressBar = findViewById(R.id.progressBar);
         service = Config.getInstance().create(UserService.class);
         requestList = new ArrayList<>();
         setValues();
         back = findViewById(R.id.requestBackBtn);
+
         ListView listView = findViewById(R.id.dynamicRequestList);
 
-
-        RequestActivity.CustomAdaper customAdaper = new RequestActivity.CustomAdaper();
-        listView.setAdapter(customAdaper);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
@@ -82,6 +110,7 @@ public class RequestActivity extends AppCompatActivity {
     }
 
     void setValues(){
+        System.out.println("setValues      . ..........  ");
         Call<JsonObject> userCall = service.usersList();
         userCall.enqueue(new Callback<JsonObject>() {
             @Override
@@ -108,6 +137,12 @@ public class RequestActivity extends AppCompatActivity {
                         );
                         System.out.println(value.getAsJsonObject().get("userid").getAsInt());
                     }
+                    System.out.println("middle .......... ... "+requestList.size());
+                    ListView listView = findViewById(R.id.dynamicRequestList);
+
+                    RequestActivity.CustomAdaper customAdaper = new RequestActivity.CustomAdaper();
+                    listView.setAdapter(customAdaper);
+                    progressBar.setVisibility(View.GONE);
 
                 }else{
                     System.out.println(status);
@@ -148,16 +183,21 @@ public class RequestActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
+            System.out.println("getCount;   "+requestList.size());
             return requestList.size();
         }
 
         @Override
         public Object getItem(int position) {
+
+            System.out.println("getItem  ................ ");
             return null;
         }
 
         @Override
         public long getItemId(int position) {
+
+            System.out.println("getItemId  ................ ");
             return 0;
         }
 

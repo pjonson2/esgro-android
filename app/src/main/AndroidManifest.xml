@@ -183,6 +183,11 @@
         </activity>
 
         <activity android:name="com.upventrix.esgro.activity.RequestActivity"
+            android:windowSoftInputMode="stateHidden"
+            android:clickable="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+
             android:screenOrientation="portrait">
 
 

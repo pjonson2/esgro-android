@@ -13,13 +13,16 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.RequiresApi;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 
 import com.upventrix.esgro.R;
 import com.upventrix.esgro.modals.User;
@@ -47,6 +50,9 @@ public class SignUpActivity extends AppCompatActivity {
     UserService service = null;
     String key = null;
     View viewById;
+    ProgressBar progressBar;
+    ConstraintLayout constraintLayout;
+    ConstraintLayout constraintLayout2;
     protected void onCreate(Bundle savedInstanceState) {
         onWindowFocusChanged(true);
         super.onCreate(savedInstanceState);
@@ -67,8 +73,32 @@ public class SignUpActivity extends AppCompatActivity {
                 return true; // consume touch even
             }
         });
+        constraintLayout = findViewById(R.id.activity_signup);
+        constraintLayout2 = findViewById(R.id.constraintLayout2);
+        constraintLayout.setOnTouchListener(new View.OnTouchListener()
+        {
+            @Override
+            public boolean onTouch(View view, MotionEvent ev)
+            {
+                hideKeyboard(view);
+                return false;
+            }
+        });
+        constraintLayout2.setOnTouchListener(new View.OnTouchListener()
+        {
+            @Override
+            public boolean onTouch(View view, MotionEvent ev)
+            {
+                hideKeyboard(view);
+                return false;
+            }
+        });
     }
 
+    private void hideKeyboard(View view) {
+        InputMethodManager in = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        in.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+    }
     @SuppressLint("ResourceType")
     void idInitialization(){
         signUpBackBtn = findViewById(R.id.signUpBackBtn);
@@ -80,6 +110,7 @@ public class SignUpActivity extends AppCompatActivity {
         password = findViewById(R.id.signUpPswrdTxt);
         passwordReType = findViewById(R.id.signUpPswrdReTypeTxt);
         viewById = findViewById(R.id.constraintLayout2);
+        progressBar = findViewById(R.id.progressBar3);
         service = Config.getInstance().create(UserService.class);
         key = getResources().getString(R.string.userdata);
 
@@ -88,6 +119,8 @@ public class SignUpActivity extends AppCompatActivity {
     void setListeners(){
         signUpBackBtn.setOnClickListener(signUpBack);
         continueBtn.setOnClickListener(continueBtnAction);
+        progressBar.setVisibility(View.GONE);
+
     }
 
     void setValues(){
@@ -116,6 +149,7 @@ public class SignUpActivity extends AppCompatActivity {
     View.OnClickListener continueBtnAction = new View.OnClickListener() {
         @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
         public void onClick(View v) {
+            progressBar.setVisibility(View.VISIBLE);
             ShapeDrawable shape = new ShapeDrawable(new RectShape());
             boolean emailValid = new Validations().isEmailValid(email.getText().toString());
             if (!emailValid){
@@ -163,10 +197,13 @@ public class SignUpActivity extends AppCompatActivity {
                         new LocalData().setLocalData(sharedPref,userData);
 
                         // re-direct next form
+                        progressBar.setVisibility(View.GONE);
                         vewAlert("Successfully","Your details successfully saved",SignUpActivity.this);
 
                     }else{
+                        progressBar.setVisibility(View.GONE);
                         vewAlert("Warnings","Your details saving failed",SignUpActivity.this);
+
                     }
                 }
 

@@ -1,6 +1,7 @@
 package com.upventrix.esgro.activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -8,7 +9,10 @@ import android.graphics.Color;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
+import android.view.MotionEvent;
 import android.view.TouchDelegate;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +22,7 @@ import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.firebase.FirebaseApp;
@@ -48,6 +53,8 @@ public class DisputeNoHistoryActivity extends AppCompatActivity {
     List<Dispute> disputeList;
     EditText disputeShakeSearchView;
 
+    ProgressBar progressBar;
+
     ImageView contactIcon;
     ImageView profileIcon;
     ImageView newPostIcon;
@@ -55,16 +62,34 @@ public class DisputeNoHistoryActivity extends AppCompatActivity {
     DealService service = null;
     UserService userService = null;
 
+    ConstraintLayout constraintLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         onWindowFocusChanged(true);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dispute_shake);
-        hideKeyboard(this);
+
         idInitialization();
         setListeners();
         setToken();
         setHitArea();
+        constraintLayout = findViewById(R.id.activity_dispute_shake);
+        constraintLayout.setOnTouchListener(new View.OnTouchListener()
+        {
+            @Override
+            public boolean onTouch(View view, MotionEvent ev)
+            {
+                hideKeyboard(view);
+                return false;
+            }
+        });
+
+    }
+
+    private void hideKeyboard(View view) {
+        InputMethodManager in = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        in.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
     private void setToken() {
@@ -124,16 +149,15 @@ public class DisputeNoHistoryActivity extends AppCompatActivity {
         profileIcon = findViewById(R.id.disputesProfileIcon);
         newPostIcon = findViewById(R.id.disputesNewPostIcon);
         settings = findViewById(R.id.disputesSettingsIcon);
+        progressBar = findViewById(R.id.progressBar2);
         service = Config.getInstance().create(DealService.class);
         userService = Config.getInstance().create(UserService.class);
 
         disputeList = new ArrayList<>();
         setValues();
+        System.out.println("1disputeList ........................"+disputeList.size());
 
         ListView listView = findViewById(R.id.dynamicShakeListView);
-
-        DisputeNoHistoryActivity.CustomAdaper customAdaper = new DisputeNoHistoryActivity.CustomAdaper();
-        listView.setAdapter(customAdaper);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -176,7 +200,7 @@ public class DisputeNoHistoryActivity extends AppCompatActivity {
     }
 
     void setValues(){
-
+        System.out.println("setValues()......................");
         final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         String userData = new LocalData().getlocalData(sharedPref, "userdata");
         int userid = 0;
@@ -213,6 +237,12 @@ public class DisputeNoHistoryActivity extends AppCompatActivity {
                                 )
                         );
                     }
+
+                    System.out.println("Middle ................. "+disputeList.size());
+                    DisputeNoHistoryActivity.CustomAdaper customAdaper = new DisputeNoHistoryActivity.CustomAdaper();
+                    ListView listView = findViewById(R.id.dynamicShakeListView);
+                    listView.setAdapter(customAdaper);
+                    progressBar.setVisibility(View.GONE);
 
                 }else{
                     System.out.println(status);
@@ -292,22 +322,29 @@ public class DisputeNoHistoryActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
+
+            System.out.println("getCount()......................"+ disputeList.size());
             return disputeList.size();
         }
 
         @Override
         public Object getItem(int position) {
+            System.out.println("getItem()......................");
+
             return null;
         }
 
         @Override
         public long getItemId(int position) {
+
+            System.out.println("setValues()......................");
+
             return 0;
         }
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-
+            System.out.println("getView()......................");
             convertView = getLayoutInflater().inflate(R.layout.activity_dispute_card,null);
 
             TextView bankNameView = convertView.findViewById(R.id.disputeUserName);
@@ -373,16 +410,5 @@ public class DisputeNoHistoryActivity extends AppCompatActivity {
         }
     };
 
-    public void hideKeyboard(Activity activity) {
-        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
-        //Find the currently focused view, so we can grab the correct window token from it.
-        View view = activity.getCurrentFocus();
-        //If no view currently has focus, create a new one, just so we can grab a window token from it
-        if (view == null) {
-            view = new View(activity);
-        }
-        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-
-    }
 
 }

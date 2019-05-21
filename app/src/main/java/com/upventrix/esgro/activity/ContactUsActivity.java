@@ -1,11 +1,15 @@
 package com.upventrix.esgro.activity;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -28,7 +32,7 @@ public class ContactUsActivity extends AppCompatActivity {
     TextView contactEmailTxt;
 
     EditText contactMessageTxt;
-
+    ConstraintLayout constraintLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +45,24 @@ public class ContactUsActivity extends AppCompatActivity {
         setValues();
 
         dialog = new Dialog(this);
-
+        constraintLayout = findViewById(R.id.activity_contact_us);
+        constraintLayout.setOnTouchListener(new View.OnTouchListener()
+        {
+            @Override
+            public boolean onTouch(View view, MotionEvent ev)
+            {
+                hideKeyboard(view);
+                return false;
+            }
+        });
     }
+
+
+    private void hideKeyboard(View view) {
+        InputMethodManager in = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        in.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+    }
+
     void idInitialization(){
         submit = findViewById(R.id.submitBtn);
         profileIcon = findViewById(R.id.contactProfileIcon);
