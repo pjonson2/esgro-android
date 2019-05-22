@@ -41,7 +41,7 @@ public class AddCardActivity extends AppCompatActivity {
         addcrd = findViewById(R.id.addCrdBtn);
         cardNumber = findViewById(R.id.CardCardNumberTxt);
         expDate = findViewById(R.id.CardExpDateTxt);
-        cvv = findViewById(R.id.CardCvvTxt);
+        cvv = findViewById(R.id.cardCvvTxt);
         cardNumber.addTextChangedListener(checkNumbers);
 
     }

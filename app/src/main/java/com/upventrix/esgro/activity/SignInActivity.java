@@ -178,15 +178,6 @@ public class SignInActivity extends AppCompatActivity {
         }
     };
     public void vewAlert(final String title, String message, final Context context){
-        AlertDialog alertDialog = new AlertDialog.Builder(context).create();
-        alertDialog.setTitle(title);
-        alertDialog.setMessage(message);
-        alertDialog.setCanceledOnTouchOutside(false);
-        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                        // re-direct next form
 
                         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
@@ -228,8 +219,4 @@ public class SignInActivity extends AppCompatActivity {
                             }
                         });
                     }
-                });
-        alertDialog.show();
     }
-
-}

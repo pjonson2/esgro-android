@@ -189,7 +189,7 @@
         app:layout_constraintVertical_bias="0.787" />
 
     <EditText
-        android:id="@+id/CardCvvTxt"
+        android:id="@+id/zipCOdeTXt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
