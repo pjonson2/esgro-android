@@ -24,19 +24,19 @@
 
         <Button
             android:id="@+id/siginInBackBtn"
-            android:layout_width="10dp"
-            android:layout_height="18dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginStart="20dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="38dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:background="@android:color/transparent"
             android:drawableBottom="@drawable/path_467"
+            android:padding="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.02"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/textView20" />
 
         <Button
             android:id="@+id/signIngetStartBtn"
@@ -67,7 +67,7 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="31dp"
+            android:layout_marginTop="30dp"
             android:autoSizeTextType="uniform"
             android:fontFamily="@font/open_sans"
             android:text="Sign In"
@@ -144,7 +144,7 @@
                 android:layout_marginRight="8dp"
                 android:autoSizeTextType="uniform"
                 android:ems="10"
-                android:fontFamily="@font/open_sans_semibold"
+                android:fontFamily="@font/open_sans"
                 android:hint="Email"
                 android:inputType="textPersonName"
                 app:autoSizeMaxTextSize="100sp"
@@ -166,7 +166,7 @@
                 android:layout_marginBottom="8dp"
                 android:autoSizeTextType="uniform"
                 android:ems="10"
-                android:fontFamily="@font/open_sans_semibold"
+                android:fontFamily="@font/open_sans"
                 android:hint="Password"
                 android:inputType="textPassword"
                 app:layout_constraintBottom_toBottomOf="parent"

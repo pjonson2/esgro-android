@@ -299,7 +299,7 @@
         tools:ignore="MissingConstraints" />
 
     <ImageView
-        android:id="@+id/imageView45"
+        android:id="@+id/displayImage"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:background="@drawable/roshen_kanishka"

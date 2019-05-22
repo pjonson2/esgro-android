@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RectShape;
 import android.os.Build;
@@ -21,6 +22,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
@@ -50,9 +52,11 @@ public class SignUpActivity extends AppCompatActivity {
     UserService service = null;
     String key = null;
     View viewById;
+    CheckBox signUpCheckBox;
     ProgressBar progressBar;
     ConstraintLayout constraintLayout;
     ConstraintLayout constraintLayout2;
+    Drawable background;
     protected void onCreate(Bundle savedInstanceState) {
         onWindowFocusChanged(true);
         super.onCreate(savedInstanceState);
@@ -75,6 +79,8 @@ public class SignUpActivity extends AppCompatActivity {
         });
         constraintLayout = findViewById(R.id.activity_signup);
         constraintLayout2 = findViewById(R.id.constraintLayout2);
+        signUpCheckBox = findViewById(R.id.signUpCheckBox);
+
         constraintLayout.setOnTouchListener(new View.OnTouchListener()
         {
             @Override
@@ -124,7 +130,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     void setValues(){
-
+        background = email.getBackground();
     }
 
     public void onWindowFocusChanged(boolean hasFocus) {
@@ -150,26 +156,13 @@ public class SignUpActivity extends AppCompatActivity {
         @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
         public void onClick(View v) {
             progressBar.setVisibility(View.VISIBLE);
-            ShapeDrawable shape = new ShapeDrawable(new RectShape());
-            boolean emailValid = new Validations().isEmailValid(email.getText().toString());
-            if (!emailValid){
-                vewAlert("Warnings","Invalid email address",SignUpActivity.this);
-                return;
-            }
-            if(!password.getText().toString().equals(passwordReType.getText().toString())){
 
-                shape.getPaint().setColor(Color.RED);
-                shape.getPaint().setStyle(Paint.Style.STROKE);
-                shape.getPaint().setStrokeWidth(1);
-                password.setBackground(shape);
-                passwordReType.setBackground(shape);
-
-                vewAlert("Warnings","Password doesn't matched",SignUpActivity.this);
+            boolean validations = validations();
+            if (!validations){
                 return;
             }
 
             // calling user api
-
             Call<JsonObject> userCall = service.saveUser(
                     new User(
                     firstName.getText().toString(),
@@ -215,6 +208,77 @@ public class SignUpActivity extends AppCompatActivity {
 
         }
     };
+
+
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    private boolean validations() {
+        ShapeDrawable shape = new ShapeDrawable(new RectShape());
+        boolean emailValid = new Validations().isEmailValid(email.getText().toString());
+
+        if (firstName.getText().toString().equals("")){
+            progressBar.setVisibility(View.GONE);
+            shape.getPaint().setColor(Color.RED);
+            shape.getPaint().setStyle(Paint.Style.STROKE);
+            shape.getPaint().setStrokeWidth(1);
+            firstName.setBackground(shape);
+            return false;
+        }else{
+            firstName.setBackground(background);
+        }
+
+        if (lastName.getText().toString().equals("")){
+            progressBar.setVisibility(View.GONE);
+            shape.getPaint().setColor(Color.RED);
+            shape.getPaint().setStyle(Paint.Style.STROKE);
+            shape.getPaint().setStrokeWidth(1);
+            lastName.setBackground(shape);
+            return false;
+        }else{
+            lastName.setBackground(background);
+        }
+
+        if (!emailValid){
+            progressBar.setVisibility(View.GONE);
+            shape.getPaint().setColor(Color.RED);
+            shape.getPaint().setStyle(Paint.Style.STROKE);
+            shape.getPaint().setStrokeWidth(1);
+            email.setBackground(shape);
+            return false;
+        }else{
+            email.setBackground(background);
+        }
+
+        if (userName.getText().toString().equals("")){
+            progressBar.setVisibility(View.GONE);
+            shape.getPaint().setColor(Color.RED);
+            shape.getPaint().setStyle(Paint.Style.STROKE);
+            shape.getPaint().setStrokeWidth(1);
+            userName.setBackground(shape);
+            return false;
+        }else{
+            userName.setBackground(background);
+        }
+
+        if(!password.getText().toString().equals(passwordReType.getText().toString()) || password.getText().toString().equals("") || passwordReType.getText().toString().equals("")){
+            shape.getPaint().setColor(Color.RED);
+            shape.getPaint().setStyle(Paint.Style.STROKE);
+            shape.getPaint().setStrokeWidth(1);
+            password.setBackground(shape);
+            passwordReType.setBackground(shape);
+            progressBar.setVisibility(View.GONE);
+            return false;
+        }else{
+            passwordReType.setBackground(background);
+            password.setBackground(background);
+        }
+
+        if (!signUpCheckBox.isChecked()){
+            progressBar.setVisibility(View.GONE);
+            vewAlert("Warnings","Accept Terms and Conditions",SignUpActivity.this);
+            return false;
+        }
+        return true;
+    }
 
     public void vewAlert(final String title, String message, final Context context){
         final AlertDialog alertDialog = new AlertDialog.Builder(context).create();

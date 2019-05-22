@@ -121,6 +121,7 @@ public class ChatActivity extends AppCompatActivity {
             String value = extras.getString("disputeListName");
             String disputeDays = extras.getString("disputeListDays");
             String disputePrice = extras.getString("disputeListPrice");
+            String description = extras.getString("disputeListDescription");
             Bitmap bitmap = getIntent().getParcelableExtra("BitmapImage");
 
             flowOfEvent = extras.getString("flowOfEvent");
@@ -135,6 +136,7 @@ public class ChatActivity extends AppCompatActivity {
             intent.putExtra("disputeListName", value);
             intent.putExtra("disputeListPrice", disputePrice);
             intent.putExtra("disputeListDays", disputeDays);
+            intent.putExtra("disputeListDescription",description);
             intent.putExtra("BitmapImage", bitmap);
 
             ChatActivity.this.startActivity(intent);

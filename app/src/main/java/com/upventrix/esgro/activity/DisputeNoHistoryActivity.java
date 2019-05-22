@@ -176,6 +176,9 @@ public class DisputeNoHistoryActivity extends AppCompatActivity {
                 TextView disputeDaysTxt = view.findViewById(R.id.disputeDaysTxt);
                 String disputeDays = disputeDaysTxt.getText().toString();
 
+                TextView disputeDescriptionTxt = view.findViewById(R.id.disputeDiscription);
+                String disputeDescription = disputeDescriptionTxt.getText().toString();
+
                 Bitmap bitmap = imageView.getDrawingCache();
 
                 Intent intent = new Intent(DisputeNoHistoryActivity.this, DisputeDetails_No_History_Activity.class);
@@ -184,6 +187,7 @@ public class DisputeNoHistoryActivity extends AppCompatActivity {
                 intent.putExtra("BitmapImage", bitmap);
                 intent.putExtra("disputeListPrice", disputePrice);
                 intent.putExtra("disputeListDays", disputeDays);
+                intent.putExtra("disputeListDescription", disputeDescription);
 
                 startActivity(intent);
 

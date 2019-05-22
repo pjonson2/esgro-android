@@ -305,11 +305,11 @@
         tools:ignore="MissingConstraints" />
 
     <ImageView
-        android:id="@+id/imageView45"
+        android:id="@+id/displayImage"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="10dp"
-        android:background="@drawable/roshen_kanishka"
+        android:background="@drawable/circle"
         app:layout_constraintBottom_toBottomOf="@+id/view57"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -388,7 +388,7 @@
         android:textAlignment="center"
         android:textColor="@android:color/white"
         android:textSize="14dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView45"
+        app:layout_constraintBottom_toBottomOf="@+id/displayImage"
         app:layout_constraintEnd_toEndOf="@+id/view57"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="@+id/view57"

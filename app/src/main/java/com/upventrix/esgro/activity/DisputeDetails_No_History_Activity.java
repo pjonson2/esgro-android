@@ -56,6 +56,7 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
     String value = "";
     String disputeDays="";
     String disputePrice="";
+    String description = "";
     Bitmap bitmap;
     List<Notification> notificationList;
 
@@ -125,10 +126,12 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
         value = extras.getString("disputeListName");
         disputeDays = extras.getString("disputeListDays");
         disputePrice = extras.getString("disputeListPrice");
+        description = extras.getString("disputeListDescription");
 
         disputeNoUserNameTxt.setText(value);
         disputeNoUserDaysTxt.setText(disputeDays);
-        disputeNoUserPriceTxt.setText(disputePrice);
+        disputeNoUserPriceTxt.setText("$"+disputePrice);
+        disputeNoHistoryDescription.setText(description);
         getNoDisputeUserImg.setImageBitmap(bitmap);
 
 
@@ -297,6 +300,7 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
             intent.putExtra("disputeListName", value);
             intent.putExtra("disputeListPrice", disputePrice);
             intent.putExtra("disputeListDays", disputeDays);
+            intent.putExtra("disputeListDescription",description);
             intent.putExtra("flowOfEvent","DisputeDetails_No_History_Activity");
             intent.putExtra("BitmapImage", bitmap);
             DisputeDetails_No_History_Activity.this.startActivity(intent);
