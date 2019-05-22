@@ -51,8 +51,9 @@
 
         <ImageView
             android:id="@+id/noDisputesHandshakeIcon"
-            android:layout_width="18dp"
+            android:layout_width="35dp"
             android:layout_height="50dp"
+            android:padding="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/view4"
             app:layout_constraintHorizontal_bias="0.11"
@@ -77,12 +78,13 @@
 
         <ImageView
             android:id="@+id/noDisputesContactIcon"
-            android:layout_width="18dp"
+            android:layout_width="35dp"
             android:layout_height="50dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
+            android:padding="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/view4"
             app:layout_constraintHorizontal_bias="0.296"
@@ -93,10 +95,11 @@
 
         <ImageView
             android:id="@+id/noDisputesSettingsIcon"
-            android:layout_width="18dp"
+            android:layout_width="35dp"
             android:layout_height="50dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
+            android:padding="8dp"
             app:layout_constraintBottom_toBottomOf="@+id/view4"
             app:layout_constraintEnd_toEndOf="@+id/view4"
             app:layout_constraintHorizontal_bias="0.881"
@@ -107,10 +110,11 @@
 
         <ImageView
             android:id="@+id/noDisputesProfileIcon"
-            android:layout_width="18dp"
+            android:layout_width="35dp"
             android:layout_height="50dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
+            android:padding="8dp"
             app:layout_constraintBottom_toBottomOf="@+id/view4"
             app:layout_constraintEnd_toEndOf="@+id/view4"
             app:layout_constraintHorizontal_bias="0.711"

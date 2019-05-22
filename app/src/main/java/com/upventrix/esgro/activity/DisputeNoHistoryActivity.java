@@ -73,7 +73,7 @@ public class DisputeNoHistoryActivity extends AppCompatActivity {
         idInitialization();
         setListeners();
         setToken();
-        setHitArea();
+//        setHitArea();
         constraintLayout = findViewById(R.id.activity_dispute_shake);
         constraintLayout.setOnTouchListener(new View.OnTouchListener()
         {

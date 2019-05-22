@@ -24,17 +24,18 @@
 
         <ImageView
             android:id="@+id/imageView8"
-            tools:layout_conversion_absoluteHeight="18dp"
-            tools:layout_conversion_absoluteWidth="18dp"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
+            android:layout_width="35dp"
+            android:layout_height="50dp"
             android:background="@drawable/handshake2x"
+            android:padding="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/view4"
             app:layout_constraintHorizontal_bias="0.11"
             app:layout_constraintStart_toStartOf="@+id/view4"
             app:layout_constraintTop_toTopOf="@+id/view4"
-            app:layout_constraintVertical_bias="0.523" />
+            app:layout_constraintVertical_bias="0.523"
+            tools:layout_conversion_absoluteHeight="18dp"
+            tools:layout_conversion_absoluteWidth="18dp" />
 
         <ImageView
             android:id="@+id/imageView11"
@@ -50,13 +51,14 @@
 
         <ImageView
             android:id="@+id/footerContactIcon"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
+            android:layout_width="35dp"
+            android:layout_height="50dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
             android:background="@drawable/feedback2x"
+            android:padding="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/view4"
             app:layout_constraintHorizontal_bias="0.296"
@@ -66,11 +68,12 @@
 
         <ImageView
             android:id="@+id/settingIconInFooter"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
+            android:layout_width="35dp"
+            android:layout_height="50dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:background="@drawable/settings_color2x"
+            android:padding="8dp"
             app:layout_constraintBottom_toBottomOf="@+id/view4"
             app:layout_constraintEnd_toEndOf="@+id/view4"
             app:layout_constraintHorizontal_bias="0.881"
@@ -80,11 +83,12 @@
 
         <ImageView
             android:id="@+id/imageView13"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
+            android:layout_width="35dp"
+            android:layout_height="50dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:background="@drawable/profile2x"
+            android:padding="8dp"
             app:layout_constraintBottom_toBottomOf="@+id/view4"
             app:layout_constraintEnd_toEndOf="@+id/view4"
             app:layout_constraintHorizontal_bias="0.711"
