@@ -309,7 +309,8 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="10dp"
-        android:background="@drawable/circle"
+        android:background="@drawable/ic_launcher_background"
+        android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="@+id/view57"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -407,5 +408,29 @@
         app:layout_constraintStart_toStartOf="@+id/view57"
         app:layout_constraintTop_toTopOf="@+id/view57"
         app:layout_constraintVertical_bias="0.061" />
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/userImg"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:contentDescription="@null"
+        app:layout_constraintBottom_toBottomOf="@+id/view57"
+        app:layout_constraintEnd_toEndOf="@+id/view56"
+        app:layout_constraintStart_toStartOf="@+id/view57"
+        app:layout_constraintTop_toBottomOf="@+id/textView109"
+        app:layout_constraintVertical_bias="0.079"
+        app:roundAsCircle="true"
+        app:roundingBorderColor="@color/lightGreen"
+        app:roundingBorderPadding="4dp"
+        app:roundingBorderWidth="1dp"
+        tools:ignore="MissingConstraints" />
 
 </android.support.constraint.ConstraintLayout>

@@ -1,12 +1,15 @@
 package com.upventrix.esgro.activity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.constraint.ConstraintLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -17,6 +20,7 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 
+import com.hbb20.CountryCodePicker;
 import com.upventrix.esgro.R;
 import com.upventrix.esgro.modals.User;
 import com.upventrix.esgro.resource.Config;
@@ -39,9 +43,11 @@ public class MobileVerificationActivity  extends AppCompatActivity implements Ad
     Spinner spinner;
 
     EditText mobileCerificNumber;
+    String selectedCountryCode = "";
     UserService service = null;
 
     RelativeLayout relativeLayout;
+    CountryCodePicker ccp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +59,7 @@ public class MobileVerificationActivity  extends AppCompatActivity implements Ad
         setListeners();
         setValues();
 
-        loadSpinner();
+//        loadSpinner();
         relativeLayout = findViewById(R.id.activity_mobile_verification);
         relativeLayout.setOnTouchListener(new View.OnTouchListener()
         {
@@ -64,7 +70,13 @@ public class MobileVerificationActivity  extends AppCompatActivity implements Ad
                 return false;
             }
         });
-
+        ccp.setOnCountryChangeListener(new CountryCodePicker.OnCountryChangeListener() {
+            @Override
+            public void onCountrySelected() {
+                selectedCountryCode = ccp.getSelectedCountryCode();
+                System.out.println(" selectedCountryCode  "+selectedCountryCode);
+            }
+        });
     }
 
     private void hideKeyboard(View view) {
@@ -77,13 +89,17 @@ public class MobileVerificationActivity  extends AppCompatActivity implements Ad
         nextBtn = findViewById(R.id.mobileVerificNxtBtn);
         spinner = findViewById(R.id.mobileVerificSpinner);
         mobileCerificNumber = findViewById(R.id.mobileCerificNumber);
+        ccp = findViewById(R.id.ccp);
+
         service = Config.getInstance().create(UserService.class);
     }
 
     void setListeners(){
         backBtn.setOnClickListener(backAction);
         nextBtn.setOnClickListener(nxtAction);
+
     }
+
 
     void setValues(){
 
@@ -120,6 +136,33 @@ public class MobileVerificationActivity  extends AppCompatActivity implements Ad
     View.OnClickListener nxtAction = new View.OnClickListener() {
         public void onClick(View v) {
 
+            if (selectedCountryCode.equals("")){
+                AlertDialog alertDialog = new AlertDialog.Builder(MobileVerificationActivity.this).create();
+                alertDialog.setTitle("Warning!");
+                alertDialog.setMessage("Please select your country");
+                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                alertDialog.show();
+                return;
+            }
+            if (mobileCerificNumber.equals("")){
+                AlertDialog alertDialog = new AlertDialog.Builder(MobileVerificationActivity.this).create();
+                alertDialog.setTitle("Warning!");
+                alertDialog.setMessage("Please input your contact number");
+                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                alertDialog.show();
+                return;
+            }
+
             final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
             String userData = new LocalData().getlocalData(sharedPref, "userdata");
             int userid = 0;
@@ -132,7 +175,7 @@ public class MobileVerificationActivity  extends AppCompatActivity implements Ad
 
             Call<JsonObject> userCall = service.verify(
                     new User(
-                            "+94"+mobileCerificNumber.getText().toString(),
+                            "+"+selectedCountryCode+mobileCerificNumber.getText().toString(),
                             userid
                     ));
             userCall.enqueue(new Callback<JsonObject>() {

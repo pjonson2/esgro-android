@@ -3,6 +3,7 @@ package com.upventrix.esgro.activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.constraint.ConstraintLayout;
@@ -12,6 +13,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.upventrix.esgro.R;
 import com.upventrix.esgro.resource.Config;
 import com.upventrix.esgro.resource.LocalData;
@@ -41,6 +44,7 @@ public class ProfileActivity  extends FooterActivity {
     TextView lastName;
     TextView userName;
     TextView email;
+    SimpleDraweeView simpleDraweeView;
 
     Dialog dialog;
     UserService service;
@@ -72,6 +76,7 @@ public class ProfileActivity  extends FooterActivity {
         userName = findViewById(R.id.profileUserNameTxt);
         email = findViewById(R.id.profileEmailTxt);
         transfer = findViewById(R.id.transferBtn);
+        simpleDraweeView = findViewById(R.id.userImg);
 
         service = Config.getInstance().create(UserService.class);
     }
@@ -108,6 +113,17 @@ public class ProfileActivity  extends FooterActivity {
                 userName.setText(response.body().get("username").getAsString());
                 email.setText(response.body().get("email").getAsString());
 
+                try {
+                    Uri imageUri = Uri.parse("https://www.gstatic.com/webp/gallery/1.jpg");
+                    simpleDraweeView.setController(
+                            Fresco.newDraweeControllerBuilder()
+                                    .setOldController(simpleDraweeView.getController())
+                                    .setUri(imageUri)
+                                    .setTapToRetryEnabled(true)
+                                    .build());
+                }catch(Exception e){
+
+                }
             }
 
             @Override

@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.hbb20.CountryCodePicker;
 import com.upventrix.esgro.R;
 import com.upventrix.esgro.modals.User;
 import com.upventrix.esgro.resource.Config;
@@ -43,7 +44,7 @@ public class EnterVerificationActivity extends AppCompatActivity {
     Bundle extras;
     int verification_id = 0;
 
-    RelativeLayout relativeLayout;
+    ConstraintLayout constraintLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +55,9 @@ public class EnterVerificationActivity extends AppCompatActivity {
         idInitialization();
         setListeners();
         setValues();
-        relativeLayout = findViewById(R.id.activity_enter_verification);
-        relativeLayout.setOnTouchListener(new View.OnTouchListener()
+
+        constraintLayout = findViewById(R.id.activity_enter_verification);
+        constraintLayout.setOnTouchListener(new View.OnTouchListener()
         {
             @Override
             public boolean onTouch(View view, MotionEvent ev)
@@ -64,7 +66,17 @@ public class EnterVerificationActivity extends AppCompatActivity {
                 return false;
             }
         });
+//        Timer();
+    }
 
+    private void Timer() {
+        for (int i=0;i<5;i--){
+            for (int j=0;j<=59;j--){
+
+
+
+            }
+        }
     }
 
     private void hideKeyboard(View view) {
@@ -209,7 +221,7 @@ public class EnterVerificationActivity extends AppCompatActivity {
 
         @Override
         public void afterTextChanged(Editable s) {
-            if (!n1TXt.getText().equals("")){
+            if (!n1TXt.getText().toString().equals("")){
                 n2Txt.requestFocus();
             }
 
@@ -230,7 +242,7 @@ public class EnterVerificationActivity extends AppCompatActivity {
 
         @Override
         public void afterTextChanged(Editable s) {
-            if (!n2Txt.getText().equals("")){
+            if (!n2Txt.getText().toString().equals("")){
                 n3Txt.requestFocus();
             }
 
@@ -246,7 +258,7 @@ public class EnterVerificationActivity extends AppCompatActivity {
 
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
-            if (!n3Txt.getText().equals("")){
+            if (!n3Txt.getText().toString().equals("")){
                 n4Txt.requestFocus();
             }
         }

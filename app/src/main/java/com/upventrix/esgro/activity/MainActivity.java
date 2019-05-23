@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 
 
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         onWindowFocusChanged(true);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Fresco.initialize(this);
 
 
         service = Config.getInstance().create(UserService.class);
@@ -62,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
                     MainActivity.this.finish();
                     return;
                 }
+
                 try {
                     JSONObject jsonObj = new JSONObject(userData);
                     userid = jsonObj.getInt("userid");
