@@ -55,7 +55,19 @@ public class MainActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable(){
             @Override
             public void run() {
+
                 SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
+                String temp_userdata = new LocalData().getlocalData(sharedPref, "temp_userdata")+"";
+
+                if (temp_userdata.length()==4){
+                }else{
+                    Intent mainIntent = new Intent(MainActivity.this,SignUpActivity.class);
+                    MainActivity.this.startActivity(mainIntent);
+                    MainActivity.this.finish();
+                    return;
+                }
+
                 String userData = new LocalData().getlocalData(sharedPref, "userdata")+"";
                 if (userData.length() == 4) {
                     System.out.println("user data null");
@@ -92,13 +104,13 @@ public class MainActivity extends AppCompatActivity {
 
                             String number = response.body().get("mobile").toString();
                             if (number.length()==4){
-
+                                new LocalData().setTempLocalData(sharedPref,null);
                                 Intent mainIntent = new Intent(MainActivity.this,MobileVerificationActivity.class);
                                 MainActivity.this.startActivity(mainIntent);
                                 MainActivity.this.finish();
 
                             }else{
-
+                                new LocalData().setTempLocalData(sharedPref,null);
                                 Intent mainIntent = new Intent(MainActivity.this,DisputeNoHistoryActivity.class);
                                 MainActivity.this.startActivity(mainIntent);
                                 MainActivity.this.finish();

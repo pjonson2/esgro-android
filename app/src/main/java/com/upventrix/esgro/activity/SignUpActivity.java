@@ -26,6 +26,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
+import com.google.gson.Gson;
 import com.upventrix.esgro.R;
 import com.upventrix.esgro.modals.User;
 import com.upventrix.esgro.resource.Config;
@@ -33,6 +34,9 @@ import com.upventrix.esgro.resource.LocalData;
 import com.upventrix.esgro.resource.Validations;
 import com.upventrix.esgro.services.UserService;
 import com.google.gson.JsonObject;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -131,6 +135,35 @@ public class SignUpActivity extends AppCompatActivity {
 
     void setValues(){
         background = email.getBackground();
+
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String temp_userdata = new LocalData().getlocalData(sharedPref, "temp_userdata")+"";
+
+        if (temp_userdata.length() == 4){
+        }else{
+            System.out.println("temp_userdata   "+temp_userdata);
+            JSONObject jsonObj = null;
+            try {
+                jsonObj = new JSONObject(temp_userdata);
+                JSONObject nameValuePairs = jsonObj.getJSONObject("nameValuePairs");
+
+                String fName = nameValuePairs.getString("firstname");
+                String lName = nameValuePairs.getString("lastname");
+                String userName = nameValuePairs.getString("username");
+                String email = nameValuePairs.getString("email");
+
+                firstName.setText(fName);
+                lastName.setText(lName);
+                this.email.setText(email);
+                this.userName.setText(userName);
+                password.requestFocus();
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
+
     }
 
     public void onWindowFocusChanged(boolean hasFocus) {
@@ -155,6 +188,21 @@ public class SignUpActivity extends AppCompatActivity {
     View.OnClickListener continueBtnAction = new View.OnClickListener() {
         @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
         public void onClick(View v) {
+
+            JSONObject tempUserData = new JSONObject();
+            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
+            try {
+                tempUserData.put("firstname", firstName.getText().toString());
+                tempUserData.put("lastname", lastName.getText().toString());
+                tempUserData.put("email", email.getText().toString());
+                tempUserData.put("username", userName.getText().toString());
+
+                new LocalData().setTempLocalData(sharedPref,tempUserData);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
             progressBar.setVisibility(View.VISIBLE);
 
             boolean validations = validations();
@@ -185,12 +233,14 @@ public class SignUpActivity extends AppCompatActivity {
                     if (status.equals("success")){
 
                         JsonObject userData = response.body().getAsJsonObject("userdata");
+
                         // set local user data
-                        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
                         new LocalData().setLocalData(sharedPref,userData);
 
                         // re-direct next form
                         progressBar.setVisibility(View.GONE);
+                        new LocalData().setTempLocalData(sharedPref,null);
                         vewAlert("Successfully","Your details successfully saved",SignUpActivity.this);
 
                     }else{

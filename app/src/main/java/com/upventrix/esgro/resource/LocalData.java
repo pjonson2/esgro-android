@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
+import org.json.JSONObject;
+
 public class LocalData {
 
 
@@ -13,6 +15,14 @@ public class LocalData {
         Gson gson = new Gson();
         String json = gson.toJson(userData);
         editor.putString("userdata", json); // save json object as a string
+        editor.commit();
+    }
+
+    public void setTempLocalData(SharedPreferences sharedPref, JSONObject userData){
+        SharedPreferences.Editor editor = sharedPref.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(userData);
+        editor.putString("temp_userdata", json); // save json object as a string
         editor.commit();
     }
 
