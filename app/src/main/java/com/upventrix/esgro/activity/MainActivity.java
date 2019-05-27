@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
 
                             }else{
                                 new LocalData().setTempLocalData(sharedPref,null);
-                                Intent mainIntent = new Intent(MainActivity.this,CompleteProfileActivity.class);
+                                Intent mainIntent = new Intent(MainActivity.this,DisputeNoHistoryActivity.class);
                                 MainActivity.this.startActivity(mainIntent);
                                 MainActivity.this.finish();
                             }

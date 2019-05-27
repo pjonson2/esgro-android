@@ -87,8 +87,7 @@ public class CompleteProfileActivity  extends AppCompatActivity{
         plusCrd = findViewById(R.id.plusAddCrdLbl);
         plusLinkBank = findViewById(R.id.plusLinkBankBtn);
         plusLinkbankAccount = findViewById(R.id.plusLinkBankLbl);
-//        selectImg = findViewById(R.id.selectImg);
-        skip = findViewById(R.id.skipNowBtn);
+         skip = findViewById(R.id.skipNowBtn);
         circleImageView = findViewById(R.id.profile_image);
 
         service = Config.getInstance().create(FilesService.class);
