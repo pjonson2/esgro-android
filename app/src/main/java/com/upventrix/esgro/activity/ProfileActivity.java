@@ -114,7 +114,7 @@ public class ProfileActivity  extends FooterActivity {
                 email.setText(response.body().get("email").getAsString());
 
                 try {
-                    Uri imageUri = Uri.parse("https://www.gstatic.com/webp/gallery/1.jpg");
+                    Uri imageUri = Uri.parse(response.body().get("profileImgUrl").getAsString());
                     simpleDraweeView.setController(
                             Fresco.newDraweeControllerBuilder()
                                     .setOldController(simpleDraweeView.getController())

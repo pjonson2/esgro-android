@@ -1,5 +1,6 @@
 package com.upventrix.esgro.services;
 
+import com.upventrix.esgro.modals.Image;
 import com.upventrix.esgro.modals.User;
 import com.upventrix.esgro.modals.UserToken;
 import com.google.gson.JsonObject;
@@ -27,6 +28,9 @@ public interface UserService {
 
     @POST("user/verify")
     Call<JsonObject> verify(@Body User user);
+
+    @POST("user/profile")
+    Call<JsonObject> profile(@Body Image image);
 
     @GET("user/list")
     Call<JsonObject> usersList();

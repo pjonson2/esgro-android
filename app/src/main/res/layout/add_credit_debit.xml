@@ -104,30 +104,6 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
-        android:id="@+id/cardCvvTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:background="@android:color/transparent"
-        android:ems="10"
-        android:fontFamily="@font/open_sans"
-        android:gravity="end"
-        android:hint="CVV"
-        android:inputType="number"
-        android:textAlignment="textEnd"
-        android:textSize="12dp"
-        app:layout_constraintBottom_toBottomOf="@+id/view12"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view12"
-        app:layout_constraintVertical_bias="0.522"
-        tools:ignore="MissingConstraints" />
-
-    <EditText
         android:id="@+id/CardCardNumberTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -141,6 +117,7 @@
         android:gravity="end"
         android:hint="0000 0000 0000 0000"
         android:inputType="number"
+        android:maxLength="20"
         android:textAlignment="textEnd"
         android:textSize="12dp"
         app:layout_constraintBottom_toBottomOf="@+id/view12"
@@ -165,6 +142,7 @@
         android:gravity="end"
         android:hint="MM/YY"
         android:inputType="date"
+        android:maxLength="5"
         android:textAlignment="textEnd"
         android:textSize="12dp"
         app:layout_constraintBottom_toBottomOf="@+id/view12"
@@ -173,6 +151,31 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/view12"
         app:layout_constraintVertical_bias="0.301"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/cardCvvTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@android:color/transparent"
+        android:ems="10"
+        android:fontFamily="@font/open_sans"
+        android:gravity="end"
+        android:hint="CVV"
+        android:inputType="number"
+        android:maxLength="4"
+        android:textAlignment="textEnd"
+        android:textSize="12dp"
+        app:layout_constraintBottom_toBottomOf="@+id/view12"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view12"
+        app:layout_constraintVertical_bias="0.522"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -210,6 +213,7 @@
         android:gravity="end"
         android:hint="00000"
         android:inputType="number"
+        android:maxLength="5"
         android:textAlignment="textEnd"
         android:textSize="12dp"
         app:layout_constraintBottom_toBottomOf="@+id/view12"
@@ -325,6 +329,7 @@
         app:layout_constraintVertical_bias="0.05" />
 
     <RadioGroup
+        android:id="@+id/radioGroup"
         android:layout_width="194dp"
         android:layout_height="97dp"
         android:layout_marginStart="8dp"
@@ -335,7 +340,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view12" >
+        app:layout_constraintTop_toBottomOf="@+id/view12">
 
         <RadioButton
             android:id="@+id/radioButton"
@@ -360,4 +365,20 @@
             android:textSize="14sp"
             android:visibility="invisible" />
     </RadioGroup>
+
+    <!--<DatePicker-->
+        <!--android:id="@+id/datePicker"-->
+        <!--style="@style/MyDatePickerStyle"-->
+        <!--android:layout_width="221dp"-->
+        <!--android:layout_height="108dp"-->
+        <!--android:layout_marginStart="8dp"-->
+        <!--android:layout_marginLeft="8dp"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:theme="@style/MyDatePickerDialogStyle"-->
+        <!--app:layout_constraintBottom_toTopOf="@+id/addCrdBtn"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/radioGroup"-->
+        <!--tools:ignore="MissingConstraints" />-->
+
 </android.support.constraint.ConstraintLayout>

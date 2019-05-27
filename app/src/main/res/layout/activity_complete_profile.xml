@@ -19,6 +19,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+
         <Button
             android:id="@+id/completeProfileBackBtn2"
             android:layout_width="52dp"
@@ -259,22 +260,6 @@
                 app:layout_constraintVertical_bias="1.0" />
         </android.support.constraint.ConstraintLayout>
 
-        <ImageView
-            android:id="@+id/selectImg"
-            android:layout_width="80dp"
-            android:layout_height="82dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:adjustViewBounds="true"
-            android:background="@drawable/group_10473x"
-            android:cropToPadding="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintCircleRadius="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.188" />
-
         <Button
             android:id="@+id/completeProfileContinueBtn"
             android:layout_width="0dp"
@@ -320,7 +305,19 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.98" />
 
-
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_image"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/roshen_kanishka"
+            app:civ_border_color="@color/lightGreen"
+            app:civ_border_width="2dp"
+            app:layout_constraintBottom_toBottomOf="@+id/cardView5"
+            app:layout_constraintEnd_toEndOf="@+id/cardView5"
+            app:layout_constraintStart_toStartOf="@+id/cardView5"
+            app:layout_constraintTop_toTopOf="@+id/textView18"
+            tools:ignore="MissingConstraints" />
 
     </android.support.constraint.ConstraintLayout>
 </android.support.constraint.ConstraintLayout>

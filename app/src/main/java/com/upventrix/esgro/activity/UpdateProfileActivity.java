@@ -35,6 +35,8 @@ import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class UpdateProfileActivity   extends AppCompatActivity {
 
     Button back;
@@ -48,13 +50,14 @@ public class UpdateProfileActivity   extends AppCompatActivity {
     ImageView profile;
     ImageView uploadImage;
     SimpleDraweeView userImg;
+    CircleImageView circleImageView;
 
     EditText firstName;
     EditText lastName;
     EditText email;
     EditText phone;
     ConstraintLayout constraintLayout;
-    private final int SELECT_PHOTO = 1;
+     private final int SELECT_PHOTO = 1;
     byte[] b = null;
 
     @Override
@@ -95,8 +98,8 @@ public class UpdateProfileActivity   extends AppCompatActivity {
         email = findViewById(R.id.updateEmailTxt);
         phone = findViewById(R.id.updatePhoneTxt);
         uploadImage = findViewById(R.id.imageView46);
-        profile = findViewById(R.id.displayImage);
-        userImg = findViewById(R.id.userImg);
+//        userImg = findViewById(R.id.userImg);
+        circleImageView = findViewById(R.id.profile_image);
     }
 
     void setListeners(){
@@ -106,7 +109,8 @@ public class UpdateProfileActivity   extends AppCompatActivity {
         handshake.setOnClickListener(handshakeAction);
         contact.setOnClickListener(contactUs);
         settings.setOnClickListener(settingsAction);
-        userImg.setOnClickListener(uploadImageAction);
+//        userImg.setOnClickListener(uploadImageAction);
+        circleImageView.setOnClickListener(uploadImageAction);
     }
 
     void setValues(){
@@ -149,8 +153,6 @@ public class UpdateProfileActivity   extends AppCompatActivity {
                                             final Uri imageUri = imageReturnedIntent.getData();
                     final InputStream imageStream;
 
-
-
                     try {
                         imageStream = getContentResolver().openInputStream(imageUri);
 
@@ -169,12 +171,12 @@ public class UpdateProfileActivity   extends AppCompatActivity {
 //                        selectedImage.setHeight(profile.getHeight());
                         b =  imageBytes;
                         Bitmap decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
-                        profile.setImageBitmap(selectedImage);
+//                        profile.setImageBitmap(selectedImage);
+                        circleImageView.setImageBitmap(selectedImage);
 
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
-
 
                 }
         }

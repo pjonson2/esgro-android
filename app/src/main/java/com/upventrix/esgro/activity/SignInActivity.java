@@ -151,8 +151,7 @@ public class SignInActivity extends AppCompatActivity {
                         // set local user data
                         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                         new LocalData().setLocalData(sharedPref,userData);
-
-                        progressBar.setVisibility(View.GONE);
+                         progressBar.setVisibility(View.GONE);
                         vewAlert("Successfully","Press ok to continue",SignInActivity.this);
 
                     }else{
@@ -205,7 +204,7 @@ public class SignInActivity extends AppCompatActivity {
                                     SignInActivity.this.finish();
 
                                 }else{
-
+                                    new LocalData().setTempLocalData(sharedPref,null);
                                         Intent mainIntent = new Intent(SignInActivity.this, CompleteProfileActivity.class);
                                         SignInActivity.this.startActivity(mainIntent);
                                     }
