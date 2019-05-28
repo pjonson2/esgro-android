@@ -1,5 +1,6 @@
 package com.upventrix.esgro.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -22,7 +23,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.google.gson.JsonObject;
 import com.upventrix.esgro.R;
 import com.upventrix.esgro.modals.Files;
@@ -77,6 +80,26 @@ public class CompleteProfileActivity  extends AppCompatActivity{
         idInitialization();
         setListeners();
         setValues();
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String userData = new LocalData().getlocalData(sharedPref, "userdata")+"";
+        String image = "";
+        try {
+            JSONObject jsonObj = new JSONObject(userData);
+            image = jsonObj.getString("profileImgUrl");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        System.out.println("image  "+image);
+        if(image.length() == 4){
+
+        }else{
+            try {
+                Uri imageUri = Uri.parse(image);
+//                circleImageView.setImageURI( imageUri);
+            }catch(Exception e){
+
+            }
+        }
 
     }
 
@@ -97,7 +120,7 @@ public class CompleteProfileActivity  extends AppCompatActivity{
     void setListeners(){
         back.setOnClickListener(backAction);
         continueBtn.setOnClickListener(continues);
-        plusAddCard.setOnClickListener(plusAddBank);
+//        plusAddCard.setOnClickListener(plusAddBank);
         plusCrd.setOnClickListener(plusAddBank);
         plusLinkbankAccount.setOnClickListener(plusLinkBanks);
         circleImageView.setOnClickListener(selectFile);
@@ -167,8 +190,28 @@ public class CompleteProfileActivity  extends AppCompatActivity{
 
     View.OnClickListener backAction = new View.OnClickListener() {
         public void onClick(View v) {
-            Intent mainIntent = new Intent(CompleteProfileActivity.this,EnterVerificationActivity.class);
-            CompleteProfileActivity.this.startActivity(mainIntent);
+            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+            String userData = new LocalData().getlocalData(sharedPref, "userdata")+"";
+            String mobile = "";
+            try {
+                JSONObject jsonObj = new JSONObject(userData);
+                mobile = jsonObj.getString("mobile");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            if (mobile.length() == 4){
+                Intent mainIntent = new Intent(CompleteProfileActivity.this,EnterVerificationActivity.class);
+                CompleteProfileActivity.this.startActivity(mainIntent);
+            }else{
+                Context context = getApplicationContext();
+                CharSequence text = "Failed to back ";
+                int duration = Toast.LENGTH_SHORT;
+
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
+            }
+
         }
     };
     View.OnClickListener continues = new View.OnClickListener() {
@@ -197,7 +240,12 @@ public class CompleteProfileActivity  extends AppCompatActivity{
                             return;
                         }
                     }catch(Exception e){
-                        System.out.println("Error");
+                        Context context = getApplicationContext();
+                        CharSequence text = "Select Image from your device";
+                        int duration = Toast.LENGTH_SHORT;
+
+                        Toast toast = Toast.makeText(context, text, duration);
+                        toast.show();
                         return;
                     }
 

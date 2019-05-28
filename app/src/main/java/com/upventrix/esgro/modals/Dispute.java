@@ -5,9 +5,9 @@ public class Dispute {
     private String discrption;
     private String price;
     private String days;
-    private int image;
+    private String image;
 
-    public Dispute(String name, String discrption, String price, String days,int image) {
+    public Dispute(String name, String discrption, String price, String days,String image) {
 
         this.name = name;
         this.discrption = discrption;
@@ -51,11 +51,11 @@ public class Dispute {
         this.days = days;
     }
 
-    public int getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(int image) {
+    public void setImage(String image) {
         this.image = image;
     }
 }

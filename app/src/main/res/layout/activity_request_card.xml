@@ -6,7 +6,7 @@
     android:id="@+id/activity_request_card"
     android:layout_height="85dp">
 
-    <ImageView
+    <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/requestUserImg"
         android:layout_width="50dp"
         android:layout_height="50dp"
@@ -15,9 +15,17 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="25dp"
         android:layout_marginLeft="25dp"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="10dp"
         android:adjustViewBounds="true"
-        app:srcCompat="@drawable/despute_card" />
+        android:contentDescription="@null"
+        app:layout_constraintHorizontal_bias="0.524"
+        app:layout_constraintVertical_bias="0.061"
+        app:placeholderImage="@drawable/roshen_kanishka"
+        app:roundAsCircle="true"
+        app:roundingBorderColor="@color/lightGreen"
+        app:roundingBorderPadding="4dp"
+        app:roundingBorderWidth="1dp"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/requestUserName"

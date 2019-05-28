@@ -10,9 +10,9 @@ public class Request {
 
     private String days;
 
-    private int image;
+    private String image;
 
-    public Request(int userid, String name, String days, int image) {
+    public Request(int userid, String name, String days, String image) {
         this.userid = userid;
         this.name = name;
         this.days = days;
@@ -38,11 +38,11 @@ public class Request {
         this.days = days;
     }
 
-    public int getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(int image) {
+    public void setImage(String image) {
         this.image = image;
     }
 

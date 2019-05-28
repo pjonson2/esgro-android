@@ -57,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
 
                 SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-
                 String temp_userdata = new LocalData().getlocalData(sharedPref, "temp_userdata")+"";
 
                 if (temp_userdata.length()==4){

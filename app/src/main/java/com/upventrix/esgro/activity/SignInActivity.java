@@ -205,8 +205,17 @@ public class SignInActivity extends AppCompatActivity {
 
                                 }else{
                                     new LocalData().setTempLocalData(sharedPref,null);
+                                    String profileImgUrl = response.body().get("profileImgUrl").toString();
+                                    System.out.println("profileImgUrl   "+profileImgUrl);
+                                    if  (profileImgUrl.length() == 4){
+
                                         Intent mainIntent = new Intent(SignInActivity.this, CompleteProfileActivity.class);
                                         SignInActivity.this.startActivity(mainIntent);
+                                    }else{
+
+                                        Intent mainIntent = new Intent(SignInActivity.this, DisputeNoHistoryActivity.class);
+                                        SignInActivity.this.startActivity(mainIntent);
+                                    }
                                     }
                                 }
 

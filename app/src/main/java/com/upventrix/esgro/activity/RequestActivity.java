@@ -2,6 +2,7 @@ package com.upventrix.esgro.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -18,6 +19,9 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.upventrix.esgro.R;
 import com.upventrix.esgro.modals.Request;
 import com.upventrix.esgro.resource.Config;
@@ -110,8 +114,7 @@ public class RequestActivity extends AppCompatActivity {
     }
 
     void setValues(){
-        System.out.println("setValues      . ..........  ");
-        Call<JsonObject> userCall = service.usersList();
+         Call<JsonObject> userCall = service.usersList();
         userCall.enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
@@ -121,24 +124,27 @@ public class RequestActivity extends AppCompatActivity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                System.out.println("setValues()");
-                if (status.equals("success")){
+                 if (status.equals("success")){
 
                     JsonArray userslist = response.body().getAsJsonArray("userslist");
 
                     for (JsonElement value : userslist) {
+                        Request request = new Request();
+                        request.setDays("3 days ago");
+                        request.setName(  value.getAsJsonObject().get("firstname").getAsString()+" "+value.getAsJsonObject().get("lastname").getAsString());
+                        request.setUserid(value.getAsJsonObject().get("userid").getAsInt());
+
+                        try {
+                            request.setImage(value.getAsJsonObject().get("profileImgUrl").getAsString());
+                        }catch (UnsupportedOperationException e){
+                            request.setImage(null);
+                        }
+
                         requestList.add(
-                            new Request(
-                                value.getAsJsonObject().get("userid").getAsInt(),
-                                value.getAsJsonObject().get("firstname").getAsString()+" "+value.getAsJsonObject().get("lastname").getAsString(),
-                                "3 days ago",
-                                R.drawable.user1
-                            )
+                            request
                         );
-                        System.out.println(value.getAsJsonObject().get("userid").getAsInt());
-                    }
-                    System.out.println("middle .......... ... "+requestList.size());
-                    ListView listView = findViewById(R.id.dynamicRequestList);
+                     }
+                     ListView listView = findViewById(R.id.dynamicRequestList);
 
                     RequestActivity.CustomAdaper customAdaper = new RequestActivity.CustomAdaper();
                     listView.setAdapter(customAdaper);
@@ -183,37 +189,48 @@ public class RequestActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            System.out.println("getCount;   "+requestList.size());
-            return requestList.size();
+             return requestList.size();
         }
 
         @Override
         public Object getItem(int position) {
 
-            System.out.println("getItem  ................ ");
-            return null;
+             return null;
         }
 
         @Override
         public long getItemId(int position) {
 
-            System.out.println("getItemId  ................ ");
-            return 0;
+             return 0;
         }
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            System.out.println("getView method()");
-            convertView = getLayoutInflater().inflate(R.layout.activity_request_card,null);
+             convertView = getLayoutInflater().inflate(R.layout.activity_request_card,null);
 
             TextView bankNameView = convertView.findViewById(R.id.requestUserName);
-            ImageView requestImg = convertView.findViewById(R.id.requestUserImg);
+            SimpleDraweeView requestImg = convertView.findViewById(R.id.requestUserImg);
             TextView daysTxt = convertView.findViewById(R.id.requestDays);
             TextView userIdTxt = convertView.findViewById(R.id.userIdTxt);
 
             Request request = requestList.get(position);
-            System.out.println("request.getUserid()  "+request.getUserid());
-            requestImg.setImageResource(request.getImage());
+             try {
+
+                if (request.getImage().length()!=4){
+                    Uri imageUri = Uri.parse(request.getImage());
+                    requestImg.setController(
+                            Fresco.newDraweeControllerBuilder()
+                                    .setOldController(requestImg.getController())
+                                    .setUri(imageUri)
+                                    .setTapToRetryEnabled(true)
+                                    .build());
+                }else{
+                    requestImg.setImageResource(R.drawable.roshen_kanishka);
+                }
+
+            }catch(Exception e){
+
+            }
             bankNameView.setText(request.getName());
             daysTxt.setText(request.getDays());
             userIdTxt.setText(request.getUserid()+"");

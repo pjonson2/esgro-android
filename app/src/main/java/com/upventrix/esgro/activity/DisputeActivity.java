@@ -87,39 +87,7 @@ public class DisputeActivity extends AppCompatActivity {
 
     void initializeArray(){
 
-        disputeList.add(
-                new Dispute("Pamel anderson","","-238.12","waiting",R.drawable.user1)
-        );
-        disputeList.add(
-                new Dispute("Nikkal simonze","","-200.32","2 Days Left",R.drawable.user2)
-        );
-        disputeList.add(
-                new Dispute("sunny leon","","-164.12","2 Days Left",R.drawable.user3)
-        );
-        disputeList.add(
-                new Dispute("Nicole minaj","","-60.12","3 Days Left",R.drawable.user4)
-        );
-        disputeList.add(
-                new Dispute("camilla cibello","","+422.22","6 Days Left",R.drawable.user5)
-        );
-        disputeList.add(
-                new Dispute("Selena gomez","","+76.32","6 Days Left",R.drawable.user6)
-        );
-        disputeList.add(
-                new Dispute("Maria shomnix","","+255.43","1 Week Left",R.drawable.user7)
-        );
-        disputeList.add(
-                new Dispute("joudge bush","","+432.12","1 Week Left",R.drawable.user8)
-        );
-        disputeList.add(
-                new Dispute("SGrahams Smith","","+98.32","Completed",R.drawable.user9)
-        );
-        disputeList.add(
-                new Dispute("Michel clark","","+234.32","Completed",R.drawable.user1)
-        );
-        disputeList.add(
-                new Dispute("James Anderson","","-455.32","Canceled",R.drawable.user6)
-        );
+
 
 
     }
@@ -165,7 +133,6 @@ public class DisputeActivity extends AppCompatActivity {
 
             Dispute dispute = disputeList.get(position);
 
-            deisputeImg.setImageResource(dispute.getImage());
             bankNameView.setText(dispute.getName());
             disputedays.setText(dispute.getDays());
             disputePrice.setText(dispute.getPrice());

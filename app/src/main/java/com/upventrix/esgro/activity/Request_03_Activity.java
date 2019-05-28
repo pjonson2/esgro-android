@@ -194,18 +194,18 @@ public class Request_03_Activity extends AppCompatActivity {
 
 
                     System.out.println("response.body().  "+response.body());
-                    Boolean status = false;
+                    String status = "";
                     try {
-                        status = response.body().get("status").getAsBoolean();
+                        status = response.body().get("status").getAsString();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                    if (status) {
+                    if (status.equals("success")) {
 
-                        JsonObject userData = response.body().getAsJsonObject("userdata");
-                        // set local user data
-                        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                        new LocalData().setLocalData(sharedPref, userData);
+//                        JsonObject userData = response.body().getAsJsonObject("userdata");
+//                        // set local user data
+//                        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+//                        new LocalData().setLocalData(sharedPref, userData);
 
                         // re-direct next form
                         vewAlert("Successfully", "Your deal successfully saved", Request_03_Activity.this);
@@ -235,10 +235,6 @@ public class Request_03_Activity extends AppCompatActivity {
 
                             dialog.setContentView(R.layout.activity_proessing_alert);
                             dialog.setContentView(R.layout.activity_proessing_alert);
-
-                            String[] ss = charging_amount.split("");
-
-
 
                             final StringBuilder builder = new StringBuilder(charging_amount);
                             builder.replace(0,1,"");

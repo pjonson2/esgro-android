@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Rect;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.constraint.ConstraintLayout;
@@ -25,6 +26,8 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.upventrix.esgro.R;
@@ -167,7 +170,7 @@ public class DisputeNoHistoryActivity extends AppCompatActivity {
                 TextView textView = view.findViewById(R.id.disputeUserName);
                 String name = textView.getText().toString();
 
-                ImageView imageView = view.findViewById(R.id.disputeUserImage);
+                SimpleDraweeView imageView = view.findViewById(R.id.userImg);
                 imageView.buildDrawingCache();
 
                 TextView disputePriceTxt = view.findViewById(R.id.disputePriceTxt);
@@ -204,8 +207,7 @@ public class DisputeNoHistoryActivity extends AppCompatActivity {
     }
 
     void setValues(){
-        System.out.println("setValues()......................");
-        final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+         final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         String userData = new LocalData().getlocalData(sharedPref, "userdata");
         int userid = 0;
         try {
@@ -231,19 +233,26 @@ public class DisputeNoHistoryActivity extends AppCompatActivity {
                     JsonArray dealsList = response.body().getAsJsonArray("deals");
 
                         for (JsonElement value : dealsList) {
-                        disputeList.add(
-                                new Dispute(
-                                        value.getAsJsonObject().get("firstname").getAsString()+" "+value.getAsJsonObject().get("lastname").getAsString(),
-                                        value.getAsJsonObject().get("description").getAsString(),
-                                        value.getAsJsonObject().get("total_cost").getAsDouble()+"",
-                                        value.getAsJsonObject().get("status").getAsString(),
-                                        R.drawable.user1
-                                )
-                        );
+
+                            Dispute dispute = new Dispute();
+
+                            dispute.setName(value.getAsJsonObject().get("firstname").getAsString() + " " + value.getAsJsonObject().get("lastname").getAsString());
+                            dispute.setPrice(value.getAsJsonObject().get("total_cost").getAsDouble()+"");
+                            dispute.setDays(value.getAsJsonObject().get("status").getAsString());
+                            dispute.setDiscrption(value.getAsJsonObject().get("description").getAsString());
+
+                            try {
+                                dispute.setImage(value.getAsJsonObject().get("profileImgUrl").getAsString());
+                            }catch (UnsupportedOperationException e){
+                                dispute.setImage(null);
+
+                            }
+                                 disputeList.add(
+                                         dispute
+                                );
                     }
 
-                    System.out.println("Middle ................. "+disputeList.size());
-                    DisputeNoHistoryActivity.CustomAdaper customAdaper = new DisputeNoHistoryActivity.CustomAdaper();
+                     DisputeNoHistoryActivity.CustomAdaper customAdaper = new DisputeNoHistoryActivity.CustomAdaper();
                     ListView listView = findViewById(R.id.dynamicShakeListView);
                     listView.setAdapter(customAdaper);
                     progressBar.setVisibility(View.GONE);
@@ -301,7 +310,6 @@ public class DisputeNoHistoryActivity extends AppCompatActivity {
                         rect.bottom += 80; // increase bottom hit area
                         rect.right += 80;  // increase right hit area
                         contactIcon.setTouchDelegate(new TouchDelegate(rect, contactIcon));
-                        System.out.println("Thread 3");
 
                     }
                 });
@@ -327,13 +335,11 @@ public class DisputeNoHistoryActivity extends AppCompatActivity {
         @Override
         public int getCount() {
 
-            System.out.println("getCount()......................"+ disputeList.size());
-            return disputeList.size();
+             return disputeList.size();
         }
 
         @Override
         public Object getItem(int position) {
-            System.out.println("getItem()......................");
 
             return null;
         }
@@ -341,25 +347,39 @@ public class DisputeNoHistoryActivity extends AppCompatActivity {
         @Override
         public long getItemId(int position) {
 
-            System.out.println("setValues()......................");
 
             return 0;
         }
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            System.out.println("getView()......................");
-            convertView = getLayoutInflater().inflate(R.layout.activity_dispute_card,null);
+             convertView = getLayoutInflater().inflate(R.layout.activity_dispute_card,null);
 
             TextView bankNameView = convertView.findViewById(R.id.disputeUserName);
 
             TextView disputePrice = convertView.findViewById(R.id.disputePriceTxt);
             TextView disputedays = convertView.findViewById(R.id.disputeDaysTxt);
             TextView disputeDesc = convertView.findViewById(R.id.disputeDiscription);
-            ImageView deisputeImg = convertView.findViewById(R.id.disputeUserImage);
+            SimpleDraweeView simpleDraweeView = convertView.findViewById(R.id.userImg);
 
             Dispute dispute = disputeList.get(position);
-            deisputeImg.setImageResource(dispute.getImage());
+             try {
+
+                if (dispute.getImage().length()!=4){
+                     Uri imageUri = Uri.parse(dispute.getImage());
+                    simpleDraweeView.setController(
+                            Fresco.newDraweeControllerBuilder()
+                                    .setOldController(simpleDraweeView.getController())
+                                    .setUri(imageUri)
+                                    .setTapToRetryEnabled(true)
+                                    .build());
+                }else{
+                     simpleDraweeView.setImageResource(R.drawable.roshen_kanishka);
+                }
+
+            }catch(Exception e){
+
+            }
             bankNameView.setText(dispute.getName());
             disputedays.setText(dispute.getDays());
             disputePrice.setText(dispute.getPrice());

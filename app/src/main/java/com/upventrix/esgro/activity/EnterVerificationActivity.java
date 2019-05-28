@@ -73,8 +73,6 @@ public class EnterVerificationActivity extends AppCompatActivity {
         for (int i=0;i<5;i--){
             for (int j=0;j<=59;j--){
 
-
-
             }
         }
     }
@@ -104,7 +102,6 @@ public class EnterVerificationActivity extends AppCompatActivity {
         n2Txt.addTextChangedListener(checkNumbers);
         n3Txt.addTextChangedListener(checkNumbers);
         n4Txt.addTextChangedListener(checkNumbers);
-
 
         n1TXt.addTextChangedListener(n1Change);
         n2Txt.addTextChangedListener(n2Change);
