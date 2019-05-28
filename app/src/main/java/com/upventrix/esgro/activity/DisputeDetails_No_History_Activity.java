@@ -125,18 +125,22 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
         bitmap = getIntent().getParcelableExtra("BitmapImage");
         value = extras.getString("disputeListName");
         disputeDays = extras.getString("disputeListDays");
+
         disputePrice = extras.getString("disputeListPrice");
+        StringBuilder sb = new StringBuilder(disputePrice);
+        sb.deleteCharAt(0);
+
         description = extras.getString("disputeListDescription");
 
         disputeNoUserNameTxt.setText(value);
         disputeNoUserDaysTxt.setText(disputeDays);
-        disputeNoUserPriceTxt.setText("$"+disputePrice);
+        disputeNoUserPriceTxt.setText(disputePrice);
         disputeNoHistoryDescription.setText(description);
         getNoDisputeUserImg.setImageBitmap(bitmap);
 
 
 
-        if (Double.parseDouble(disputePrice)>0){
+        if (Double.parseDouble(sb.toString())>0){
             disputeNoUserPriceTxt.setTextColor(getResources().getColor(R.color.lightGreen));
             okIconImge.setEnabled(false);
             okIconImge.setImageDrawable(getDrawable(R.drawable.ok_gray));

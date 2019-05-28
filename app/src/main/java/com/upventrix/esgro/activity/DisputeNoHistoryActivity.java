@@ -382,7 +382,7 @@ public class DisputeNoHistoryActivity extends AppCompatActivity {
             }
             bankNameView.setText(dispute.getName());
             disputedays.setText(dispute.getDays());
-            disputePrice.setText(dispute.getPrice());
+            disputePrice.setText("$"+dispute.getPrice());
             disputeDesc.setText(dispute.getDiscrption());
 
 

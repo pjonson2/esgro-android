@@ -177,12 +177,18 @@ public class Request_03_Activity extends AppCompatActivity {
                 e.printStackTrace();
             }
 
+            StringBuilder chargePriceBuilder = new StringBuilder(charging_amount);
+            chargePriceBuilder.deleteCharAt(0);
+
+            StringBuilder reservePriceBuilder = new StringBuilder(reservePrice);
+            reservePriceBuilder.deleteCharAt(0);
+
 
             Call<JsonObject> userCall = service.saveDEal(
                     new Deal(
                             description.getText().toString(),
-                            123,
-                           54,
+                            Double.parseDouble(chargePriceBuilder.toString()),
+                            Double.parseDouble(reservePriceBuilder.toString()),
                             days.getText().toString(),
                             userid,
                             Integer.parseInt(userId)
