@@ -17,13 +17,24 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.NumberPicker;
 import android.widget.TextView;
 
+import com.google.gson.JsonObject;
 import com.upventrix.esgro.R;
+import com.upventrix.esgro.modals.Deal;
 import com.upventrix.esgro.modals.Notification;
+import com.upventrix.esgro.modals.User;
+import com.upventrix.esgro.resource.Config;
+import com.upventrix.esgro.services.DealService;
+import com.upventrix.esgro.services.UserService;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class DisputeDetails_No_History_Activity extends AppCompatActivity {
 
@@ -57,9 +68,14 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
     String disputeDays="";
     String disputePrice="";
     String description = "";
+    String id = "";
     Bitmap bitmap;
     List<Notification> notificationList;
+    int days = 0;
 
+
+    private DealService dealService;
+    NumberPicker np;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -98,6 +114,7 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
         historyField = findViewById(R.id.historyField);
         disputeNotification = findViewById(R.id.disputeNotification);
         change = findViewById(R.id.changeBtn);
+        dealService = Config.getInstance().create(DealService.class);
 
     }
 
@@ -125,8 +142,8 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
         bitmap = getIntent().getParcelableExtra("BitmapImage");
         value = extras.getString("disputeListName");
         disputeDays = extras.getString("disputeListDays");
-
-        disputePrice = extras.getString("disputeListPrice");
+        id = extras.getString("deal_id");
+         disputePrice = extras.getString("disputeListPrice");
         StringBuilder sb = new StringBuilder(disputePrice);
         sb.deleteCharAt(1);
         sb.deleteCharAt(0);
@@ -153,14 +170,12 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
             okIconImge.setEnabled(false);
             okIconImge.setImageDrawable(getDrawable(R.drawable.ok_gray));
         }else{
-            disputeNoUserPriceTxt.setTextColor(Color.RED);
-            if(disputeDays.equals("waiting") || disputeDays.equals("Canceled") || disputeDays.equals("Completed") ){
-                disputeNoUserPriceTxt.setTextColor(Color.GRAY);
-                disputeNoUserDaysTxt.setTextColor(Color.GRAY);
-            }
-
+                 disputeNoUserPriceTxt.setTextColor(Color.RED);
         }
-
+        if(disputeDays.equals("waiting") || disputeDays.equals("Canceled") || disputeDays.equals("Completed") ){
+            disputeNoUserPriceTxt.setTextColor(Color.parseColor("#929AAB"));
+            disputeNoUserDaysTxt.setTextColor(Color.parseColor("#929AAB"));
+        }
 
     }
 
@@ -231,17 +246,58 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
             dialog.show();
             Window window = dialog.getWindow();
             Button button;
+            Button forfeitBtn;
 
             button = window.findViewById(R.id.goBackBtn);
+            forfeitBtn = window.findViewById(R.id.forfeitBtn);
+
+            forfeitBtn.setOnClickListener(forfeitAction);
             button.setOnClickListener(hideUI);
 
         }
-     View.OnClickListener hideUI = new View.OnClickListener() {
+        View.OnClickListener hideUI = new View.OnClickListener() {
             public void onClick(View v) {
                 dialog.dismiss();
             }
         };
+        View.OnClickListener forfeitAction = new View.OnClickListener() {
+            public void onClick(View v) {
+                Call<JsonObject> userCall = dealService.cancelDeal(
+                        new Deal(
+                                Integer.parseInt(id),
+                                "return"
+                        ));
+
+                userCall.enqueue(new Callback<JsonObject>() {
+                    @Override
+                    public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                        String status = "";
+                        try {
+                            status = response.body().get("status").getAsString();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        if (status.equals("success")){
+                            System.out.println("Deal Canceled ......................");
+                            dialog.dismiss();
+
+                            Intent mainIntent = new Intent(DisputeDetails_No_History_Activity.this,DisputeNoHistoryActivity.class);
+                            DisputeDetails_No_History_Activity.this.startActivity(mainIntent);
+
+                        }else{
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonObject> call, Throwable t) {
+
+                    }
+                });
+            }
+        };
     };
+
 
     View.OnClickListener contactUs = new View.OnClickListener() {
         public void onClick(View v) {
@@ -256,8 +312,17 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
             Window window = dialog.getWindow();
             Button button = window.findViewById(R.id.sendBtn);
             Button cancelBtn = window.findViewById(R.id.cancelBtn);
+            np = window.findViewById(R.id.np);
+            np.setMinValue(1);
+            np.setMaxValue(366);
+
+            np.setWrapSelectorWheel(true);
             button.setOnClickListener(afterClickSendAction);
             cancelBtn.setOnClickListener(afterClickCancelAction);
+            np.setOnValueChangedListener((picker, oldVal, newVal) -> {
+                 System.out.println("Number   "+newVal);
+                 days = newVal;
+            });
 //            dialog.dismiss();
         }
         View.OnClickListener afterClickSendAction = new View.OnClickListener() {
@@ -265,12 +330,44 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
                 dialog.setContentView(R.layout.activity_request_sent_alert);
                 dialog.show();
 
-                new Handler().postDelayed(new Runnable(){
+                 Call<JsonObject> userCall = dealService.changeDuration(
+                        new Deal(
+                                Integer.parseInt(id),
+                                days
+                        ));
+
+                userCall.enqueue(new Callback<JsonObject>() {
                     @Override
-                    public void run() {
-                        dialog.dismiss();
+                    public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                        String status = "";
+                        try {
+                            status = response.body().get("status").getAsString();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        if (status.equals("success")){
+                            System.out.println("Deal Days Changed ......................");
+                            new Handler().postDelayed(new Runnable(){
+                                @Override
+                                public void run() {
+                                    dialog.dismiss();
+                                }
+                            }, SPLASH_DISPLAY_LENGTH);
+
+                            Intent mainIntent = new Intent(DisputeDetails_No_History_Activity.this,DisputeNoHistoryActivity.class);
+                            DisputeDetails_No_History_Activity.this.startActivity(mainIntent);
+
+                        }else{
+
+                        }
                     }
-                }, SPLASH_DISPLAY_LENGTH);
+
+                    @Override
+                    public void onFailure(Call<JsonObject> call, Throwable t) {
+
+                    }
+                });
+
             }
         };
     };
@@ -311,12 +408,18 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
             dialog.dismiss();
         }
     };
+    View.OnClickListener dismissAction = new View.OnClickListener() {
+        public void onClick(View v) {
+            dialog.dismiss();
+        }
+    };
 
     View.OnClickListener chatAction = new View.OnClickListener() {
         public void onClick(View v) {
 
             Intent intent = new Intent(DisputeDetails_No_History_Activity.this,ChatActivity.class);
             intent.putExtra("disputeListName", value);
+            intent.putExtra("deal_id",id);
             intent.putExtra("disputeListPrice", disputePrice);
             intent.putExtra("disputeListDays", disputeDays);
             intent.putExtra("disputeListDescription",description);
@@ -363,8 +466,10 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
             Button callBtn = window.findViewById(R.id.callBtn1);
             Button textBtn = window.findViewById(R.id.textBtn);
             Button emailBtn = window.findViewById(R.id.emailBtn);
+            Button dismiss = window.findViewById(R.id.dissmissBtn);
 
             callBtn.setOnClickListener(calling);
+            dismiss.setOnClickListener(dismissAction);
             textBtn.setOnClickListener(sending);
             emailBtn.setOnClickListener(emailing);
         }

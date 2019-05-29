@@ -18,4 +18,10 @@ public interface DealService {
     @POST("deal/save")
     Call<JsonObject> saveDEal(@Body Deal deal);
 
+    @POST("deal/cancel")
+    Call<JsonObject> cancelDeal(@Body Deal deal);
+
+    @POST("deal/change-duration")
+    Call<JsonObject> changeDuration(@Body Deal deal);
+
 }

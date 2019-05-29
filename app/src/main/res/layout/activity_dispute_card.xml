@@ -9,6 +9,7 @@
     android:orientation="vertical">
 
     <TextView
+        android:id="@+id/dealID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/disputeDiscription"
@@ -24,7 +25,7 @@
         android:layout_toStartOf="@+id/disputeDaysTxt"
         android:layout_toLeftOf="@+id/disputeDaysTxt"
         android:text="     "
-        android:textColor="#929AAB"
+        android:textColor="@android:color/white"
         android:textSize="14sp"
         app:fontFamily="@font/open_sans" />
 

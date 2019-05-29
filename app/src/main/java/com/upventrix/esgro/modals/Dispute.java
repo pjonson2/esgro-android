@@ -1,22 +1,33 @@
 package com.upventrix.esgro.modals;
 
 public class Dispute {
+
+    private int id;
     private String name;
     private String discrption;
     private String price;
     private String days;
     private String image;
 
-    public Dispute(String name, String discrption, String price, String days,String image) {
+    public Dispute(int id,String name, String discrption, String price, String days,String image) {
 
         this.name = name;
         this.discrption = discrption;
         this.price = price;
         this.days = days;
         this.image = image;
+        this.id = id;
     }
 
     public Dispute() {
+    }
+
+    public  int getId(){
+        return id;
+    }
+
+    public void setId(int id){
+        this.id = id;
     }
 
     public String getName() {

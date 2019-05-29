@@ -122,6 +122,7 @@ public class ChatActivity extends AppCompatActivity {
             String disputeDays = extras.getString("disputeListDays");
             String disputePrice = extras.getString("disputeListPrice");
             String description = extras.getString("disputeListDescription");
+            String deal_id = extras.getString("deal_id");
             Bitmap bitmap = getIntent().getParcelableExtra("BitmapImage");
 
             flowOfEvent = extras.getString("flowOfEvent");
@@ -137,6 +138,7 @@ public class ChatActivity extends AppCompatActivity {
             intent.putExtra("disputeListPrice", disputePrice);
             intent.putExtra("disputeListDays", disputeDays);
             intent.putExtra("disputeListDescription",description);
+            intent.putExtra("deal_id",deal_id);
             intent.putExtra("BitmapImage", bitmap);
 
             ChatActivity.this.startActivity(intent);
@@ -205,10 +207,12 @@ public class ChatActivity extends AppCompatActivity {
                 String value = extras.getString("disputeListName");
                 String disputeDays = extras.getString("disputeListDays");
                 String disputePrice = extras.getString("disputeListPrice");
+                String description = extras.getString("disputeListDescription");
+                String deal_id = extras.getString("deal_id");
                 Bitmap bitmap = getIntent().getParcelableExtra("BitmapImage");
 
                 flowOfEvent = extras.getString("flowOfEvent");
-                System.out.println("flowOfEvent   " + flowOfEvent);
+
                 Intent intent;
                 if (flowOfEvent.equals("DisputeDetails_01_Activity")) {
                     intent = new Intent(ChatActivity.this, DisputeDetails_01_Activity.class);
@@ -219,6 +223,8 @@ public class ChatActivity extends AppCompatActivity {
                 intent.putExtra("disputeListName", value);
                 intent.putExtra("disputeListPrice", disputePrice);
                 intent.putExtra("disputeListDays", disputeDays);
+                intent.putExtra("disputeListDescription",description);
+                intent.putExtra("deal_id",deal_id);
                 intent.putExtra("BitmapImage", bitmap);
 
                 ChatActivity.this.startActivity(intent);

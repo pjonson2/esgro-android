@@ -183,6 +183,9 @@ public class DisputeNoHistoryActivity extends AppCompatActivity {
                 TextView disputeDescriptionTxt = view.findViewById(R.id.disputeDiscription);
                 String disputeDescription = disputeDescriptionTxt.getText().toString();
 
+                TextView deal_id = view.findViewById(R.id.dealID);
+                String dealID = deal_id.getText().toString();
+
                 Bitmap bitmap = imageView.getDrawingCache();
 
                 Intent intent = new Intent(DisputeNoHistoryActivity.this, DisputeDetails_No_History_Activity.class);
@@ -192,6 +195,7 @@ public class DisputeNoHistoryActivity extends AppCompatActivity {
                 intent.putExtra("disputeListPrice", disputePrice);
                 intent.putExtra("disputeListDays", disputeDays);
                 intent.putExtra("disputeListDescription", disputeDescription);
+                intent.putExtra("deal_id",dealID);
 
                 startActivity(intent);
 
@@ -241,6 +245,7 @@ public class DisputeNoHistoryActivity extends AppCompatActivity {
                             dispute.setPrice(value.getAsJsonObject().get("total_cost").getAsDouble()+"");
                             dispute.setDays(value.getAsJsonObject().get("status").getAsString());
                             dispute.setDiscrption(value.getAsJsonObject().get("description").getAsString());
+                            dispute.setId(value.getAsJsonObject().get("deal_id").getAsInt());
 
                             try {
                                 dispute.setImage(value.getAsJsonObject().get("profileImgUrl").getAsString());
@@ -252,8 +257,7 @@ public class DisputeNoHistoryActivity extends AppCompatActivity {
                                          dispute
                                 );
                     }
-
-                     DisputeNoHistoryActivity.CustomAdaper customAdaper = new DisputeNoHistoryActivity.CustomAdaper();
+                        DisputeNoHistoryActivity.CustomAdaper customAdaper = new DisputeNoHistoryActivity.CustomAdaper();
                     ListView listView = findViewById(R.id.dynamicShakeListView);
                     listView.setAdapter(customAdaper);
                     progressBar.setVisibility(View.GONE);
@@ -361,6 +365,8 @@ public class DisputeNoHistoryActivity extends AppCompatActivity {
             TextView disputePrice = convertView.findViewById(R.id.disputePriceTxt);
             TextView disputedays = convertView.findViewById(R.id.disputeDaysTxt);
             TextView disputeDesc = convertView.findViewById(R.id.disputeDiscription);
+            TextView dealID = convertView.findViewById(R.id.dealID);
+
             SimpleDraweeView simpleDraweeView = convertView.findViewById(R.id.userImg);
 
             Dispute dispute = disputeList.get(position);
@@ -385,6 +391,7 @@ public class DisputeNoHistoryActivity extends AppCompatActivity {
             disputedays.setText(dispute.getDays());
             disputePrice.setText("$"+dispute.getPrice());
             disputeDesc.setText(dispute.getDiscrption());
+            dealID.setText(dispute.getId()+"");
 
 
             if(Double.parseDouble(dispute.getPrice())<0){
@@ -412,6 +419,7 @@ public class DisputeNoHistoryActivity extends AppCompatActivity {
                 disputePrice.setTextColor(Color.parseColor("#929AAB"));
                 disputedays.setTextColor(Color.parseColor("#929AAB"));
             }
+            progressBar.setVisibility(View.GONE);
             return convertView;
         }
     }

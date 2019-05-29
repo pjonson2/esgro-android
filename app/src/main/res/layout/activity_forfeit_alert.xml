@@ -35,7 +35,7 @@
             app:layout_constraintVertical_bias="0.554" />
 
         <Button
-            android:id="@+id/button13"
+            android:id="@+id/forfeitBtn"
             android:layout_width="146dp"
             android:layout_height="55dp"
             android:layout_marginStart="8dp"

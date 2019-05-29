@@ -4,6 +4,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class Deal {
 
+    @SerializedName("deal_id")
+    private int deal_id;
+
     @SerializedName("description")
     private String description;
 
@@ -22,7 +25,25 @@ public class Deal {
     @SerializedName("to")
     private  int to;
 
+    @SerializedName("type")
+    private String type;
+
+    @SerializedName("no_days")
+    private int no_days;
+
+
+
     public Deal() {
+    }
+
+    public Deal(int deal_id, String type) {
+        this.deal_id = deal_id;
+        this.type = type;
+    }
+
+    public Deal(int deal_id, int no_days) {
+        this.deal_id = deal_id;
+        this.no_days = no_days;
     }
 
     public Deal(String description, double total, double reserve, String period, int from, int to) {
