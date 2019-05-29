@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.os.Handler;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +18,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.hbb20.CountryCodePicker;
 import com.upventrix.esgro.R;
@@ -23,6 +26,10 @@ import com.upventrix.esgro.modals.User;
 import com.upventrix.esgro.resource.Config;
 import com.upventrix.esgro.services.UserService;
 import com.google.gson.JsonObject;
+
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -43,9 +50,12 @@ public class EnterVerificationActivity extends AppCompatActivity {
 
     Bundle extras;
     int verification_id = 0;
+    private Timer myTimer;
+
 
     ConstraintLayout constraintLayout;
-
+    private final int interval = 1000; // 1 Second
+    private Handler handler = new Handler();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         onWindowFocusChanged(true);
@@ -66,17 +76,51 @@ public class EnterVerificationActivity extends AppCompatActivity {
                 return false;
             }
         });
-//        Timer();
-    }
 
-    private void Timer() {
-        for (int i=0;i<5;i--){
-            for (int j=0;j<=59;j--){
+        new CountDownTimer(300000, 1000) { // adjust the milli seconds here
 
+            public void onTick(long millisUntilFinished) {
+                timerView.setText(""+String.format("%d:%d",
+                        TimeUnit.MILLISECONDS.toMinutes( millisUntilFinished),
+                        TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) -
+                                TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))));
             }
-        }
+
+            public void onFinish() {
+                System.out.println("DONE");
+            }
+        }.start();
+
+//        Timer();
+//        myTimer = new Timer();
+//        myTimer.schedule(new TimerTask() {
+//            @Override
+//            public void run() {
+//                TimerMethod();
+//            }
+//
+//        }, 0, 1000);
+     }
+    private void TimerMethod()
+    {
+        //This method is called directly by the timer
+        //and runs in the same thread as the timer.
+        System.out.println("Timer");
+        //We call the method that will work with the UI
+        //through the runOnUiThread method.
+        this.runOnUiThread(Timer_Tick);
     }
 
+    private Runnable Timer_Tick = new Runnable() {
+        public void run() {
+
+            //This method runs in the same thread as the UI.
+            System.out.println("Timer_Tick");
+
+            //Do something to the UI thread here
+
+        }
+    };
     private void hideKeyboard(View view) {
         InputMethodManager in = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         in.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);

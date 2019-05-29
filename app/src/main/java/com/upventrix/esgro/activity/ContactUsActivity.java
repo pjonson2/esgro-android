@@ -29,7 +29,7 @@ public class ContactUsActivity extends AppCompatActivity {
 
     Dialog dialog;
 
-    TextView contactEmailTxt;
+    EditText contactEmailTxt;
 
     EditText contactMessageTxt;
     ConstraintLayout constraintLayout;
@@ -113,6 +113,8 @@ public class ContactUsActivity extends AppCompatActivity {
     View.OnClickListener hideUI = new View.OnClickListener() {
         public void onClick(View v) {
             dialog.dismiss();
+            contactEmailTxt.setText("");
+            contactMessageTxt.setText("");
         }
     };
 

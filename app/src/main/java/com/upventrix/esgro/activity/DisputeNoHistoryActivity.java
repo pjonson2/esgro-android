@@ -409,7 +409,7 @@ public class DisputeNoHistoryActivity extends AppCompatActivity {
                 disputePrice.setTextColor(getResources().getColor(R.color.lightGreen));
 
             }
-            if (dispute.getDays().equals("Canceled")|| dispute.getDays().equals("Completed")){
+            if (dispute.getDays().equals("cancelled")|| dispute.getDays().equals("completed")){
                 disputePrice.setTextColor(Color.parseColor("#929AAB"));
                 convertView.setBackgroundResource(R.drawable.layout_low_gray_corner);
                 disputedays.setTextColor(Color.parseColor("#929AAB"));

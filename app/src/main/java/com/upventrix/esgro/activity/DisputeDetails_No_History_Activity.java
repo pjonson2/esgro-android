@@ -172,7 +172,7 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
         }else{
                  disputeNoUserPriceTxt.setTextColor(Color.RED);
         }
-        if(disputeDays.equals("waiting") || disputeDays.equals("Canceled") || disputeDays.equals("Completed") ){
+        if(disputeDays.equals("waiting") || disputeDays.equals("cancelled") || disputeDays.equals("completed") ){
             disputeNoUserPriceTxt.setTextColor(Color.parseColor("#929AAB"));
             disputeNoUserDaysTxt.setTextColor(Color.parseColor("#929AAB"));
         }
