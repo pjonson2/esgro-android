@@ -44,6 +44,7 @@ import com.upventrix.esgro.services.UserService;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -387,10 +388,19 @@ public class DisputeNoHistoryActivity extends AppCompatActivity {
 
 
             if(Double.parseDouble(dispute.getPrice())<0){
+                StringBuilder sb = new StringBuilder(dispute.getPrice());
+                sb.deleteCharAt(0);
+                DecimalFormat df = new DecimalFormat("####0.00");
+                String format = df.format(Double.parseDouble(sb.toString()));
+                disputePrice.setText("-$"+format);
                 disputePrice.setTextColor(Color.RED);
             }
             if(Double.parseDouble(dispute.getPrice())>0){
+                DecimalFormat df = new DecimalFormat("####0.00");
+                String format = df.format(Double.parseDouble(dispute.getPrice()));
+                 disputePrice.setText("+$"+format);
                 disputePrice.setTextColor(getResources().getColor(R.color.lightGreen));
+
             }
             if (dispute.getDays().equals("Canceled")|| dispute.getDays().equals("Completed")){
                 disputePrice.setTextColor(Color.parseColor("#929AAB"));

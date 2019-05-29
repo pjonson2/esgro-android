@@ -128,13 +128,21 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
 
         disputePrice = extras.getString("disputeListPrice");
         StringBuilder sb = new StringBuilder(disputePrice);
+        sb.deleteCharAt(1);
         sb.deleteCharAt(0);
 
         description = extras.getString("disputeListDescription");
 
         disputeNoUserNameTxt.setText(value);
         disputeNoUserDaysTxt.setText(disputeDays);
-        disputeNoUserPriceTxt.setText(disputePrice);
+        if (Double.parseDouble(sb.toString())>0){
+            disputeNoUserPriceTxt.setText("+$"+sb);
+            disputeNoUserPriceTxt.setTextColor(Color.RED);
+        }
+        if (Double.parseDouble(sb.toString())<0){
+            disputeNoUserPriceTxt.setText("-$"+sb);
+        }
+
         disputeNoHistoryDescription.setText(description);
         getNoDisputeUserImg.setImageBitmap(bitmap);
 
@@ -247,7 +255,9 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
             dialog.show();
             Window window = dialog.getWindow();
             Button button = window.findViewById(R.id.sendBtn);
+            Button cancelBtn = window.findViewById(R.id.cancelBtn);
             button.setOnClickListener(afterClickSendAction);
+            cancelBtn.setOnClickListener(afterClickCancelAction);
 //            dialog.dismiss();
         }
         View.OnClickListener afterClickSendAction = new View.OnClickListener() {
@@ -277,6 +287,11 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
         }
     };
     View.OnClickListener closeNotificationUI = new View.OnClickListener() {
+        public void onClick(View v) {
+            dialog.dismiss();
+        }
+    };
+    View.OnClickListener afterClickCancelAction = new View.OnClickListener() {
         public void onClick(View v) {
             dialog.dismiss();
         }
