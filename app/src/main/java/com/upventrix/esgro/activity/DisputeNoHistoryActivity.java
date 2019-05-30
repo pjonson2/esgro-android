@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.constraint.ConstraintLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
 import android.view.MotionEvent;
@@ -52,7 +53,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DisputeNoHistoryActivity extends AppCompatActivity {
+public class DisputeNoHistoryActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
 
     List<Dispute> disputeList;
     EditText disputeShakeSearchView;
@@ -65,6 +66,7 @@ public class DisputeNoHistoryActivity extends AppCompatActivity {
     ImageView settings;
     DealService service = null;
     UserService userService = null;
+    SwipeRefreshLayout swipeRefreshLayout;
 
     ConstraintLayout constraintLayout;
 
@@ -79,6 +81,7 @@ public class DisputeNoHistoryActivity extends AppCompatActivity {
         setToken();
 //        setHitArea();
         constraintLayout = findViewById(R.id.activity_dispute_shake);
+        swipeRefreshLayout =  findViewById(R.id.swipeRefreshLayout);
         constraintLayout.setOnTouchListener(new View.OnTouchListener()
         {
             @Override
@@ -88,6 +91,8 @@ public class DisputeNoHistoryActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+        swipeRefreshLayout.setOnRefreshListener(this);
 
     }
 
@@ -237,6 +242,8 @@ public class DisputeNoHistoryActivity extends AppCompatActivity {
 
                     JsonArray dealsList = response.body().getAsJsonArray("deals");
 
+                    System.out.println("dealsList    ......  "+dealsList);
+
                         for (JsonElement value : dealsList) {
 
                             Dispute dispute = new Dispute();
@@ -257,12 +264,16 @@ public class DisputeNoHistoryActivity extends AppCompatActivity {
                                          dispute
                                 );
                     }
+                    progressBar.setVisibility(View.GONE);
+                    swipeRefreshLayout.setRefreshing(false);
                         DisputeNoHistoryActivity.CustomAdaper customAdaper = new DisputeNoHistoryActivity.CustomAdaper();
                     ListView listView = findViewById(R.id.dynamicShakeListView);
                     listView.setAdapter(customAdaper);
                     progressBar.setVisibility(View.GONE);
 
                 }else{
+                    swipeRefreshLayout.setRefreshing(false);
+                    progressBar.setVisibility(View.GONE);
                     System.out.println(status);
                 }
             }
@@ -335,6 +346,15 @@ public class DisputeNoHistoryActivity extends AppCompatActivity {
                             | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         }
     }
+
+    @Override
+    public void onRefresh() {
+        System.out.println("Refresh");
+        disputeList.clear();
+        setValues();
+
+    }
+
     class CustomAdaper extends BaseAdapter {
 
         @Override
@@ -420,6 +440,7 @@ public class DisputeNoHistoryActivity extends AppCompatActivity {
                 disputedays.setTextColor(Color.parseColor("#929AAB"));
             }
             progressBar.setVisibility(View.GONE);
+            swipeRefreshLayout.setRefreshing(false);
             return convertView;
         }
     }

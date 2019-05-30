@@ -22,6 +22,7 @@ import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -69,7 +70,7 @@ public class CompleteProfileActivity  extends AppCompatActivity{
     byte[] b = null;
     private final int SELECT_PHOTO = 1;
     int userid = 0;
-
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,7 +113,7 @@ public class CompleteProfileActivity  extends AppCompatActivity{
         plusLinkbankAccount = findViewById(R.id.plusLinkBankLbl);
          skip = findViewById(R.id.skipNowBtn);
         circleImageView = findViewById(R.id.profile_image);
-
+        progressBar = findViewById(R.id.p6);
         service = Config.getInstance().create(FilesService.class);
         userService = Config.getInstance().create(UserService.class);
     }
@@ -125,6 +126,7 @@ public class CompleteProfileActivity  extends AppCompatActivity{
         plusLinkbankAccount.setOnClickListener(plusLinkBanks);
         circleImageView.setOnClickListener(selectFile);
         skip.setOnClickListener(skipAction);
+        progressBar.setVisibility(View.GONE);
     }
 
     void setValues(){
@@ -233,13 +235,20 @@ public class CompleteProfileActivity  extends AppCompatActivity{
                     String encodedImage = "";
 
                     try{
+                        progressBar.setVisibility(View.VISIBLE);
+                        continueBtn.setEnabled(false);
                         encodedImage = Base64.encodeToString(b, Base64.DEFAULT);
 
                         if (encodedImage==null){
                             System.out.println("Error");
+                            progressBar.setVisibility(View.GONE);
+                            continueBtn.setEnabled(true);
                             return;
                         }
                     }catch(Exception e){
+
+                        progressBar.setVisibility(View.GONE);
+                        continueBtn.setEnabled(true);
                         Context context = getApplicationContext();
                         CharSequence text = "Select Image from your device";
                         int duration = Toast.LENGTH_SHORT;
@@ -249,7 +258,7 @@ public class CompleteProfileActivity  extends AppCompatActivity{
                         return;
                     }
 
-                    Call<JsonObject> imgUrlFromBase64 = service.getImgUrlFromBase64(new Files(encodedImage));
+                     Call<JsonObject> imgUrlFromBase64 = service.getImgUrlFromBase64(new Files(encodedImage));
                      imgUrlFromBase64.enqueue(new Callback<JsonObject>() {
                         @Override
                         public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
@@ -257,6 +266,8 @@ public class CompleteProfileActivity  extends AppCompatActivity{
                              try {
                                 status = response.body().get("filename").getAsString();
                             } catch (Exception e) {
+                                 progressBar.setVisibility(View.GONE);
+                                 continueBtn.setEnabled(true);
                                 e.printStackTrace();
                             }
                             if (!status.equals("")) {
@@ -273,25 +284,50 @@ public class CompleteProfileActivity  extends AppCompatActivity{
 
                                         if (status.equals("success")) {
                                             System.out.println("success   ..... "+status);
-
+                                            progressBar.setVisibility(View.GONE);
+                                            continueBtn.setEnabled(true);
                                             // code to re-direct page
                                             Intent mainIntent = new Intent(CompleteProfileActivity.this, DisputeNoHistoryActivity.class);
                                             CompleteProfileActivity.this.startActivity(mainIntent);
+                                        }else{
+                                            Context context = getApplicationContext();
+                                            CharSequence text = "Image Upload Failed";
+                                            int duration = Toast.LENGTH_SHORT;
+
+                                            Toast toast = Toast.makeText(context, text, duration);
+                                            toast.show();
                                         }
+                                        progressBar.setVisibility(View.GONE);
+                                        continueBtn.setEnabled(true);
 
                                     }
 
                                     @Override
                                     public void onFailure(Call<JsonObject> call, Throwable t) {
-
+                                        continueBtn.setEnabled(true);
+                                        progressBar.setVisibility(View.GONE);
                                     }
                                 });
+                                continueBtn.setEnabled(true);
+                                progressBar.setVisibility(View.GONE);
 
-                            }
+                            }else{
+                                Context context = getApplicationContext();
+                                CharSequence text = "Image Upload Failed";
+                                int duration = Toast.LENGTH_SHORT;
+
+                                Toast toast = Toast.makeText(context, text, duration);
+                                toast.show();
+                             }
+
+                            progressBar.setVisibility(View.GONE);
+                            continueBtn.setEnabled(true);
                         }
 
                         @Override
                         public void onFailure(Call<JsonObject> call, Throwable t) {
+                            continueBtn.setEnabled(true);
+                            progressBar.setVisibility(View.GONE);
 
                         }
                     });

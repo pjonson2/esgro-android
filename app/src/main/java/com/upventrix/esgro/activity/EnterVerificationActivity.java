@@ -181,7 +181,7 @@ public class EnterVerificationActivity extends AppCompatActivity {
             if (n1TXt.getText().toString().equals("") || n2Txt.getText().toString().equals("") || n3Txt.getText().toString().equals("") || n4Txt.getText().toString().equals("")) {
 
             } else {
-
+                nextBtn.setEnabled(false);
                 int pin = Integer.parseInt(n1TXt.getText() + "" + n2Txt.getText() + "" + n3Txt.getText() + "" + n4Txt.getText());
 
                 Call<JsonObject> userCall = service.confirm(
@@ -206,6 +206,7 @@ public class EnterVerificationActivity extends AppCompatActivity {
                                 vewAlert("Successfully","Press ok to continue",EnterVerificationActivity.this);
                             }else{
                                 vewAlert("Warnings","Failed to verifying your code ",EnterVerificationActivity.this);
+                                nextBtn.setEnabled(true);
                             }
                         }
 
