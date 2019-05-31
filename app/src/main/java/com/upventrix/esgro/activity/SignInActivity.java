@@ -184,7 +184,7 @@ public class SignInActivity extends AppCompatActivity {
                         int userid = 0;
                         try {
                             JSONObject jsonObj = new JSONObject(userData);
-                            userid = jsonObj.getInt("userid");
+                            userid = jsonObj.getInt("user_id");
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

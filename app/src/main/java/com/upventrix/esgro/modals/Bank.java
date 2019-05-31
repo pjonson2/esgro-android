@@ -13,7 +13,7 @@ public class Bank {
     @SerializedName("acc_name")
     private String acc_name;
 
-    @SerializedName("userid")
+    @SerializedName("user_id")
     private int userid;
 
     public Bank() {

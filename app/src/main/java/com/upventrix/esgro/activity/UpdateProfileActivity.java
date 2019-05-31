@@ -1,14 +1,17 @@
 package com.upventrix.esgro.activity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.annotation.RequiresApi;
 import android.support.constraint.ConstraintLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.view.MotionEvent;
@@ -24,7 +27,13 @@ import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.facebook.imagepipeline.request.ImageRequest;
 import com.facebook.imagepipeline.request.ImageRequestBuilder;
+import com.google.gson.JsonObject;
 import com.upventrix.esgro.R;
+import com.upventrix.esgro.modals.Files;
+import com.upventrix.esgro.modals.User;
+import com.upventrix.esgro.resource.Config;
+import com.upventrix.esgro.services.FilesService;
+import com.upventrix.esgro.services.UserService;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
@@ -36,6 +45,9 @@ import java.net.URL;
 import java.net.URLConnection;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class UpdateProfileActivity   extends AppCompatActivity {
 
@@ -49,22 +61,34 @@ public class UpdateProfileActivity   extends AppCompatActivity {
     ImageView settings;
     ImageView profile;
     ImageView uploadImage;
-    SimpleDraweeView userImg;
-    CircleImageView circleImageView;
+     CircleImageView circleImageView;
 
     EditText firstName;
     EditText lastName;
     EditText email;
     EditText phone;
     ConstraintLayout constraintLayout;
-     private final int SELECT_PHOTO = 1;
+    private UserService userService;
+    String imgeUrl = "";
+    int userID = 0;
+    String name = "";
+    String encodedImage = "";
+
+    private final int SELECT_PHOTO = 1;
     byte[] b = null;
+
+    Bundle bundle;
+    private FilesService service;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         onWindowFocusChanged(true);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_profile);
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
         Fresco.initialize(this);
         idInitialization();
         setListeners();
@@ -98,7 +122,8 @@ public class UpdateProfileActivity   extends AppCompatActivity {
         email = findViewById(R.id.updateEmailTxt);
         phone = findViewById(R.id.updatePhoneTxt);
         uploadImage = findViewById(R.id.imageView46);
-//        userImg = findViewById(R.id.userImg);
+        userService = Config.getInstance().create(UserService.class);
+        service = Config.getInstance().create(FilesService.class);
         circleImageView = findViewById(R.id.profile_image);
     }
 
@@ -109,12 +134,41 @@ public class UpdateProfileActivity   extends AppCompatActivity {
         handshake.setOnClickListener(handshakeAction);
         contact.setOnClickListener(contactUs);
         settings.setOnClickListener(settingsAction);
-//        userImg.setOnClickListener(uploadImageAction);
         circleImageView.setOnClickListener(uploadImageAction);
     }
 
     void setValues(){
+        bundle = getIntent().getExtras();
 
+        firstName.setText(bundle.getString("firstName"));
+        lastName.setText(bundle.getString("lastName"));
+        email.setText(bundle.getString("email"));
+        phone.setText(bundle.getString("contact"));
+        userID = bundle.getInt("user_id");
+        name = bundle.getString("userName");
+        System.out.println("userID   userID   "+userID);
+        imgeUrl = bundle.getString("image");
+        Bitmap bm = null;
+        System.out.println("Image URL is a "+imgeUrl);
+        if(imgeUrl.toString().equals("")){
+            System.out.println("NUllllllllll image");
+        }else {
+            try {
+                System.out.println("NOTTTTTT NULLll image");
+
+                URL aURL = new URL(imgeUrl);
+                URLConnection conn = aURL.openConnection();
+                conn.connect();
+                InputStream is = conn.getInputStream();
+                BufferedInputStream bis = new BufferedInputStream(is);
+                bm = BitmapFactory.decodeStream(bis);
+                bis.close();
+                is.close();
+            } catch (IOException e) {
+                System.out.println("Error getting bitmap" + e);
+            }
+            circleImageView.setImageBitmap(bm);
+        }
     }
 
     @Override
@@ -133,7 +187,6 @@ public class UpdateProfileActivity   extends AppCompatActivity {
 
     View.OnClickListener uploadImageAction = new View.OnClickListener() {
         public void onClick(View v) {
-
 
             Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
             photoPickerIntent.setType("image/*");
@@ -173,7 +226,7 @@ public class UpdateProfileActivity   extends AppCompatActivity {
                         Bitmap decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
 //                        profile.setImageBitmap(selectedImage);
                         circleImageView.setImageBitmap(selectedImage);
-
+                        encodedImage = Base64.encodeToString(b, Base64.DEFAULT);
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
@@ -192,41 +245,111 @@ public class UpdateProfileActivity   extends AppCompatActivity {
 
     View.OnClickListener saveAction = new View.OnClickListener() {
         public void onClick(View v) {
+        saveBtn.setEnabled(false);
+            User user = new User();
+                user.setFirstname(firstName.getText().toString());
+                user.setLastname(lastName.getText().toString());
+                user.setEmail(email.getText().toString());
+                user.setMobile(phone.getText().toString());
+                user.setUsername(name);
+                user.setUserID(userID);
+
+                if (encodedImage.equals("") && imgeUrl.equals("")){
+                    user.setImageUrl("");
+                    Call<JsonObject> jsonObjectCall = userService.updateUSer(user);
+                    jsonObjectCall.enqueue(new Callback<JsonObject>() {
+                        String status= "";
+                        @Override
+                        public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                            status = response.body().get("status").getAsString();
+                            if(status.toString().equals("success")){
+                                vewAlert("Successfully","Profile Successfully Updated",UpdateProfileActivity.this);
+                                saveBtn.setEnabled(true);
+                            }else{
+                                saveBtn.setEnabled(true);
+                                vewAlert("Warnings!","Failed to update profile",UpdateProfileActivity.this);
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<JsonObject> call, Throwable t) {
+                            System.out.println("ERROR");
+                        }
+                    });
+                }
+
+                if (encodedImage.equals("") && !imgeUrl.equals("")){
+                    user.setImageUrl(imgeUrl);
+                    Call<JsonObject> jsonObjectCall = userService.updateUSer(user);
+                    jsonObjectCall.enqueue(new Callback<JsonObject>() {
+                        String status= "";
+
+                        @Override
+                        public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                            status = response.body().get("status").getAsString();
+                            if(status.toString().equals("success")){
+                                saveBtn.setEnabled(true);
+                                vewAlert("Successfully","Profile Successfully Updated",UpdateProfileActivity.this);
+
+                            }else{
+                                saveBtn.setEnabled(true);
+                                vewAlert("Warnings!","Failed to update profile",UpdateProfileActivity.this);
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<JsonObject> call, Throwable t) {
+                            System.out.println("ERROR");
+                        }
+                    });
+
+                }
+
+                if (!encodedImage.equals("")){
+                    Call<JsonObject> imgUrlFromBase64 = service.getImgUrlFromBase64(new Files(encodedImage));
+                    imgUrlFromBase64.enqueue(new Callback<JsonObject>() {
+                        @Override
+                        public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                             try {
+                                imgeUrl = response.body().get("filename").getAsString();
+
+                                 user.setImageUrl(imgeUrl);
+                                 System.out.println("THe image is  "+imgeUrl);
+
+                                 Call<JsonObject> jsonObjectCall = userService.updateUSer(user);
+                                 jsonObjectCall.enqueue(new Callback<JsonObject>() {
+                                     String status= "";
+
+                                     @Override
+                                     public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                                         status = response.body().get("status").getAsString();
+                                         if(status.toString().equals("success")){
+                                             vewAlert("Successfully","Profile Successfully Updated",UpdateProfileActivity.this);
+                                             saveBtn.setEnabled(true);
+                                         }else{
+                                             saveBtn.setEnabled(true);
+                                             vewAlert("Warnings!","Failed to update profile",UpdateProfileActivity.this);
+                                         }
+                                     }
+
+                                     @Override
+                                     public void onFailure(Call<JsonObject> call, Throwable t) {
+                                         System.out.println("ERROR");
+                                     }
+                                 });
 
 
-//            String encodedImage = Base64.encodeToString(b, Base64.DEFAULT);
-//try {
-////    Uri uri = Uri.parse("https://raw.githubusercontent.com/facebook/fresco/master/docs/static/logo.png");
-////            SimpleDraweeView draweeView = (SimpleDraweeView) profile;
-//    Uri imageUri = Uri.parse("https://www.gstatic.com/webp/gallery/1.jpg");
-//    userImg.setController(
-//            Fresco.newDraweeControllerBuilder()
-//                    .setOldController(userImg.getController())
-//                    .setUri(imageUri)
-//                    .setTapToRetryEnabled(true)
-//                    .build());
-////    profile.setImageURI(uri);
-//}catch(Exception e){
-//
-//}
+                             } catch (Exception e) {
+                                 e.printStackTrace();
+                            }
+                        }
 
-            Intent mainIntent = new Intent(UpdateProfileActivity.this, ProfileActivity.class);
-            UpdateProfileActivity.this.startActivity(mainIntent);
+                        @Override
+                        public void onFailure(Call<JsonObject> call, Throwable t) {
 
-//            Bitmap bm = null;
-//            try {
-//                URL aURL = new URL("https://raw.githubusercontent.com/facebook/fresco/master/docs/static/logo.png");
-//                URLConnection conn = aURL.openConnection();
-//                conn.connect();
-//                InputStream is = conn.getInputStream();
-//                BufferedInputStream bis = new BufferedInputStream(is);
-//                bm = BitmapFactory.decodeStream(bis);
-//                bis.close();
-//                is.close();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//            profile.setImageBitmap(bm);
+                        }
+                    });
+                }
         }
     };
 
@@ -256,5 +379,22 @@ public class UpdateProfileActivity   extends AppCompatActivity {
         }
     };
 
+    public void vewAlert(final String title, String message, final Context context){
+        final AlertDialog alertDialog = new AlertDialog.Builder(context).create();
+        alertDialog.setTitle(title);
+        alertDialog.setMessage(message);
+        alertDialog.setCanceledOnTouchOutside(false);
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        if (title.equals("Successfully")) {
+                            Intent mainIntent = new Intent(context, ProfileActivity.class);
+                            context.startActivity(mainIntent);
+                        }
+                    }
+                });
+        alertDialog.show();
+    }
 
 }

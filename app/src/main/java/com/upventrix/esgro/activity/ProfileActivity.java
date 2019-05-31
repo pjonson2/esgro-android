@@ -3,8 +3,10 @@ package com.upventrix.esgro.activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.preference.PreferenceManager;
 import android.support.constraint.ConstraintLayout;
 import android.view.View;
@@ -47,14 +49,21 @@ public class ProfileActivity  extends FooterActivity {
     SimpleDraweeView simpleDraweeView;
 
     Dialog dialog;
+    String mobileNumber = "";
+    String imageUrl = "";
     UserService service;
+    Drawable drawable = null;
 
-
+      int userid = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         onWindowFocusChanged(true);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
         dialog = new Dialog(this);
 
         idInitialization();
@@ -94,14 +103,12 @@ public class ProfileActivity  extends FooterActivity {
     void setValues(){
         final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         String userData = new LocalData().getlocalData(sharedPref, "userdata");
-        int userid = 0;
         try {
             JSONObject jsonObj = new JSONObject(userData);
-            userid = jsonObj.getInt("userid");
+            userid = jsonObj.getInt("user_id");
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
 
         Call<JsonObject> userCall = service.details(""+userid);
         userCall.enqueue(new Callback<JsonObject>() {
@@ -113,17 +120,26 @@ public class ProfileActivity  extends FooterActivity {
                 userName.setText(response.body().get("username").getAsString());
                 email.setText(response.body().get("email").getAsString());
 
+
+                mobileNumber = response.body().get("mobile").getAsString();
                 try {
-                    Uri imageUri = Uri.parse(response.body().get("profileImgUrl").getAsString());
-                    simpleDraweeView.setController(
-                            Fresco.newDraweeControllerBuilder()
-                                    .setOldController(simpleDraweeView.getController())
-                                    .setUri(imageUri)
-                                    .setTapToRetryEnabled(true)
-                                    .build());
-                }catch(Exception e){
+                    imageUrl = response.body().get("profileImgUrl").getAsString();
+
+                    try {
+                        Uri imageUri = Uri.parse(response.body().get("profileImgUrl").getAsString());
+                        simpleDraweeView.setController(
+                                Fresco.newDraweeControllerBuilder()
+                                        .setOldController(simpleDraweeView.getController())
+                                        .setUri(imageUri)
+                                        .setTapToRetryEnabled(true)
+                                        .build());
+                    }catch(Exception e){
+
+                    }
+                }catch (UnsupportedOperationException e){
 
                 }
+
             }
 
             @Override
@@ -149,7 +165,30 @@ public class ProfileActivity  extends FooterActivity {
     View.OnClickListener editAction = new View.OnClickListener() {
         public void onClick(View v) {
             Intent mainIntent = new Intent(ProfileActivity.this, UpdateProfileActivity.class);
-            ProfileActivity.this.startActivity(mainIntent);
+
+            String fName = firstName.getText().toString();
+            String lName = lastName.getText().toString();
+            String uN = userName.getText().toString();
+            String mail = email.getText().toString();
+            String mobile = mobileNumber;
+
+            mainIntent.putExtra("firstName",fName);
+            mainIntent.putExtra("lastName",lName);
+            mainIntent.putExtra("contact",mobile);
+            final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+            String userData = new LocalData().getlocalData(sharedPref, "userdata");
+            try {
+                JSONObject jsonObj = new JSONObject(userData);
+                userid = jsonObj.getInt("user_id");
+             } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+             mainIntent.putExtra("user_id",userid);
+            mainIntent.putExtra("userName",uN);
+            mainIntent.putExtra("email",mail);
+            mainIntent.putExtra("image", imageUrl);
+             ProfileActivity.this.startActivity(mainIntent);
         }
     };
     View.OnClickListener contactUs = new View.OnClickListener() {

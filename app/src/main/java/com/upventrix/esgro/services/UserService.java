@@ -17,6 +17,9 @@ public interface UserService {
     @POST("user/signup")
     Call<JsonObject> saveUser(@Body User user);
 
+    @POST("user/update")
+    Call<JsonObject> updateUSer(@Body User user);
+
     @POST("user/login")
     Call<JsonObject> login(@Body User user);
 

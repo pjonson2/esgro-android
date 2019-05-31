@@ -7,7 +7,7 @@ public class UserToken {
     @SerializedName("token")
     private String token;
 
-    @SerializedName("userid")
+    @SerializedName("user_id")
     private int userid;
 
     public UserToken() {

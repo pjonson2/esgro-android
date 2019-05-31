@@ -227,7 +227,7 @@ public class CompleteProfileActivity  extends AppCompatActivity{
                     String userData = new LocalData().getlocalData(sharedPref, "userdata")+"";
                     try {
                         JSONObject jsonObj = new JSONObject(userData);
-                        userid = jsonObj.getInt("userid");
+                        userid = jsonObj.getInt("user_id");
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

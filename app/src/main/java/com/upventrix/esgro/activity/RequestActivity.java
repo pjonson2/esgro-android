@@ -132,7 +132,7 @@ public class RequestActivity extends AppCompatActivity {
                         Request request = new Request();
                         request.setDays("3 days ago");
                         request.setName(  value.getAsJsonObject().get("firstname").getAsString()+" "+value.getAsJsonObject().get("lastname").getAsString());
-                        request.setUserid(value.getAsJsonObject().get("userid").getAsInt());
+                        request.setUserid(value.getAsJsonObject().get("user_id").getAsInt());
 
                         try {
                             request.setImage(value.getAsJsonObject().get("profileImgUrl").getAsString());

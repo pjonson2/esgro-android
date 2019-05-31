@@ -7,7 +7,7 @@ public class Image {
     @SerializedName("url")
     private String url;
 
-    @SerializedName("userid")
+    @SerializedName("user_id")
     private int userid;
 
     public Image(String url, int userid) {

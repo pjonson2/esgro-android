@@ -3,7 +3,7 @@ package com.upventrix.esgro.modals;
 import com.google.gson.annotations.SerializedName;
 
 public class User {
-    @SerializedName("userid")
+    @SerializedName("user_id")
     private int userID;
 
     @SerializedName("firstname")
