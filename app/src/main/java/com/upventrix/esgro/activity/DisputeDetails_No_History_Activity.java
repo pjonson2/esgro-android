@@ -176,6 +176,9 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
             disputeNoUserPriceTxt.setTextColor(Color.parseColor("#929AAB"));
             disputeNoUserDaysTxt.setTextColor(Color.parseColor("#929AAB"));
         }
+        if(disputeDays.equals("cancelled") ||  disputeDays.equals("completed")  ){
+            noDisputeCancelBtn.setEnabled(false);
+        }
 
     }
 
@@ -279,6 +282,7 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
                         }
                         if (status.equals("success")){
                             System.out.println("Deal Canceled ......................");
+                            noDisputeCancelBtn.setEnabled(false);
                             dialog.dismiss();
 
                             Intent mainIntent = new Intent(DisputeDetails_No_History_Activity.this,DisputeNoHistoryActivity.class);
