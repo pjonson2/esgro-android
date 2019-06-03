@@ -67,6 +67,7 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
     String value = "";
     String disputeDays="";
     String disputePrice="";
+    String reserve = "";
     String description = "";
     String id = "";
     Bitmap bitmap;
@@ -130,7 +131,7 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
         noDisputeCancelBtn.setOnClickListener(cancelAction);
         chat.setOnClickListener(chatAction);
         noDisputeContactBtn.setOnClickListener(contact);
-        disputeReservePrice.setOnClickListener(reserve);
+        disputeReservePrice.setOnClickListener(reserveAction);
         disputeNotification.setOnClickListener(notification);
         change.setOnClickListener(changeAction);
 
@@ -143,7 +144,11 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
         value = extras.getString("disputeListName");
         disputeDays = extras.getString("disputeListDays");
         id = extras.getString("deal_id");
-         disputePrice = extras.getString("disputeListPrice");
+
+        reserve = extras.getString("reserve_cost");
+        disputeReservePrice.setText(reserve+"");
+
+        disputePrice = extras.getString("disputeListPrice");
         StringBuilder sb = new StringBuilder(disputePrice);
         sb.deleteCharAt(1);
         sb.deleteCharAt(0);
@@ -397,7 +402,7 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
             dialog.dismiss();
         }
     };
-    View.OnClickListener reserve = new View.OnClickListener() {
+    View.OnClickListener reserveAction = new View.OnClickListener() {
         public void onClick(View v) {
             dialog.setContentView(R.layout.activity_reserve_alert);
             dialog.show();
@@ -428,6 +433,7 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
             intent.putExtra("disputeListDays", disputeDays);
             intent.putExtra("disputeListDescription",description);
             intent.putExtra("flowOfEvent","DisputeDetails_No_History_Activity");
+            intent.putExtra("reserve_cost",reserve);
             intent.putExtra("BitmapImage", bitmap);
             DisputeDetails_No_History_Activity.this.startActivity(intent);
         }

@@ -8,8 +8,9 @@ public class Dispute {
     private String price;
     private String days;
     private String image;
+    private String reserve;
 
-    public Dispute(int id,String name, String discrption, String price, String days,String image) {
+    public Dispute(int id,String name, String discrption, String price, String days,String image,String reserve) {
 
         this.name = name;
         this.discrption = discrption;
@@ -17,6 +18,7 @@ public class Dispute {
         this.days = days;
         this.image = image;
         this.id = id;
+        this.reserve = reserve;
     }
 
     public Dispute() {
@@ -68,5 +70,13 @@ public class Dispute {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getReserve(){
+        return reserve;
+    }
+
+    public void setReserve(String reserve){
+        this.reserve = reserve;
     }
 }

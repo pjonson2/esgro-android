@@ -1,6 +1,7 @@
 package com.upventrix.esgro.services;
 
 import com.upventrix.esgro.modals.Image;
+import com.upventrix.esgro.modals.Password;
 import com.upventrix.esgro.modals.User;
 import com.upventrix.esgro.modals.UserToken;
 import com.google.gson.JsonObject;
@@ -44,4 +45,6 @@ public interface UserService {
     @GET("user/token")
     Call<JsonObject> getToken(@Query("uid") String uid);
 
+    @POST("user/changekey")
+    Call<JsonObject> changeKey(@Body Password password);
 }

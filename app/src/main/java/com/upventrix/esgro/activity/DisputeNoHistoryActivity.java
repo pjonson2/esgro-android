@@ -191,6 +191,9 @@ public class DisputeNoHistoryActivity extends AppCompatActivity implements Swipe
                 TextView deal_id = view.findViewById(R.id.dealID);
                 String dealID = deal_id.getText().toString();
 
+                TextView reservePriceTxt = view.findViewById(R.id.reservePriceTxt);
+                String reservePrice = reservePriceTxt.getText().toString();
+
                 Bitmap bitmap = imageView.getDrawingCache();
 
                 Intent intent = new Intent(DisputeNoHistoryActivity.this, DisputeDetails_No_History_Activity.class);
@@ -201,6 +204,7 @@ public class DisputeNoHistoryActivity extends AppCompatActivity implements Swipe
                 intent.putExtra("disputeListDays", disputeDays);
                 intent.putExtra("disputeListDescription", disputeDescription);
                 intent.putExtra("deal_id",dealID);
+                intent.putExtra("reserve_cost",reservePrice);
 
                 startActivity(intent);
 
@@ -253,6 +257,7 @@ public class DisputeNoHistoryActivity extends AppCompatActivity implements Swipe
                             dispute.setDays(value.getAsJsonObject().get("status").getAsString());
                             dispute.setDiscrption(value.getAsJsonObject().get("description").getAsString());
                             dispute.setId(value.getAsJsonObject().get("deal_id").getAsInt());
+                            dispute.setReserve(value.getAsJsonObject().get("reserve_cost").getAsDouble()+"");
 
                             try {
                                 dispute.setImage(value.getAsJsonObject().get("profileImgUrl").getAsString());
@@ -379,6 +384,7 @@ public class DisputeNoHistoryActivity extends AppCompatActivity implements Swipe
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
              convertView = getLayoutInflater().inflate(R.layout.activity_dispute_card,null);
+            DecimalFormat df = new DecimalFormat("####0.00");
 
             TextView bankNameView = convertView.findViewById(R.id.disputeUserName);
 
@@ -386,6 +392,7 @@ public class DisputeNoHistoryActivity extends AppCompatActivity implements Swipe
             TextView disputedays = convertView.findViewById(R.id.disputeDaysTxt);
             TextView disputeDesc = convertView.findViewById(R.id.disputeDiscription);
             TextView dealID = convertView.findViewById(R.id.dealID);
+            TextView reservePriceTxt = convertView.findViewById(R.id.reservePriceTxt);
 
             SimpleDraweeView simpleDraweeView = convertView.findViewById(R.id.userImg);
 
@@ -412,19 +419,22 @@ public class DisputeNoHistoryActivity extends AppCompatActivity implements Swipe
             disputePrice.setText("$"+dispute.getPrice());
             disputeDesc.setText(dispute.getDiscrption());
             dealID.setText(dispute.getId()+"");
+            reservePriceTxt.setText("$"+dispute.getReserve());
 
+            StringBuilder reserveSb = new StringBuilder(reservePriceTxt.getText());
+            reserveSb.deleteCharAt(0);
+            String serverFormat = df.format(Double.parseDouble(reserveSb.toString()));
+            reservePriceTxt.setText("$"+serverFormat);
 
             if(Double.parseDouble(dispute.getPrice())<0){
                 StringBuilder sb = new StringBuilder(dispute.getPrice());
                 sb.deleteCharAt(0);
-                DecimalFormat df = new DecimalFormat("####0.00");
                 String format = df.format(Double.parseDouble(sb.toString()));
                 disputePrice.setText("-$"+format);
                 disputePrice.setTextColor(Color.RED);
             }
             if(Double.parseDouble(dispute.getPrice())>0){
-                DecimalFormat df = new DecimalFormat("####0.00");
-                String format = df.format(Double.parseDouble(dispute.getPrice()));
+                 String format = df.format(Double.parseDouble(dispute.getPrice()));
                  disputePrice.setText("+$"+format);
                 disputePrice.setTextColor(getResources().getColor(R.color.lightGreen));
 

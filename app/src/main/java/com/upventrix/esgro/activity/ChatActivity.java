@@ -123,6 +123,7 @@ public class ChatActivity extends AppCompatActivity {
             String disputePrice = extras.getString("disputeListPrice");
             String description = extras.getString("disputeListDescription");
             String deal_id = extras.getString("deal_id");
+            String reserve = extras.getString("reserve_cost");
             Bitmap bitmap = getIntent().getParcelableExtra("BitmapImage");
 
             flowOfEvent = extras.getString("flowOfEvent");
@@ -139,6 +140,7 @@ public class ChatActivity extends AppCompatActivity {
             intent.putExtra("disputeListDays", disputeDays);
             intent.putExtra("disputeListDescription",description);
             intent.putExtra("deal_id",deal_id);
+            intent.putExtra("reserve_cost",reserve);
             intent.putExtra("BitmapImage", bitmap);
 
             ChatActivity.this.startActivity(intent);
@@ -209,6 +211,7 @@ public class ChatActivity extends AppCompatActivity {
                 String disputePrice = extras.getString("disputeListPrice");
                 String description = extras.getString("disputeListDescription");
                 String deal_id = extras.getString("deal_id");
+                String reserve = extras.getString("reserve_cost");
                 Bitmap bitmap = getIntent().getParcelableExtra("BitmapImage");
 
                 flowOfEvent = extras.getString("flowOfEvent");
@@ -225,6 +228,7 @@ public class ChatActivity extends AppCompatActivity {
                 intent.putExtra("disputeListDays", disputeDays);
                 intent.putExtra("disputeListDescription",description);
                 intent.putExtra("deal_id",deal_id);
+                intent.putExtra("reserve_cost",reserve);
                 intent.putExtra("BitmapImage", bitmap);
 
                 ChatActivity.this.startActivity(intent);

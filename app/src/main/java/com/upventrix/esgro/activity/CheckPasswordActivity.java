@@ -1,13 +1,40 @@
 package com.upventrix.esgro.activity;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.RectShape;
+import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.support.annotation.RequiresApi;
+import android.support.constraint.ConstraintLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.gson.JsonObject;
 import com.upventrix.esgro.R;
+import com.upventrix.esgro.modals.Password;
+import com.upventrix.esgro.resource.Config;
+import com.upventrix.esgro.resource.LocalData;
+import com.upventrix.esgro.services.UserService;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class CheckPasswordActivity extends AppCompatActivity {
 
@@ -17,6 +44,9 @@ public class CheckPasswordActivity extends AppCompatActivity {
     EditText currentPassword;
     EditText newPassword;
     EditText confirmpassword;
+    private UserService userService;
+    ConstraintLayout constraintLayout;
+    Drawable background;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,14 +57,31 @@ public class CheckPasswordActivity extends AppCompatActivity {
         idInitialization();
         setListeners();
         setValues();
-
+        constraintLayout.setOnTouchListener(new View.OnTouchListener()
+        {
+            @Override
+            public boolean onTouch(View view, MotionEvent ev)
+            {
+                hideKeyboard(view);
+                return false;
+            }
+        });
     }
+
+
+    private void hideKeyboard(View view) {
+        InputMethodManager in = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        in.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+    }
+
     void idInitialization(){
         back = findViewById(R.id.checkPasswordBackBtn);
         update = findViewById(R.id.updatePasswordBtn);
         currentPassword = findViewById(R.id.currentPasswordTxt);
         newPassword = findViewById(R.id.newPasswordTxt);
         confirmpassword = findViewById(R.id.confirmPasswordTxt);
+        constraintLayout = findViewById(R.id.activity_check_password);
+        userService = Config.getInstance().create(UserService.class);
     }
 
     void setListeners(){
@@ -43,7 +90,7 @@ public class CheckPasswordActivity extends AppCompatActivity {
     }
 
     void setValues(){
-
+        background = confirmpassword.getBackground();
     }
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
@@ -66,9 +113,81 @@ public class CheckPasswordActivity extends AppCompatActivity {
         }
     };
     View.OnClickListener updatePswrdAction = new View.OnClickListener() {
+        @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
         public void onClick(View v) {
-            Intent mainIntent = new Intent(CheckPasswordActivity.this, HomePageActivity.class);
-            CheckPasswordActivity.this.startActivity(mainIntent);
+            update.setEnabled(false);
+            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
+            String userData = new LocalData().getlocalData(sharedPref, "userdata")+"";
+            int userid = 0;
+            try {
+                JSONObject jsonObj = new JSONObject(userData);
+                userid = jsonObj.getInt("user_id");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            String currentPw = currentPassword.getText().toString();
+            String newPw = newPassword.getText().toString();
+            String confirmPw = confirmpassword.getText().toString();
+
+
+            if (!newPw.equals(confirmPw) || confirmPw.equals("")){
+                ShapeDrawable shape = new ShapeDrawable(new RectShape());
+                shape.getPaint().setColor(Color.RED);
+                shape.getPaint().setStyle(Paint.Style.STROKE);
+                shape.getPaint().setStrokeWidth(1);
+                newPassword.setBackground(shape);
+                confirmpassword.setBackground(shape);
+            }else{
+                newPassword.setBackground(background);
+                confirmpassword.setBackground(background);
+            }
+
+            Call<JsonObject> jsonObjectCall = userService.changeKey(new Password(userid,currentPw,confirmPw));
+            jsonObjectCall.enqueue(new Callback<JsonObject>() {
+                @Override
+                public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                    String status = "";
+                    try {
+                        status = response.body().get("status").getAsString();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    if (status.equals("success")){
+                        vewAlert("Successfully","Profile Updated. Password changed!",CheckPasswordActivity.this);
+                    }else{
+                        update.setEnabled(true);
+                        vewAlert("Warnings!","Profile Not Updated. Password not changed!",CheckPasswordActivity.this);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<JsonObject> call, Throwable t) {
+                    update.setEnabled(true);
+                    vewAlert("Error!","Profile Not Updated. Password not changed!",CheckPasswordActivity.this);
+
+                }
+            });
         }
     };
+
+    public void vewAlert(final String title, String message, final Context context){
+        final AlertDialog alertDialog = new AlertDialog.Builder(context).create();
+        alertDialog.setTitle(title);
+        alertDialog.setMessage(message);
+        alertDialog.setCanceledOnTouchOutside(false);
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        if (title.equals("Successfully")) {
+                            Intent mainIntent = new Intent(CheckPasswordActivity.this, HomePageActivity.class);
+                            CheckPasswordActivity.this.startActivity(mainIntent);
+                        }
+                    }
+                });
+        alertDialog.show();
+    }
+
 }
