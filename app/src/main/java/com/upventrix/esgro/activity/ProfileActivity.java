@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
@@ -53,6 +54,7 @@ public class ProfileActivity  extends FooterActivity {
     String imageUrl = "";
     UserService service;
     Drawable drawable = null;
+    ProgressBar progressBar;
 
       int userid = 0;
     @Override
@@ -87,6 +89,7 @@ public class ProfileActivity  extends FooterActivity {
         transfer = findViewById(R.id.transferBtn);
         simpleDraweeView = findViewById(R.id.userImg);
 
+        progressBar = findViewById(R.id.canceledPageProgressBAr2);
         service = Config.getInstance().create(UserService.class);
     }
 
@@ -101,7 +104,7 @@ public class ProfileActivity  extends FooterActivity {
     }
 
     void setValues(){
-        final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+         final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         String userData = new LocalData().getlocalData(sharedPref, "userdata");
         try {
             JSONObject jsonObj = new JSONObject(userData);
@@ -133,11 +136,13 @@ public class ProfileActivity  extends FooterActivity {
                                         .setUri(imageUri)
                                         .setTapToRetryEnabled(true)
                                         .build());
+                        progressBar.setVisibility(View.GONE);
                     }catch(Exception e){
-
-                    }
+                        progressBar.setVisibility(View.GONE);
+                     }
+                    progressBar.setVisibility(View.GONE);
                 }catch (UnsupportedOperationException e){
-
+                    progressBar.setVisibility(View.GONE);
                 }
 
             }
@@ -145,7 +150,8 @@ public class ProfileActivity  extends FooterActivity {
             @Override
             public void onFailure(Call<JsonObject> call, Throwable t) {
                 System.out.println("Error "+t.getMessage());
-            }
+                progressBar.setVisibility(View.GONE);
+             }
         });
     }
 
@@ -164,6 +170,7 @@ public class ProfileActivity  extends FooterActivity {
     }
     View.OnClickListener editAction = new View.OnClickListener() {
         public void onClick(View v) {
+            progressBar.setVisibility(View.VISIBLE);
             Intent mainIntent = new Intent(ProfileActivity.this, UpdateProfileActivity.class);
 
             String fName = firstName.getText().toString();
@@ -185,10 +192,11 @@ public class ProfileActivity  extends FooterActivity {
             }
 
              mainIntent.putExtra("user_id",userid);
-            mainIntent.putExtra("userName",uN);
-            mainIntent.putExtra("email",mail);
-            mainIntent.putExtra("image", imageUrl);
+             mainIntent.putExtra("userName",uN);
+             mainIntent.putExtra("email",mail);
+             mainIntent.putExtra("image", imageUrl);
              ProfileActivity.this.startActivity(mainIntent);
+            progressBar.setVisibility(View.GONE);
         }
     };
     View.OnClickListener contactUs = new View.OnClickListener() {

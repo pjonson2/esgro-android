@@ -24,4 +24,6 @@ public interface DealService {
     @POST("deal/change-duration")
     Call<JsonObject> changeDuration(@Body Deal deal);
 
+    @GET("deal/done")
+    Call<JsonObject> doneDeal(@Query("user_id") String user_id);
 }

@@ -231,22 +231,20 @@
 
     <EditText
         android:id="@+id/updatePhoneTxt"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="237dp"
+        android:layout_height="53dp"
         android:layout_marginStart="30dp"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="30dp"
         android:layout_marginRight="30dp"
-        android:ems="10"
         android:fontFamily="@font/open_sans"
-        android:inputType="textPersonName"
-        android:text="+1 2658463289"
+        android:inputType="number"
         android:textColor="#393E46"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/view57"
         app:layout_constraintEnd_toEndOf="@+id/view57"
-        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintHorizontal_bias="0.776"
         app:layout_constraintStart_toStartOf="@+id/view57"
         app:layout_constraintTop_toTopOf="@+id/view57"
         app:layout_constraintVertical_bias="0.946" />
@@ -386,5 +384,23 @@
         app:layout_constraintEnd_toEndOf="@+id/profile_image"
         app:layout_constraintStart_toStartOf="@+id/profile_image"
         app:layout_constraintTop_toTopOf="@+id/profile_image" />
+
+    <com.hbb20.CountryCodePicker
+        android:id="@+id/ccp"
+        android:layout_width="65dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="300dp"
+        android:layout_marginRight="300dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView112"
+        tools:ignore="MissingConstraints">
+
+
+    </com.hbb20.CountryCodePicker>
 
 </android.support.constraint.ConstraintLayout>

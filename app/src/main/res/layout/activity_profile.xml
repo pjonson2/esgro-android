@@ -383,4 +383,18 @@
         app:roundingBorderWidth="1dp"
         tools:ignore="MissingConstraints" />
 
+    <ProgressBar
+        android:id="@+id/canceledPageProgressBAr2"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="40dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/view54"
+        app:layout_constraintEnd_toEndOf="@+id/view55"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="@+id/view55"
+        app:layout_constraintTop_toTopOf="@+id/userImg"
+        app:layout_constraintVertical_bias="0.299" />
+
 </android.support.constraint.ConstraintLayout>

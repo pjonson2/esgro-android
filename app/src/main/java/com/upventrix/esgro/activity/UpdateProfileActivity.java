@@ -1,10 +1,16 @@
 package com.upventrix.esgro.activity;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.RectShape;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -13,9 +19,12 @@ import android.support.annotation.RequiresApi;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Base64;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,10 +37,12 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.facebook.imagepipeline.request.ImageRequest;
 import com.facebook.imagepipeline.request.ImageRequestBuilder;
 import com.google.gson.JsonObject;
+import com.hbb20.CountryCodePicker;
 import com.upventrix.esgro.R;
 import com.upventrix.esgro.modals.Files;
 import com.upventrix.esgro.modals.User;
 import com.upventrix.esgro.resource.Config;
+import com.upventrix.esgro.resource.Validations;
 import com.upventrix.esgro.services.FilesService;
 import com.upventrix.esgro.services.UserService;
 
@@ -79,7 +90,15 @@ public class UpdateProfileActivity   extends AppCompatActivity {
 
     Bundle bundle;
     private FilesService service;
+    CountryCodePicker ccp;
+    Drawable background;
+    private String selectedCountryCode;
 
+    Dialog dialog;
+    String contactNUmber = "";
+    int verificationId = 0;
+
+    private static int logicNumber = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         onWindowFocusChanged(true);
@@ -101,6 +120,13 @@ public class UpdateProfileActivity   extends AppCompatActivity {
             {
                 hideKeyboard(view);
                 return false;
+            }
+        });
+        ccp.setOnCountryChangeListener(new CountryCodePicker.OnCountryChangeListener() {
+            @Override
+            public void onCountrySelected() {
+                selectedCountryCode = ccp.getSelectedCountryCode();
+                System.out.println(" selectedCountryCode  "+selectedCountryCode);
             }
         });
     }
@@ -125,6 +151,8 @@ public class UpdateProfileActivity   extends AppCompatActivity {
         userService = Config.getInstance().create(UserService.class);
         service = Config.getInstance().create(FilesService.class);
         circleImageView = findViewById(R.id.profile_image);
+        ccp = findViewById(R.id.ccp);
+        dialog = new Dialog(this);
     }
 
     void setListeners(){
@@ -139,11 +167,16 @@ public class UpdateProfileActivity   extends AppCompatActivity {
 
     void setValues(){
         bundle = getIntent().getExtras();
-
+        background = email.getBackground();
         firstName.setText(bundle.getString("firstName"));
         lastName.setText(bundle.getString("lastName"));
         email.setText(bundle.getString("email"));
-        phone.setText(bundle.getString("contact"));
+
+        ccp.registerCarrierNumberEditText(phone);
+        ccp.setFullNumber( bundle.getString("contact"));
+        contactNUmber =  bundle.getString("contact");
+
+
         userID = bundle.getInt("user_id");
         name = bundle.getString("userName");
         System.out.println("userID   userID   "+userID);
@@ -151,10 +184,10 @@ public class UpdateProfileActivity   extends AppCompatActivity {
         Bitmap bm = null;
         System.out.println("Image URL is a "+imgeUrl);
         if(imgeUrl.toString().equals("")){
-            System.out.println("NUllllllllll image");
+            System.out.println("NUlL image");
         }else {
             try {
-                System.out.println("NOTTTTTT NULLll image");
+                System.out.println("NoT NULL image");
 
                 URL aURL = new URL(imgeUrl);
                 URLConnection conn = aURL.openConnection();
@@ -242,8 +275,9 @@ public class UpdateProfileActivity   extends AppCompatActivity {
     };
 
 
-
+    Window window_local;
     View.OnClickListener saveAction = new View.OnClickListener() {
+        @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
         public void onClick(View v) {
         saveBtn.setEnabled(false);
             User user = new User();
@@ -253,106 +287,270 @@ public class UpdateProfileActivity   extends AppCompatActivity {
                 user.setMobile(phone.getText().toString());
                 user.setUsername(name);
                 user.setUserID(userID);
+                user.setMobile(ccp.getFullNumberWithPlus());
 
-                if (encodedImage.equals("") && imgeUrl.equals("")){
-                    user.setImageUrl("");
-                    Call<JsonObject> jsonObjectCall = userService.updateUSer(user);
-                    jsonObjectCall.enqueue(new Callback<JsonObject>() {
-                        String status= "";
-                        @Override
-                        public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                            status = response.body().get("status").getAsString();
-                            if(status.toString().equals("success")){
-                                vewAlert("Successfully","Profile Successfully Updated",UpdateProfileActivity.this);
-                                saveBtn.setEnabled(true);
-                            }else{
-                                saveBtn.setEnabled(true);
-                                vewAlert("Warnings!","Failed to update profile",UpdateProfileActivity.this);
-                            }
+
+            boolean emailValid = new Validations().isEmailValid(email.getText().toString());
+
+            if (emailValid) {
+                email.setBackground(background);
+            }else{
+                ShapeDrawable shape = new ShapeDrawable(new RectShape());
+                shape.getPaint().setColor(Color.RED);
+                shape.getPaint().setStyle(Paint.Style.STROKE);
+                shape.getPaint().setStrokeWidth(1);
+                email.setBackground(shape);
+                saveBtn.setEnabled(true);
+                return;
+            }
+
+
+            if (contactNUmber.equals(ccp.getFullNumberWithPlus())){
+                user.setMobile(ccp.getFullNumberWithPlus());
+                logicNumber = 1;
+//                System.out.println(" ccp.getFullNumberWithPlus()  "+ccp.getFullNumberWithPlus());
+             }else{
+                System.out.println("userService.verify api ready to call  "+ ccp.getFullNumberWithPlus());
+                Call<JsonObject> userCall = userService.verify(
+                        new User(
+                                ccp.getFullNumberWithPlus(),
+                                userID
+                        ));
+                userCall.enqueue(new Callback<JsonObject>() {
+                    @Override
+                    public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                        String status1 = "";
+                        System.out.println("userService.verify api calling");
+                        try {
+                            status1 = response.body().get("status").getAsString();
+                        } catch (Exception e) {
+                            e.printStackTrace();
                         }
 
-                        @Override
-                        public void onFailure(Call<JsonObject> call, Throwable t) {
-                            System.out.println("ERROR");
+                        if (status1.equals("success")) {
+                            System.out.println("userService.verify api called");
+                            verificationId = response.body().get("verification_id").getAsInt();
+
+                            dialog.setContentView(R.layout.activity_verification_of_update_profile);
+                            dialog.show();
+                            dialog.setCanceledOnTouchOutside(false);
+                            Window window = dialog.getWindow();
+                            window_local = window;
+                            Button verify = window.findViewById(R.id.verifyBtn);
+                            Button cancel = window.findViewById(R.id.cancelBtn);
+
+                            ((EditText)window.findViewById(R.id.enterNumber1Txt2)).addTextChangedListener(n1Change);
+                            ((EditText)window.findViewById(R.id.enterNumber2Txt2)).addTextChangedListener(n2Change);
+                            ((EditText)window.findViewById(R.id.enterNumber3Txt2)).addTextChangedListener(n3Change);
+                            cancel.setOnClickListener(new View.OnClickListener() {
+                                  @Override
+                                  public void onClick(View v) {
+                                      dialog.dismiss();
+                                      logicNumber = 0;
+                                      saveBtn.setEnabled(true);
+                                      return;
+                                  }
+                            });
+                            verify.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Window window = dialog.getWindow();
+                                    verify.setEnabled(false);
+                                    if (((EditText) window.findViewById(R.id.enterNumber1Txt2)).getText().toString().equals("") || ((EditText) window.findViewById(R.id.enterNumber2Txt2)).getText().toString().equals("") || ((EditText) window.findViewById(R.id.enterNumber3Txt2)).getText().toString().equals("") || ((EditText) window.findViewById(R.id.enterNumber4Txt2)).getText().toString().equals("")) {
+
+                                        ShapeDrawable shape = new ShapeDrawable(new RectShape());
+                                        shape.getPaint().setColor(Color.RED);
+                                        shape.getPaint().setStyle(Paint.Style.STROKE);
+                                        shape.getPaint().setStrokeWidth(1);
+
+                                        if (((EditText) window.findViewById(R.id.enterNumber1Txt2)).getText().toString().equals("") ){((EditText) window.findViewById(R.id.enterNumber1Txt2)).setBackground(shape);}else{((EditText) window.findViewById(R.id.enterNumber1Txt2)).setBackground(background);}
+                                        if(((EditText) window.findViewById(R.id.enterNumber2Txt2)).getText().toString().equals("")){((EditText) window.findViewById(R.id.enterNumber2Txt2)).setBackground(shape);}else{((EditText) window.findViewById(R.id.enterNumber2Txt2)).setBackground(background);}
+                                        if(((EditText) window.findViewById(R.id.enterNumber3Txt2)).getText().toString().equals("")){((EditText) window.findViewById(R.id.enterNumber3Txt2)).setBackground(shape);}else{((EditText) window.findViewById(R.id.enterNumber3Txt2)).setBackground(background);}
+                                        if(((EditText) window.findViewById(R.id.enterNumber4Txt2)).getText().toString().equals("")){((EditText) window.findViewById(R.id.enterNumber4Txt2)).setBackground(shape);}else{((EditText) window.findViewById(R.id.enterNumber4Txt2)).setBackground(background);}
+                                    } else {
+                                        ((EditText) window.findViewById(R.id.enterNumber1Txt2)).setBackground(background);
+                                        ((EditText) window.findViewById(R.id.enterNumber2Txt2)).setBackground(background);
+                                        ((EditText) window.findViewById(R.id.enterNumber3Txt2)).setBackground(background);
+                                        ((EditText) window.findViewById(R.id.enterNumber4Txt2)).setBackground(background);
+
+                                        int pin = Integer.parseInt(
+                                            ((EditText) window.findViewById(R.id.enterNumber1Txt2)).getText() + "" +
+                                                    ((EditText) window.findViewById(R.id.enterNumber2Txt2)).getText() + "" +
+                                                    ((EditText) window.findViewById(R.id.enterNumber3Txt2)).getText() + "" +
+                                                    ((EditText) window.findViewById(R.id.enterNumber4Txt2)).getText());
+
+                                    Call<JsonObject> userCall = userService.confirm(
+                                            new User(
+                                                    verificationId,
+                                                    pin
+                                            ));
+                                    userCall.enqueue(new Callback<JsonObject>() {
+                                        @Override
+                                        public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+
+                                            String status2 = "";
+
+                                            try {
+                                                status2 = response.body().get("status").getAsString();
+                                            } catch (Exception e) {
+                                                e.printStackTrace();
+                                            }
+
+                                            if (status2.equals("success")) {
+                                                saveBtn.setEnabled(false);
+                                                contactNUmber = ccp.getFullNumberWithPlus();
+                                                logicNumber = 1;
+                                                dialog.dismiss();
+                                                callAPi(user);
+                                            } else {
+                                                vewAlert("Invalid!", "Failed to verifying your code ", UpdateProfileActivity.this);
+                                                saveBtn.setEnabled(true);
+                                                verify.setEnabled(true);
+                                                logicNumber = 0;
+                                                return;
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onFailure(Call<JsonObject> call, Throwable t) {
+                                            saveBtn.setEnabled(true);
+                                            verify.setEnabled(true);
+                                            logicNumber = 0;
+                                        }
+                                    });
+                                    System.out.println("Dismissed");
+                                    return;
+                                }
+                                }
+                            });
+
+                        }else{
+                            logicNumber = 0;
+                            vewAlert("Warnings!","Failed to Verify this Number",UpdateProfileActivity.this);
+                            return;
                         }
-                    });
-                }
+                    }
 
-                if (encodedImage.equals("") && !imgeUrl.equals("")){
-                    user.setImageUrl(imgeUrl);
-                    Call<JsonObject> jsonObjectCall = userService.updateUSer(user);
-                    jsonObjectCall.enqueue(new Callback<JsonObject>() {
-                        String status= "";
+                    @Override
+                    public void onFailure(Call<JsonObject> call, Throwable t) {
+                        saveBtn.setEnabled(true);
+                        return;
+                    }
+                });
+            }
 
-                        @Override
-                        public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                            status = response.body().get("status").getAsString();
-                            if(status.toString().equals("success")){
-                                saveBtn.setEnabled(true);
-                                vewAlert("Successfully","Profile Successfully Updated",UpdateProfileActivity.this);
+        callAPi(user);
 
-                            }else{
-                                saveBtn.setEnabled(true);
-                                vewAlert("Warnings!","Failed to update profile",UpdateProfileActivity.this);
-                            }
-                        }
-
-                        @Override
-                        public void onFailure(Call<JsonObject> call, Throwable t) {
-                            System.out.println("ERROR");
-                        }
-                    });
-
-                }
-
-                if (!encodedImage.equals("")){
-                    Call<JsonObject> imgUrlFromBase64 = service.getImgUrlFromBase64(new Files(encodedImage));
-                    imgUrlFromBase64.enqueue(new Callback<JsonObject>() {
-                        @Override
-                        public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                             try {
-                                imgeUrl = response.body().get("filename").getAsString();
-
-                                 user.setImageUrl(imgeUrl);
-                                 System.out.println("THe image is  "+imgeUrl);
-
-                                 Call<JsonObject> jsonObjectCall = userService.updateUSer(user);
-                                 jsonObjectCall.enqueue(new Callback<JsonObject>() {
-                                     String status= "";
-
-                                     @Override
-                                     public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                                         status = response.body().get("status").getAsString();
-                                         if(status.toString().equals("success")){
-                                             vewAlert("Successfully","Profile Successfully Updated",UpdateProfileActivity.this);
-                                             saveBtn.setEnabled(true);
-                                         }else{
-                                             saveBtn.setEnabled(true);
-                                             vewAlert("Warnings!","Failed to update profile",UpdateProfileActivity.this);
-                                         }
-                                     }
-
-                                     @Override
-                                     public void onFailure(Call<JsonObject> call, Throwable t) {
-                                         System.out.println("ERROR");
-                                     }
-                                 });
-
-
-                             } catch (Exception e) {
-                                 e.printStackTrace();
-                            }
-                        }
-
-                        @Override
-                        public void onFailure(Call<JsonObject> call, Throwable t) {
-
-                        }
-                    });
-                }
         }
     };
 
+    private void callAPi(User user){
+         if (logicNumber == 0){
+            saveBtn.setEnabled(true);
+        }
+        if (encodedImage.equals("") && imgeUrl.equals("") && logicNumber == 1){
+            System.out.println("This is Calling Method 1");
+            user.setImageUrl("");
+            Call<JsonObject> jsonObjectCall = userService.updateUSer(user);
+            jsonObjectCall.enqueue(new Callback<JsonObject>() {
+                String status= "";
+                @Override
+                public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                    status = response.body().get("status").getAsString();
+                    if(status.toString().equals("success")){
+                        logicNumber = 0;
+                        vewAlert("Successfully","Profile Successfully Updated",UpdateProfileActivity.this);
+                        saveBtn.setEnabled(true);
+                    }else{
+                        saveBtn.setEnabled(true);
+                        vewAlert("Warnings!","Failed to update profile",UpdateProfileActivity.this);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<JsonObject> call, Throwable t) {
+                    System.out.println("ERROR");saveBtn.setEnabled(true);
+                }
+            });
+        }
+
+        if (encodedImage.equals("") && !imgeUrl.equals("") && logicNumber == 1){
+            System.out.println("This is Calling Method 2");
+            user.setImageUrl(imgeUrl);
+            Call<JsonObject> jsonObjectCall = userService.updateUSer(user);
+            jsonObjectCall.enqueue(new Callback<JsonObject>() {
+                String status= "";
+
+                @Override
+                public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                    status = response.body().get("status").getAsString();
+                    if(status.toString().equals("success")){
+                        saveBtn.setEnabled(true);
+                        logicNumber = 0;
+                        vewAlert("Successfully","Profile Successfully Updated",UpdateProfileActivity.this);
+
+                    }else{
+                        saveBtn.setEnabled(true);
+                        vewAlert("Warnings!","Failed to update profile",UpdateProfileActivity.this);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<JsonObject> call, Throwable t) {
+                    System.out.println("ERROR");saveBtn.setEnabled(true);
+                }
+            });
+
+        }
+
+        if (!encodedImage.equals("") && logicNumber == 1){
+            System.out.println("This is Calling Method 3");
+            Call<JsonObject> imgUrlFromBase64 = service.getImgUrlFromBase64(new Files(encodedImage));
+            imgUrlFromBase64.enqueue(new Callback<JsonObject>() {
+                @Override
+                public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                    try {
+                        imgeUrl = response.body().get("filename").getAsString();
+
+                        user.setImageUrl(imgeUrl);
+                        System.out.println("THe image is  "+imgeUrl);
+
+                        Call<JsonObject> jsonObjectCall = userService.updateUSer(user);
+                        jsonObjectCall.enqueue(new Callback<JsonObject>() {
+                            String status= "";
+
+                            @Override
+                            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                                status = response.body().get("status").getAsString();
+                                if(status.toString().equals("success")){
+                                    vewAlert("Successfully","Profile Successfully Updated",UpdateProfileActivity.this);
+                                    saveBtn.setEnabled(true);
+                                    logicNumber = 0;
+                                }else{
+                                    saveBtn.setEnabled(true);
+                                    vewAlert("Warnings!","Failed to update profile",UpdateProfileActivity.this);
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<JsonObject> call, Throwable t) {
+                                System.out.println("ERROR");saveBtn.setEnabled(true);
+                            }
+                        });
+
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<JsonObject> call, Throwable t) {
+
+                }
+            });
+        }
+    }
     View.OnClickListener contactUs = new View.OnClickListener() {
         public void onClick(View v) {
             Intent mainIntent = new Intent(UpdateProfileActivity.this,ContactUsActivity.class);
@@ -376,6 +574,118 @@ public class UpdateProfileActivity   extends AppCompatActivity {
         public void onClick(View v) {
             Intent mainIntent = new Intent(UpdateProfileActivity.this,RequestActivity.class);
             UpdateProfileActivity.this.startActivity(mainIntent);
+        }
+    };
+
+
+    View.OnClickListener verifyNumbers = new View.OnClickListener() {
+        public void onClick(View v) {
+            Window window = dialog.getWindow();
+
+            int pin = Integer.parseInt(
+                    ((EditText)window.findViewById(R.id.enterNumber1Txt2)).getText() + "" +
+                            ((EditText)window.findViewById(R.id.enterNumber2Txt2)).getText() + "" +
+                            ((EditText)window.findViewById(R.id.enterNumber3Txt2)).getText() + "" +
+                            ((EditText)window.findViewById(R.id.enterNumber4Txt2)).getText());
+
+            Call<JsonObject> userCall = userService.confirm(
+                    new User(
+                            verificationId,
+                            pin
+                    ));
+            userCall.enqueue(new Callback<JsonObject>() {
+                @Override
+                public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+
+                    String status = null;
+
+                    try {
+                        status = response.body().get("status").getAsString();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                    if (status.equals("success")){
+                        System.out.println("///////////// / ///  Verified ");
+                    }else{
+                        vewAlert("Invalid!","Failed to verifying your code ",UpdateProfileActivity.this);
+                        saveBtn.setEnabled(true);
+                        return;
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<JsonObject> call, Throwable t) {
+
+                }
+            });
+
+
+            System.out.println("Dismissed");
+            return;
+        }
+
+    };
+    TextWatcher n1Change = new TextWatcher() {
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            if (!((EditText)window_local.findViewById(R.id.enterNumber1Txt2)).getText().toString().equals("")){
+                ((EditText)window_local.findViewById(R.id.enterNumber2Txt2)).requestFocus();
+            }
+
+        }
+    };
+
+    TextWatcher n2Change = new TextWatcher() {
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            if (!((EditText)window_local.findViewById(R.id.enterNumber2Txt2)).getText().toString().equals("")){
+                ((EditText)window_local.findViewById(R.id.enterNumber3Txt2)).requestFocus();
+            }
+
+        }
+    };
+
+    TextWatcher n3Change = new TextWatcher() {
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            if (!((EditText)window_local.findViewById(R.id.enterNumber3Txt2)).getText().toString().equals("")){
+                ((EditText)window_local.findViewById(R.id.enterNumber4Txt2)).requestFocus();
+            }
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+
         }
     };
 
