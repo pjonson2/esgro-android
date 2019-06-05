@@ -65,6 +65,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-messaging:17.6.0'
     implementation 'de.hdodenhof:circleimageview:3.0.0'
 
+    implementation 'com.github.nkzawa:socket.io-client:0.6.0'
 
 }
 

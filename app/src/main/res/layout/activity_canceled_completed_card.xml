@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_canceled_completed_card"
     android:layout_width="match_parent"
     android:layout_height="80dp"
-    android:id="@+id/activity_canceled_completed_card"
     android:background="@drawable/layout_gray_corner"
     android:orientation="vertical">
 
@@ -18,7 +17,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="25dp"
         android:layout_marginLeft="25dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="8dp"
         android:adjustViewBounds="true"
         android:contentDescription="@null"
         app:layout_constraintHorizontal_bias="0.524"
@@ -31,45 +30,25 @@
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/textView60"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/disputeDiscription"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="93dp"
-        android:layout_marginLeft="93dp"
-        android:layout_marginTop="-5dp"
-        android:layout_marginEnd="108dp"
-        android:layout_marginRight="108dp"
-        android:layout_marginBottom="3dp"
-        android:text="    "
-        android:textColor="#929AAB"
-        android:textSize="14sp"
-        app:fontFamily="@font/open_sans" />
-
-    <TextView
         android:id="@+id/idTxt"
-        android:layout_width="301dp"
-        android:layout_height="16dp"
-        android:layout_alignTop="@+id/textView60"
-        android:layout_alignBottom="@+id/textView60"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginStart="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="80dp"
-        android:layout_marginRight="80dp"
-        android:layout_marginBottom="2dp"
-        android:layout_toStartOf="@+id/disputeDaysTxt"
-        android:layout_toLeftOf="@+id/disputeDaysTxt"
+        android:layout_width="197dp"
+        android:layout_height="15dp"
+        android:layout_alignStart="@+id/cancelledDescription"
+        android:layout_alignLeft="@+id/cancelledDescription"
+        android:layout_alignEnd="@+id/cancelledDescription"
+        android:layout_alignRight="@+id/cancelledDescription"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="-1dp"
+        android:layout_marginLeft="-1dp"
+        android:layout_marginTop="62dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginBottom="3dp"
         android:text="       "
         android:textColor="#929AAB"
         android:textSize="14sp"
+        android:visibility="invisible"
         app:fontFamily="@font/open_sans" />
 
     <TextView

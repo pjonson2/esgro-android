@@ -58,6 +58,7 @@ public class CancelledAndCompleted extends AppCompatActivity implements SwipeRef
 
         idInitialization();
         setListeners();
+        progressBar.setVisibility(View.VISIBLE);
         setValues();
 
     }
@@ -110,11 +111,11 @@ public class CancelledAndCompleted extends AppCompatActivity implements SwipeRef
     }
 
     void setListeners(){
-
+        swipeRefreshLayout.setOnRefreshListener(this);
     }
 
     void setValues(){
-        progressBar.setVisibility(View.VISIBLE);
+
         final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         String userData = new LocalData().getlocalData(sharedPref, "userdata");
         int userid = 0;
@@ -242,7 +243,7 @@ public class CancelledAndCompleted extends AppCompatActivity implements SwipeRef
             bankNameView.setText(dispute.getName());
             disputedays.setText(dispute.getDays());
              description.setText(dispute.getDiscrption());
-            id.setText(dispute.getId());
+            id.setText(dispute.getId()+"");
 
             SimpleDraweeView simpleDraweeView = convertView.findViewById(R.id.userImg2);
 

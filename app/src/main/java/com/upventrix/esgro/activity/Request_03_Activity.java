@@ -240,8 +240,7 @@ public class Request_03_Activity extends AppCompatActivity {
                         if (title.equals("Successfully")) {
 
                             dialog.setContentView(R.layout.activity_proessing_alert);
-                            dialog.setContentView(R.layout.activity_proessing_alert);
-
+                            dialog.setCanceledOnTouchOutside(false);
                             final StringBuilder builder = new StringBuilder(charging_amount);
                             builder.replace(0,1,"");
 

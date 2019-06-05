@@ -8,12 +8,16 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
 import android.text.InputType;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.MotionEvent;
 import android.view.TouchDelegate;
 import android.view.View;
@@ -26,9 +30,13 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.github.nkzawa.emitter.Emitter;
+import com.github.nkzawa.socketio.client.IO;
+import com.github.nkzawa.socketio.client.Socket;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.upventrix.esgro.R;
@@ -40,11 +48,14 @@ import com.upventrix.esgro.services.DealService;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.upventrix.esgro.services.UserService;
+ import com.upventrix.esgro.services.UserService;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.PrintWriter;
+ import java.net.URISyntaxException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -70,16 +81,75 @@ public class DisputeNoHistoryActivity extends AppCompatActivity implements Swipe
 
     ConstraintLayout constraintLayout;
 
+    private static Socket mSocket;
+    private static PrintWriter printWriter;
+
+    String message = "";
+
+    {
+        try {
+            mSocket = IO.socket("https://esgro-api.herokuapp.com");
+        } catch (URISyntaxException e) {}
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         onWindowFocusChanged(true);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dispute_shake);
 
+
         idInitialization();
         setListeners();
         setToken();
-//        setHitArea();
+
+        mSocket.on("result", onDealResult);
+        mSocket.connect();
+
+//        JSONArray poisonArray = new JSONArray();
+//        poisonArray.put(1);
+//        poisonArray.put(2);
+//        JSONObject poisonObject = new JSONObject();
+//        try {
+//
+//            poisonObject.put("poisons",poisonArray);
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+
+//        RatKiller app = (RatKiller) DisputeNoHistoryActivity.this.getApplication();
+//        mSocket = app.getmSocket();
+//        if (mSocket.connected()){
+//            Toast.makeText(DisputeNoHistoryActivity.this, "Connected!!",Toast.LENGTH_SHORT).show();
+//        }
+
+//        disputeShakeSearchView.setOnCLickListener(view->mSocket.emit(“kill”,poisonObject));
+//        disputeShakeSearchView.addTextChangedListener((TextWatcher) mSocket.emit("kill",poisonObject));
+//
+//        mSocket.on("rat_data", new Emitter.Listener() {
+//            @Override
+//            public void call(Object... args) {
+//                JSONObject data = (JSONObject)args[0];
+//                //data is in JSOn format
+//            }
+//        });
+//
+//        mSocket.emit("kill",poisonObject).on("rat_data", new Emitter.Listener() {
+//            @Override
+//            public void call(Object... args) {
+//                JSONObject data = (JSONObject)args[0];
+//                //data is in JSOn format
+//                runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        Toast.makeText(DisputeNoHistoryActivity.this, "Haha !! All rats are   killed !", Toast.LENGTH_SHORT).show();
+//
+//                         //whatever your UI logic
+//                    }
+//                });
+//            }
+//        });
+
         constraintLayout = findViewById(R.id.activity_dispute_shake);
         swipeRefreshLayout =  findViewById(R.id.swipeRefreshLayout);
         constraintLayout.setOnTouchListener(new View.OnTouchListener()
@@ -91,10 +161,150 @@ public class DisputeNoHistoryActivity extends AppCompatActivity implements Swipe
                 return false;
             }
         });
-
         swipeRefreshLayout.setOnRefreshListener(this);
-
     }
+
+
+    private void attemptSend() {
+        String searchTxt = disputeShakeSearchView.getText().toString();
+        final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String userData = new LocalData().getlocalData(sharedPref, "userdata");
+        int userid = 0;
+        try {
+            JSONObject jsonObj = new JSONObject(userData);
+            userid = jsonObj.getInt("user_id");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        String payload = "{ \"user_id\": \"" + userid + "\", \"term\": \"" + searchTxt + "\" }";
+
+        if (searchTxt.length() > 3) {
+            System.out.println("message isEmpty ");
+            return;
+        }
+
+        mSocket.emit("search_key_press", payload);
+    }
+
+    private Emitter.Listener onDealResult = new Emitter.Listener() {
+        @Override
+        public void call(final Object... args) {
+
+            DisputeNoHistoryActivity.this.runOnUiThread(new Runnable() {
+                public void run() {
+                    try {
+                        JSONObject data = (JSONObject) args[0];
+                        String  jsonObject =   data.get("status").toString();
+
+                        if (jsonObject.toString().equals("success")){
+                            disputeList.clear();
+                        JSONArray deals = data.getJSONArray("deals");
+
+                        if (deals.length() == 0){
+                            String text = "No Result!";
+                            int duration = Toast.LENGTH_SHORT;
+                            Toast toast = Toast.makeText(DisputeNoHistoryActivity.this, text, duration);
+                            toast.show();
+                        }
+
+                        for (int i = 0; i < deals.length(); ++i) {
+                            JSONObject rec = deals.getJSONObject(i);
+                            Dispute dispute = new Dispute();
+
+                                dispute.setName(rec.getString("firstname") + " " + rec.getString("lastname"));
+                                dispute.setPrice(rec.getDouble("total_cost")+"");
+                                dispute.setDays(rec.getString("status"));
+                                dispute.setDiscrption(rec.getString("description"));
+                                dispute.setId(rec.getInt("deal_id"));
+                                dispute.setReserve(rec.getDouble("reserve_cost")+"");
+                        try {
+                            dispute.setImage(rec.getString("profileImgUrl")+"");
+                        }catch (UnsupportedOperationException e){
+                            dispute.setImage(null);
+                        }
+                            disputeList.add(
+                                        dispute
+                                );
+                        }
+                            progressBar.setVisibility(View.GONE);
+                            swipeRefreshLayout.setRefreshing(false);
+                            DisputeNoHistoryActivity.CustomAdaper customAdaper = new DisputeNoHistoryActivity.CustomAdaper();
+                            ListView listView = findViewById(R.id.dynamicShakeListView);
+                            listView.setAdapter(customAdaper);
+                            progressBar.setVisibility(View.GONE);
+
+                        }else{
+                            setValues();
+                            swipeRefreshLayout.setRefreshing(false);
+                            progressBar.setVisibility(View.GONE);
+                            System.out.println(jsonObject);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    } catch (ClassCastException e){
+                        disputeList.clear();
+                        setValues();
+                    }
+//                    data.getAsJsonArray("").getAsJsonArray();
+//                    String status = null;
+//                    try {
+//                         status = data.get("status").toString();
+//                     } catch (Exception e) {
+//                        e.printStackTrace();
+//                    }
+//                    if (status.equals("success")){
+//
+//                       JsonArray dealsLista = data.getAsJsonArray("deals");
+//
+//                        System.out.println("dealsList    ......  "+dealsLista);
+//
+//                        for (JsonElement value : dealsLista) {
+//
+//                            Dispute dispute = new Dispute();
+//
+//                            dispute.setName(value.getAsJsonObject().get("firstname").getAsString() + " " + value.getAsJsonObject().get("lastname").getAsString());
+//                            dispute.setPrice(value.getAsJsonObject().get("total_cost").getAsDouble()+"");
+//                            dispute.setDays(value.getAsJsonObject().get("status").getAsString());
+//                            dispute.setDiscrption(value.getAsJsonObject().get("description").getAsString());
+//                            dispute.setId(value.getAsJsonObject().get("deal_id").getAsInt());
+//                            dispute.setReserve(value.getAsJsonObject().get("reserve_cost").getAsDouble()+"");
+//
+//                            try {
+//                                dispute.setImage(value.getAsJsonObject().get("profileImgUrl").getAsString());
+//                            }catch (UnsupportedOperationException e){
+//                                dispute.setImage(null);
+//
+//                            }
+//                            disputeList.add(
+//                                    dispute
+//                            );
+//                        }
+//                        progressBar.setVisibility(View.GONE);
+//                        swipeRefreshLayout.setRefreshing(false);
+//                        DisputeNoHistoryActivity.CustomAdaper customAdaper = new DisputeNoHistoryActivity.CustomAdaper();
+//                        ListView listView = findViewById(R.id.dynamicShakeListView);
+//                        listView.setAdapter(customAdaper);
+//                        progressBar.setVisibility(View.GONE);
+//
+//                    }else{
+//                        swipeRefreshLayout.setRefreshing(false);
+//                        progressBar.setVisibility(View.GONE);
+//                        System.out.println(status);
+//                    }
+                }
+            });
+        }
+    };
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mSocket.disconnect();
+        System.out.println("Socket disconnecting ..... ");
+//        mSocket.off("result", onDealResult);
+    }
+
 
     private void hideKeyboard(View view) {
         InputMethodManager in = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -164,10 +374,8 @@ public class DisputeNoHistoryActivity extends AppCompatActivity implements Swipe
 
         disputeList = new ArrayList<>();
         setValues();
-        System.out.println("1disputeList ........................"+disputeList.size());
 
         ListView listView = findViewById(R.id.dynamicShakeListView);
-
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
@@ -218,6 +426,7 @@ public class DisputeNoHistoryActivity extends AppCompatActivity implements Swipe
         contactIcon.setOnClickListener(contactUs);
         profileIcon.setOnClickListener(profile);
         newPostIcon.setOnClickListener(newAction);
+        disputeShakeSearchView.addTextChangedListener(n1Change);
     }
 
     void setValues(){
@@ -290,7 +499,7 @@ public class DisputeNoHistoryActivity extends AppCompatActivity implements Swipe
         });
     }
 
-        public void setHitArea(){
+    public void setHitArea(){
             {
                 View parent = (View) settings.getParent();  // button: the view you want to enlarge hit area
                 parent.post(new Runnable() {
@@ -357,7 +566,6 @@ public class DisputeNoHistoryActivity extends AppCompatActivity implements Swipe
         System.out.println("Refresh");
         disputeList.clear();
         setValues();
-
     }
 
     class CustomAdaper extends BaseAdapter {
@@ -483,5 +691,48 @@ public class DisputeNoHistoryActivity extends AppCompatActivity implements Swipe
         }
     };
 
+//    class MyTask extends AsyncTask<Void , Void, Void>{
+//
+//        @Override
+//        protected Void doInBackground(Void... voids) {
+//            try {
+//                System.out.println("doInBackground Executing .....");
+//                socket = new Socket(ip,5000);
+//                System.out.println("doInBackground socket ....."+socket);
+//                printWriter = new PrintWriter(socket.getOutputStream());
+//                printWriter.write(message);
+//                printWriter.flush();
+//                System.out.println("doInBackground  printWriter ....   "+printWriter);
+//                printWriter.close();
+//                socket.close();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//
+//            return null;
+//        }
+//    }
+    TextWatcher n1Change = new TextWatcher() {
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            System.out.println("beforeTextChanged");
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            System.out.println("onTextChanged");
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            System.out.println("afterTextChanged");
+            message = disputeShakeSearchView.getText().toString();
+//            System.out.println("DATA SENT "+message);
+            attemptSend();
+//            MyTask myTask = new MyTask();
+//            myTask.execute();
+        }
+    };
 
 }
