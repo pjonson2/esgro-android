@@ -146,7 +146,7 @@
             tools:ignore="MissingConstraints">
 
             <RadioButton
-                android:id="@+id/radioButton4"
+                android:id="@+id/keepRadio"
                 android:layout_width="212dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -168,7 +168,7 @@
                 app:layout_constraintVertical_bias="0.705" />
 
             <RadioButton
-                android:id="@+id/radioButton6"
+                android:id="@+id/giveBackRadio"
                 android:layout_width="206dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"

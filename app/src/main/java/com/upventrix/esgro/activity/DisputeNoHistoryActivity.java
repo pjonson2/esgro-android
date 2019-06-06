@@ -246,52 +246,7 @@ public class DisputeNoHistoryActivity extends AppCompatActivity implements Swipe
                         disputeList.clear();
                         setValues();
                     }
-//                    data.getAsJsonArray("").getAsJsonArray();
-//                    String status = null;
-//                    try {
-//                         status = data.get("status").toString();
-//                     } catch (Exception e) {
-//                        e.printStackTrace();
-//                    }
-//                    if (status.equals("success")){
-//
-//                       JsonArray dealsLista = data.getAsJsonArray("deals");
-//
-//                        System.out.println("dealsList    ......  "+dealsLista);
-//
-//                        for (JsonElement value : dealsLista) {
-//
-//                            Dispute dispute = new Dispute();
-//
-//                            dispute.setName(value.getAsJsonObject().get("firstname").getAsString() + " " + value.getAsJsonObject().get("lastname").getAsString());
-//                            dispute.setPrice(value.getAsJsonObject().get("total_cost").getAsDouble()+"");
-//                            dispute.setDays(value.getAsJsonObject().get("status").getAsString());
-//                            dispute.setDiscrption(value.getAsJsonObject().get("description").getAsString());
-//                            dispute.setId(value.getAsJsonObject().get("deal_id").getAsInt());
-//                            dispute.setReserve(value.getAsJsonObject().get("reserve_cost").getAsDouble()+"");
-//
-//                            try {
-//                                dispute.setImage(value.getAsJsonObject().get("profileImgUrl").getAsString());
-//                            }catch (UnsupportedOperationException e){
-//                                dispute.setImage(null);
-//
-//                            }
-//                            disputeList.add(
-//                                    dispute
-//                            );
-//                        }
-//                        progressBar.setVisibility(View.GONE);
-//                        swipeRefreshLayout.setRefreshing(false);
-//                        DisputeNoHistoryActivity.CustomAdaper customAdaper = new DisputeNoHistoryActivity.CustomAdaper();
-//                        ListView listView = findViewById(R.id.dynamicShakeListView);
-//                        listView.setAdapter(customAdaper);
-//                        progressBar.setVisibility(View.GONE);
-//
-//                    }else{
-//                        swipeRefreshLayout.setRefreshing(false);
-//                        progressBar.setVisibility(View.GONE);
-//                        System.out.println(status);
-//                    }
+
                 }
             });
         }

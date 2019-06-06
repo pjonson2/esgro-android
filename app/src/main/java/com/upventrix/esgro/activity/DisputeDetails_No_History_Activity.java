@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.NumberPicker;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.google.gson.JsonObject;
@@ -74,6 +75,8 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
     List<Notification> notificationList;
     int days = 0;
 
+    RadioButton keep;
+    RadioButton give;
 
     private DealService dealService;
     NumberPicker np;
@@ -183,6 +186,7 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
         }
         if(disputeDays.equals("cancelled") ||  disputeDays.equals("completed")  ){
             noDisputeCancelBtn.setEnabled(false);
+            noDisputeCancelBtn.setImageDrawable(getDrawable(R.drawable.cancel_grey));
         }
 
     }
@@ -255,12 +259,19 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
             Window window = dialog.getWindow();
             Button button;
             Button forfeitBtn;
+            TextView textView119;
 
             button = window.findViewById(R.id.goBackBtn);
             forfeitBtn = window.findViewById(R.id.forfeitBtn);
 
             forfeitBtn.setOnClickListener(forfeitAction);
             button.setOnClickListener(hideUI);
+
+            keep = window.findViewById(R.id.keepRadio);
+            give = window.findViewById(R.id.giveBackRadio);
+
+            textView119 = window.findViewById(R.id.textView119);
+            textView119.setText(reserve+"");
 
         }
         View.OnClickListener hideUI = new View.OnClickListener() {
@@ -270,13 +281,20 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
         };
         View.OnClickListener forfeitAction = new View.OnClickListener() {
             public void onClick(View v) {
+                String state;
+                if (keep.isChecked()){
+                    state = "keep";
+                }else{
+                    state = "return";
+                }
                 Call<JsonObject> userCall = dealService.cancelDeal(
                         new Deal(
                                 Integer.parseInt(id),
-                                "return"
+                                state
                         ));
 
                 userCall.enqueue(new Callback<JsonObject>() {
+                    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
                     @Override
                     public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                         String status = "";
@@ -288,6 +306,7 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
                         if (status.equals("success")){
                             System.out.println("Deal Canceled ......................");
                             noDisputeCancelBtn.setEnabled(false);
+                            noDisputeCancelBtn.setImageDrawable(getDrawable(R.drawable.cancel_grey));
                             dialog.dismiss();
 
                             Intent mainIntent = new Intent(DisputeDetails_No_History_Activity.this,DisputeNoHistoryActivity.class);
