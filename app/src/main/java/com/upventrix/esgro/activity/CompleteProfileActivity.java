@@ -88,7 +88,6 @@ public class CompleteProfileActivity  extends AppCompatActivity{
             JSONObject jsonObj = new JSONObject(userData);
             image = jsonObj.getString("profileImgUrl");
         } catch (JSONException e) {
-            e.printStackTrace();
         }
         System.out.println("image  "+image);
         if(image.length() == 4){

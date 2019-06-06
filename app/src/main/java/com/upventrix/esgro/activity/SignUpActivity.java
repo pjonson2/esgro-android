@@ -28,10 +28,13 @@ import android.widget.ProgressBar;
 
 import com.google.gson.Gson;
 import com.upventrix.esgro.R;
+import com.upventrix.esgro.modals.Notification;
 import com.upventrix.esgro.modals.User;
+import com.upventrix.esgro.modals.UserToken;
 import com.upventrix.esgro.resource.Config;
 import com.upventrix.esgro.resource.LocalData;
 import com.upventrix.esgro.resource.Validations;
+import com.upventrix.esgro.services.NotificationService;
 import com.upventrix.esgro.services.UserService;
 import com.google.gson.JsonObject;
 
@@ -61,6 +64,9 @@ public class SignUpActivity extends AppCompatActivity {
     ConstraintLayout constraintLayout;
     ConstraintLayout constraintLayout2;
     Drawable background;
+    private NotificationService notificationService;
+
+    private String deviceName = "";
     protected void onCreate(Bundle savedInstanceState) {
         onWindowFocusChanged(true);
         super.onCreate(savedInstanceState);
@@ -123,6 +129,7 @@ public class SignUpActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar3);
         service = Config.getInstance().create(UserService.class);
         key = getResources().getString(R.string.userdata);
+        notificationService = Config.getInstance().create(NotificationService.class);
 
     }
 
@@ -340,12 +347,67 @@ public class SignUpActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
                         if (title.equals("Successfully")) {
-                            Intent mainIntent = new Intent(context, MobileVerificationActivity.class);
-                            context.startActivity(mainIntent);
+
+                            setToken(context);
+
                         }
                     }
                 });
         alertDialog.show();
+    }
+
+    private void setToken( final Context context) {
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String notification_token = new LocalData().getlocalData(sharedPref, "device_token")+"";
+        System.out.println("device_token   "+notification_token);
+        if(notification_token.length() == 4){
+            System.out.println("notification_token  NULL ");
+            return;
+        }
+
+        String userData = new LocalData().getlocalData(sharedPref, "userdata");
+        int userid = 0;
+        try {
+            JSONObject jsonObj = new JSONObject(userData);
+            userid = jsonObj.getInt("user_id");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        String model = Build.MODEL;
+        String brand = Build.BRAND;
+        String device = Build.DEVICE;
+        deviceName = brand+" "+device+" "+model;
+        System.out.println("deviceName  "+deviceName);
+
+        Call<JsonObject> jsonObjectCall = notificationService.setToken(
+                new UserToken(
+                        notification_token,
+                        deviceName,
+                        userid
+                )
+        );
+        jsonObjectCall.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                String status = response.body().get("status").getAsString();
+                if (status.equals("success")){
+                    String device_id = response.body().get("device_id").getAsString();
+                    System.out.println("Status Success! "+" device_id  "+device_id+" notification_token  "+notification_token);
+                     new LocalData().setDeviceId(sharedPref,device_id);
+
+                    Intent mainIntent = new Intent(context, MobileVerificationActivity.class);
+                    context.startActivity(mainIntent);
+                }else{
+                    System.out.println("Status Failed!");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                System.out.println("ERROR!");
+            }
+        });
     }
 
 

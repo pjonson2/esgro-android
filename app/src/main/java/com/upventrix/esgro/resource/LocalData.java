@@ -33,7 +33,12 @@ public class LocalData {
 
     public void setNotificationToken(SharedPreferences sharedPref, String token){
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString("notification_token", token); // save token as a string
+        editor.putString("device_token", token); // save token as a string
+        editor.commit();
+    }
+    public void setDeviceId(SharedPreferences sharedPref, String device_id){
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString("device_id", device_id); // save token as a string
         editor.commit();
     }
 

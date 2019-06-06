@@ -39,11 +39,11 @@ public interface UserService {
     @GET("user/list")
     Call<JsonObject> usersList();
 
-    @POST("user/token")
-    Call<JsonObject> setToken(@Body UserToken userToken);
-
-    @GET("user/token")
-    Call<JsonObject> getToken(@Query("uid") String uid);
+//    @POST("user/token")
+//    Call<JsonObject> setToken(@Body UserToken userToken);
+//
+//    @GET("user/token")
+//    Call<JsonObject> getToken(@Query("uid") String uid);
 
     @POST("user/changekey")
     Call<JsonObject> changeKey(@Body Password password);

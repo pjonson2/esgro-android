@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.upventrix.esgro" >
 
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.SEND_SMS"/>
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.READ_SMS" />
@@ -9,17 +10,13 @@
     <uses-permission android:name="android.hardware.touchscreen"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.INTERNET" />
-                    <!--android:maxSdkVersion="26"-->
-    <uses-feature android:name="android.hardware.camera" android:required="false" />
+     <uses-feature android:name="android.hardware.camera" android:required="false" />
 
     <supports-screens
         android:largeScreens="true"
         android:smallScreens="true"
         android:normalScreens="true"
         android:xlargeScreens="true" />
-
-
-
     <application
 
 
@@ -278,12 +275,6 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-
-        <!--<receiver android:name=".activity.sms.SmsReceiver ">-->
-            <!--<intent-filter>-->
-                <!--<action android:name="android.provider.Telephony.SMS_RECEIVED"/>-->
-            <!--</intent-filter>-->
-        <!--</receiver>-->
 
     </application>
 

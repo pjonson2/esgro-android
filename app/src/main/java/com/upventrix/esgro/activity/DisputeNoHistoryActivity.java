@@ -1,17 +1,24 @@
 package com.upventrix.esgro.activity;
 
+import android.Manifest;
 import android.app.Activity;
+import android.app.admin.DeviceAdminInfo;
+import android.bluetooth.BluetoothClass;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.RequiresApi;
 import android.support.constraint.ConstraintLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -48,14 +55,15 @@ import com.upventrix.esgro.services.DealService;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
- import com.upventrix.esgro.services.UserService;
+import com.upventrix.esgro.services.NotificationService;
+import com.upventrix.esgro.services.UserService;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.PrintWriter;
- import java.net.URISyntaxException;
+import java.net.URISyntaxException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -81,15 +89,21 @@ public class DisputeNoHistoryActivity extends AppCompatActivity implements Swipe
 
     ConstraintLayout constraintLayout;
 
+    private String deviceName = "";
+
     private static Socket mSocket;
     private static PrintWriter printWriter;
 
+    private NotificationService notificationService;
+
     String message = "";
+    int userid = 0;
 
     {
         try {
             mSocket = IO.socket("https://esgro-api.herokuapp.com");
-        } catch (URISyntaxException e) {}
+        } catch (URISyntaxException e) {
+        }
     }
 
     @Override
@@ -103,55 +117,16 @@ public class DisputeNoHistoryActivity extends AppCompatActivity implements Swipe
         setListeners();
         setToken();
 
+
+        String model = Build.MODEL;
+        String brand = Build.BRAND;
+        String device = Build.DEVICE;
+        deviceName = brand+" "+device+" "+model;
+        System.out.println("deviceName  "+deviceName);
+
         mSocket.on("result", onDealResult);
         mSocket.connect();
 
-//        JSONArray poisonArray = new JSONArray();
-//        poisonArray.put(1);
-//        poisonArray.put(2);
-//        JSONObject poisonObject = new JSONObject();
-//        try {
-//
-//            poisonObject.put("poisons",poisonArray);
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-
-//        RatKiller app = (RatKiller) DisputeNoHistoryActivity.this.getApplication();
-//        mSocket = app.getmSocket();
-//        if (mSocket.connected()){
-//            Toast.makeText(DisputeNoHistoryActivity.this, "Connected!!",Toast.LENGTH_SHORT).show();
-//        }
-
-//        disputeShakeSearchView.setOnCLickListener(view->mSocket.emit(“kill”,poisonObject));
-//        disputeShakeSearchView.addTextChangedListener((TextWatcher) mSocket.emit("kill",poisonObject));
-//
-//        mSocket.on("rat_data", new Emitter.Listener() {
-//            @Override
-//            public void call(Object... args) {
-//                JSONObject data = (JSONObject)args[0];
-//                //data is in JSOn format
-//            }
-//        });
-//
-//        mSocket.emit("kill",poisonObject).on("rat_data", new Emitter.Listener() {
-//            @Override
-//            public void call(Object... args) {
-//                JSONObject data = (JSONObject)args[0];
-//                //data is in JSOn format
-//                runOnUiThread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        Toast.makeText(DisputeNoHistoryActivity.this, "Haha !! All rats are   killed !", Toast.LENGTH_SHORT).show();
-//
-//                         //whatever your UI logic
-//                    }
-//                });
-//            }
-//        });
-
-        constraintLayout = findViewById(R.id.activity_dispute_shake);
-        swipeRefreshLayout =  findViewById(R.id.swipeRefreshLayout);
         constraintLayout.setOnTouchListener(new View.OnTouchListener()
         {
             @Override
@@ -161,7 +136,6 @@ public class DisputeNoHistoryActivity extends AppCompatActivity implements Swipe
                 return false;
             }
         });
-        swipeRefreshLayout.setOnRefreshListener(this);
     }
 
 
@@ -257,8 +231,7 @@ public class DisputeNoHistoryActivity extends AppCompatActivity implements Swipe
         super.onDestroy();
         mSocket.disconnect();
         System.out.println("Socket disconnecting ..... ");
-//        mSocket.off("result", onDealResult);
-    }
+     }
 
 
     private void hideKeyboard(View view) {
@@ -266,55 +239,112 @@ public class DisputeNoHistoryActivity extends AppCompatActivity implements Swipe
         in.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
+
+
     private void setToken() {
-        FirebaseApp.initializeApp(DisputeNoHistoryActivity.this);
-        FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(task -> {
-            if (!task.isSuccessful()) {
-                //To do//
-                System.out.println("Unsuccessful");
-                return;
-            }
-            final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-            String userData = new LocalData().getlocalData(sharedPref, "userdata");
-            int userid = 0;
-            try {
-                JSONObject jsonObj = new JSONObject(userData);
-                userid = jsonObj.getInt("user_id");
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            String token1 = task.getResult().getToken()+"";
-            System.out.println("Current Token   "+token1);
+        final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String device_id ="";
+        String notification_token = new LocalData().getlocalData(sharedPref, "device_token");
+        String userData = new LocalData().getlocalData(sharedPref, "userdata");
+        try {
+            JSONObject jsonObj = new JSONObject(userData);
+            userid = jsonObj.getInt("user_id");
+            device_id = new LocalData().getlocalData(sharedPref, "device_id")+"";
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
-            String notification_token = new LocalData().getlocalData(sharedPref, "notification_token")+"";
-            System.out.println("notification_token   "+notification_token);
+        System.out.println("device_id   "+device_id);
+        System.out.println("device_token   "+notification_token);
+
+        if(device_id.length() == 4){
+            System.out.println("Device Id NULL "+device_id);
+            return;
+        }
+
+        Call<JsonObject> token = notificationService.getToken(device_id);
+        token.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+
+                String status = "";
+                try {
+                    status = response.body().get("status").getAsString();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                if (status.equals("success")){
+                    JsonObject userData = response.body().getAsJsonObject("data");
+                    final String device_token = userData.get("device_token").getAsString();
+                    final String apiUserId = userData.get("user_id").toString();
+                    System.out.println("notification_token "+notification_token);
+                    System.out.println("device_token "+device_token);
 
 
-            if (!notification_token.equals(token1)){
-                System.out.println("Tokens Not Matched. Calling Api .........");
-
-                // call api
-                Call<JsonObject> userCall = userService.setToken(new UserToken(token1,userid));
-                userCall.enqueue(new Callback<JsonObject>() {
-                    @Override
-                    public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-
-                        String ok = response.body().get("status").toString();
-                        System.out.println("Api Called and"+ok);
-                        new LocalData().setNotificationToken(sharedPref, token1);
-
+                    if(!notification_token.equals(device_token) || !apiUserId.equals((""+userid))){
+                        System.out.println("Running If");
+                        new LocalData().setNotificationToken(sharedPref,device_token);
                     }
 
-                    @Override
-                    public void onFailure(Call<JsonObject> call, Throwable t) {
-                        System.out.println("Error "+t.getMessage());
-                    }
-                });
-            }else{
-                System.out.println("Tokens  Matched. Not Calling Api .........");
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+
             }
         });
-
+//        FirebaseApp.initializeApp(DisputeNoHistoryActivity.this);
+//        FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(task -> {
+//            if (!task.isSuccessful()) {
+//                //To do//
+//                System.out.println("Unsuccessful");
+//                return;
+//            }
+//            final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+//            String userData = new LocalData().getlocalData(sharedPref, "userdata");
+//            int userid = 0;
+//            try {
+//                JSONObject jsonObj = new JSONObject(userData);
+//                userid = jsonObj.getInt("user_id");
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }
+//            String token1 = task.getResult().getToken()+"";
+//            System.out.println("Current Token   "+token1);
+//
+//            String notification_token = new LocalData().getlocalData(sharedPref, "notification_token")+"";
+//            System.out.println("notification_token   "+notification_token);
+//
+//
+//            if (!notification_token.equals(token1)){
+//                System.out.println("Tokens Not Matched. Calling Api .........");
+//
+//                // call api
+//                Call<JsonObject> userCall = userService.setToken(new UserToken(token1,userid));
+//                userCall.enqueue(new Callback<JsonObject>() {
+//                    @Override
+//                    public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+//
+//                        String ok = response.body().get("status").toString();
+//                        System.out.println("Api Called and"+ok);
+//                        new LocalData().setNotificationToken(sharedPref, token1);
+//
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Call<JsonObject> call, Throwable t) {
+//                        System.out.println("Error "+t.getMessage());
+//                    }
+//                });
+//            }else{
+//                System.out.println("Tokens  Matched. Not Calling Api .........");
+//            }
+//        });
+//
     }
 
     void idInitialization(){
@@ -324,8 +354,11 @@ public class DisputeNoHistoryActivity extends AppCompatActivity implements Swipe
         newPostIcon = findViewById(R.id.disputesNewPostIcon);
         settings = findViewById(R.id.disputesSettingsIcon);
         progressBar = findViewById(R.id.progressBar2);
+        constraintLayout = findViewById(R.id.activity_dispute_shake);
+        swipeRefreshLayout =  findViewById(R.id.swipeRefreshLayout);
         service = Config.getInstance().create(DealService.class);
         userService = Config.getInstance().create(UserService.class);
+        notificationService = Config.getInstance().create(NotificationService.class);
 
         disputeList = new ArrayList<>();
         setValues();
@@ -382,10 +415,11 @@ public class DisputeNoHistoryActivity extends AppCompatActivity implements Swipe
         profileIcon.setOnClickListener(profile);
         newPostIcon.setOnClickListener(newAction);
         disputeShakeSearchView.addTextChangedListener(n1Change);
+        swipeRefreshLayout.setOnRefreshListener(this);
     }
 
     void setValues(){
-         final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         String userData = new LocalData().getlocalData(sharedPref, "userdata");
         int userid = 0;
         try {

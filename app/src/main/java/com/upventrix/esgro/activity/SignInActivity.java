@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.constraint.ConstraintLayout;
@@ -18,8 +19,10 @@ import android.widget.ProgressBar;
 
 import com.upventrix.esgro.R;
 import com.upventrix.esgro.modals.User;
+import com.upventrix.esgro.modals.UserToken;
 import com.upventrix.esgro.resource.Config;
 import com.upventrix.esgro.resource.LocalData;
+import com.upventrix.esgro.services.NotificationService;
 import com.upventrix.esgro.services.UserService;
 import com.google.gson.JsonObject;
 
@@ -44,6 +47,8 @@ public class SignInActivity extends AppCompatActivity {
 
     ConstraintLayout constraintLayout;
     ConstraintLayout constraintLayout2;
+    private String deviceName;
+    private NotificationService notificationService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +96,7 @@ public class SignInActivity extends AppCompatActivity {
         password= findViewById(R.id.signInPasswordTxt);
         progressBar = findViewById(R.id.progressBar4);
         service = Config.getInstance().create(UserService.class);
+        notificationService = Config.getInstance().create(NotificationService.class);
 
     }
 
@@ -152,6 +158,7 @@ public class SignInActivity extends AppCompatActivity {
                         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                         new LocalData().setLocalData(sharedPref,userData);
                          progressBar.setVisibility(View.GONE);
+                        setToken(SignInActivity.this);
                         vewAlert("Successfully","Press ok to continue",SignInActivity.this);
 
                     }else{
@@ -178,53 +185,114 @@ public class SignInActivity extends AppCompatActivity {
     };
     public void vewAlert(final String title, String message, final Context context){
 
-                        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
-                        String userData = new LocalData().getlocalData(sharedPref, "userdata")+"";
-                        int userid = 0;
-                        try {
-                            JSONObject jsonObj = new JSONObject(userData);
-                            userid = jsonObj.getInt("user_id");
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+        String userData = new LocalData().getlocalData(sharedPref, "userdata")+"";
+        int userid = 0;
+        try {
+            JSONObject jsonObj = new JSONObject(userData);
+            userid = jsonObj.getInt("user_id");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
 
-                        Call<JsonObject> userCall = service.details(""+userid);
-                        userCall.enqueue(new Callback<JsonObject>() {
-                            @Override
-                            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                                if (title.equals("Successfully")){
-                                String number = response.body().get("mobile").toString();
-                                    System.out.println("Contact "+number);
-                                if (number.length()==4){
+        Call<JsonObject> userCall = service.details(""+userid);
+        userCall.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                if (title.equals("Successfully")){
+                String number = response.body().get("mobile").toString();
+                 if (number.length()==4){
+                    Intent mainIntent = new Intent(context,MobileVerificationActivity.class);
+                    context.startActivity(mainIntent);
+                    SignInActivity.this.finish();
 
-                                    Intent mainIntent = new Intent(context,MobileVerificationActivity.class);
-                                    context.startActivity(mainIntent);
-                                    SignInActivity.this.finish();
-
-                                }else{
-                                    new LocalData().setTempLocalData(sharedPref,null);
-                                    String profileImgUrl = response.body().get("profileImgUrl").toString();
-                                    System.out.println("profileImgUrl   "+profileImgUrl);
-                                    if  (profileImgUrl.length() == 4){
-
-                                        Intent mainIntent = new Intent(SignInActivity.this, CompleteProfileActivity.class);
-                                        SignInActivity.this.startActivity(mainIntent);
-                                    }else{
-
-                                        Intent mainIntent = new Intent(SignInActivity.this, DisputeNoHistoryActivity.class);
-                                        SignInActivity.this.startActivity(mainIntent);
-                                    }
-                                    }
-                                }
-
-                            }
-
-                            @Override
-                            public void onFailure(Call<JsonObject> call, Throwable t) {
-                                System.out.println("Error "+t.getMessage());
-                            }
-                        });
+                }else{
+                    new LocalData().setTempLocalData(sharedPref,null);
+                    String profileImgUrl = response.body().get("profileImgUrl").toString();
+                    System.out.println("profileImgUrl   "+profileImgUrl);
+                    if  (profileImgUrl.length() == 4){
+                        Intent mainIntent = new Intent(SignInActivity.this, CompleteProfileActivity.class);
+                        SignInActivity.this.startActivity(mainIntent);
+                    }else{
+                         Intent mainIntent = new Intent(SignInActivity.this, DisputeNoHistoryActivity.class);
+                        SignInActivity.this.startActivity(mainIntent);
                     }
+                    }
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                System.out.println("Error "+t.getMessage());
+            }
+        });
     }
+
+
+    private void setToken( final Context context) {
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String notification_token = new LocalData().getlocalData(sharedPref, "device_token")+"";
+        System.out.println("notification_token (device_token)  "+notification_token);
+
+        if(notification_token.length() == 4){
+            System.out.println("notification_token  NULL ");
+            return;
+        }
+
+        String userData = new LocalData().getlocalData(sharedPref, "userdata");
+        int userid = 0;
+        try {
+            JSONObject jsonObj = new JSONObject(userData);
+            userid = jsonObj.getInt("user_id");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        String model = Build.MODEL;
+        String brand = Build.BRAND;
+        String device = Build.DEVICE;
+        deviceName = brand+" "+device+" "+model;
+        System.out.println("deviceName  "+deviceName);
+
+        Call<JsonObject> jsonObjectCall = notificationService.setToken(
+                new UserToken(
+                        notification_token,
+                        deviceName,
+                        userid
+                )
+        );
+        jsonObjectCall.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                String status = "";
+                try {
+                    status = response.body().get("status").getAsString();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                System.out.println("The Status iS "+status);
+                if (status.equals("success")){
+                    String device_id = response.body().get("device_id").getAsString();
+                    System.out.println("Status Success! "+" device_id  "+device_id+" notification_token  "+notification_token);
+//                    new LocalData().setNotificationToken(sharedPref,notification_token);
+                    new LocalData().setDeviceId(sharedPref,device_id);
+                   String d = new LocalData().getlocalData(sharedPref, "device_id");
+                    System.out.println("device --- - - "+d);
+
+                }else{
+                    System.out.println("Status Failed!");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                System.out.println("ERROR!");
+            }
+        });
+    }
+
+
+}

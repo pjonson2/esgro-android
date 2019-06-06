@@ -198,6 +198,7 @@ public class HomePageActivity extends AppCompatActivity {
                         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                         new LocalData().setLocalData(sharedPref,null);
                         new LocalData().setTempLocalData(sharedPref,null);
+                        new LocalData().setDeviceId(sharedPref,null);
 
                         dialog.dismiss();
                         if (title.equals("Confirm")) {
