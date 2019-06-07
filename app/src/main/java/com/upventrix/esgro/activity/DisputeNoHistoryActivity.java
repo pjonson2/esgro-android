@@ -92,7 +92,6 @@ public class DisputeNoHistoryActivity extends AppCompatActivity implements Swipe
     private String deviceName = "";
 
     private static Socket mSocket;
-    private static PrintWriter printWriter;
 
     private NotificationService notificationService;
 
@@ -124,7 +123,7 @@ public class DisputeNoHistoryActivity extends AppCompatActivity implements Swipe
         deviceName = brand+" "+device+" "+model;
         System.out.println("deviceName  "+deviceName);
 
-        mSocket.on("result", onDealResult);
+        mSocket.on("deal_result", onDealResult);
         mSocket.connect();
 
         constraintLayout.setOnTouchListener(new View.OnTouchListener()
@@ -158,7 +157,7 @@ public class DisputeNoHistoryActivity extends AppCompatActivity implements Swipe
             return;
         }
 
-        mSocket.emit("search_key_press", payload);
+        mSocket.emit("deal_search", payload);
     }
 
     private Emitter.Listener onDealResult = new Emitter.Listener() {
@@ -181,7 +180,7 @@ public class DisputeNoHistoryActivity extends AppCompatActivity implements Swipe
                             Toast toast = Toast.makeText(DisputeNoHistoryActivity.this, text, duration);
                             toast.show();
                         }
-
+                            disputeList.clear();
                         for (int i = 0; i < deals.length(); ++i) {
                             JSONObject rec = deals.getJSONObject(i);
                             Dispute dispute = new Dispute();
@@ -297,53 +296,6 @@ public class DisputeNoHistoryActivity extends AppCompatActivity implements Swipe
 
             }
         });
-//        FirebaseApp.initializeApp(DisputeNoHistoryActivity.this);
-//        FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(task -> {
-//            if (!task.isSuccessful()) {
-//                //To do//
-//                System.out.println("Unsuccessful");
-//                return;
-//            }
-//            final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-//            String userData = new LocalData().getlocalData(sharedPref, "userdata");
-//            int userid = 0;
-//            try {
-//                JSONObject jsonObj = new JSONObject(userData);
-//                userid = jsonObj.getInt("user_id");
-//            } catch (JSONException e) {
-//                e.printStackTrace();
-//            }
-//            String token1 = task.getResult().getToken()+"";
-//            System.out.println("Current Token   "+token1);
-//
-//            String notification_token = new LocalData().getlocalData(sharedPref, "notification_token")+"";
-//            System.out.println("notification_token   "+notification_token);
-//
-//
-//            if (!notification_token.equals(token1)){
-//                System.out.println("Tokens Not Matched. Calling Api .........");
-//
-//                // call api
-//                Call<JsonObject> userCall = userService.setToken(new UserToken(token1,userid));
-//                userCall.enqueue(new Callback<JsonObject>() {
-//                    @Override
-//                    public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-//
-//                        String ok = response.body().get("status").toString();
-//                        System.out.println("Api Called and"+ok);
-//                        new LocalData().setNotificationToken(sharedPref, token1);
-//
-//                    }
-//
-//                    @Override
-//                    public void onFailure(Call<JsonObject> call, Throwable t) {
-//                        System.out.println("Error "+t.getMessage());
-//                    }
-//                });
-//            }else{
-//                System.out.println("Tokens  Matched. Not Calling Api .........");
-//            }
-//        });
 //
     }
 
@@ -364,6 +316,15 @@ public class DisputeNoHistoryActivity extends AppCompatActivity implements Swipe
         setValues();
 
         ListView listView = findViewById(R.id.dynamicShakeListView);
+        listView.setOnTouchListener(new View.OnTouchListener()
+        {
+            @Override
+            public boolean onTouch(View view, MotionEvent ev)
+            {
+                hideKeyboard(view);
+                return false;
+            }
+        });
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
@@ -445,7 +406,7 @@ public class DisputeNoHistoryActivity extends AppCompatActivity implements Swipe
                     JsonArray dealsList = response.body().getAsJsonArray("deals");
 
                     System.out.println("dealsList    ......  "+dealsList);
-
+                    disputeList.clear();
                         for (JsonElement value : dealsList) {
 
                             Dispute dispute = new Dispute();

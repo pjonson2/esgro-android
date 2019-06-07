@@ -37,7 +37,7 @@ public interface UserService {
     Call<JsonObject> profile(@Body Image image);
 
     @GET("user/list")
-    Call<JsonObject> usersList();
+    Call<JsonObject> usersList(@Query("user_id") String user_id);
 
 //    @POST("user/token")
 //    Call<JsonObject> setToken(@Body UserToken userToken);

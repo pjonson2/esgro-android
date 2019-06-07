@@ -21,6 +21,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.JsonObject;
 import com.upventrix.esgro.R;
@@ -167,6 +168,7 @@ public class Request_03_Activity extends AppCompatActivity {
     };
     View.OnClickListener requestContinue = new View.OnClickListener() {
         public void onClick(View v) {
+            continues.setEnabled(false);
             SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
             String userData = new LocalData().getlocalData(sharedPref, "userdata") + "";
             int userid = 0;
@@ -175,6 +177,14 @@ public class Request_03_Activity extends AppCompatActivity {
                 userid = jsonObj.getInt("user_id");
             } catch (JSONException e) {
                 e.printStackTrace();
+            }
+            if(description.getText().toString().equals("")){
+                continues.setEnabled(true);
+                String text = "Fill Description!";
+                int duration = Toast.LENGTH_SHORT;
+                Toast toast = Toast.makeText(Request_03_Activity.this, text, duration);
+                toast.show();
+                return;
             }
 
             StringBuilder chargePriceBuilder = new StringBuilder(charging_amount);
@@ -217,6 +227,7 @@ public class Request_03_Activity extends AppCompatActivity {
                         vewAlert("Successfully", "Your deal successfully saved", Request_03_Activity.this);
 
                     } else {
+                        continues.setEnabled(true);
                         vewAlert("Warnings", "Your deal saving failed", Request_03_Activity.this);
                     }
                 }
@@ -224,6 +235,7 @@ public class Request_03_Activity extends AppCompatActivity {
                 @Override
                 public void onFailure(Call<JsonObject> call, Throwable t) {
                     System.out.println("Error " + t.getMessage());
+                    continues.setEnabled(true);
                 }
             });
         }
