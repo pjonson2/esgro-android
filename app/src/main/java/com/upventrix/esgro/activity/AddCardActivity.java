@@ -2,27 +2,51 @@ package com.upventrix.esgro.activity;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.RequiresApi;
+import android.support.constraint.ConstraintLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.gson.JsonObject;
+import com.stripe.android.Stripe;
+import com.stripe.android.TokenCallback;
+import com.stripe.android.model.Card;
+import com.stripe.android.model.Token;
+import com.stripe.android.view.CardInputWidget;
 import com.upventrix.esgro.R;
+import com.upventrix.esgro.modals.Cards;
+import com.upventrix.esgro.resource.Config;
+import com.upventrix.esgro.resource.LocalData;
+import com.upventrix.esgro.services.CardService;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.lang.reflect.Field;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class AddCardActivity extends AppCompatActivity {
 
@@ -34,7 +58,11 @@ public class AddCardActivity extends AppCompatActivity {
     EditText cvv;
 
     String identifier = "";
-
+    CardInputWidget mCardInputWidget = null;
+    private ConstraintLayout constraintLayout;
+    private CardService cardService;
+    int userid = 0;
+    String email = "";
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -48,79 +76,52 @@ public class AddCardActivity extends AppCompatActivity {
         idInitialization();
         setListeners();
         setValues();
-        this.showDatePickerDialog();
 
-
-        expDate.setOnTouchListener(new View.OnTouchListener(){
-
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                int inType = expDate.getInputType(); // backup the input type
-                expDate.setInputType(InputType.TYPE_NULL); // disable soft input
-                expDate.onTouchEvent(event); // call native handler
-                expDate.setInputType(inType); // restore input type
-                return true; // consume touch even
-            }
-        });
-    }
-
-    // Create and show a DatePickerDialog when click button.
-    private void showDatePickerDialog()
-    {
-        // Get open DatePickerDialog button.
-         expDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Create a new OnDateSetListener instance. This listener will be invoked when user click ok button in DatePickerDialog.
-                DatePickerDialog.OnDateSetListener onDateSetListener = new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
-                        StringBuffer strBuf = new StringBuffer();
-                        strBuf.append(month+1);
-                        strBuf.append("/");
-                        strBuf.append((year+"").substring(2));
-
-                        expDate.setText(strBuf.toString());
-                    }
-
-                };
-
-                // Get current year, month and day.
-                Calendar now = Calendar.getInstance();
-                int year = now.get(java.util.Calendar.YEAR);
-                int month = now.get(java.util.Calendar.MONTH);
-
-                // Create the new DatePickerDialog instance.
-                DatePickerDialog datePickerDialog = new DatePickerDialog(AddCardActivity.this, android.R.style.Theme_Holo_Dialog, onDateSetListener, year, month, 0);
-                datePickerDialog.updateDate( year, month,0);
-               // Set dialog icon and title.
-                 datePickerDialog.setTitle("Please select year and month.");
-
-                // Popup the dialog.
-                datePickerDialog.show();
-            }
-        });
     }
 
 
     void idInitialization(){
         back = findViewById(R.id.addCardBackBtn);
         addcrd = findViewById(R.id.addCrdBtn);
-        cardNumber = findViewById(R.id.CardCardNumberTxt);
-        expDate = findViewById(R.id.CardExpDateTxt);
-        cvv = findViewById(R.id.cardCvvTxt);
-        cardNumber.addTextChangedListener(checkNumbers);
+        mCardInputWidget = new CardInputWidget(this);
+        mCardInputWidget =  findViewById(R.id.card_input_widget);
+        constraintLayout = findViewById(R.id.add_credit_debit);
+        cardService = Config.getInstance().create(CardService.class);
     }
 
-
+    public boolean onClickSomething(String cardNumber, Integer cardExpMonth, Integer cardExpYear, String cardCVC) {
+        Card card = new Card(
+                cardNumber,
+                cardExpMonth,
+                cardExpYear,
+                cardCVC
+        );
+        if (!card.validateCard()) {
+            // Show errors
+            return false;
+        }
+        return true;
+    }
     void setListeners(){
         back.setOnClickListener(addCardBAck);
         addcrd.setOnClickListener(addCardAction);
-        expDate.setOnClickListener(cvvAction);
-    }
+        constraintLayout.setOnTouchListener(new View.OnTouchListener()
+        {
+            @Override
+            public boolean onTouch(View view, MotionEvent ev)
+            {
+                hideKeyboard(view);
+                return false;
+            }
+        });
+      }
 
     void setValues(){
 
+    }
+    private void hideKeyboard(View view) {
+        InputMethodManager in = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        in.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
     @Override
@@ -158,39 +159,132 @@ public class AddCardActivity extends AppCompatActivity {
     };
     View.OnClickListener addCardAction = new View.OnClickListener() {
         public void onClick(View v) {
-            Intent mainIntent = new Intent(AddCardActivity.this, HomePageActivity.class);
-            AddCardActivity.this.startActivity(mainIntent);
+            Context context = getApplicationContext();
+            final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+            String userData = new LocalData().getlocalData(sharedPref, "userdata");
+
+            try {
+                JSONObject jsonObj = new JSONObject(userData);
+                userid = jsonObj.getInt("user_id");
+                email = jsonObj.getString("email");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            Card cardToSave = mCardInputWidget.getCard();
+
+            if (cardToSave == null) {
+                CharSequence text = "Invalid Card";
+                int duration = Toast.LENGTH_SHORT;
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
+                return;
+            }
+            boolean b = onClickSomething(cardToSave.getNumber(), cardToSave.getExpMonth(), cardToSave.getExpYear(), cardToSave.getCVC());
+
+            if (!b) {
+                CharSequence text = "Invalid Card";
+                int duration = Toast.LENGTH_SHORT;
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
+                return;
+            }
+            final boolean b1 = cardToSave.validateNumber();
+            final boolean b2 = cardToSave.validateCVC();
+
+            if (b1 && b2) {
+                addcrd.setEnabled(false);
+                System.out.println("Card Valid ");
+                Stripe stripe = new Stripe(AddCardActivity.this, "pk_test_diN9L7FioOykyaq0sREQbBhh002mRGSdGW");
+                stripe.createToken(
+                        cardToSave,
+                        new TokenCallback() {
+                            public void onSuccess(Token token) {
+                                // Send token to your server
+                                System.out.println("TOKEN "+token.getCard().toJson());
+                                Call<JsonObject> save = cardService.save(new Cards(
+                                        userid,
+                                        token.getId(),
+                                        email
+                                ));
+                                save.enqueue(new Callback<JsonObject>() {
+                                    @Override
+                                    public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                                        System.out.println("Response   "+ response.body());
+//                                        vewAlert("Successfully","Card details successfully saved",AddCardActivity.this);
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<JsonObject> call, Throwable t) {
+                                        System.out.println("ERROR ....");
+                                        addcrd.setEnabled(true);
+                                    }
+                                });
+                            }
+                            public void onError(Exception error) {
+                                System.out.println("ERROR   "+error);
+                                addcrd.setEnabled(true);
+                                // Show localized error message
+                            }
+                        }
+                );
+            } else {
+                CharSequence text = "Invalid Card";
+                int duration = Toast.LENGTH_SHORT;
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
+                return;
+            }
+
         }
     };
 
-    View.OnClickListener cvvAction = new View.OnClickListener() {
-        public void onClick(View v) {
-            showDialog(999);
-        }
-    };
 
-    TextWatcher checkNumbers = new TextWatcher() {
 
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        View.OnClickListener cvvAction = new View.OnClickListener() {
+            public void onClick(View v) {
+                showDialog(999);
+            }
+        };
 
-        }
+        TextWatcher checkNumbers = new TextWatcher() {
 
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-            if (cardNumber.getText().toString().length() == 4){
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
             }
-            if (cardNumber.getText().toString().length() == 9){
 
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (cardNumber.getText().toString().length() == 4) {
+
+                }
+                if (cardNumber.getText().toString().length() == 9) {
+
+                }
             }
-        }
 
-        @Override
-        public void afterTextChanged(Editable s) {
-            System.out.println("afterTextChanged");
-        }
-    };
+            @Override
+            public void afterTextChanged(Editable s) {
+                System.out.println("afterTextChanged");
+            }
+        };
+    public void vewAlert(final String title, String message, final Context context){
+        final AlertDialog alertDialog = new AlertDialog.Builder(context).create();
+        alertDialog.setTitle(title);
+        alertDialog.setMessage(message);
+        alertDialog.setCanceledOnTouchOutside(false);
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        if (title.equals("Successfully")) {
 
+                            Intent mainIntent = new Intent(AddCardActivity.this, BankAndCards2Activity.class);
+                            AddCardActivity.this.startActivity(mainIntent);
+                        }
+                    }
+                });
+        alertDialog.show();
+    }
 }
 

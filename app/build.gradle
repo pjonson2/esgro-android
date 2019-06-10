@@ -4,7 +4,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.upventrix.esgro"
-        minSdkVersion 15
+        minSdkVersion 19
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -66,6 +66,8 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.0.0'
 
     implementation 'com.github.nkzawa:socket.io-client:0.6.0'
+    implementation 'com.stripe:stripe-android:8.0.0'
+
 
 }
 

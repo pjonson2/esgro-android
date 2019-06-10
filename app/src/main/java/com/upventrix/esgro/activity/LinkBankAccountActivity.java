@@ -7,9 +7,12 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -46,6 +49,7 @@ public class LinkBankAccountActivity extends AppCompatActivity {
     String identifier="";
 
     private BankService service;
+    private ConstraintLayout constraintLayout;
 
 
     @Override
@@ -58,9 +62,21 @@ public class LinkBankAccountActivity extends AppCompatActivity {
         idInitialization();
         setListeners();
         setValues();
-
+        constraintLayout.setOnTouchListener(new View.OnTouchListener()
+        {
+            @Override
+            public boolean onTouch(View view, MotionEvent ev)
+            {
+                hideKeyboard(view);
+                return false;
+            }
+        });
     }
 
+    private void hideKeyboard(View view) {
+        InputMethodManager in = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        in.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+    }
     void idInitialization(){
         back = findViewById(R.id.linkBankAccountBackBtnn);
         textView = findViewById(R.id.linkedBankNameTxt);
@@ -69,6 +85,7 @@ public class LinkBankAccountActivity extends AppCompatActivity {
         routingTxt = findViewById(R.id.routingTxt);
         accountNumberTxt = findViewById(R.id.accountNumberTxt);
         service = Config.getInstance().create(BankService.class);
+        constraintLayout = findViewById(R.id.activity_link_bank);
 
 
     }
@@ -110,7 +127,7 @@ public class LinkBankAccountActivity extends AppCompatActivity {
     };
     View.OnClickListener saveAction = new View.OnClickListener() {
         public void onClick(View v) {
-
+            save.setEnabled(false);
             final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
             String userData = new LocalData().getlocalData(sharedPref, "userdata");
             int userid = 0;
@@ -142,10 +159,12 @@ public class LinkBankAccountActivity extends AppCompatActivity {
                     if (status.equals("success")){
 
                         // re-direct next form
+                        save.setEnabled(false);
                         vewAlert("Successfully","Press ok to continue",LinkBankAccountActivity.this);
 
                     }else{
                         System.out.println(status);
+                        save.setEnabled(true);
                         vewAlert("Warnings","Failed to save your account",LinkBankAccountActivity.this);
 
                     }
@@ -154,6 +173,7 @@ public class LinkBankAccountActivity extends AppCompatActivity {
                 @Override
                 public void onFailure(Call<JsonObject> call, Throwable t) {
                     System.out.println("Error "+t.getMessage());
+                    save.setEnabled(true);
                 }
             });
         }

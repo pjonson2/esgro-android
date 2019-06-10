@@ -17,7 +17,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     @Override
     public void onMessageReceived(RemoteMessage message) {
-
+        System.out.println("onMessageReceived....................");
         System.out.println("From "+message.getFrom());
 
         if (message.getData().size()>0){
@@ -39,6 +39,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     }
 
     public void show(String titile,String msg){
+        System.out.println("show....................");
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, "channel_id")
                 .setContentTitle(titile)
                 .setContentText(msg)
@@ -57,25 +58,25 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     }
     public MyFirebaseMessagingService() {
         super();
-        System.out.println("MyFirebaseMessagingService");
+        System.out.println("MyFirebaseMessagingService.....................");
     }
 
     @Override
     public void onDeletedMessages() {
         super.onDeletedMessages();
-        System.out.println("onDeletedMessages");
+        System.out.println("onDeletedMessages......................");
     }
 
     @Override
     public void onMessageSent(String s) {
         super.onMessageSent(s);
-        System.out.println("onMessageSent");
+        System.out.println("onMessageSent.....................");
     }
 
     @Override
     public void onSendError(String s, Exception e) {
         super.onSendError(s, e);
-        System.out.println("onSendError");
+        System.out.println("onSendError....................");
     }
 
     @Override
