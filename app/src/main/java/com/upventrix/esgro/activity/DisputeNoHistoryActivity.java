@@ -185,17 +185,31 @@ public class DisputeNoHistoryActivity extends AppCompatActivity implements Swipe
                             JSONObject rec = deals.getJSONObject(i);
                             Dispute dispute = new Dispute();
 
-                                dispute.setName(rec.getString("firstname") + " " + rec.getString("lastname"));
-                                dispute.setPrice(rec.getDouble("total_cost")+"");
-                                dispute.setDays(rec.getString("status"));
-                                dispute.setDiscrption(rec.getString("description"));
-                                dispute.setId(rec.getInt("deal_id"));
-                                dispute.setReserve(rec.getDouble("reserve_cost")+"");
-                        try {
-                            dispute.setImage(rec.getString("profileImgUrl")+"");
-                        }catch (UnsupportedOperationException e){
-                            dispute.setImage(null);
-                        }
+                            String sender =  rec.getString("sender").toString();
+                            String receiver =  rec.getString("receiver");
+
+                            dispute.setId(rec.getInt("deal_id"));
+                            dispute.setPrice(rec.getDouble("total_cost")+"");
+                            dispute.setDays(rec.getString("status"));
+                            dispute.setDiscrption(rec.getString("description"));
+                            dispute.setReserve(rec.getDouble("reserve_cost")+"");
+
+                            if (sender.equals((userid+""))){
+                                dispute.setName(rec.getString("receiver_firstname") + " " + rec.getString("receiver_lastname"));
+                                try {
+                                    dispute.setImage(rec.getString("receiver_image")+"");
+                                }catch (UnsupportedOperationException e){
+                                    dispute.setImage(null);
+                                }
+                            }else{
+                                dispute.setName(rec.getString("sender_firstname") + " " + rec.getString("sender_lastname"));
+                                try {
+                                    dispute.setImage(rec.getString("sender_image")+"");
+                                }catch (UnsupportedOperationException e){
+                                    dispute.setImage(null);
+                                }
+                            }
+
                             disputeList.add(
                                         dispute
                                 );
@@ -382,8 +396,7 @@ public class DisputeNoHistoryActivity extends AppCompatActivity implements Swipe
     void setValues(){
         final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         String userData = new LocalData().getlocalData(sharedPref, "userdata");
-        int userid = 0;
-        try {
+         try {
             JSONObject jsonObj = new JSONObject(userData);
             userid = jsonObj.getInt("user_id");
         } catch (JSONException e) {
@@ -410,19 +423,33 @@ public class DisputeNoHistoryActivity extends AppCompatActivity implements Swipe
                         for (JsonElement value : dealsList) {
 
                             Dispute dispute = new Dispute();
+                            String sender = value.getAsJsonObject().get("sender").getAsString();
+                            String receiver = value.getAsJsonObject().get("receiver").getAsString();
 
-                            dispute.setName(value.getAsJsonObject().get("firstname").getAsString() + " " + value.getAsJsonObject().get("lastname").getAsString());
+
                             dispute.setPrice(value.getAsJsonObject().get("total_cost").getAsDouble()+"");
                             dispute.setDays(value.getAsJsonObject().get("status").getAsString());
                             dispute.setDiscrption(value.getAsJsonObject().get("description").getAsString());
                             dispute.setId(value.getAsJsonObject().get("deal_id").getAsInt());
                             dispute.setReserve(value.getAsJsonObject().get("reserve_cost").getAsDouble()+"");
 
-                            try {
-                                dispute.setImage(value.getAsJsonObject().get("profileImgUrl").getAsString());
-                            }catch (UnsupportedOperationException e){
-                                dispute.setImage(null);
+                            if(sender.equals(userid+"")){
+                                System.out.println("EQUAL ID ................");
+                                dispute.setName(value.getAsJsonObject().get("receiver_firstname").getAsString() + " " + value.getAsJsonObject().get("receiver_lastname").getAsString());
+                                try {
+                                    dispute.setImage(value.getAsJsonObject().get("receiver_image").getAsString());
+                                }catch (UnsupportedOperationException e){
+                                    dispute.setImage(null);
 
+                                }
+                            }else{
+                                dispute.setName(value.getAsJsonObject().get("sender_firstname").getAsString() + " " + value.getAsJsonObject().get("sender_lastname").getAsString());
+                                try {
+                                    dispute.setImage(value.getAsJsonObject().get("sender_image").getAsString());
+                                }catch (UnsupportedOperationException e){
+                                    dispute.setImage(null);
+
+                                }
                             }
                                  disputeList.add(
                                          dispute

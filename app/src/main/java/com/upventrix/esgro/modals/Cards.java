@@ -7,7 +7,7 @@ public class Cards {
     @SerializedName("user_id")
     private int user_id;
 
-    @SerializedName("")
+    @SerializedName("source")
     private String source;
 
     @SerializedName("email")

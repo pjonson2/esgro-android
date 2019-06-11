@@ -54,8 +54,7 @@ public class AddCardActivity extends AppCompatActivity {
     Button addcrd;
 
     EditText cardNumber;
-    EditText expDate;
-    EditText cvv;
+    EditText zip;
 
     String identifier = "";
     CardInputWidget mCardInputWidget = null;
@@ -86,16 +85,18 @@ public class AddCardActivity extends AppCompatActivity {
         mCardInputWidget = new CardInputWidget(this);
         mCardInputWidget =  findViewById(R.id.card_input_widget);
         constraintLayout = findViewById(R.id.add_credit_debit);
+        zip = findViewById(R.id.zipCOdeTXt);
         cardService = Config.getInstance().create(CardService.class);
     }
 
-    public boolean onClickSomething(String cardNumber, Integer cardExpMonth, Integer cardExpYear, String cardCVC) {
+    public boolean onClickSomething(String cardNumber, Integer cardExpMonth, Integer cardExpYear, String cardCVC,String zip) {
         Card card = new Card(
                 cardNumber,
                 cardExpMonth,
                 cardExpYear,
                 cardCVC
         );
+        card.setAddressZip(zip);
         if (!card.validateCard()) {
             // Show errors
             return false;
@@ -170,6 +171,14 @@ public class AddCardActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+            String zipCOde = zip.getText().toString();
+            if(zipCOde.equals("")){
+                CharSequence text = "Invalid Zip Code";
+                int duration = Toast.LENGTH_SHORT;
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
+                return;
+            }
             Card cardToSave = mCardInputWidget.getCard();
 
             if (cardToSave == null) {
@@ -179,7 +188,7 @@ public class AddCardActivity extends AppCompatActivity {
                 toast.show();
                 return;
             }
-            boolean b = onClickSomething(cardToSave.getNumber(), cardToSave.getExpMonth(), cardToSave.getExpYear(), cardToSave.getCVC());
+            boolean b = onClickSomething(cardToSave.getNumber(), cardToSave.getExpMonth(), cardToSave.getExpYear(), cardToSave.getCVC(),zipCOde);
 
             if (!b) {
                 CharSequence text = "Invalid Card";
@@ -194,7 +203,8 @@ public class AddCardActivity extends AppCompatActivity {
             if (b1 && b2) {
                 addcrd.setEnabled(false);
                 System.out.println("Card Valid ");
-                Stripe stripe = new Stripe(AddCardActivity.this, "pk_test_diN9L7FioOykyaq0sREQbBhh002mRGSdGW");
+                cardToSave.setAddressZip(zipCOde);
+                Stripe stripe = new Stripe(AddCardActivity.this, "pk_test_5njifX9nB71rW0gxMU8WEP0c");
                 stripe.createToken(
                         cardToSave,
                         new TokenCallback() {
@@ -210,7 +220,14 @@ public class AddCardActivity extends AppCompatActivity {
                                     @Override
                                     public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                                         System.out.println("Response   "+ response.body());
-//                                        vewAlert("Successfully","Card details successfully saved",AddCardActivity.this);
+
+                                        boolean status = response.body().get("status").getAsBoolean();
+                                        if (status){
+                                            vewAlert("Successfully","Card details successfully saved",AddCardActivity.this);
+                                        }else{
+                                            addcrd.setEnabled(true);
+                                            vewAlert("Warnings!","Card details saving failed!",AddCardActivity.this);
+                                        }
                                     }
 
                                     @Override

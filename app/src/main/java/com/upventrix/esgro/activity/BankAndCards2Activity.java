@@ -2,7 +2,9 @@ package com.upventrix.esgro.activity;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,11 +15,26 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.upventrix.esgro.R;
 import com.upventrix.esgro.modals.Bank;
+import com.upventrix.esgro.modals.CardDetails;
+import com.upventrix.esgro.resource.Config;
+import com.upventrix.esgro.resource.LocalData;
+import com.upventrix.esgro.services.CardService;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class BankAndCards2Activity extends AppCompatActivity {
 
@@ -36,12 +53,13 @@ public class BankAndCards2Activity extends AppCompatActivity {
     TextView plusCrd;
     TextView plusBnk;
 
-    List<Bank> bankList;
     ListView listView;
+    List<CardDetails> cardDetailsList;
 
     int count = 0;
 
     Dialog dialog;
+    private CardService cardService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +74,9 @@ public class BankAndCards2Activity extends AppCompatActivity {
         idInitialization();
         listView.setVisibility(View.INVISIBLE);
 
-        bankList = new ArrayList<>();
-        initializeArray();
+         cardDetailsList = new ArrayList<>();
+
+
 
         BankAndCards2Activity.CustomAdaper customAdaper = new BankAndCards2Activity.CustomAdaper();
         listView.setAdapter(customAdaper);
@@ -80,6 +99,7 @@ public class BankAndCards2Activity extends AppCompatActivity {
         handshakeIcon = findViewById(R.id.bankCardHandshakeIcon);
         viewMore = findViewById(R.id.viewMoreBtn);
         setDefaultBtn = findViewById(R.id.setDefaultBtn);
+        cardService = Config.getInstance().create(CardService.class);
     }
 
     void setListeners(){
@@ -98,26 +118,59 @@ public class BankAndCards2Activity extends AppCompatActivity {
     }
 
     void setValues(){
+        final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String userData = new LocalData().getlocalData(sharedPref, "userdata");
+        int userid = 0;
+        try {
+            JSONObject jsonObj = new JSONObject(userData);
+            userid = jsonObj.getInt("user_id");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        Call<JsonObject> all = cardService.getAll(userid+"");
+        all.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                boolean status = false;
+                try {
+                    status = response.body().get("status").getAsBoolean();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                if (status) {
 
-    }
-    void initializeArray(){
-        bankList.add(
-                new Bank(1,1,"Bank of Ceylon",R.drawable.nopath_360)
-        );
-        bankList.add(
-                new Bank(1,1,"Peoples Bank",R.drawable.bank_of_america)
-        );
-        bankList.add(
-                new Bank(1,1,"Nations Trust Bank",R.drawable.nopath_blue)
-        ); bankList.add(
-                new Bank(1,1,"Bank of Ceylon",R.drawable.nopath_360)
-        );
-        bankList.add(
-                new Bank(1,1,"Peoples Bank",R.drawable.bank_of_america)
-        );
-        bankList.add(
-                new Bank(1,1,"Nations Trust Bank",R.drawable.nopath_blue)
-        );
+                    JsonArray cardsList = response.body().getAsJsonArray("cards");
+
+                    cardDetailsList.clear();
+
+                    System.out.println("CardList Size ......... "+cardsList.size());
+                    if (cardsList.size()==0){
+                        return;
+                    }
+                    for (JsonElement value :cardsList) {
+
+                        CardDetails cardDetails = new CardDetails();
+                        cardDetails.setId(value.getAsJsonObject().get("id").getAsString());
+                        cardDetails.setBrand(value.getAsJsonObject().get("brand").getAsString());
+                        cardDetails.setExp_month(value.getAsJsonObject().get("exp_month").getAsInt());
+                        cardDetails.setExp_year(value.getAsJsonObject().get("exp_year").getAsInt());
+                        cardDetails.setLast_digits(value.getAsJsonObject().get("last_digits").getAsInt());
+//                        cardDetails.setCard_icon(value.getAsJsonObject().get("card_icon").getAsString());
+                        cardDetailsList.add(cardDetails);
+                    }
+                    BankAndCards2Activity.CustomAdaper customAdaper = new BankAndCards2Activity.CustomAdaper();
+                    listView.setAdapter(customAdaper);
+                }else{
+                    System.out.println("ERROR");
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                System.out.println("ERROR "+t);
+            }
+        });
     }
 
     @Override
@@ -220,7 +273,7 @@ public class BankAndCards2Activity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            return bankList.size();
+            return cardDetailsList.size();
         }
 
         @Override
@@ -238,10 +291,11 @@ public class BankAndCards2Activity extends AppCompatActivity {
             convertView = getLayoutInflater().inflate(R.layout.activity_bank_card,null);
 
             TextView bankNameView = convertView.findViewById(R.id.bankNameTxt);
+            TextView cardNum = convertView.findViewById(R.id.bankDetailsTxt);
             ImageView bankImg = convertView.findViewById(R.id.bankImage);
-            Bank bank = bankList.get(position);
-//            bankImg.setImageResource(bank.getImage());
-            bankNameView.setText(bank.getUserid());
+            CardDetails cardDetails = cardDetailsList.get(position);
+            cardNum.setText("Card no. ends in "+cardDetails.getLast_digits());
+            bankNameView.setText("No Name Yet");
             return convertView;
         }
     }

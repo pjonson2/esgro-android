@@ -13,7 +13,7 @@ import retrofit2.http.Query;
 public interface DealService {
 
     @GET("deal/all")
-    Call<JsonObject> dealAll(@Query("uid") String uid);
+    Call<JsonObject> dealAll(@Query("user_id") String uid);
 
     @POST("deal/save")
     Call<JsonObject> saveDEal(@Body Deal deal);
