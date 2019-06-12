@@ -23,6 +23,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.google.gson.JsonObject;
+import com.rafaelbarbosatec.archivimentview.AchievementView;
 import com.upventrix.esgro.R;
 import com.upventrix.esgro.modals.Password;
 import com.upventrix.esgro.resource.Config;
@@ -47,6 +48,7 @@ public class CheckPasswordActivity extends AppCompatActivity {
     private UserService userService;
     ConstraintLayout constraintLayout;
     Drawable background;
+    AchievementView achievementView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +84,7 @@ public class CheckPasswordActivity extends AppCompatActivity {
         confirmpassword = findViewById(R.id.confirmPasswordTxt);
         constraintLayout = findViewById(R.id.activity_check_password);
         userService = Config.getInstance().create(UserService.class);
+        achievementView = findViewById(R.id.achievementView);
     }
 
     void setListeners(){
@@ -139,6 +142,7 @@ public class CheckPasswordActivity extends AppCompatActivity {
                 shape.getPaint().setStrokeWidth(1);
                 newPassword.setBackground(shape);
                 confirmpassword.setBackground(shape);
+                return;
             }else{
                 newPassword.setBackground(background);
                 confirmpassword.setBackground(background);
@@ -155,39 +159,33 @@ public class CheckPasswordActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                     if (status.equals("success")){
-                        vewAlert("Successfully","Profile Updated. Password changed!",CheckPasswordActivity.this);
+                         new  ToastActivity().showOK(
+                                achievementView,
+                                "Successfully!",
+                                "Profile Password changed",
+                                CheckPasswordActivity.this,
+                                HomePageActivity.class);
                     }else{
                         update.setEnabled(true);
-                        vewAlert("Warnings!","Profile Not Updated. Password not changed!",CheckPasswordActivity.this);
-                    }
+                        new  ToastActivity().showFailed(
+                                achievementView,
+                                "Warnings!",
+                                "Profile Not Updated. Password not change failed");
+                     }
                 }
 
                 @Override
                 public void onFailure(Call<JsonObject> call, Throwable t) {
                     update.setEnabled(true);
-                    vewAlert("Error!","Profile Not Updated. Password not changed!",CheckPasswordActivity.this);
+
+                    new  ToastActivity().showFailed(
+                            achievementView,
+                            "Warnings!",
+                            "Profile Not Updated. Password not change failed");
 
                 }
             });
         }
     };
-
-    public void vewAlert(final String title, String message, final Context context){
-        final AlertDialog alertDialog = new AlertDialog.Builder(context).create();
-        alertDialog.setTitle(title);
-        alertDialog.setMessage(message);
-        alertDialog.setCanceledOnTouchOutside(false);
-        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                        if (title.equals("Successfully")) {
-                            Intent mainIntent = new Intent(CheckPasswordActivity.this, HomePageActivity.class);
-                            CheckPasswordActivity.this.startActivity(mainIntent);
-                        }
-                    }
-                });
-        alertDialog.show();
-    }
 
 }

@@ -67,7 +67,7 @@ dependencies {
 
     implementation 'com.github.nkzawa:socket.io-client:0.6.0'
     implementation 'com.stripe:stripe-android:8.0.0'
-
+    compile 'com.github.RafaelBarbosatec:AchievementView:0.1.5'
 
 }
 

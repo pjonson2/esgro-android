@@ -18,6 +18,7 @@ import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -27,6 +28,8 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 
 import com.google.gson.Gson;
+import com.rafaelbarbosatec.archivimentview.AchievementView;
+import com.rafaelbarbosatec.archivimentview.iterface.ShowListern;
 import com.upventrix.esgro.R;
 import com.upventrix.esgro.modals.Notification;
 import com.upventrix.esgro.modals.User;
@@ -65,7 +68,7 @@ public class SignUpActivity extends AppCompatActivity {
     ConstraintLayout constraintLayout2;
     Drawable background;
     private NotificationService notificationService;
-
+    AchievementView achievementView;
     private String deviceName = "";
     protected void onCreate(Bundle savedInstanceState) {
         onWindowFocusChanged(true);
@@ -130,7 +133,7 @@ public class SignUpActivity extends AppCompatActivity {
         service = Config.getInstance().create(UserService.class);
         key = getResources().getString(R.string.userdata);
         notificationService = Config.getInstance().create(NotificationService.class);
-
+        achievementView = findViewById(R.id.achievementView);
     }
 
     void setListeners(){
@@ -211,9 +214,11 @@ public class SignUpActivity extends AppCompatActivity {
             }
 
             progressBar.setVisibility(View.VISIBLE);
+            continueBtn.setEnabled(false);
 
             boolean validations = validations();
             if (!validations){
+                continueBtn.setEnabled(true);
                 return;
             }
 
@@ -248,11 +253,19 @@ public class SignUpActivity extends AppCompatActivity {
                         // re-direct next form
                         progressBar.setVisibility(View.GONE);
                         new LocalData().setTempLocalData(sharedPref,null);
-                        vewAlert("Successfully","Your details successfully saved",SignUpActivity.this);
+                         show(
+                                achievementView,
+                                "Successfully!",
+                                "Your details successfully saved");
 
                     }else{
                         progressBar.setVisibility(View.GONE);
-                        vewAlert("Warnings","Your details saving failed",SignUpActivity.this);
+                        continueBtn.setEnabled(true);
+                        new ToastActivity().showFailed(
+                                achievementView,
+                                "Warnings!",
+                                "Your details saving failed");
+
 
                     }
                 }
@@ -260,6 +273,12 @@ public class SignUpActivity extends AppCompatActivity {
                 @Override
                 public void onFailure(Call<JsonObject> call, Throwable t) {
                     System.out.println("Error "+t.getMessage());
+                    progressBar.setVisibility(View.GONE);
+                    continueBtn.setEnabled(true);
+                    new ToastActivity().showFailed(
+                            achievementView,
+                            "Warnings!",
+                            "Your details saving failed");
                 }
             });
 
@@ -331,32 +350,53 @@ public class SignUpActivity extends AppCompatActivity {
 
         if (!signUpCheckBox.isChecked()){
             progressBar.setVisibility(View.GONE);
-            vewAlert("Warnings","Accept Terms and Conditions",SignUpActivity.this);
-            return false;
+            new ToastActivity().showFailed(
+                    achievementView,
+                    "Warnings!",
+                    "Accept Terms and Conditions");
+             return false;
         }
         return true;
     }
 
-    public void vewAlert(final String title, String message, final Context context){
-        final AlertDialog alertDialog = new AlertDialog.Builder(context).create();
-        alertDialog.setTitle(title);
-        alertDialog.setMessage(message);
-        alertDialog.setCanceledOnTouchOutside(false);
-        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                        if (title.equals("Successfully")) {
 
-                            setToken(context);
+    public void show(final AchievementView achievementView, String title, String body){
 
-                        }
+        achievementView
+                .setTitle(title)
+                .setMensage(body)
+                 .setColor(R.color.colorAccent)
+                .setIcon(R.drawable.ok)
+                 .setDuration(3000) // or time in milliseconds
+
+                .setShowListern(new ShowListern() {
+                    @Override
+                    public void start() {
+                        Log.i("LOG","start");
                     }
-                });
-        alertDialog.show();
+
+                    @Override
+                    public void show() {
+                        Log.i("LOG","show");
+                    }
+
+                    @Override
+                    public void dimiss() {
+                        Log.i("LOG","dimiss");
+                        setToken(SignUpActivity.this);
+                    }
+
+                    @Override
+                    public void end() {
+                        Log.i("LOG","end");
+                    }
+                })
+                .show();
     }
 
+
     private void setToken( final Context context) {
+        System.out.println("SetToken");
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         String notification_token = new LocalData().getlocalData(sharedPref, "device_token")+"";
         System.out.println("device_token   "+notification_token);
@@ -399,8 +439,11 @@ public class SignUpActivity extends AppCompatActivity {
                     Intent mainIntent = new Intent(context, MobileVerificationActivity.class);
                     context.startActivity(mainIntent);
                 }else{
-                    System.out.println("Status Failed!");
-                }
+                    new ToastActivity().showFailed(
+                            achievementView,
+                            "Warnings!",
+                            "Failed to signup!");
+                 }
             }
 
             @Override

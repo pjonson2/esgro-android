@@ -21,6 +21,7 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 
 import com.hbb20.CountryCodePicker;
+import com.rafaelbarbosatec.archivimentview.AchievementView;
 import com.upventrix.esgro.R;
 import com.upventrix.esgro.modals.User;
 import com.upventrix.esgro.resource.Config;
@@ -48,6 +49,7 @@ public class MobileVerificationActivity  extends AppCompatActivity implements Ad
 
     RelativeLayout relativeLayout;
     CountryCodePicker ccp;
+    AchievementView achievementView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,7 +92,7 @@ public class MobileVerificationActivity  extends AppCompatActivity implements Ad
         spinner = findViewById(R.id.mobileVerificSpinner);
         mobileCerificNumber = findViewById(R.id.mobileCerificNumber);
         ccp = findViewById(R.id.ccp);
-
+        achievementView = findViewById(R.id.achievementView);
         service = Config.getInstance().create(UserService.class);
     }
 
@@ -137,29 +139,19 @@ public class MobileVerificationActivity  extends AppCompatActivity implements Ad
         public void onClick(View v) {
 
             if (selectedCountryCode.equals("")){
-                AlertDialog alertDialog = new AlertDialog.Builder(MobileVerificationActivity.this).create();
-                alertDialog.setTitle("Warning!");
-                alertDialog.setMessage("Please select your country");
-                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        });
-                alertDialog.show();
+                new ToastActivity().showFailed(
+                        achievementView,
+                        "Warnings!",
+                        "Please select your country!"
+                );
                 return;
             }
             if (mobileCerificNumber.equals("")){
-                AlertDialog alertDialog = new AlertDialog.Builder(MobileVerificationActivity.this).create();
-                alertDialog.setTitle("Warning!");
-                alertDialog.setMessage("Please input your contact number");
-                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        });
-                alertDialog.show();
+                new ToastActivity().showFailed(
+                        achievementView,
+                        "Warnings!",
+                        "Please input your contact number!"
+                );
                 return;
             }
 

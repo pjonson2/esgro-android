@@ -4,10 +4,14 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.firebase.FirebaseApp;
+import com.rafaelbarbosatec.archivimentview.AchievementView;
+import com.rafaelbarbosatec.archivimentview.iterface.ShowListern;
 import com.upventrix.esgro.R;
 
 public class LaunchedActivity extends AppCompatActivity {
@@ -43,8 +47,7 @@ public class LaunchedActivity extends AppCompatActivity {
     }
 
     void setValues(){
-
-    }
+        }
 
     public void changeBehaviours(){
         getStartedBtn.setTextColor(Color.parseColor("#5BDA31"));

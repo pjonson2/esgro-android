@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.rafaelbarbosatec.archivimentview.AchievementView;
 import com.upventrix.esgro.R;
 
 public class Request_02_Activity extends AppCompatActivity {
@@ -37,6 +38,7 @@ public class Request_02_Activity extends AppCompatActivity {
     String userId = "";
 
     EditText holdingDays;
+    AchievementView achievementView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +68,7 @@ public class Request_02_Activity extends AppCompatActivity {
         back = findViewById(R.id.request2BackBtn);
         continues = findViewById(R.id.reqiest2ContinueBtn);
         holdingDays = findViewById(R.id.requestHoldingDaysTxt);
-
+        achievementView = findViewById(R.id.achievementView);
         n1 =  findViewById(R.id.n1);
         n2 =  findViewById(R.id.n2);
         n3 =  findViewById(R.id.n3);
@@ -150,16 +152,11 @@ public class Request_02_Activity extends AppCompatActivity {
                 mainIntent.putExtra("request_userId",userId);
                 Request_02_Activity.this.startActivity(mainIntent);
             }else{
-                AlertDialog alertDialog = new AlertDialog.Builder(Request_02_Activity.this).create();
-                alertDialog.setTitle("Warning!");
-                alertDialog.setMessage("Please Fill Holding Period Field");
-                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        });
-                alertDialog.show();
+                new  ToastActivity().showFailed(
+                        achievementView,
+                        "Warnings!",
+                        "Please Fill Holding Period Field!"
+                );
             }
         }
     };

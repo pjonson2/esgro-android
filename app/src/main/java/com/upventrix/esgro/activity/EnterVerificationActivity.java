@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hbb20.CountryCodePicker;
+import com.rafaelbarbosatec.archivimentview.AchievementView;
 import com.upventrix.esgro.R;
 import com.upventrix.esgro.modals.User;
 import com.upventrix.esgro.resource.Config;
@@ -56,6 +57,8 @@ public class EnterVerificationActivity extends AppCompatActivity {
     ConstraintLayout constraintLayout;
     private final int interval = 1000; // 1 Second
     private Handler handler = new Handler();
+    AchievementView achievementView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         onWindowFocusChanged(true);
@@ -135,6 +138,7 @@ public class EnterVerificationActivity extends AppCompatActivity {
         n4Txt = findViewById(R.id.enterNumber4Txt);
         timerView = findViewById(R.id.enterTimerLbl);
         service = Config.getInstance().create(UserService.class);
+        achievementView = findViewById(R.id.achievementView);
         extras = getIntent().getExtras();
 
     }
@@ -202,11 +206,19 @@ public class EnterVerificationActivity extends AppCompatActivity {
                             }
 
                             if (status.equals("success")){
-
-                                vewAlert("Successfully","Press ok to continue",EnterVerificationActivity.this);
-                            }else{
-                                vewAlert("Warnings","Failed to verifying your code ",EnterVerificationActivity.this);
-                                nextBtn.setEnabled(true);
+                                new ToastActivity().showOK(
+                                        achievementView,
+                                        "Successfully!",
+                                        "Your contact number verified",
+                                        EnterVerificationActivity.this,
+                                        CompleteProfileActivity.class);
+                             }else{
+                                new ToastActivity().showFailed(
+                                        achievementView,
+                                        "Warnings",
+                                        "Failed to verifying your pin"
+                                 );
+                                 nextBtn.setEnabled(true);
                             }
                         }
 
@@ -330,24 +342,7 @@ public class EnterVerificationActivity extends AppCompatActivity {
         }
     };
 
-    public void vewAlert(final String title, String message, Context context){
-        AlertDialog alertDialog = new AlertDialog.Builder(context).create();
-        alertDialog.setTitle(title);
-        alertDialog.setMessage(message);
-        alertDialog.setCanceledOnTouchOutside(false);
-        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                        // re-direct next form
-                        if (title.equals("Successfully")){
-                            Intent mainIntent = new Intent(EnterVerificationActivity.this, CompleteProfileActivity.class);
-                            EnterVerificationActivity.this.startActivity(mainIntent);
-                        }
-                    }
-                });
-        alertDialog.show();
-    }
+
 
 
     @Override

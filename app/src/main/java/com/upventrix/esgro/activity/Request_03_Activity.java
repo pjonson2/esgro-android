@@ -14,6 +14,7 @@ import android.support.annotation.RequiresApi;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
@@ -24,6 +25,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.JsonObject;
+import com.rafaelbarbosatec.archivimentview.AchievementView;
+import com.rafaelbarbosatec.archivimentview.iterface.ShowListern;
 import com.upventrix.esgro.R;
 import com.upventrix.esgro.modals.Deal;
 import com.upventrix.esgro.modals.User;
@@ -65,6 +68,7 @@ public class Request_03_Activity extends AppCompatActivity {
     DealService service;
 
     ConstraintLayout constraintLayout;
+    AchievementView achievementView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,7 +104,7 @@ public class Request_03_Activity extends AppCompatActivity {
         back = findViewById(R.id.request3Back);
         continues = findViewById(R.id.request3SendBtn);
         constraintLayout = findViewById(R.id.activity_request_3);
-
+        achievementView = findViewById(R.id.achievementView);
         userName = findViewById(R.id.requestToUserNameTxt);
         days = findViewById(R.id.requestDaysTxt);
         amount = findViewById(R.id.requestAmountTxt);
@@ -180,10 +184,11 @@ public class Request_03_Activity extends AppCompatActivity {
             }
             if(description.getText().toString().equals("")){
                 continues.setEnabled(true);
-                String text = "Fill Description!";
-                int duration = Toast.LENGTH_SHORT;
-                Toast toast = Toast.makeText(Request_03_Activity.this, text, duration);
-                toast.show();
+                new  ToastActivity().showFailed(
+                        achievementView,
+                        "Warnings!",
+                        "Fill Description!"
+                );
                 return;
             }
 
@@ -208,7 +213,6 @@ public class Request_03_Activity extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
 
-
                     System.out.println("response.body().  "+response.body());
                     String status = "";
                     try {
@@ -218,18 +222,16 @@ public class Request_03_Activity extends AppCompatActivity {
                     }
                     if (status.equals("success")) {
 
-//                        JsonObject userData = response.body().getAsJsonObject("userdata");
-//                        // set local user data
-//                        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-//                        new LocalData().setLocalData(sharedPref, userData);
-
-                        // re-direct next form
-                        vewAlert("Successfully", "Your deal successfully saved", Request_03_Activity.this);
+                        showOK(achievementView,"Successfully","Your deal successfully saved");
 
                     } else {
                         continues.setEnabled(true);
-                        vewAlert("Warnings", "Your deal saving failed", Request_03_Activity.this);
-                    }
+                        new  ToastActivity().showFailed(
+                                achievementView,
+                                "Warnings!",
+                                "Your deal saving failed"
+                        );
+                     }
                 }
 
                 @Override
@@ -241,52 +243,123 @@ public class Request_03_Activity extends AppCompatActivity {
         }
     };
 
-        public void vewAlert(final String title, String message, final Context context) {
-            final AlertDialog alertDialog = new AlertDialog.Builder(context).create();
-            alertDialog.setTitle(title);
-            alertDialog.setMessage(message);
-            alertDialog.setCanceledOnTouchOutside(false);
-            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                    (dialog1, which) -> {
-                        dialog1.dismiss();
-                        if (title.equals("Successfully")) {
+//        public void vewAlert(final String title, String message, final Context context) {
+//            final AlertDialog alertDialog = new AlertDialog.Builder(context).create();
+//            alertDialog.setTitle(title);
+//            alertDialog.setMessage(message);
+//            alertDialog.setCanceledOnTouchOutside(false);
+//            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+//                    (dialog1, which) -> {
+//                        dialog1.dismiss();
+//                        if (title.equals("Successfully")) {
+//
+//                            dialog.setContentView(R.layout.activity_proessing_alert);
+//                            dialog.setCanceledOnTouchOutside(false);
+//                            final StringBuilder builder = new StringBuilder(charging_amount);
+//                            builder.replace(0,1,"");
+//
+//                            dialog.show();
+//                            Window window = dialog.getWindow();
+//
+//                            final TextView weLbl = window.findViewById(R.id.weLbl);
+//                            final TextView esgroLbl = window.findViewById(R.id.esgroLbl);
+//                            final TextView themLbl = window.findViewById(R.id.themLbl);
+//                            esgroLbl.setTextColor(Color.parseColor("#929AAB"));
+//                            weLbl.setTextColor(Color.parseColor("#7FE239"));
+//
+//                            weLbl.setText(charging_amount);
+//                            esgroLbl.setText(charging_amount);
+//                            themLbl.setText(charging_amount);
+//
+//                            new Handler().postDelayed(() -> {
+//
+//                                if(Double.parseDouble(builder.toString())>0){
+//                                    weLbl.setTextColor(Color.parseColor("#929AAB"));
+//                                    esgroLbl.setTextColor(Color.parseColor("#7FE239"));
+//                                }
+//                            }, SPLASH_DISPLAY_LENGTH_1);
+//
+//                            dialog.show();
+//                            new Handler().postDelayed(() -> {
+//                                dialog.dismiss();
+//
+//                                Intent mainIntent = new Intent(Request_03_Activity.this,DisputeNoHistoryActivity.class);
+//                                Request_03_Activity.this.startActivity(mainIntent);
+//                            }, SPLASH_DISPLAY_LENGTH);
+//
+//                        }
+//                        });
+//            alertDialog.show();
+//        }
 
-                            dialog.setContentView(R.layout.activity_proessing_alert);
-                            dialog.setCanceledOnTouchOutside(false);
-                            final StringBuilder builder = new StringBuilder(charging_amount);
-                            builder.replace(0,1,"");
+    public void showOK(final AchievementView achievementView, String title, String body){
 
-                            dialog.show();
-                            Window window = dialog.getWindow();
+        achievementView
+                .setTitle(title)
+                .setMensage(body)
+                //.setBorderRetangle()
+                .setColor(R.color.colorAccent)
+                .setIcon(R.drawable.ok)
+                //.setScaleTypeIcon(ImageView.ScaleType.CENTER_INSIDE)
+                .setDuration(3000) // or time in milliseconds
 
-                            final TextView weLbl = window.findViewById(R.id.weLbl);
-                            final TextView esgroLbl = window.findViewById(R.id.esgroLbl);
-                            final TextView themLbl = window.findViewById(R.id.themLbl);
-                            esgroLbl.setTextColor(Color.parseColor("#929AAB"));
-                            weLbl.setTextColor(Color.parseColor("#7FE239"));
+                .setShowListern(new ShowListern() {
+                    @Override
+                    public void start() {
+                        Log.i("LOG","start");
+                    }
 
-                            weLbl.setText(charging_amount);
-                            esgroLbl.setText(charging_amount);
-                            themLbl.setText(charging_amount);
+                    @Override
+                    public void show() {
+                        Log.i("LOG","show");
+                    }
 
-                            new Handler().postDelayed(() -> {
+                    @Override
+                    public void dimiss() {
+                        Log.i("LOG","dismiss");
 
-                                if(Double.parseDouble(builder.toString())>0){
-                                    weLbl.setTextColor(Color.parseColor("#929AAB"));
-                                    esgroLbl.setTextColor(Color.parseColor("#7FE239"));
-                                }
-                            }, SPLASH_DISPLAY_LENGTH_1);
+                        dialog.setContentView(R.layout.activity_proessing_alert);
+                        dialog.setCanceledOnTouchOutside(false);
+                        final StringBuilder builder = new StringBuilder(charging_amount);
+                        builder.replace(0,1,"");
 
-                            dialog.show();
-                            new Handler().postDelayed(() -> {
-                                dialog.dismiss();
+                        dialog.show();
+                        Window window = dialog.getWindow();
 
-                                Intent mainIntent = new Intent(Request_03_Activity.this,DisputeNoHistoryActivity.class);
-                                Request_03_Activity.this.startActivity(mainIntent);
-                            }, SPLASH_DISPLAY_LENGTH);
+                        final TextView weLbl = window.findViewById(R.id.weLbl);
+                        final TextView esgroLbl = window.findViewById(R.id.esgroLbl);
+                        final TextView themLbl = window.findViewById(R.id.themLbl);
+                        esgroLbl.setTextColor(Color.parseColor("#929AAB"));
+                        weLbl.setTextColor(Color.parseColor("#7FE239"));
 
-                        }
-                        });
-            alertDialog.show();
-        }
+                        weLbl.setText(charging_amount);
+                        esgroLbl.setText(charging_amount);
+                        themLbl.setText(charging_amount);
+
+                        new Handler().postDelayed(() -> {
+
+                            if(Double.parseDouble(builder.toString())>0){
+                                weLbl.setTextColor(Color.parseColor("#929AAB"));
+                                esgroLbl.setTextColor(Color.parseColor("#7FE239"));
+                            }
+                        }, SPLASH_DISPLAY_LENGTH_1);
+
+                        dialog.show();
+                        new Handler().postDelayed(() -> {
+                            dialog.dismiss();
+
+                            Intent mainIntent = new Intent(Request_03_Activity.this,DisputeNoHistoryActivity.class);
+                            Request_03_Activity.this.startActivity(mainIntent);
+                        }, SPLASH_DISPLAY_LENGTH);
+
+                    }
+
+                    @Override
+                    public void end() {
+                        Log.i("LOG","end");
+                    }
+                })
+                .show();
+    }
+
 }

@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
+import com.rafaelbarbosatec.archivimentview.AchievementView;
 import com.upventrix.esgro.R;
 import com.upventrix.esgro.modals.User;
 import com.upventrix.esgro.modals.UserToken;
@@ -49,6 +50,7 @@ public class SignInActivity extends AppCompatActivity {
     ConstraintLayout constraintLayout2;
     private String deviceName;
     private NotificationService notificationService;
+    AchievementView achievementView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +98,7 @@ public class SignInActivity extends AppCompatActivity {
         password= findViewById(R.id.signInPasswordTxt);
         progressBar = findViewById(R.id.progressBar4);
         service = Config.getInstance().create(UserService.class);
+        achievementView = findViewById(R.id.achievementView);
         notificationService = Config.getInstance().create(NotificationService.class);
 
     }
@@ -220,6 +223,8 @@ public class SignInActivity extends AppCompatActivity {
                         SignInActivity.this.startActivity(mainIntent);
                     }
                     }
+                }else{
+                    new ToastActivity().showFailed(achievementView,"Warnings!","Failed to login");
                 }
 
             }

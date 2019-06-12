@@ -321,4 +321,20 @@
         card_view:layout_constraintStart_toStartOf="@+id/constraintLayout2"
         card_view:layout_constraintTop_toTopOf="@+id/constraintLayout2" />
 
+    <com.rafaelbarbosatec.archivimentview.AchievementView
+        android:id="@+id/achievementView"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="165dp"
+        card_view:ac_color="@color/colorPrimaryDark"
+        card_view:ac_icon="@drawable/chat"
+        card_view:ac_text_color="@android:color/white"
+        card_view:layout_constraintBottom_toBottomOf="parent"
+        card_view:layout_constraintEnd_toEndOf="parent"
+        card_view:layout_constraintHorizontal_bias="0.01"
+        card_view:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints">
+
+    </com.rafaelbarbosatec.archivimentview.AchievementView>
+
 </android.support.constraint.ConstraintLayout>

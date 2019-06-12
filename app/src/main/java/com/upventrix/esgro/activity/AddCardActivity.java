@@ -25,6 +25,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.gson.JsonObject;
+import com.rafaelbarbosatec.archivimentview.AchievementView;
 import com.stripe.android.Stripe;
 import com.stripe.android.TokenCallback;
 import com.stripe.android.model.Card;
@@ -62,6 +63,7 @@ public class AddCardActivity extends AppCompatActivity {
     private CardService cardService;
     int userid = 0;
     String email = "";
+    AchievementView achievementView;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -87,6 +89,7 @@ public class AddCardActivity extends AppCompatActivity {
         constraintLayout = findViewById(R.id.add_credit_debit);
         zip = findViewById(R.id.zipCOdeTXt);
         cardService = Config.getInstance().create(CardService.class);
+        achievementView = findViewById(R.id.achievementView);
     }
 
     public boolean onClickSomething(String cardNumber, Integer cardExpMonth, Integer cardExpYear, String cardCVC,String zip) {
@@ -173,28 +176,29 @@ public class AddCardActivity extends AppCompatActivity {
             }
             String zipCOde = zip.getText().toString();
             if(zipCOde.equals("")){
-                CharSequence text = "Invalid Zip Code";
-                int duration = Toast.LENGTH_SHORT;
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.show();
+                new  ToastActivity().showFailed(
+                        achievementView,
+                        "Invalid!",
+                        "Invalid zip code. try again");
                 return;
             }
             Card cardToSave = mCardInputWidget.getCard();
 
             if (cardToSave == null) {
-                CharSequence text = "Invalid Card";
-                int duration = Toast.LENGTH_SHORT;
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.show();
+
+                new  ToastActivity().showFailed(
+                        achievementView,
+                        "Invalid!",
+                        "Card Details Invalid. try again");
                 return;
             }
             boolean b = onClickSomething(cardToSave.getNumber(), cardToSave.getExpMonth(), cardToSave.getExpYear(), cardToSave.getCVC(),zipCOde);
 
             if (!b) {
-                CharSequence text = "Invalid Card";
-                int duration = Toast.LENGTH_SHORT;
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.show();
+                new  ToastActivity().showFailed(
+                        achievementView,
+                        "Invalid!",
+                        "Card Details Invalid. try again");
                 return;
             }
             final boolean b1 = cardToSave.validateNumber();
@@ -223,11 +227,21 @@ public class AddCardActivity extends AppCompatActivity {
 
                                         boolean status = response.body().get("status").getAsBoolean();
                                         if (status){
-                                            vewAlert("Successfully","Card details successfully saved",AddCardActivity.this);
-                                        }else{
+                                            new  ToastActivity().showOK(
+                                                achievementView,
+                                                "Successfully!",
+                                                "Card details successfully saved",
+                                                AddCardActivity.this,
+                                                BankAndCards2Activity.class
+                                            );
+                                         }else{
                                             addcrd.setEnabled(true);
-                                            vewAlert("Warnings!","Card details saving failed!",AddCardActivity.this);
-                                        }
+                                            new  ToastActivity().showFailed(
+                                                achievementView,
+                                                "Warnings!",
+                                                "Card details saving failed!"
+                                            );
+                                         }
                                     }
 
                                     @Override
@@ -285,23 +299,6 @@ public class AddCardActivity extends AppCompatActivity {
                 System.out.println("afterTextChanged");
             }
         };
-    public void vewAlert(final String title, String message, final Context context){
-        final AlertDialog alertDialog = new AlertDialog.Builder(context).create();
-        alertDialog.setTitle(title);
-        alertDialog.setMessage(message);
-        alertDialog.setCanceledOnTouchOutside(false);
-        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                        if (title.equals("Successfully")) {
 
-                            Intent mainIntent = new Intent(AddCardActivity.this, BankAndCards2Activity.class);
-                            AddCardActivity.this.startActivity(mainIntent);
-                        }
-                    }
-                });
-        alertDialog.show();
-    }
 }
 

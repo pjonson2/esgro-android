@@ -38,6 +38,7 @@ import com.facebook.imagepipeline.request.ImageRequest;
 import com.facebook.imagepipeline.request.ImageRequestBuilder;
 import com.google.gson.JsonObject;
 import com.hbb20.CountryCodePicker;
+import com.rafaelbarbosatec.archivimentview.AchievementView;
 import com.upventrix.esgro.R;
 import com.upventrix.esgro.modals.Files;
 import com.upventrix.esgro.modals.User;
@@ -99,6 +100,7 @@ public class UpdateProfileActivity   extends AppCompatActivity {
     int verificationId = 0;
 
     private static int logicNumber = 0;
+    AchievementView achievementView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         onWindowFocusChanged(true);
@@ -153,6 +155,7 @@ public class UpdateProfileActivity   extends AppCompatActivity {
         circleImageView = findViewById(R.id.profile_image);
         ccp = findViewById(R.id.ccp);
         dialog = new Dialog(this);
+        achievementView = findViewById(R.id.achievementView);
     }
 
     void setListeners(){
@@ -403,7 +406,11 @@ public class UpdateProfileActivity   extends AppCompatActivity {
                                                 dialog.dismiss();
                                                 callAPi(user);
                                             } else {
-                                                vewAlert("Invalid!", "Failed to verifying your code ", UpdateProfileActivity.this);
+                                                new  ToastActivity().showFailed(
+                                                        achievementView,
+                                                        "Invalid!",
+                                                        "Failed to verifying your code !"
+                                                );
                                                 saveBtn.setEnabled(true);
                                                 verify.setEnabled(true);
                                                 logicNumber = 0;
@@ -426,7 +433,11 @@ public class UpdateProfileActivity   extends AppCompatActivity {
 
                         }else{
                             logicNumber = 0;
-                            vewAlert("Warnings!","Failed to Verify this Number",UpdateProfileActivity.this);
+                            new  ToastActivity().showFailed(
+                                    achievementView,
+                                    "Invalid!",
+                                    "Failed to Verify this Number !"
+                            );
                             return;
                         }
                     }
@@ -459,12 +470,22 @@ public class UpdateProfileActivity   extends AppCompatActivity {
                     status = response.body().get("status").getAsString();
                     if(status.toString().equals("success")){
                         logicNumber = 0;
-                        vewAlert("Successfully","Profile Successfully Updated",UpdateProfileActivity.this);
-                        saveBtn.setEnabled(true);
+                         saveBtn.setEnabled(true);
+                        new  ToastActivity().showOK(
+                                achievementView,
+                                "Successfully!",
+                                "Profile Successfully Updated",
+                                UpdateProfileActivity.this,
+                                ProfileActivity.class
+                        );
                     }else{
                         saveBtn.setEnabled(true);
-                        vewAlert("Warnings!","Failed to update profile",UpdateProfileActivity.this);
-                    }
+                        new  ToastActivity().showFailed(
+                                achievementView,
+                                "Warnings!",
+                                "Failed to update profile!"
+                        );
+                     }
                 }
 
                 @Override
@@ -487,11 +508,21 @@ public class UpdateProfileActivity   extends AppCompatActivity {
                     if(status.toString().equals("success")){
                         saveBtn.setEnabled(true);
                         logicNumber = 0;
-                        vewAlert("Successfully","Profile Successfully Updated",UpdateProfileActivity.this);
+                         new  ToastActivity().showOK(
+                                achievementView,
+                                "Successfully!",
+                                "Profile Successfully Updated",
+                                 UpdateProfileActivity.this,
+                                 ProfileActivity.class
+                        );
 
                     }else{
                         saveBtn.setEnabled(true);
-                        vewAlert("Warnings!","Failed to update profile",UpdateProfileActivity.this);
+                        new  ToastActivity().showFailed(
+                                achievementView,
+                                "Warnings!",
+                                "Failed to update profile!"
+                        );
                     }
                 }
 
@@ -523,12 +554,22 @@ public class UpdateProfileActivity   extends AppCompatActivity {
                             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                                 status = response.body().get("status").getAsString();
                                 if(status.toString().equals("success")){
-                                    vewAlert("Successfully","Profile Successfully Updated",UpdateProfileActivity.this);
-                                    saveBtn.setEnabled(true);
+                                     saveBtn.setEnabled(true);
                                     logicNumber = 0;
+                                    new  ToastActivity().showOK(
+                                            achievementView,
+                                            "Successfully!",
+                                            "Profile Successfully Updated",
+                                            UpdateProfileActivity.this,
+                                            ProfileActivity.class
+                                    );
                                 }else{
                                     saveBtn.setEnabled(true);
-                                    vewAlert("Warnings!","Failed to update profile",UpdateProfileActivity.this);
+                                    new  ToastActivity().showFailed(
+                                            achievementView,
+                                            "Warnings!",
+                                            "Failed to update profile!"
+                                    );
                                 }
                             }
 
@@ -608,7 +649,11 @@ public class UpdateProfileActivity   extends AppCompatActivity {
                     if (status.equals("success")){
                         System.out.println("///////////// / ///  Verified ");
                     }else{
-                        vewAlert("Invalid!","Failed to verifying your code ",UpdateProfileActivity.this);
+                        new  ToastActivity().showFailed(
+                                achievementView,
+                                "Invalid!",
+                                "Failed to verifying your code !"
+                        );
                         saveBtn.setEnabled(true);
                         return;
                     }
@@ -688,23 +733,23 @@ public class UpdateProfileActivity   extends AppCompatActivity {
 
         }
     };
-
-    public void vewAlert(final String title, String message, final Context context){
-        final AlertDialog alertDialog = new AlertDialog.Builder(context).create();
-        alertDialog.setTitle(title);
-        alertDialog.setMessage(message);
-        alertDialog.setCanceledOnTouchOutside(false);
-        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                        if (title.equals("Successfully")) {
-                            Intent mainIntent = new Intent(context, ProfileActivity.class);
-                            context.startActivity(mainIntent);
-                        }
-                    }
-                });
-        alertDialog.show();
-    }
+//
+//    public void vewAlert(final String title, String message, final Context context){
+//        final AlertDialog alertDialog = new AlertDialog.Builder(context).create();
+//        alertDialog.setTitle(title);
+//        alertDialog.setMessage(message);
+//        alertDialog.setCanceledOnTouchOutside(false);
+//        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+//                new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        dialog.dismiss();
+//                        if (title.equals("Successfully")) {
+//                            Intent mainIntent = new Intent(context, ProfileActivity.class);
+//                            context.startActivity(mainIntent);
+//                        }
+//                    }
+//                });
+//        alertDialog.show();
+//    }
 
 }

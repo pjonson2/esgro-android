@@ -28,6 +28,7 @@ import android.widget.Toast;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.google.gson.JsonObject;
+import com.rafaelbarbosatec.archivimentview.AchievementView;
 import com.upventrix.esgro.R;
 import com.upventrix.esgro.modals.Files;
 import com.upventrix.esgro.modals.Image;
@@ -71,6 +72,7 @@ public class CompleteProfileActivity  extends AppCompatActivity{
     private final int SELECT_PHOTO = 1;
     int userid = 0;
     ProgressBar progressBar;
+    AchievementView achievementView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,6 +117,7 @@ public class CompleteProfileActivity  extends AppCompatActivity{
         progressBar = findViewById(R.id.p6);
         service = Config.getInstance().create(FilesService.class);
         userService = Config.getInstance().create(UserService.class);
+        achievementView = findViewById(R.id.achievementView);
     }
 
     void setListeners(){
@@ -248,12 +251,12 @@ public class CompleteProfileActivity  extends AppCompatActivity{
 
                         progressBar.setVisibility(View.GONE);
                         continueBtn.setEnabled(true);
-                        Context context = getApplicationContext();
-                        CharSequence text = "Select Image from your device";
-                        int duration = Toast.LENGTH_SHORT;
 
-                        Toast toast = Toast.makeText(context, text, duration);
-                        toast.show();
+                        new ToastActivity().showFailed(
+                                achievementView,
+                                "Warnings!",
+                                "Select Image from your device"
+                        );
                         return;
                     }
 
@@ -289,12 +292,11 @@ public class CompleteProfileActivity  extends AppCompatActivity{
                                             Intent mainIntent = new Intent(CompleteProfileActivity.this, DisputeNoHistoryActivity.class);
                                             CompleteProfileActivity.this.startActivity(mainIntent);
                                         }else{
-                                            Context context = getApplicationContext();
-                                            CharSequence text = "Image Upload Failed";
-                                            int duration = Toast.LENGTH_SHORT;
-
-                                            Toast toast = Toast.makeText(context, text, duration);
-                                            toast.show();
+                                            new ToastActivity().showFailed(
+                                                    achievementView,
+                                                    "Warnings!",
+                                                    "Image Upload Failed"
+                                            );
                                         }
                                         progressBar.setVisibility(View.GONE);
                                         continueBtn.setEnabled(true);
@@ -305,18 +307,22 @@ public class CompleteProfileActivity  extends AppCompatActivity{
                                     public void onFailure(Call<JsonObject> call, Throwable t) {
                                         continueBtn.setEnabled(true);
                                         progressBar.setVisibility(View.GONE);
+                                        new ToastActivity().showFailed(
+                                                achievementView,
+                                                "Warnings!",
+                                                "Try again"
+                                        );
                                     }
                                 });
                                 continueBtn.setEnabled(true);
                                 progressBar.setVisibility(View.GONE);
 
                             }else{
-                                Context context = getApplicationContext();
-                                CharSequence text = "Image Upload Failed";
-                                int duration = Toast.LENGTH_SHORT;
-
-                                Toast toast = Toast.makeText(context, text, duration);
-                                toast.show();
+                                new ToastActivity().showFailed(
+                                        achievementView,
+                                        "Warnings!",
+                                        "Image Upload Failed"
+                                );
                              }
 
                             progressBar.setVisibility(View.GONE);

@@ -13,6 +13,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.rafaelbarbosatec.archivimentview.AchievementView;
 import com.upventrix.esgro.R;
 
 public class Request_01_Activity extends AppCompatActivity {
@@ -41,6 +42,7 @@ public class Request_01_Activity extends AppCompatActivity {
 
     Bundle extras;
     Dialog dialog;
+    AchievementView achievementView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,7 +97,7 @@ public class Request_01_Activity extends AppCompatActivity {
         n11 =  findViewById(R.id.n11);
         n0 =  findViewById(R.id.n0);
         iClick = findViewById(R.id.iClick);
-
+        achievementView = findViewById(R.id.achievementView);
         reserveTxt = findViewById(R.id.reserveTxt);
         dialog = new Dialog(this);
 
@@ -172,16 +174,11 @@ public class Request_01_Activity extends AppCompatActivity {
             String userId = extras.getString("request_userId");
 
             if (price.equals("")){
-                AlertDialog alertDialog = new AlertDialog.Builder(Request_01_Activity.this).create();
-                alertDialog.setTitle("Warning!");
-                alertDialog.setMessage("Please Fill Amount Field");
-                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        });
-                alertDialog.show();
+                new  ToastActivity().showFailed(
+                        achievementView,
+                        "Warnings!",
+                        "PLease Fill Amount!"
+                );
             }else{
                 Intent mainIntent = new Intent(Request_01_Activity.this,Request_02_Activity.class);
                 mainIntent.putExtra("charging_amount", price);
