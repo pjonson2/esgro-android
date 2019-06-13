@@ -299,7 +299,7 @@ public class Request_03_Activity extends AppCompatActivity {
                 .setMensage(body)
                 //.setBorderRetangle()
                 .setColor(R.color.colorAccent)
-                .setIcon(R.drawable.ok)
+                .setIcon(R.drawable.checked_50px)
                 //.setScaleTypeIcon(ImageView.ScaleType.CENTER_INSIDE)
                 .setDuration(3000) // or time in milliseconds
 

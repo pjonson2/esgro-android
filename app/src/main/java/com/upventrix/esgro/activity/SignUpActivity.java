@@ -366,7 +366,7 @@ public class SignUpActivity extends AppCompatActivity {
                 .setTitle(title)
                 .setMensage(body)
                  .setColor(R.color.colorAccent)
-                .setIcon(R.drawable.ok)
+                .setIcon(R.drawable.checked_50px)
                  .setDuration(3000) // or time in milliseconds
 
                 .setShowListern(new ShowListern() {

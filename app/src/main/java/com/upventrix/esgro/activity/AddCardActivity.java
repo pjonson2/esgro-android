@@ -175,13 +175,7 @@ public class AddCardActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
             String zipCOde = zip.getText().toString();
-            if(zipCOde.equals("")){
-                new  ToastActivity().showFailed(
-                        achievementView,
-                        "Invalid!",
-                        "Invalid zip code. try again");
-                return;
-            }
+
             Card cardToSave = mCardInputWidget.getCard();
 
             if (cardToSave == null) {
@@ -204,6 +198,13 @@ public class AddCardActivity extends AppCompatActivity {
             final boolean b1 = cardToSave.validateNumber();
             final boolean b2 = cardToSave.validateCVC();
 
+            if(zipCOde.equals("")){
+                new  ToastActivity().showFailed(
+                        achievementView,
+                        "Invalid!",
+                        "Invalid zip code. try again");
+                return;
+            }
             if (b1 && b2) {
                 addcrd.setEnabled(false);
                 System.out.println("Card Valid ");
