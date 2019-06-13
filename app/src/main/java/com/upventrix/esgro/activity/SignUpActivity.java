@@ -100,6 +100,17 @@ public class SignUpActivity extends AppCompatActivity {
             public boolean onTouch(View view, MotionEvent ev)
             {
                 hideKeyboard(view);
+                if  (!password.getText().toString().equals("")&&passwordReType.getText().toString().equals("")){
+                    passwordReType.requestFocus();
+                    openKeyboard(view);
+                }
+                if  (!password.getText().toString().equals(passwordReType.getText().toString())){
+                    passwordReType.requestFocus();
+                    openKeyboard(view);
+                }
+                if(!passwordReType.getText().toString().equals("")){
+                    hideKeyboard(view);
+                }
                 return false;
             }
         });
@@ -109,6 +120,17 @@ public class SignUpActivity extends AppCompatActivity {
             public boolean onTouch(View view, MotionEvent ev)
             {
                 hideKeyboard(view);
+                if  (!password.getText().toString().equals("")&&passwordReType.getText().toString().equals("")){
+                    passwordReType.requestFocus();
+                    openKeyboard(view);
+                }
+                if  (!password.getText().toString().equals(passwordReType.getText().toString())){
+                    passwordReType.requestFocus();
+                    openKeyboard(view);
+                }
+                if(!passwordReType.getText().toString().equals("")){
+                    hideKeyboard(view);
+                }
                 return false;
             }
         });
@@ -117,6 +139,13 @@ public class SignUpActivity extends AppCompatActivity {
     private void hideKeyboard(View view) {
         InputMethodManager in = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         in.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+    }
+    private void openKeyboard(View view) {
+//        InputMethodManager in = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+//        in.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT);
+        InputMethodManager manager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        manager.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, InputMethodManager.HIDE_NOT_ALWAYS);
+
     }
     @SuppressLint("ResourceType")
     void idInitialization(){
