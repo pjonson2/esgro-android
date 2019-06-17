@@ -3,9 +3,11 @@ package com.upventrix.esgro.activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -25,8 +27,12 @@ import com.rafaelbarbosatec.archivimentview.AchievementView;
 import com.upventrix.esgro.R;
 import com.upventrix.esgro.modals.User;
 import com.upventrix.esgro.resource.Config;
+import com.upventrix.esgro.resource.LocalData;
 import com.upventrix.esgro.services.UserService;
 import com.google.gson.JsonObject;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -51,8 +57,10 @@ public class EnterVerificationActivity extends AppCompatActivity {
 
     Bundle extras;
     int verification_id = 0;
+    String number ="";
     private Timer myTimer;
-
+    String finish = "no";
+    TextView otp;
 
     ConstraintLayout constraintLayout;
     private final int interval = 1000; // 1 Second
@@ -80,7 +88,7 @@ public class EnterVerificationActivity extends AppCompatActivity {
             }
         });
 
-        new CountDownTimer(300000, 1000) { // adjust the milli seconds here
+        new CountDownTimer(120000, 1000) { // adjust the milli seconds here
 
             public void onTick(long millisUntilFinished) {
                 timerView.setText(""+String.format("%d:%d",
@@ -91,6 +99,7 @@ public class EnterVerificationActivity extends AppCompatActivity {
 
             public void onFinish() {
                 System.out.println("DONE");
+                finish = "finished";
             }
         }.start();
 
@@ -140,6 +149,7 @@ public class EnterVerificationActivity extends AppCompatActivity {
         service = Config.getInstance().create(UserService.class);
         achievementView = findViewById(R.id.achievementView);
         extras = getIntent().getExtras();
+        otp = findViewById(R.id.otpBtn);
 
     }
 
@@ -157,6 +167,8 @@ public class EnterVerificationActivity extends AppCompatActivity {
         n4Txt.addTextChangedListener(n4Change);
 
         verification_id = extras.getInt("verification_id");
+        number = extras.getString("number");
+        otp.setOnClickListener(otpAction);
 
     }
 
@@ -181,7 +193,7 @@ public class EnterVerificationActivity extends AppCompatActivity {
 
     View.OnClickListener nextActoin = new View.OnClickListener() {
         public void onClick(View v) {
-
+            System.out.println("Again");
             if (n1TXt.getText().toString().equals("") || n2Txt.getText().toString().equals("") || n3Txt.getText().toString().equals("") || n4Txt.getText().toString().equals("")) {
 
             } else {
@@ -236,6 +248,76 @@ public class EnterVerificationActivity extends AppCompatActivity {
             EnterVerificationActivity.this.startActivity(mainIntent);
         }
     };
+
+    View.OnClickListener otpAction = new View.OnClickListener() {
+        public void onClick(View v) {
+
+            if(finish.equals("finished")){
+                finish = "no";
+                callApi();
+                new CountDownTimer(120000, 1000) { // adjust the milli seconds here
+
+                    public void onTick(long millisUntilFinished) {
+                        timerView.setText(""+String.format("%d:%d",
+                                TimeUnit.MILLISECONDS.toMinutes( millisUntilFinished),
+                                TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) -
+                                        TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))));
+                    }
+
+                    public void onFinish() {
+                        System.out.println("DONE");
+                        finish = "finished";
+                    }
+                }.start();
+
+            }else{
+                System.out.println("Not finished");
+            }
+
+        }
+    };
+
+    private void callApi() {
+        final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String userData = new LocalData().getlocalData(sharedPref, "userdata");
+        int userid = 0;
+        try {
+            JSONObject jsonObj = new JSONObject(userData);
+            userid = jsonObj.getInt("user_id");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        Call<JsonObject> userCall = service.verify(
+                new User(
+                        "+"+number,
+                        userid
+                ));
+        userCall.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+
+                String status = null;
+                try {
+                    status = response.body().get("status").getAsString();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                if (status.equals("success")){
+
+                    verification_id = response.body().get("verification_id").getAsInt();
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+
+            }
+        });
+    }
+
     TextWatcher checkNumbers = new TextWatcher() {
 
         @Override

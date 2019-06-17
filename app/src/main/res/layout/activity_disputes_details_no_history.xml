@@ -431,12 +431,13 @@
         android:id="@+id/disputeNoUserCardImg"
         android:layout_width="50dp"
         android:layout_height="50dp"
-         app:layout_constraintBottom_toBottomOf="@+id/midView4"
+        app:layout_constraintBottom_toBottomOf="@+id/midView4"
         app:layout_constraintEnd_toEndOf="@+id/midView4"
         app:layout_constraintHorizontal_bias="0.043"
         app:layout_constraintStart_toStartOf="@+id/midView4"
         app:layout_constraintTop_toTopOf="@+id/midView4"
-        app:layout_constraintVertical_bias="0.105" />
+        app:layout_constraintVertical_bias="0.105"
+        app:srcCompat="@drawable/default_pro_pic2x" />
 
     <TextView
         android:id="@+id/disputeNoUserNameTxt"
@@ -461,7 +462,7 @@
 
     <TextView
         android:id="@+id/disputePrice"
-        android:layout_width="69dp"
+        android:layout_width="wrap_content"
         android:layout_height="23dp"
         android:layout_marginTop="2dp"
         android:fontFamily="@font/open_sans"

@@ -192,7 +192,7 @@
             app:layout_constraintVertical_bias="0.454" />
 
         <TextView
-            android:id="@+id/textView16"
+            android:id="@+id/otpBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"

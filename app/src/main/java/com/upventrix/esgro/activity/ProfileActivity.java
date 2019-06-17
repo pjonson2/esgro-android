@@ -139,7 +139,7 @@ public class ProfileActivity  extends FooterActivity {
                         progressBar.setVisibility(View.GONE);
                     }catch(Exception e){
                         progressBar.setVisibility(View.GONE);
-                     }
+                    }
                     progressBar.setVisibility(View.GONE);
                 }catch (UnsupportedOperationException e){
                     progressBar.setVisibility(View.GONE);

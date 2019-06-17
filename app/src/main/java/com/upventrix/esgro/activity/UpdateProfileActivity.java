@@ -14,6 +14,7 @@ import android.graphics.drawable.shapes.RectShape;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.StrictMode;
 import android.support.annotation.RequiresApi;
 import android.support.constraint.ConstraintLayout;
@@ -29,6 +30,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
@@ -55,6 +57,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.concurrent.TimeUnit;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
@@ -85,7 +88,7 @@ public class UpdateProfileActivity   extends AppCompatActivity {
     int userID = 0;
     String name = "";
     String encodedImage = "";
-
+    String finish = "no";
     private final int SELECT_PHOTO = 1;
     byte[] b = null;
 
@@ -336,15 +339,59 @@ public class UpdateProfileActivity   extends AppCompatActivity {
 
                             dialog.setContentView(R.layout.activity_verification_of_update_profile);
                             dialog.show();
+
                             dialog.setCanceledOnTouchOutside(false);
                             Window window = dialog.getWindow();
                             window_local = window;
                             Button verify = window.findViewById(R.id.verifyBtn);
                             Button cancel = window.findViewById(R.id.cancelBtn);
+                            TextView otp = window.findViewById(R.id.otpBtn);
+                            TextView timerView = window.findViewById(R.id.enterTimerLbl2);
+                            new CountDownTimer(120000, 1000) { // adjust the milli seconds here
 
-                            ((EditText)window.findViewById(R.id.enterNumber1Txt2)).addTextChangedListener(n1Change);
+                                public void onTick(long millisUntilFinished) {
+                                    timerView.setText(""+String.format("%d:%d",
+                                            TimeUnit.MILLISECONDS.toMinutes( millisUntilFinished),
+                                            TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) -
+                                                    TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))));
+                                }
+
+                                public void onFinish() {
+                                    System.out.println("DONE");
+                                    finish = "finished";
+                                }
+                            }.start();
+
+
+                                    ((EditText)window.findViewById(R.id.enterNumber1Txt2)).addTextChangedListener(n1Change);
                             ((EditText)window.findViewById(R.id.enterNumber2Txt2)).addTextChangedListener(n2Change);
                             ((EditText)window.findViewById(R.id.enterNumber3Txt2)).addTextChangedListener(n3Change);
+
+                            otp.setOnClickListener(new View.OnClickListener() {
+
+                                @Override
+                                public void onClick(View v) {
+                                    if(finish.equals("finished")){
+                                        finish = "no";
+                                        callApi();
+                                        new CountDownTimer(120000, 1000) { // adjust the milli seconds here
+
+                                            public void onTick(long millisUntilFinished) {
+                                                timerView.setText(""+String.format("%d:%d",
+                                                        TimeUnit.MILLISECONDS.toMinutes( millisUntilFinished),
+                                                        TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) -
+                                                                TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))));
+                                            }
+
+                                            public void onFinish() {
+                                                System.out.println("DONE");
+                                                finish = "finished";
+                                            }
+                                        }.start();
+                                    }
+                                }
+                            });
+
                             cancel.setOnClickListener(new View.OnClickListener() {
                                   @Override
                                   public void onClick(View v) {
@@ -454,6 +501,36 @@ public class UpdateProfileActivity   extends AppCompatActivity {
 
         }
     };
+
+    private void callApi() {
+        Call<JsonObject> userCall = userService.verify(
+                new User(
+                        ccp.getFullNumberWithPlus(),
+                        userID
+                ));
+        userCall.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                String status1 = "";
+                System.out.println("userService.verify api calling");
+                try {
+                    status1 = response.body().get("status").getAsString();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                if (status1.equals("success")) {
+                    verificationId = response.body().get("verification_id").getAsInt();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+
+            }
+
+        });
+    }
 
     private void callAPi(User user){
          if (logicNumber == 0){

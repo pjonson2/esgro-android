@@ -8,6 +8,24 @@
     android:background="#F7F8FB"
     android:screenOrientation="portrait">
 
+    <CheckBox
+        android:id="@+id/defaultBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/open_sans"
+        android:text="Save as default"
+        android:textColor="@android:color/tertiary_text_light"
+        app:layout_constraintBottom_toTopOf="@+id/achievementView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view12"
+        app:layout_constraintVertical_bias="0.044" />
+
     <com.rafaelbarbosatec.archivimentview.AchievementView
         android:id="@+id/achievementView"
         android:layout_width="376dp"
@@ -172,44 +190,6 @@
         app:layout_constraintTop_toTopOf="@+id/view12"
         app:layout_constraintVertical_bias="0.41000003"
         tools:ignore="MissingConstraints" />
-
-    <RadioGroup
-        android:id="@+id/radioGroup"
-        android:layout_width="194dp"
-        android:layout_height="97dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view12">
-
-        <RadioButton
-            android:id="@+id/radioButton"
-            android:layout_width="182dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:checked="true"
-            android:enabled="false"
-            android:fontFamily="@font/open_sans"
-            android:text="Default Card"
-            android:textSize="14sp"
-            android:visibility="invisible" />
-
-        <RadioButton
-            android:id="@+id/radioButton2"
-            android:layout_width="183dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:enabled="false"
-            android:fontFamily="@font/open_sans"
-            android:text="Default Payment"
-            android:textSize="14sp"
-            android:visibility="invisible" />
-    </RadioGroup>
 
     <com.stripe.android.view.CardInputWidget
         android:id="@+id/card_input_widget"

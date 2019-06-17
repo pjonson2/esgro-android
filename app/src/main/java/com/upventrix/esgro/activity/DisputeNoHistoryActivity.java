@@ -94,6 +94,7 @@ public class DisputeNoHistoryActivity extends AppCompatActivity implements Swipe
     private static Socket mSocket;
 
     private NotificationService notificationService;
+    ConstraintLayout emptyView;
 
     String message = "";
     int userid = 0;
@@ -181,6 +182,7 @@ public class DisputeNoHistoryActivity extends AppCompatActivity implements Swipe
                             toast.show();
                         }
                             disputeList.clear();
+                            System.out.println("deals   ............. "+deals);
                         for (int i = 0; i < deals.length(); ++i) {
                             JSONObject rec = deals.getJSONObject(i);
                             Dispute dispute = new Dispute();
@@ -325,7 +327,7 @@ public class DisputeNoHistoryActivity extends AppCompatActivity implements Swipe
         service = Config.getInstance().create(DealService.class);
         userService = Config.getInstance().create(UserService.class);
         notificationService = Config.getInstance().create(NotificationService.class);
-
+        emptyView = findViewById(R.id.emptyView);
         disputeList = new ArrayList<>();
         setValues();
 
@@ -403,7 +405,7 @@ public class DisputeNoHistoryActivity extends AppCompatActivity implements Swipe
             e.printStackTrace();
         }
 
-
+        emptyView.setVisibility(View.GONE);
         Call<JsonObject> userCall = service.dealAll(""+userid);
           userCall.enqueue(new Callback<JsonObject>() {
             @Override
@@ -419,6 +421,13 @@ public class DisputeNoHistoryActivity extends AppCompatActivity implements Swipe
                     JsonArray dealsList = response.body().getAsJsonArray("deals");
 
                     System.out.println("dealsList    ......  "+dealsList);
+
+                    if(dealsList.size()<=0){
+                        emptyView.setVisibility(View.VISIBLE);
+                    }else{
+                        emptyView.setVisibility(View.GONE);
+                    }
+
                     disputeList.clear();
                         for (JsonElement value : dealsList) {
 

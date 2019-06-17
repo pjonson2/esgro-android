@@ -13,10 +13,14 @@ public class Cards {
     @SerializedName("email")
     private String email;
 
-    public Cards(int user_id, String source, String email) {
+    @SerializedName("make_default")
+    private Boolean make_default;
+
+    public Cards(int user_id, String source, String email, Boolean make_default) {
         this.user_id = user_id;
         this.source = source;
         this.email = email;
+        this.make_default = make_default;
     }
 
     public int getUser_id() {
@@ -41,5 +45,13 @@ public class Cards {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Boolean getMake_default() {
+        return make_default;
+    }
+
+    public void setMake_default(Boolean make_default) {
+        this.make_default = make_default;
     }
 }

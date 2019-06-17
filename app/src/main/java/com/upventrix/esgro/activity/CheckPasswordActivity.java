@@ -142,6 +142,7 @@ public class CheckPasswordActivity extends AppCompatActivity {
                 shape.getPaint().setStrokeWidth(1);
                 newPassword.setBackground(shape);
                 confirmpassword.setBackground(shape);
+                update.setEnabled(true);
                 return;
             }else{
                 newPassword.setBackground(background);
@@ -170,7 +171,7 @@ public class CheckPasswordActivity extends AppCompatActivity {
                         new  ToastActivity().showFailed(
                                 achievementView,
                                 "Warnings!",
-                                "Profile Not Updated. Password not change failed");
+                                "Password changing failed");
                      }
                 }
 
@@ -181,7 +182,7 @@ public class CheckPasswordActivity extends AppCompatActivity {
                     new  ToastActivity().showFailed(
                             achievementView,
                             "Warnings!",
-                            "Profile Not Updated. Password not change failed");
+                            "Password changing failed");
 
                 }
             });

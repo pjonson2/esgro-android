@@ -102,16 +102,16 @@ public class TransferToCardActivity  extends AppCompatActivity {
     }
     void initializeArray() {
         bankList.add(
-                new Bank(1,1,"Bank of Ceylon", R.drawable.nopath_360)
+                new Bank(1,1,"Bank of Ceylon", R.drawable.nopath_360,true)
         );
         bankList.add(
-                new Bank(1,1,"Peoples Bank", R.drawable.bank_of_america)
+                new Bank(1,1,"Peoples Bank", R.drawable.bank_of_america,true)
         );
         bankList.add(
-                new Bank(1,1,"Nations Trust Bank", R.drawable.nopath_blue)
+                new Bank(1,1,"Nations Trust Bank", R.drawable.nopath_blue,false)
         );
         bankList.add(
-                new Bank(1,1,"DfCC Bank", R.drawable.nopath_copy2x)
+                new Bank(1,1,"DfCC Bank", R.drawable.nopath_copy2x,false)
         );
 
 

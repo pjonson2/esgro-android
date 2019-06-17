@@ -20,6 +20,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -63,7 +64,9 @@ public class AddCardActivity extends AppCompatActivity {
     private CardService cardService;
     int userid = 0;
     String email = "";
+    boolean make_default = false;
     AchievementView achievementView;
+    CheckBox checkBox;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -90,6 +93,7 @@ public class AddCardActivity extends AppCompatActivity {
         zip = findViewById(R.id.zipCOdeTXt);
         cardService = Config.getInstance().create(CardService.class);
         achievementView = findViewById(R.id.achievementView);
+        checkBox = findViewById(R.id.defaultBox);
     }
 
     public boolean onClickSomething(String cardNumber, Integer cardExpMonth, Integer cardExpYear, String cardCVC,String zip) {
@@ -205,6 +209,11 @@ public class AddCardActivity extends AppCompatActivity {
                         "Invalid zip code. try again");
                 return;
             }
+
+            if(checkBox.isChecked()){
+                make_default = true;
+            }
+
             if (b1 && b2) {
                 addcrd.setEnabled(false);
                 System.out.println("Card Valid ");
@@ -219,7 +228,8 @@ public class AddCardActivity extends AppCompatActivity {
                                 Call<JsonObject> save = cardService.save(new Cards(
                                         userid,
                                         token.getId(),
-                                        email
+                                        email,
+                                        make_default
                                 ));
                                 save.enqueue(new Callback<JsonObject>() {
                                     @Override

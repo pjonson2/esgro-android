@@ -189,6 +189,7 @@ public class MobileVerificationActivity  extends AppCompatActivity implements Ad
 
                          Intent mainIntent = new Intent(MobileVerificationActivity.this,EnterVerificationActivity.class);
                          mainIntent.putExtra("verification_id", verificationId);
+                         mainIntent.putExtra("number", selectedCountryCode+mobileCerificNumber.getText().toString());
                          MobileVerificationActivity.this.startActivity(mainIntent);
 
                      }

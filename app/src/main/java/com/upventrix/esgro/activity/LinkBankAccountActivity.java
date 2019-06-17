@@ -14,6 +14,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -34,10 +35,7 @@ import retrofit2.Response;
 
 public class LinkBankAccountActivity extends AppCompatActivity {
 
-    TextView textView;
-
-    ImageView linkedBankImg;
-
+    TextView bankNameTxt;
     Button save;
     Button back;
 
@@ -47,7 +45,8 @@ public class LinkBankAccountActivity extends AppCompatActivity {
     EditText accountNumberTxt;
 
     String identifier="";
-
+    CheckBox checkBox;
+    boolean make_default = false;
     private BankService service;
     private ConstraintLayout constraintLayout;
 
@@ -79,14 +78,13 @@ public class LinkBankAccountActivity extends AppCompatActivity {
     }
     void idInitialization(){
         back = findViewById(R.id.linkBankAccountBackBtnn);
-        textView = findViewById(R.id.linkedBankNameTxt);
-        linkedBankImg = findViewById(R.id.linkedBankImg);
         save = findViewById(R.id.saveAccBtn);
         routingTxt = findViewById(R.id.routingTxt);
         accountNumberTxt = findViewById(R.id.accountNumberTxt);
         service = Config.getInstance().create(BankService.class);
         constraintLayout = findViewById(R.id.activity_link_bank);
-
+        bankNameTxt = findViewById(R.id.bankNameTxt);
+        checkBox = findViewById(R.id.defaultBox);
 
     }
 
@@ -96,12 +94,12 @@ public class LinkBankAccountActivity extends AppCompatActivity {
     }
 
     void setValues(){
-        String bankDetails = getIntent().getStringExtra("bankListName");
-        bitmap = getIntent().getParcelableExtra("BitmapImage");
+//        String bankDetails = getIntent().getStringExtra("bankListName");
+//        bitmap = getIntent().getParcelableExtra("BitmapImage");
 
-        textView.setText(bankDetails);
-        bitmap = getIntent().getParcelableExtra("bankListImage");
-        linkedBankImg.setImageBitmap(bitmap);
+//        textView.setText(bankDetails);
+//        bitmap = getIntent().getParcelableExtra("bankListImage");
+//        linkedBankImg.setImageBitmap(bitmap);
     }
 
     @Override
@@ -120,9 +118,18 @@ public class LinkBankAccountActivity extends AppCompatActivity {
     View.OnClickListener backAction = new View.OnClickListener() {
         public void onClick(View v) {
             identifier = getIntent().getStringExtra("identifier");
-            Intent mainIntent = new Intent(LinkBankAccountActivity.this,BankListActivity.class);
-            mainIntent.putExtra("identifier", identifier);
-            LinkBankAccountActivity.this.startActivity(mainIntent);
+            if (identifier.equals("CompleteProfileActivity")){
+                Intent mainIntent = new Intent(LinkBankAccountActivity.this,CompleteProfileActivity.class);
+                LinkBankAccountActivity.this.startActivity(mainIntent);
+            }
+            if(identifier.equals("BankAndCards2Activity")){
+                Intent mainIntent = new Intent(LinkBankAccountActivity.this,BankAndCards2Activity.class);
+                LinkBankAccountActivity.this.startActivity(mainIntent);
+            }
+            if(identifier.equals("TransferToBankActivity")){
+                Intent mainIntent = new Intent(LinkBankAccountActivity.this,TransferToBankActivity.class);
+                LinkBankAccountActivity.this.startActivity(mainIntent);
+            }
         }
     };
     View.OnClickListener saveAction = new View.OnClickListener() {
@@ -138,12 +145,16 @@ public class LinkBankAccountActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
 
+            if(checkBox.isChecked()){
+                make_default = true;
+            }
             Call<JsonObject> saveBank = service.save(
                     new Bank(
                         Integer.parseInt(routingTxt.getText().toString()),
                         Integer.parseInt(accountNumberTxt.getText().toString()),
-                            "John Doe's Savings Account",
-                            userid
+                            bankNameTxt.getText().toString(),
+                            userid,
+                            make_default
                     ));
 
             saveBank.enqueue(new Callback<JsonObject>() {

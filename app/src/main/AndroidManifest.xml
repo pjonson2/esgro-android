@@ -80,11 +80,6 @@
 
 
         </activity>
-        <activity android:name="com.upventrix.esgro.activity.BankListActivity"
-            android:screenOrientation="portrait">
-
-
-        </activity>
         <activity android:name="com.upventrix.esgro.activity.LinkBankAccountActivity"
             android:screenOrientation="portrait">
 

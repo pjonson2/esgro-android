@@ -350,7 +350,7 @@ public class CompleteProfileActivity  extends AppCompatActivity{
     };
     View.OnClickListener plusLinkBanks = new View.OnClickListener() {
         public void onClick(View v) {
-            Intent mainIntent = new Intent(CompleteProfileActivity.this,BankListActivity.class);
+            Intent mainIntent = new Intent(CompleteProfileActivity.this,LinkBankAccountActivity.class);
             mainIntent.putExtra("identifier","CompleteProfileActivity");
             CompleteProfileActivity.this.startActivity(mainIntent);
         }

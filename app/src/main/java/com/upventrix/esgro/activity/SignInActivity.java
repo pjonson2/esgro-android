@@ -82,6 +82,15 @@ public class SignInActivity extends AppCompatActivity {
                 return false;
             }
         });
+        continueBtn.setOnTouchListener(new View.OnTouchListener()
+        {
+            @Override
+            public boolean onTouch(View view, MotionEvent ev)
+            {
+                hideKeyboard(view);
+                return false;
+            }
+        });
     }
 
     private void hideKeyboard(View view) {

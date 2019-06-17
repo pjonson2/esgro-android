@@ -118,7 +118,7 @@ public class TransferToBankActivity extends AppCompatActivity {
     View.OnClickListener toLinkBank = new View.OnClickListener() {
         public void onClick(View v) {
 
-            Intent mainIntent = new Intent(TransferToBankActivity.this, BankListActivity.class);
+            Intent mainIntent = new Intent(TransferToBankActivity.this, LinkBankAccountActivity.class);
             mainIntent.putExtra("identifier","TransferToBankActivity");
             TransferToBankActivity.this.startActivity(mainIntent);
         }
@@ -126,22 +126,17 @@ public class TransferToBankActivity extends AppCompatActivity {
 
     void initializeArray(){
         bankList.add(
-                new Bank(1,1,"Bank of Ceylon",R.drawable.nopath_360)
+                new Bank(1,1,"Bank of Ceylon",R.drawable.nopath_360,true)
         );
         bankList.add(
-                new Bank(1,1,"Peoples Bank",R.drawable.bank_of_america)
+                new Bank(1,1,"Peoples Bank",R.drawable.bank_of_america,true)
         );
         bankList.add(
-                new Bank(1,1,"Nations Trust Bank",R.drawable.nopath_blue)
+                new Bank(1,1,"Nations Trust Bank",R.drawable.nopath_blue,true)
         ); bankList.add(
-                new Bank(1,1,"Bank of Ceylon",R.drawable.nopath_360)
+                new Bank(1,1,"Bank of Ceylon",R.drawable.nopath_360,true)
         );
-        bankList.add(
-                new Bank(1,1,"Peoples Bank",R.drawable.bank_of_america)
-        );
-        bankList.add(
-                new Bank(1,1,"Nations Trust Bank",R.drawable.nopath_blue)
-        );
+
     }
     class CustomAdaper extends BaseAdapter {
 

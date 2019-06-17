@@ -123,8 +123,6 @@ public class Request_01_Activity extends AppCompatActivity {
 
     }
 
-
-
     void setValues(){
         try{
             requestChargingAmount.setText(extras.getString("charging_amount"));
@@ -183,7 +181,12 @@ public class Request_01_Activity extends AppCompatActivity {
                 Intent mainIntent = new Intent(Request_01_Activity.this,Request_02_Activity.class);
                 mainIntent.putExtra("charging_amount", price);
                 mainIntent.putExtra("request_user", userName);
-                mainIntent.putExtra("reserve_amount", reserve_price);
+                if(reserve_price.equals("")){
+                    mainIntent.putExtra("reserve_amount", "$0.00");
+                }else{
+                    mainIntent.putExtra("reserve_amount", reserve_price);
+                }
+
                 mainIntent.putExtra("request_userId",userId);
                 Request_01_Activity.this.startActivity(mainIntent);
             }
