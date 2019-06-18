@@ -4,6 +4,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class Bank {
 
+    @SerializedName("acc_id")
+    private int acc_id;
+
     @SerializedName("routing_num")
     private int routing_num;
 
@@ -58,8 +61,16 @@ public class Bank {
         return userid;
     }
 
+    public int getAcc_id() {
+        return acc_id;
+    }
+
     public void setUserid(int userid) {
         this.userid = userid;
+    }
+
+    public void setAcc_id(int acc_id) {
+        this.acc_id = acc_id;
     }
 
     public boolean isMake_default() {

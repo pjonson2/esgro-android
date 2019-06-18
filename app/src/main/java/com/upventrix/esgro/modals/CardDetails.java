@@ -22,6 +22,8 @@ public class CardDetails {
     @SerializedName("card_icon")
     private String card_icon;
 
+    private Bank bank;
+
     public CardDetails(String id, String brand, int exp_year, int exp_month, int last_digits, String card_icon) {
         this.id = id;
         this.brand = brand;
@@ -41,6 +43,14 @@ public class CardDetails {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public void setBank(Bank bank) {
+        this.bank = bank;
+    }
+
+    public Bank getBank() {
+        return bank;
     }
 
     public String getBrand() {

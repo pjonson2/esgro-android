@@ -21,9 +21,12 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.annotations.SerializedName;
 import com.upventrix.esgro.R;
 import com.upventrix.esgro.modals.Bank;
 import com.upventrix.esgro.modals.CardDetails;
+import com.upventrix.esgro.modals.UniqueID;
+import com.upventrix.esgro.modals.User;
 import com.upventrix.esgro.resource.Config;
 import com.upventrix.esgro.resource.LocalData;
 import com.upventrix.esgro.services.BankService;
@@ -59,13 +62,18 @@ public class BankAndCards2Activity extends AppCompatActivity {
     TextView plusBnk;
 
     ListView listView;
+    ListView allList;
     List<CardDetails> cardDetailsList;
+    List<CardDetails> cardAndBankDetailsList;
 
     int count = 0;
 
     Dialog dialog;
     private CardService cardService;
     private BankService bankService;
+
+    @SerializedName("user_id")
+    String uid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +89,7 @@ public class BankAndCards2Activity extends AppCompatActivity {
         listView.setVisibility(View.INVISIBLE);
 
          cardDetailsList = new ArrayList<>();
+         cardAndBankDetailsList = new ArrayList<>();
 
 
 
@@ -90,7 +99,6 @@ public class BankAndCards2Activity extends AppCompatActivity {
 
         setListeners();
         setValues();
-        setBankList();
 
     }
     void idInitialization(){
@@ -163,7 +171,7 @@ public class BankAndCards2Activity extends AppCompatActivity {
                         cardDetails.setExp_month(value.getAsJsonObject().get("exp_month").getAsInt());
                         cardDetails.setExp_year(value.getAsJsonObject().get("exp_year").getAsInt());
                         cardDetails.setLast_digits(value.getAsJsonObject().get("last_digits").getAsInt());
-//                        cardDetails.setCard_icon(value.getAsJsonObject().get("card_icon").getAsString());
+                        cardDetails.setCard_icon(value.getAsJsonObject().get("card_icon").getAsString());
                         cardDetailsList.add(cardDetails);
                     }
                     BankAndCards2Activity.CustomAdaper customAdaper = new BankAndCards2Activity.CustomAdaper();
@@ -192,39 +200,43 @@ public class BankAndCards2Activity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            Call<JsonObject> all = cardService.getAll(userid+"");
+            System.out.println("Before for loops   "+cardDetailsList.size());
+            Call<JsonObject> all = bankService.getAll(new UniqueID(userid));
             all.enqueue(new Callback<JsonObject>() {
                 @Override
                 public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                    boolean status = false;
+                    String status = "";
                     try {
-                        status = response.body().get("status").getAsBoolean();
+                        status = response.body().get("status").getAsString();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                    if (status) {
+                    if (status.toString().equals("success")) {
 
-                        JsonArray cardsList = response.body().getAsJsonArray("cards");
+                        JsonArray bankArrayList = response.body().getAsJsonArray("data");
 
-                        cardDetailsList.clear();
 
-                        System.out.println("CardList Size ......... "+cardsList.size());
-                        if (cardsList.size()==0){
+                        if (bankArrayList.size()==0){
                             return;
                         }
-                        for (JsonElement value :cardsList) {
+                        cardAndBankDetailsList.clear();
 
-                            CardDetails cardDetails = new CardDetails();
-                            cardDetails.setId(value.getAsJsonObject().get("id").getAsString());
-                            cardDetails.setBrand(value.getAsJsonObject().get("brand").getAsString());
-                            cardDetails.setExp_month(value.getAsJsonObject().get("exp_month").getAsInt());
-                            cardDetails.setExp_year(value.getAsJsonObject().get("exp_year").getAsInt());
-                            cardDetails.setLast_digits(value.getAsJsonObject().get("last_digits").getAsInt());
-                            cardDetails.setCard_icon(value.getAsJsonObject().get("card_icon").getAsString());
-                            cardDetailsList.add(cardDetails);
+                        for(CardDetails cardDetails:cardDetailsList){
+                            CardDetails card = new CardDetails(cardDetails.getId(),cardDetails.getBrand(),cardDetails.getExp_year(),cardDetails.getExp_month(),cardDetails.getLast_digits(),cardDetails.getCard_icon());
+                            cardAndBankDetailsList.add(card);
                         }
-                        BankAndCards2Activity.CustomAdaper customAdaper = new BankAndCards2Activity.CustomAdaper();
-                        listView.setAdapter(customAdaper);
+                        for (JsonElement value :bankArrayList) {
+
+                            CardDetails card = new CardDetails();
+                            Bank b = new Bank();
+                            b.setAcc_name(value.getAsJsonObject().get("acc_name").getAsString());
+                            b.setAcc_id(value.getAsJsonObject().get("acc_id").getAsInt());
+                            card.setBank(b);
+                            cardAndBankDetailsList.add(card);
+                        }
+
+                        BankAndCards2Activity.Bank_Card_Adapter customAdaper = new BankAndCards2Activity.Bank_Card_Adapter();
+                        allList.setAdapter(customAdaper);
                     }else{
                         System.out.println("ERROR");
                     }
@@ -320,10 +332,13 @@ public class BankAndCards2Activity extends AppCompatActivity {
             dialog.setContentView(R.layout.activity_set_defalut_alert);
 
             Window window = dialog.getWindow();
-            ListView listView1;
-            listView1 = window.findViewById(R.id.dynamicBankList);
-            BankAndCards2Activity.CustomAdaper customAdaper = new BankAndCards2Activity.CustomAdaper();
-            listView1.setAdapter(customAdaper);
+            allList = window.findViewById(R.id.dynamicBankList);
+            setBankList();
+
+//
+//            BankAndCards2Activity.Bank_Card_Adapter customAdaper = new BankAndCards2Activity.Bank_Card_Adapter();
+//            allList.setAdapter(customAdaper);
+            dialog.setCanceledOnTouchOutside(false);
             dialog.show();
             Button close = window.findViewById(R.id.closeBtn);
             close.setOnClickListener(closeOfAlert);
@@ -332,6 +347,7 @@ public class BankAndCards2Activity extends AppCompatActivity {
     View.OnClickListener closeOfAlert = new View.OnClickListener() {
         public void onClick(View v) {
             dialog.dismiss();
+            cardAndBankDetailsList.clear();
         }
     };
     class CustomAdaper extends BaseAdapter {
@@ -362,7 +378,63 @@ public class BankAndCards2Activity extends AppCompatActivity {
             CardDetails cardDetails = cardDetailsList.get(position);
             try {
                 String httpUrl = Config.getInstance().baseUrl().toString();
-                 Uri imageUri = Uri.parse(httpUrl+"card-icons/"+cardDetails.getCard_icon());
+                Uri imageUri = Uri.parse(httpUrl+"card-icons/"+cardDetails.getCard_icon());
+                bankImg.setController(
+                        Fresco.newDraweeControllerBuilder()
+                                .setOldController(bankImg.getController())
+                                .setUri(imageUri)
+                                .setTapToRetryEnabled(true)
+                                .build());
+//                }else{
+////                    simpleDraweeView.setImageResource(R.drawable.roshen_kanishka);
+//                }
+
+            }catch(Exception e){
+
+            }
+            cardNum.setText("Card no. ends in "+cardDetails.getLast_digits());
+            bankNameView.setText("No Name Yet");
+            return convertView;
+        }
+    }
+
+    class Bank_Card_Adapter extends BaseAdapter {
+
+        @Override
+        public int getCount() {
+            return cardAndBankDetailsList.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            convertView = getLayoutInflater().inflate(R.layout.activity_bank_card,null);
+
+            TextView bankNameView = convertView.findViewById(R.id.bankNameTxt);
+            TextView cardNum = convertView.findViewById(R.id.bankDetailsTxt);
+            SimpleDraweeView bankImg = convertView.findViewById(R.id.bankImage);
+            TextView idTXt = convertView.findViewById(R.id.idTXt);
+
+            CardDetails cardDetails = cardAndBankDetailsList.get(position);
+
+            if(cardDetails.getId() == null){
+                cardNum.setText("Acc no. " + cardDetails.getBank().getAccount_num());
+                bankNameView.setText(cardDetails.getBank().getAcc_name());
+                idTXt.setText(cardDetails.getBank().getAcc_id()+"");
+            }else {
+
+                try {
+                    String httpUrl = Config.getInstance().baseUrl().toString();
+                    Uri imageUri = Uri.parse(httpUrl + "card-icons/" + cardDetails.getCard_icon());
                     bankImg.setController(
                             Fresco.newDraweeControllerBuilder()
                                     .setOldController(bankImg.getController())
@@ -373,11 +445,13 @@ public class BankAndCards2Activity extends AppCompatActivity {
 ////                    simpleDraweeView.setImageResource(R.drawable.roshen_kanishka);
 //                }
 
-            }catch(Exception e){
+                } catch (Exception e) {
 
+                }
+                idTXt.setText(cardDetails.getId()+"");
+                cardNum.setText("Card no. ends in " + cardDetails.getLast_digits());
+                bankNameView.setText("No Name Yet");
             }
-            cardNum.setText("Card no. ends in "+cardDetails.getLast_digits());
-            bankNameView.setText("No Name Yet");
             return convertView;
         }
     }
