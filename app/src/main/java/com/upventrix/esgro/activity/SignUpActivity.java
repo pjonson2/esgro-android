@@ -100,16 +100,18 @@ public class SignUpActivity extends AppCompatActivity {
             public boolean onTouch(View view, MotionEvent ev)
             {
                 hideKeyboard(view);
+                onWindowFocusChanged(true);
                 if  (!password.getText().toString().equals("")&&passwordReType.getText().toString().equals("")){
                     passwordReType.requestFocus();
                     openKeyboard(view);
                 }
-                if  (!password.getText().toString().equals(passwordReType.getText().toString())){
-                    passwordReType.requestFocus();
-                    openKeyboard(view);
-                }
+//                if  (!password.getText().toString().equals(passwordReType.getText().toString())){
+//                    passwordReType.requestFocus();
+//                    openKeyboard(view);
+//                }
                 if(!passwordReType.getText().toString().equals("")){
                     hideKeyboard(view);
+                    onWindowFocusChanged(true);
                 }
                 return false;
             }
@@ -120,16 +122,18 @@ public class SignUpActivity extends AppCompatActivity {
             public boolean onTouch(View view, MotionEvent ev)
             {
                 hideKeyboard(view);
+                onWindowFocusChanged(true);
                 if  (!password.getText().toString().equals("")&&passwordReType.getText().toString().equals("")){
                     passwordReType.requestFocus();
                     openKeyboard(view);
                 }
-                if  (!password.getText().toString().equals(passwordReType.getText().toString())){
-                    passwordReType.requestFocus();
-                    openKeyboard(view);
-                }
+//                if  (!password.getText().toString().equals(passwordReType.getText().toString())){
+//                    passwordReType.requestFocus();
+//                    openKeyboard(view);
+//                }
                 if(!passwordReType.getText().toString().equals("")){
                     hideKeyboard(view);
+                    onWindowFocusChanged(true);
                 }
                 return false;
             }

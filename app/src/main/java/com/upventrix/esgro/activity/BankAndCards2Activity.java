@@ -200,7 +200,7 @@ public class BankAndCards2Activity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            System.out.println("Before for loops   "+cardDetailsList.size());
+
             Call<JsonObject> all = bankService.getAll(new UniqueID(userid));
             all.enqueue(new Callback<JsonObject>() {
                 @Override

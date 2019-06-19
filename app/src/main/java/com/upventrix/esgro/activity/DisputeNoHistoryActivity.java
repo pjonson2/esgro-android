@@ -338,6 +338,7 @@ public class DisputeNoHistoryActivity extends AppCompatActivity implements Swipe
             public boolean onTouch(View view, MotionEvent ev)
             {
                 hideKeyboard(view);
+                onWindowFocusChanged(true);
                 return false;
             }
         });

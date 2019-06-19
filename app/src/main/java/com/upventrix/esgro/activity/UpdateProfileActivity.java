@@ -26,6 +26,7 @@ import android.util.Base64;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -106,8 +107,8 @@ public class UpdateProfileActivity   extends AppCompatActivity {
     AchievementView achievementView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        onWindowFocusChanged(true);
-        super.onCreate(savedInstanceState);
+         requestWindowFeature(Window.FEATURE_NO_TITLE);
+         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_profile);
         if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -124,6 +125,10 @@ public class UpdateProfileActivity   extends AppCompatActivity {
             public boolean onTouch(View view, MotionEvent ev)
             {
                 hideKeyboard(view);
+                        onWindowFocusChanged(true);
+
+                getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                        WindowManager.LayoutParams.FLAG_FULLSCREEN);
                 return false;
             }
         });

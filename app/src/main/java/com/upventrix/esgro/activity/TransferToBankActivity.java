@@ -2,8 +2,10 @@ package com.upventrix.esgro.activity;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,11 +17,26 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.upventrix.esgro.R;
 import com.upventrix.esgro.modals.Bank;
+import com.upventrix.esgro.modals.CardDetails;
+import com.upventrix.esgro.modals.UniqueID;
+import com.upventrix.esgro.resource.Config;
+import com.upventrix.esgro.resource.LocalData;
+import com.upventrix.esgro.services.BankService;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class TransferToBankActivity extends AppCompatActivity {
 
@@ -31,7 +48,8 @@ public class TransferToBankActivity extends AppCompatActivity {
     Bitmap bitmap;
 
     View toLinkBankView;
-
+    ListView listView;
+    private BankService bankService;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         onWindowFocusChanged(true);
@@ -45,12 +63,13 @@ public class TransferToBankActivity extends AppCompatActivity {
 
         toLinkBankView = findViewById(R.id.toLinkBankView);
         toLinkBankView.setOnClickListener(toLinkBank);
+        bankService = Config.getInstance().create(BankService.class);
 
         bankList = new ArrayList<>();
         initializeArray();
 
         dialog = new Dialog(this);
-        ListView listView = findViewById(R.id.transferBankList);
+        listView = findViewById(R.id.transferBankList);
 
         TransferToBankActivity.CustomAdaper customAdaper = new TransferToBankActivity.CustomAdaper();
         listView.setAdapter(customAdaper);
@@ -125,17 +144,62 @@ public class TransferToBankActivity extends AppCompatActivity {
     };
 
     void initializeArray(){
-        bankList.add(
-                new Bank(1,1,"Bank of Ceylon",R.drawable.nopath_360,true)
-        );
-        bankList.add(
-                new Bank(1,1,"Peoples Bank",R.drawable.bank_of_america,true)
-        );
-        bankList.add(
-                new Bank(1,1,"Nations Trust Bank",R.drawable.nopath_blue,true)
-        ); bankList.add(
-                new Bank(1,1,"Bank of Ceylon",R.drawable.nopath_360,true)
-        );
+        {
+            {
+                final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                String userData = new LocalData().getlocalData(sharedPref, "userdata");
+                int userid = 0;
+                try {
+                    JSONObject jsonObj = new JSONObject(userData);
+                    userid = jsonObj.getInt("user_id");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                Call<JsonObject> all = bankService.getAll(new UniqueID(userid));
+                all.enqueue(new Callback<JsonObject>() {
+                    @Override
+                    public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                        String status = "";
+                        try {
+                            status = response.body().get("status").getAsString();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        if (status.toString().equals("success")) {
+
+                            JsonArray bankArrayList = response.body().getAsJsonArray("data");
+
+
+                            if (bankArrayList.size()==0){
+                                return;
+                            }
+                            bankList.clear();
+
+
+                            for (JsonElement value :bankArrayList) {
+
+                                 Bank b = new Bank();
+                                 b.setAcc_name(value.getAsJsonObject().get("acc_name").getAsString());
+                                 b.setAcc_id(value.getAsJsonObject().get("acc_id").getAsInt());
+                                 bankList.add(b);
+                            }
+
+                            TransferToBankActivity.CustomAdaper customAdaper = new TransferToBankActivity.CustomAdaper();
+                            listView.setAdapter(customAdaper);
+                        }else{
+                            System.out.println("ERROR");
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonObject> call, Throwable t) {
+                        System.out.println("ERROR "+t);
+                    }
+                });
+            }
+        }
 
     }
     class CustomAdaper extends BaseAdapter {
@@ -161,9 +225,11 @@ public class TransferToBankActivity extends AppCompatActivity {
 
             TextView bankNameView = convertView.findViewById(R.id.bankNameTxt);
             ImageView bankImg = convertView.findViewById(R.id.bankImage);
+            TextView bankDetailsTxt = convertView.findViewById(R.id.bankDetailsTxt);
             Bank bank = bankList.get(position);
 //            bankImg.setImageResource(bank.getImage());
-            bankNameView.setText(bank.getUserid());
+            bankNameView.setText(bank.getAcc_name());
+            bankDetailsTxt.setText("Acc no. "+bank.getAccount_num());
             return convertView;
         }
     }

@@ -69,6 +69,7 @@ public class MobileVerificationActivity  extends AppCompatActivity implements Ad
             public boolean onTouch(View view, MotionEvent ev)
             {
                 hideKeyboard(view);
+                onWindowFocusChanged(true);
                 return false;
             }
         });

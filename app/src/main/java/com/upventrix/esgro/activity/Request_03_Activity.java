@@ -90,6 +90,7 @@ public class Request_03_Activity extends AppCompatActivity {
             public boolean onTouch(View view, MotionEvent ev)
             {
                 hideKeyboard(view);
+                onWindowFocusChanged(true);
                 return false;
             }
         });

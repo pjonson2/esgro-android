@@ -2,7 +2,10 @@ package com.upventrix.esgro.activity;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,11 +16,27 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.view.SimpleDraweeView;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.upventrix.esgro.R;
 import com.upventrix.esgro.modals.Bank;
+import com.upventrix.esgro.modals.CardDetails;
+import com.upventrix.esgro.resource.Config;
+import com.upventrix.esgro.resource.LocalData;
+import com.upventrix.esgro.services.CardService;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class TransferToCardActivity  extends AppCompatActivity {
 
@@ -26,10 +45,11 @@ public class TransferToCardActivity  extends AppCompatActivity {
 
     Dialog dialog;
 
-    List<Bank> bankList;
 
     View toAddCardView;
-
+    private CardService cardService;
+    List<CardDetails>cardDetailsList;
+    ListView listView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         onWindowFocusChanged(true);
@@ -44,16 +64,73 @@ public class TransferToCardActivity  extends AppCompatActivity {
         toAddCardView = findViewById(R.id.toAddCardView);
         toAddCardView.setOnClickListener(toAddCard);
 
-        bankList = new ArrayList<>();
-        initializeArray();
+        cardService = Config.getInstance().create(CardService.class);
+
+        cardDetailsList = new ArrayList<>();
 
         dialog = new Dialog(this);
-        ListView listView = findViewById(R.id.transferToCardList);
+        listView = findViewById(R.id.transferToCardList);
 
         TransferToCardActivity.CustomAdaper customAdaper = new TransferToCardActivity.CustomAdaper();
         listView.setAdapter(customAdaper);
 
+        setValues();
 
+    }
+
+    private void setValues() {
+        final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String userData = new LocalData().getlocalData(sharedPref, "userdata");
+        int userid = 0;
+        try {
+            JSONObject jsonObj = new JSONObject(userData);
+            userid = jsonObj.getInt("user_id");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        Call<JsonObject> all = cardService.getAll(userid+"");
+        all.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                boolean status = false;
+                try {
+                    status = response.body().get("status").getAsBoolean();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                if (status) {
+
+                    JsonArray cardsList = response.body().getAsJsonArray("cards");
+
+                    cardDetailsList.clear();
+
+                     if (cardsList.size()==0){
+                        return;
+                    }
+                    for (JsonElement value :cardsList) {
+
+                        CardDetails cardDetails = new CardDetails();
+                        cardDetails.setId(value.getAsJsonObject().get("id").getAsString());
+                        cardDetails.setBrand(value.getAsJsonObject().get("brand").getAsString());
+                        cardDetails.setExp_month(value.getAsJsonObject().get("exp_month").getAsInt());
+                        cardDetails.setExp_year(value.getAsJsonObject().get("exp_year").getAsInt());
+                        cardDetails.setLast_digits(value.getAsJsonObject().get("last_digits").getAsInt());
+                        cardDetails.setCard_icon(value.getAsJsonObject().get("card_icon").getAsString());
+                        cardDetailsList.add(cardDetails);
+                    }
+                    TransferToCardActivity.CustomAdaper customAdaper = new TransferToCardActivity.CustomAdaper();
+                    listView.setAdapter(customAdaper);
+                }else{
+                    System.out.println("ERROR");
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                System.out.println("ERROR "+t);
+            }
+        });
     }
 
     View.OnClickListener transfer = new View.OnClickListener() {
@@ -100,28 +177,13 @@ public class TransferToCardActivity  extends AppCompatActivity {
                             | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         }
     }
-    void initializeArray() {
-        bankList.add(
-                new Bank(1,1,"Bank of Ceylon", R.drawable.nopath_360,true)
-        );
-        bankList.add(
-                new Bank(1,1,"Peoples Bank", R.drawable.bank_of_america,true)
-        );
-        bankList.add(
-                new Bank(1,1,"Nations Trust Bank", R.drawable.nopath_blue,false)
-        );
-        bankList.add(
-                new Bank(1,1,"DfCC Bank", R.drawable.nopath_copy2x,false)
-        );
 
-
-    }
 
     class CustomAdaper extends BaseAdapter {
 
         @Override
         public int getCount() {
-            return bankList.size();
+            return cardDetailsList.size();
         }
 
         @Override
@@ -140,12 +202,19 @@ public class TransferToCardActivity  extends AppCompatActivity {
 
             TextView bankNameView = convertView.findViewById(R.id.bankNameTxt);
             TextView bankDetails = convertView.findViewById(R.id.bankDetailsTxt);
+            String httpUrl = Config.getInstance().baseUrl().toString();
 
-            ImageView bankImg = convertView.findViewById(R.id.bankImage);
-            Bank bank = bankList.get(position);
-//            bankImg.setImageResource(bank.getImage());
-            bankNameView.setText(bank.getUserid());
-            bankDetails.setText("Card no. ends in 5651");
+            SimpleDraweeView simpleDraweeView = convertView.findViewById(R.id.bankImage);
+            CardDetails card = cardDetailsList.get(position);
+            Uri imageUri = Uri.parse(httpUrl+"card-icons/"+card.getCard_icon());
+                    simpleDraweeView.setController(
+                            Fresco.newDraweeControllerBuilder()
+                                    .setOldController(simpleDraweeView.getController())
+                                    .setUri(imageUri)
+                                    .setTapToRetryEnabled(true)
+                                    .build());
+            bankNameView.setText(card.getExp_month()+" / "+card.getExp_year());
+            bankDetails.setText("Card no. ends in "+card.getLast_digits());
             return convertView;
         }
     }
