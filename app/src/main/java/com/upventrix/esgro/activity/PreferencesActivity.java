@@ -14,6 +14,8 @@ public class PreferencesActivity extends AppCompatActivity {
     Button back;
 
     TextView changePassword;
+    TextView privacyTxt;
+    TextView notificationTxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,11 +32,15 @@ public class PreferencesActivity extends AppCompatActivity {
     void idInitialization(){
         back = findViewById(R.id.preferenceBackBtn);
         changePassword = findViewById(R.id.changePasswordBtn);
+        privacyTxt = findViewById(R.id.privacyTxt);
+        notificationTxt = findViewById(R.id.notificationTxt);
     }
 
     void setListeners(){
         back.setOnClickListener(backAction);
         changePassword.setOnClickListener(changePasswordAction);
+        privacyTxt.setOnClickListener(privacyACtion);
+        notificationTxt.setOnClickListener(notificationAction);
     }
 
     void setValues(){
@@ -55,17 +61,29 @@ public class PreferencesActivity extends AppCompatActivity {
         }
     }
 
-        View.OnClickListener backAction = new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent mainIntent = new Intent(PreferencesActivity.this, HomePageActivity.class);
-                PreferencesActivity.this.startActivity(mainIntent);
-            }
-        };
-        View.OnClickListener changePasswordAction = new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent mainIntent = new Intent(PreferencesActivity.this, CheckPasswordActivity.class);
-                PreferencesActivity.this.startActivity(mainIntent);
-            }
-        };
+    View.OnClickListener backAction = new View.OnClickListener() {
+        public void onClick(View v) {
+            Intent mainIntent = new Intent(PreferencesActivity.this, HomePageActivity.class);
+            PreferencesActivity.this.startActivity(mainIntent);
+        }
+    };
+    View.OnClickListener changePasswordAction = new View.OnClickListener() {
+        public void onClick(View v) {
+            Intent mainIntent = new Intent(PreferencesActivity.this, CheckPasswordActivity.class);
+            PreferencesActivity.this.startActivity(mainIntent);
+        }
+    };
+    View.OnClickListener privacyACtion = new View.OnClickListener() {
+        public void onClick(View v) {
+            Intent mainIntent = new Intent(PreferencesActivity.this, PrivacyActivity.class);
+            PreferencesActivity.this.startActivity(mainIntent);
+        }
+    };
+    View.OnClickListener notificationAction = new View.OnClickListener() {
+        public void onClick(View v) {
+            Intent mainIntent = new Intent(PreferencesActivity.this, NotificationActivity.class);
+            PreferencesActivity.this.startActivity(mainIntent);
+        }
+    };
 }
 

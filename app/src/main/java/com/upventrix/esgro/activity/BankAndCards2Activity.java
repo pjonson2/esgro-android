@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,6 +72,7 @@ public class BankAndCards2Activity extends AppCompatActivity {
     Dialog dialog;
     private CardService cardService;
     private BankService bankService;
+    ConstraintLayout constraintLayout;
 
     @SerializedName("user_id")
     String uid;
@@ -116,6 +118,7 @@ public class BankAndCards2Activity extends AppCompatActivity {
         setDefaultBtn = findViewById(R.id.setDefaultBtn);
         cardService = Config.getInstance().create(CardService.class);
         bankService = Config.getInstance().create(BankService.class);
+        constraintLayout = findViewById(R.id.emptyView);
     }
 
     void setListeners(){
@@ -161,6 +164,7 @@ public class BankAndCards2Activity extends AppCompatActivity {
 
                     System.out.println("CardList Size ......... "+cardsList.size());
                     if (cardsList.size()==0){
+
                         return;
                     }
                     for (JsonElement value :cardsList) {
@@ -177,7 +181,8 @@ public class BankAndCards2Activity extends AppCompatActivity {
                     BankAndCards2Activity.CustomAdaper customAdaper = new BankAndCards2Activity.CustomAdaper();
                     listView.setAdapter(customAdaper);
                 }else{
-                    System.out.println("ERROR");
+                    constraintLayout.setVisibility(View.VISIBLE);
+                    System.out.println("No Cards Available for the user");
                 }
 
             }
@@ -216,9 +221,7 @@ public class BankAndCards2Activity extends AppCompatActivity {
                         JsonArray bankArrayList = response.body().getAsJsonArray("data");
 
 
-                        if (bankArrayList.size()==0){
-                            return;
-                        }
+
                         cardAndBankDetailsList.clear();
 
                         for(CardDetails cardDetails:cardDetailsList){

@@ -314,7 +314,19 @@ public class UpdateProfileActivity   extends AppCompatActivity {
                 saveBtn.setEnabled(true);
                 return;
             }
+            boolean validFullNumber = ccp.isValidFullNumber();
 
+            if (!validFullNumber){
+                ShapeDrawable shape = new ShapeDrawable(new RectShape());
+                shape.getPaint().setColor(Color.RED);
+                shape.getPaint().setStyle(Paint.Style.STROKE);
+                shape.getPaint().setStrokeWidth(1);
+                phone.setBackground(shape);
+                saveBtn.setEnabled(true);
+                return;
+            }else{
+                phone.setBackground(background);
+            }
 
             if (contactNUmber.equals(ccp.getFullNumberWithPlus())){
                 user.setMobile(ccp.getFullNumberWithPlus());

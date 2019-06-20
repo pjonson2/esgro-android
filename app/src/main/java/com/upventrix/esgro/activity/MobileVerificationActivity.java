@@ -73,10 +73,21 @@ public class MobileVerificationActivity  extends AppCompatActivity implements Ad
                 return false;
             }
         });
+        nextBtn.setOnTouchListener(new View.OnTouchListener()
+        {
+            @Override
+            public boolean onTouch(View view, MotionEvent ev)
+            {
+                hideKeyboard(view);
+                onWindowFocusChanged(true);
+                return false;
+            }
+        });
         ccp.setOnCountryChangeListener(new CountryCodePicker.OnCountryChangeListener() {
             @Override
             public void onCountrySelected() {
                 selectedCountryCode = ccp.getSelectedCountryCode();
+
                 System.out.println(" selectedCountryCode  "+selectedCountryCode);
             }
         });
@@ -93,6 +104,11 @@ public class MobileVerificationActivity  extends AppCompatActivity implements Ad
         spinner = findViewById(R.id.mobileVerificSpinner);
         mobileCerificNumber = findViewById(R.id.mobileCerificNumber);
         ccp = findViewById(R.id.ccp);
+        ccp.registerCarrierNumberEditText(mobileCerificNumber);
+        ccp.setAutoDetectedCountry(true);
+        selectedCountryCode = ccp.getSelectedCountryCode();
+        System.out.println("selectedCountryCode  "+selectedCountryCode);
+//        ccp.setNumberAutoFormattingEnabled(true);
         achievementView = findViewById(R.id.achievementView);
         service = Config.getInstance().create(UserService.class);
     }
@@ -155,6 +171,18 @@ public class MobileVerificationActivity  extends AppCompatActivity implements Ad
                 );
                 return;
             }
+
+            boolean validFullNumber = ccp.isValidFullNumber();
+
+            if (!validFullNumber){
+                new ToastActivity().showFailed(
+                        achievementView,
+                        "Warnings!",
+                        "Invalid contact number !"
+                );
+                return;
+            }
+
 
             final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
             String userData = new LocalData().getlocalData(sharedPref, "userdata");

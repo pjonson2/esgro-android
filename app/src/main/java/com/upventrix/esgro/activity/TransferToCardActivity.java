@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,6 +51,7 @@ public class TransferToCardActivity  extends AppCompatActivity {
     private CardService cardService;
     List<CardDetails>cardDetailsList;
     ListView listView;
+    ConstraintLayout constraintLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         onWindowFocusChanged(true);
@@ -65,7 +67,7 @@ public class TransferToCardActivity  extends AppCompatActivity {
         toAddCardView.setOnClickListener(toAddCard);
 
         cardService = Config.getInstance().create(CardService.class);
-
+        constraintLayout = findViewById(R.id.emptyView);
         cardDetailsList = new ArrayList<>();
 
         dialog = new Dialog(this);
@@ -121,6 +123,7 @@ public class TransferToCardActivity  extends AppCompatActivity {
                     TransferToCardActivity.CustomAdaper customAdaper = new TransferToCardActivity.CustomAdaper();
                     listView.setAdapter(customAdaper);
                 }else{
+                    constraintLayout.setVisibility(View.VISIBLE);
                     System.out.println("ERROR");
                 }
 

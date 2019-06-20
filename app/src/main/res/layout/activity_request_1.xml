@@ -366,7 +366,6 @@
         android:layout_width="15dp"
         android:layout_height="15dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:background="@drawable/about2x"
         app:layout_constraintBottom_toBottomOf="@+id/reserveTxt"
         app:layout_constraintEnd_toStartOf="@+id/textView74"

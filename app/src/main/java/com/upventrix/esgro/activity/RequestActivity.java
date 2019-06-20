@@ -3,6 +3,7 @@ package com.upventrix.esgro.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -228,13 +229,16 @@ public class RequestActivity extends AppCompatActivity {
 
                 TextView textView = view.findViewById(R.id.requestUserName);
                 TextView useridTxt = view.findViewById(R.id.userIdTxt);
+//                SimpleDraweeView requestUserImg = view.findViewById(R.id.requestUserImg);
 
+//                requestUserImg.setIma
                 String name = textView.getText().toString();
                 String userId = useridTxt.getText().toString();
 
                 Intent intent = new Intent(RequestActivity.this, Request_01_Activity.class);
                 intent.putExtra("request_user",name);
                 intent.putExtra("request_userId",userId);
+
                 startActivity(intent);
             }
         });

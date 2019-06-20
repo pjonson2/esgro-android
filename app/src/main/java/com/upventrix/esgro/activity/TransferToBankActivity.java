@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,6 +51,7 @@ public class TransferToBankActivity extends AppCompatActivity {
     View toLinkBankView;
     ListView listView;
     private BankService bankService;
+    ConstraintLayout constraintLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         onWindowFocusChanged(true);
@@ -64,6 +66,7 @@ public class TransferToBankActivity extends AppCompatActivity {
         toLinkBankView = findViewById(R.id.toLinkBankView);
         toLinkBankView.setOnClickListener(toLinkBank);
         bankService = Config.getInstance().create(BankService.class);
+        constraintLayout = findViewById(R.id.emptyView);
 
         bankList = new ArrayList<>();
         initializeArray();
@@ -172,6 +175,7 @@ public class TransferToBankActivity extends AppCompatActivity {
 
 
                             if (bankArrayList.size()==0){
+                                constraintLayout.setVisibility(View.VISIBLE);
                                 return;
                             }
                             bankList.clear();
@@ -188,6 +192,7 @@ public class TransferToBankActivity extends AppCompatActivity {
                             TransferToBankActivity.CustomAdaper customAdaper = new TransferToBankActivity.CustomAdaper();
                             listView.setAdapter(customAdaper);
                         }else{
+                            constraintLayout.setVisibility(View.VISIBLE);
                             System.out.println("ERROR");
                         }
 

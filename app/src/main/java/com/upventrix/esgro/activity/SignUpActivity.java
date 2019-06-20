@@ -78,7 +78,7 @@ public class SignUpActivity extends AppCompatActivity {
         idInitialization();
         setListeners();
         setValues();
-
+        onWindowFocusChanged(true);
         viewById.setOnTouchListener(new View.OnTouchListener(){
 
             @Override

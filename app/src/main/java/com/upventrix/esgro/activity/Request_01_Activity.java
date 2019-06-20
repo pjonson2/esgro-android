@@ -171,6 +171,18 @@ public class Request_01_Activity extends AppCompatActivity {
             String userName = extras.getString("request_user");
             String userId = extras.getString("request_userId");
 
+            StringBuilder reservePriceBuilder = new StringBuilder(price);
+            reservePriceBuilder.deleteCharAt(0);
+
+            if (Double.parseDouble(reservePriceBuilder.toString())<=0){
+                new  ToastActivity().showFailed(
+                        achievementView,
+                        "Warnings!",
+                        "Invalid Amount!"
+                );
+                return;
+            }
+
             if (price.equals("")){
                 new  ToastActivity().showFailed(
                         achievementView,
@@ -216,11 +228,18 @@ public class Request_01_Activity extends AppCompatActivity {
                         }
 
                     } else {
-                        amount = amount + tag.toString();
+                        if(tag.toString().equals(".")){
+                            boolean contains = requestChargingAmount.getText().toString().contains(".");
+                            if(!contains){
+                                amount = amount + tag.toString();
+                            }
+                        }else{
+                            amount = amount + tag.toString();
+                        }
                     }
+                        requestChargingAmount.setText(amount);
+                        requestChargingAmount.setSelection(amount.length());
 
-                    requestChargingAmount.setText(amount);
-                    requestChargingAmount.setSelection(amount.length());
                 }catch (Exception ex){
 
                 }
@@ -246,11 +265,19 @@ public class Request_01_Activity extends AppCompatActivity {
                         }
 
                     } else {
-                        amount2 = amount2 + tag.toString();
+                        if(tag.toString().equals(".")){
+                            boolean contains = reserveTxt.getText().toString().contains(".");
+                            if(!contains){
+                                amount2 = amount2 + tag.toString();
+                            }
+                        }else{
+                            amount2 = amount2 + tag.toString();
+                        }
                     }
 
-                    reserveTxt.setText(amount2);
-                    reserveTxt.setSelection(amount2.length());
+                        reserveTxt.setText(amount2);
+                        reserveTxt.setSelection(amount2.length());
+
                 }catch (Exception ex){
 
                 }

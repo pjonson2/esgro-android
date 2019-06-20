@@ -76,6 +76,7 @@ public class ProfileActivity  extends FooterActivity {
 
     void idInitialization(){
         edit = findViewById(R.id.editIcon);
+//        edit.setEnabled(false);
         newPost = findViewById(R.id.profileNewPostIcon);
         handshake = findViewById(R.id.profileHandshakeIcon);
         contact = findViewById(R.id.profileContactIcon);
@@ -101,13 +102,18 @@ public class ProfileActivity  extends FooterActivity {
         settings.setOnClickListener(settingsAction);
         profile.setOnClickListener(profileActoin);
         transfer.setOnClickListener(transferAction);
+        edit.setEnabled(false);
     }
 
     void setValues(){
+
          final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         String userData = new LocalData().getlocalData(sharedPref, "userdata");
+        JsonObject jsonObject = new JsonObject();
         try {
             JSONObject jsonObj = new JSONObject(userData);
+
+
             userid = jsonObj.getInt("user_id");
         } catch (JSONException e) {
             e.printStackTrace();
@@ -123,11 +129,26 @@ public class ProfileActivity  extends FooterActivity {
                 userName.setText(response.body().get("username").getAsString());
                 email.setText(response.body().get("email").getAsString());
 
+                jsonObject.addProperty("firstname",response.body().get("firstname").getAsString());
+                jsonObject.addProperty("lastname",response.body().get("lastname").getAsString());
+                jsonObject.addProperty("username",response.body().get("username").getAsString());
+                jsonObject.addProperty("email",response.body().get("email").getAsString());
+                jsonObject.addProperty("mobile",response.body().get("mobile").getAsString());
+                try {
+                    jsonObject.addProperty("profileImgUrl", response.body().get("profileImgUrl").getAsString());
+                }catch (Exception e){
+                    jsonObject.addProperty("profileImgUrl","");
+                }
+                jsonObject.addProperty("user_id",userid);
 
+                new LocalData().setLocalData(sharedPref,jsonObject);
                 mobileNumber = response.body().get("mobile").getAsString();
                 try {
                     imageUrl = response.body().get("profileImgUrl").getAsString();
-
+//                    String u = userData;
+//                    JsonObject data = response.body().getAsJsonObject(u);
+//                    data.addProperty("profileImgUrl",imageUrl);
+//                    new LocalData().setLocalData(sharedPref,data);
                     try {
                         Uri imageUri = Uri.parse(response.body().get("profileImgUrl").getAsString());
                         simpleDraweeView.setController(
@@ -137,11 +158,15 @@ public class ProfileActivity  extends FooterActivity {
                                         .setTapToRetryEnabled(true)
                                         .build());
                         progressBar.setVisibility(View.GONE);
+                        edit.setEnabled(true);
                     }catch(Exception e){
                         progressBar.setVisibility(View.GONE);
+                        edit.setEnabled(true);
                     }
                     progressBar.setVisibility(View.GONE);
+                    edit.setEnabled(true);
                 }catch (UnsupportedOperationException e){
+                    edit.setEnabled(true);
                     progressBar.setVisibility(View.GONE);
                 }
 

@@ -260,7 +260,17 @@
 
         </activity>
 
+        <activity android:name="com.upventrix.esgro.activity.PrivacyActivity"
+            android:screenOrientation="portrait">
 
+
+        </activity>
+
+        <activity android:name="com.upventrix.esgro.activity.NotificationActivity"
+        android:screenOrientation="portrait">
+
+
+        </activity>
 
         <service android:name=".services.MyFirebaseMessagingService">
             <intent-filter>

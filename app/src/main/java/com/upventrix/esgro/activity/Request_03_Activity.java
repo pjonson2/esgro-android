@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -21,13 +22,17 @@ import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.gson.JsonObject;
 import com.rafaelbarbosatec.archivimentview.AchievementView;
 import com.rafaelbarbosatec.archivimentview.iterface.ShowListern;
 import com.upventrix.esgro.R;
+import com.upventrix.esgro.modals.CardDetails;
 import com.upventrix.esgro.modals.Deal;
 import com.upventrix.esgro.modals.User;
 import com.upventrix.esgro.resource.Config;
@@ -64,6 +69,7 @@ public class Request_03_Activity extends AppCompatActivity {
     String holding_days;
     String reservePrice;
     String userId;
+    String imageuRL = "";
 
     DealService service;
 
@@ -294,7 +300,14 @@ public class Request_03_Activity extends AppCompatActivity {
 //        }
 
     public void showOK(final AchievementView achievementView, String title, String body){
-
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String userData = new LocalData().getlocalData(sharedPref, "userdata") + "";
+        try {
+            JSONObject jsonObj = new JSONObject(userData);
+            imageuRL = jsonObj.getString("profileImgUrl");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         achievementView
                 .setTitle(title)
                 .setMensage(body)
@@ -330,12 +343,23 @@ public class Request_03_Activity extends AppCompatActivity {
                         final TextView weLbl = window.findViewById(R.id.weLbl);
                         final TextView esgroLbl = window.findViewById(R.id.esgroLbl);
                         final TextView themLbl = window.findViewById(R.id.themLbl);
+                        final SimpleDraweeView fromImage = window.findViewById(R.id.fromImage);
+                        final SimpleDraweeView toImage = window.findViewById(R.id.toImage);
+                        Uri imageUri = Uri.parse(imageuRL);
+                        fromImage.setController(
+                                Fresco.newDraweeControllerBuilder()
+                                        .setOldController(fromImage.getController())
+                                        .setUri(imageUri)
+                                        .setTapToRetryEnabled(true)
+                                        .build());
+
+
                         esgroLbl.setTextColor(Color.parseColor("#929AAB"));
                         weLbl.setTextColor(Color.parseColor("#7FE239"));
 
-                        weLbl.setText(charging_amount);
+                        weLbl.setText("-"+charging_amount);
                         esgroLbl.setText(charging_amount);
-                        themLbl.setText(charging_amount);
+                        themLbl.setText("+"+charging_amount);
 
                         new Handler().postDelayed(() -> {
 
