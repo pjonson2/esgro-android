@@ -23,7 +23,7 @@ public class HomePageActivity extends AppCompatActivity {
     Button signOut;
     Button export;
     Button cancelAndCompletedBtn;
-    Button disputesBtn;
+    Button historyBtn;
 
     ImageView contactIcon;
     ImageView profileIcon;
@@ -70,6 +70,9 @@ public class HomePageActivity extends AppCompatActivity {
 
         export = findViewById(R.id.exportReqBtn);
         export.setOnClickListener(exportAction);
+
+        historyBtn = findViewById(R.id.historyBtn);
+        historyBtn.setOnClickListener(historyAction);
 
         cancelAndCompletedBtn = findViewById(R.id.cancelAndCompletedBtn);
         cancelAndCompletedBtn.setOnClickListener(cancelAndCompletedAction);
@@ -154,7 +157,12 @@ public class HomePageActivity extends AppCompatActivity {
         }
     };
 
-
+    View.OnClickListener historyAction = new View.OnClickListener() {
+        public void onClick(View v) {
+            Intent mainIntent = new Intent(HomePageActivity.this,NotificationHistory.class);
+            HomePageActivity.this.startActivity(mainIntent);
+        }
+    };
     //  ----------------------- footer icon actions  -------------------------
 
     View.OnClickListener contactUs = new View.OnClickListener() {

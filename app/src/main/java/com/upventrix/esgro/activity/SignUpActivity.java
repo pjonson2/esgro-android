@@ -260,8 +260,8 @@ public class SignUpActivity extends AppCompatActivity {
                     new User(
                     firstName.getText().toString(),
                     lastName.getText().toString(),
-                    userName.getText().toString(),
-                    email.getText().toString(),
+                    userName.getText().toString().toLowerCase(),
+                    email.getText().toString().toLowerCase(),
                     password.getText().toString()
             ));
 
@@ -292,12 +292,22 @@ public class SignUpActivity extends AppCompatActivity {
                                 "Your details successfully saved");
 
                     }else{
-                        progressBar.setVisibility(View.GONE);
-                        continueBtn.setEnabled(true);
-                        new ToastActivity().showFailed(
-                                achievementView,
-                                "Warnings!",
-                                "Your details saving failed");
+//                        if (status.equals("duplicate")){
+//                            progressBar.setVisibility(View.GONE);
+//                            continueBtn.setEnabled(true);
+//                            new ToastActivity().showFailed(
+//                                    achievementView,
+//                                    "Warnings!",
+//                                    "This Email already taken !");
+//
+//                        }else {
+                            progressBar.setVisibility(View.GONE);
+                            continueBtn.setEnabled(true);
+                            new ToastActivity().showFailed(
+                                    achievementView,
+                                    "Warnings!",
+                                    "Your details saving failed");
+//                        }
 
 
                     }

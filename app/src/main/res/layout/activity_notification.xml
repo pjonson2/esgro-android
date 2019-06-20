@@ -40,7 +40,7 @@
         android:fontFamily="@font/open_sans"
         android:maxLines="5"
         android:minLines="3"
-        android:text="Turn on this option if you want to allow other esgro users to find you from searching your email address or mobile number"
+        android:text="Get instant alerts about new requests, replies, disputes and other user activities"
         android:textColor="#929AAB"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
