@@ -94,34 +94,39 @@ public class MainActivity extends AppCompatActivity {
                 }else {
                     System.out.println("user data not null");
 
-                    Call<JsonObject> userCall = service.details(""+userid);
-                    userCall.enqueue(new Callback<JsonObject>() {
-                        @Override
-                        public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                        Call<JsonObject> userCall = service.details("" + userid);
+                        userCall.enqueue(new Callback<JsonObject>() {
+                            @Override
+                            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
 
-                            System.out.println("response "+response.body());
+                                System.out.println("response " + response.body());
+                                try {
+                                    String number = response.body().get("mobile").toString();
+                                    if (number.length() == 4) {
+                                        new LocalData().setTempLocalData(sharedPref, null);
+                                        Intent mainIntent = new Intent(MainActivity.this, MobileVerificationActivity.class);
+                                        MainActivity.this.startActivity(mainIntent);
+                                        MainActivity.this.finish();
 
-                            String number = response.body().get("mobile").toString();
-                            if (number.length()==4){
-                                new LocalData().setTempLocalData(sharedPref,null);
-                                Intent mainIntent = new Intent(MainActivity.this,MobileVerificationActivity.class);
-                                MainActivity.this.startActivity(mainIntent);
-                                MainActivity.this.finish();
-
-                            }else{
-                                new LocalData().setTempLocalData(sharedPref,null);
-                                Intent mainIntent = new Intent(MainActivity.this,DisputeNoHistoryActivity.class);
-                                MainActivity.this.startActivity(mainIntent);
-                                MainActivity.this.finish();
+                                    } else {
+                                        new LocalData().setTempLocalData(sharedPref, null);
+                                        Intent mainIntent = new Intent(MainActivity.this, DisputeNoHistoryActivity.class);
+                                        MainActivity.this.startActivity(mainIntent);
+                                        MainActivity.this.finish();
+                                    }
+                                }catch (NullPointerException e){
+                                    Intent mainIntent = new Intent(MainActivity.this, LaunchedActivity.class);
+                                    MainActivity.this.startActivity(mainIntent);
+                                    MainActivity.this.finish();
+                                }
                             }
 
-                        }
+                            @Override
+                            public void onFailure(Call<JsonObject> call, Throwable t) {
+                                System.out.println("Error " + t.getMessage());
+                            }
+                        });
 
-                        @Override
-                        public void onFailure(Call<JsonObject> call, Throwable t) {
-                            System.out.println("Error "+t.getMessage());
-                        }
-                    });
 
                 }
             }

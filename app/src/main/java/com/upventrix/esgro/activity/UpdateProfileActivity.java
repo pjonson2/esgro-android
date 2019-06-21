@@ -327,7 +327,7 @@ public class UpdateProfileActivity   extends AppCompatActivity {
             }else{
                 phone.setBackground(background);
             }
-
+            System.out.println("contactNUmber  "+contactNUmber+"  ccp.getFullNumberWithPlus()   "+ccp.getFormattedFullNumber());
             if (contactNUmber.equals(ccp.getFullNumberWithPlus())){
                 user.setMobile(ccp.getFullNumberWithPlus());
                 logicNumber = 1;

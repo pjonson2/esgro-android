@@ -17,7 +17,9 @@ import android.support.annotation.RequiresApi;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
 import android.text.InputType;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -26,7 +28,12 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.github.nkzawa.emitter.Emitter;
+import com.github.nkzawa.socketio.client.IO;
+import com.github.nkzawa.socketio.client.Socket;
 import com.google.gson.Gson;
 import com.rafaelbarbosatec.archivimentview.AchievementView;
 import com.rafaelbarbosatec.archivimentview.iterface.ShowListern;
@@ -43,6 +50,8 @@ import com.google.gson.JsonObject;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.net.URISyntaxException;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -70,14 +79,32 @@ public class SignUpActivity extends AppCompatActivity {
     private NotificationService notificationService;
     AchievementView achievementView;
     private String deviceName = "";
+    private static Socket mSocket;
+    String message = "";
+    TextView userNameErrorLbl;
+    TextView emailErrorLbl;
+
+    {
+        try {
+            mSocket = IO.socket("https://esgro-api.herokuapp.com");
+        } catch (URISyntaxException e) {
+        }
+    }
+
     protected void onCreate(Bundle savedInstanceState) {
         onWindowFocusChanged(true);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
+        mSocket.on("username_unique", userName_uniqueResult);
+        mSocket.on("email_unique", email_uniqueResult);
+
+        mSocket.connect();
+
         idInitialization();
         setListeners();
         setValues();
+
         onWindowFocusChanged(true);
         viewById.setOnTouchListener(new View.OnTouchListener(){
 
@@ -151,6 +178,61 @@ public class SignUpActivity extends AppCompatActivity {
         manager.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, InputMethodManager.HIDE_NOT_ALWAYS);
 
     }
+
+    private Emitter.Listener email_uniqueResult = new Emitter.Listener() {
+        @Override
+        public void call(final Object... args) {
+
+            SignUpActivity.this.runOnUiThread(new Runnable() {
+                public void run() {
+                    JSONObject data = (JSONObject) args[0];
+                    try {
+                        boolean jsonObject =   data.getBoolean("isUnique");
+                        System.out.println(jsonObject);
+                        if (jsonObject){
+                            System.out.println("EMAIL FINE");
+                            emailErrorLbl.setVisibility(View.GONE);
+                            continueBtn.setEnabled(true);
+                        }else{
+                            System.out.println("EMAIL isUnique");
+                            emailErrorLbl.setVisibility(View.VISIBLE);
+                            continueBtn.setEnabled(false);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            });
+        }
+    };
+    private Emitter.Listener userName_uniqueResult = new Emitter.Listener() {
+        @Override
+        public void call(final Object... args) {
+
+            SignUpActivity.this.runOnUiThread(new Runnable() {
+                public void run() {
+                    JSONObject data = (JSONObject) args[0];
+                    try {
+                        boolean jsonObject =   data.getBoolean("isUnique");
+                        if (jsonObject){
+                            System.out.println("USERNAME FINE");
+                            userNameErrorLbl.setVisibility(View.GONE);
+                            continueBtn.setEnabled(true);
+                        }else{
+                            System.out.println("USERNAME isUnique");
+                            userNameErrorLbl.setVisibility(View.VISIBLE);
+                            continueBtn.setEnabled(false);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            });
+        }
+    };
+
     @SuppressLint("ResourceType")
     void idInitialization(){
         signUpBackBtn = findViewById(R.id.signUpBackBtn);
@@ -167,13 +249,16 @@ public class SignUpActivity extends AppCompatActivity {
         key = getResources().getString(R.string.userdata);
         notificationService = Config.getInstance().create(NotificationService.class);
         achievementView = findViewById(R.id.achievementView);
+        userNameErrorLbl = findViewById(R.id.userNameErrorLbl);
+        emailErrorLbl = findViewById(R.id.emailErrorLbl);
     }
 
     void setListeners(){
         signUpBackBtn.setOnClickListener(signUpBack);
         continueBtn.setOnClickListener(continueBtnAction);
         progressBar.setVisibility(View.GONE);
-
+        email.addTextChangedListener(emailChange);
+        userName.addTextChangedListener(userNameChange);
     }
 
     void setValues(){
@@ -366,13 +451,23 @@ public class SignUpActivity extends AppCompatActivity {
         }else{
             email.setBackground(background);
         }
-
+        if(userName.getText().toString().length()<5){
+            message = userName.getText().toString();
+            shape.getPaint().setColor(Color.RED);
+            shape.getPaint().setStyle(Paint.Style.STROKE);
+            shape.getPaint().setStrokeWidth(1);
+            userName.setBackground(shape);
+            return false;
+        }else{
+            userName.setBackground(background);
+        }
         if (userName.getText().toString().equals("")){
             progressBar.setVisibility(View.GONE);
             shape.getPaint().setColor(Color.RED);
             shape.getPaint().setStyle(Paint.Style.STROKE);
             shape.getPaint().setStrokeWidth(1);
             userName.setBackground(shape);
+            progressBar.setVisibility(View.GONE);
             return false;
         }else{
             userName.setBackground(background);
@@ -399,6 +494,7 @@ public class SignUpActivity extends AppCompatActivity {
                     "Accept Terms and Conditions");
              return false;
         }
+
         return true;
     }
 
@@ -496,5 +592,67 @@ public class SignUpActivity extends AppCompatActivity {
         });
     }
 
+    TextWatcher emailChange = new TextWatcher() {
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            System.out.println("beforeTextChanged");
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            System.out.println("onTextChanged");
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            System.out.println("afterTextChanged");
+            ShapeDrawable shape = new ShapeDrawable(new RectShape());
+            String searchTxt = email.getText().toString();
+            boolean emailValid = new Validations().isEmailValid(email.getText().toString());
+            if(emailValid){
+                email.setBackground(background);
+                message = email.getText().toString();
+                String payload = "{ \"email\": \"" + searchTxt + "\"}";
+                mSocket.emit("type_email", payload);
+            }else{
+                shape.getPaint().setColor(Color.RED);
+                shape.getPaint().setStyle(Paint.Style.STROKE);
+                shape.getPaint().setStrokeWidth(1);
+                email.setBackground(shape);
+            }
+        }
+    };
+    TextWatcher userNameChange = new TextWatcher() {
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            System.out.println("beforeTextChanged");
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            System.out.println("onTextChanged");
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            System.out.println("afterTextChanged");
+            String searchTxt = userName.getText().toString();
+            ShapeDrawable shape = new ShapeDrawable(new RectShape());
+            if(userName.getText().toString().length()>=5){
+                userName.setBackground(background);
+                message = userName.getText().toString();
+                String payload = "{ \"username\": \"" + searchTxt + "\"}";
+                mSocket.emit("type_username", payload);
+            }else{
+                shape.getPaint().setColor(Color.RED);
+                shape.getPaint().setStyle(Paint.Style.STROKE);
+                shape.getPaint().setStrokeWidth(1);
+                userName.setBackground(shape);
+            }
+
+        }
+    };
 
 }

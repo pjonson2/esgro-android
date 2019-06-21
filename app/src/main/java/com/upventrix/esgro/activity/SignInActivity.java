@@ -16,6 +16,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.rafaelbarbosatec.archivimentview.AchievementView;
 import com.upventrix.esgro.R;
@@ -51,6 +52,8 @@ public class SignInActivity extends AppCompatActivity {
     private String deviceName;
     private NotificationService notificationService;
     AchievementView achievementView;
+
+    TextView forgotLbl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,6 +115,7 @@ public class SignInActivity extends AppCompatActivity {
         service = Config.getInstance().create(UserService.class);
         achievementView = findViewById(R.id.achievementView);
         notificationService = Config.getInstance().create(NotificationService.class);
+        forgotLbl = findViewById(R.id.forgotLbl);
 
     }
 
@@ -119,6 +123,7 @@ public class SignInActivity extends AppCompatActivity {
         back.setOnClickListener(backAction);
         continueBtn.setOnClickListener(continueBtnAction);
         getStart.setOnClickListener(getStartBtnAction);
+        forgotLbl.setOnClickListener(forgotAction);
         progressBar.setVisibility(View.GONE);
     }
 
@@ -146,7 +151,12 @@ public class SignInActivity extends AppCompatActivity {
             SignInActivity.this.startActivity(mainIntent);
         }
     };
-
+    View.OnClickListener forgotAction = new View.OnClickListener() {
+        public void onClick(View v) {
+            Intent mainIntent = new Intent(SignInActivity.this,ForgotPasswordActivity.class);
+            SignInActivity.this.startActivity(mainIntent);
+        }
+    };
     View.OnClickListener continueBtnAction = new View.OnClickListener() {
         public void onClick(View v) {
             progressBar.setVisibility(View.VISIBLE);

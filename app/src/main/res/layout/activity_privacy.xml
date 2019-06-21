@@ -19,24 +19,6 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="18dp"
-        android:layout_height="18dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/icons8_white"
-        android:fontFamily="@font/open_sans"
-        android:textAllCaps="false"
-        android:textSize="12dp"
-        app:layout_constraintBottom_toBottomOf="@+id/view61"
-        app:layout_constraintEnd_toEndOf="@+id/view"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
         android:id="@+id/privacyBackBtn"
         android:layout_width="61dp"
         android:layout_height="24dp"
@@ -48,6 +30,7 @@
         android:fontFamily="@font/open_sans"
         android:text="Back"
         android:textAllCaps="false"
+        android:drawableLeft="@drawable/icons8_white"
         android:textColor="@android:color/white"
         android:textSize="12dp"
         app:layout_constraintBottom_toBottomOf="@+id/view61"

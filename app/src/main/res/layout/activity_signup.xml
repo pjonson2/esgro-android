@@ -61,6 +61,23 @@
         card_view:layout_constraintVertical_bias="0.0">
 
         <TextView
+            android:id="@+id/userNameErrorLbl"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/open_sans"
+            android:text="* This username already taken"
+            android:textColor="@color/red"
+            android:textSize="10dp"
+            android:visibility="invisible"
+            card_view:layout_constraintBottom_toTopOf="@+id/signUpPswrdTxt"
+            card_view:layout_constraintEnd_toEndOf="@+id/signUpEmailTxt"
+            card_view:layout_constraintHorizontal_bias="0.0"
+            card_view:layout_constraintStart_toStartOf="@+id/signUpEmailTxt"
+            card_view:layout_constraintTop_toBottomOf="@+id/signUpUserNameTxt"
+            card_view:layout_constraintVertical_bias="0.0" />
+
+        <TextView
             android:id="@+id/textView11"
             android:layout_width="133dp"
             android:layout_height="20dp"
@@ -285,6 +302,23 @@
             card_view:layout_constraintEnd_toEndOf="@+id/signUpUserNameTxt"
             card_view:layout_constraintStart_toStartOf="@+id/signUpUserNameTxt"
             card_view:layout_constraintTop_toTopOf="@+id/signUpFirstNameTxt" />
+
+        <TextView
+            android:id="@+id/emailErrorLbl"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/open_sans"
+            android:text="* This email already taken"
+            android:textColor="@color/red"
+            android:textSize="10dp"
+            android:visibility="invisible"
+            card_view:layout_constraintBottom_toTopOf="@+id/signUpUserNameTxt"
+            card_view:layout_constraintEnd_toEndOf="@+id/signUpEmailTxt"
+            card_view:layout_constraintHorizontal_bias="0.0"
+            card_view:layout_constraintStart_toStartOf="@+id/signUpEmailTxt"
+            card_view:layout_constraintTop_toBottomOf="@+id/signUpEmailTxt"
+            card_view:layout_constraintVertical_bias="0.0" />
 
     </android.support.constraint.ConstraintLayout>
 

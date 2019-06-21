@@ -108,7 +108,6 @@ public class MobileVerificationActivity  extends AppCompatActivity implements Ad
         ccp.setAutoDetectedCountry(true);
         selectedCountryCode = ccp.getSelectedCountryCode();
         System.out.println("selectedCountryCode  "+selectedCountryCode);
-//        ccp.setNumberAutoFormattingEnabled(true);
         achievementView = findViewById(R.id.achievementView);
         service = Config.getInstance().create(UserService.class);
     }

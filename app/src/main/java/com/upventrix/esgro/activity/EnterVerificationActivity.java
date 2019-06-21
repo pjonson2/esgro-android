@@ -88,6 +88,16 @@ public class EnterVerificationActivity extends AppCompatActivity {
                 return false;
             }
         });
+        nextBtn.setOnTouchListener(new View.OnTouchListener()
+        {
+            @Override
+            public boolean onTouch(View view, MotionEvent ev)
+            {
+                hideKeyboard(view);
+                onWindowFocusChanged(true);
+                return false;
+            }
+        });
 
         new CountDownTimer(120000, 1000) { // adjust the milli seconds here
 
