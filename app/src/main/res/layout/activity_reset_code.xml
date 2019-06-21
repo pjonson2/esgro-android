@@ -6,6 +6,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <com.rafaelbarbosatec.archivimentview.AchievementView
+        android:id="@+id/achievementView"
+        android:layout_width="376dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="411dp"
+        app:ac_color="@color/colorPrimaryDark"
+        app:ac_icon="@drawable/chat"
+        app:ac_text_color="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.01"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/resetNxtBtn"
+        tools:ignore="MissingConstraints">
+
+    </com.rafaelbarbosatec.archivimentview.AchievementView>
+
     <Button
         android:id="@+id/resetNxtBtn"
         android:layout_width="105dp"
@@ -26,7 +44,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText8"
-        app:layout_constraintVertical_bias="0.059" />
+        app:layout_constraintVertical_bias="0.336" />
 
     <TextView
         android:id="@+id/textView147"
@@ -73,10 +91,10 @@
 
     <TextView
         android:id="@+id/textView148"
-        android:layout_width="294dp"
-        android:layout_height="71dp"
+        android:layout_width="312dp"
+        android:layout_height="59dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/open_sans"
         android:maxLines="4"
@@ -84,7 +102,7 @@
         android:text="A text message with the verification code was just send to *******826"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView44" />
 
@@ -93,14 +111,49 @@
         android:layout_width="129dp"
         android:layout_height="56dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="10dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
         android:fontFamily="@font/open_sans_semibold"
         android:inputType="number"
-        android:maxLength="5"
+        android:maxLength="4"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView148" />
+
+    <Button
+        android:id="@+id/resendBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@android:color/transparent"
+        android:text="Resend Code"
+        android:textAllCaps="false"
+        android:textColor="@color/lightGreen"
+        app:layout_constraintBottom_toTopOf="@+id/resetNxtBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.38"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText8" />
+
+    <TextView
+        android:id="@+id/countTimeLbl"
+        android:layout_width="109dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center_vertical"
+        android:text="00:00"
+        app:layout_constraintBottom_toBottomOf="@+id/resendBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/resendBtn"
+        app:layout_constraintTop_toTopOf="@+id/resendBtn"
+        app:layout_constraintVertical_bias="0.0" />
+
 </android.support.constraint.ConstraintLayout>

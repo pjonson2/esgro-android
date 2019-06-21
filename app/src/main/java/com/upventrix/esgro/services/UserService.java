@@ -2,6 +2,8 @@ package com.upventrix.esgro.services;
 
 import com.upventrix.esgro.modals.Image;
 import com.upventrix.esgro.modals.Password;
+import com.upventrix.esgro.modals.PasswordReset;
+import com.upventrix.esgro.modals.UniqueEmail;
 import com.upventrix.esgro.modals.User;
 import com.upventrix.esgro.modals.UserToken;
 import com.google.gson.JsonObject;
@@ -41,4 +43,13 @@ public interface UserService {
 
     @POST("user/changekey")
     Call<JsonObject> changeKey(@Body Password password);
+
+    @POST("user/forgot")
+    Call<JsonObject> forgot(@Body UniqueEmail user);
+
+    @POST("user/validate-pin")
+    Call<JsonObject> verifyPin(@Body User user);
+
+    @POST("user/reset-forgotten")
+    Call<JsonObject> resetPw(@Body PasswordReset passwordReset);
 }

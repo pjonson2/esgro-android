@@ -16,6 +16,8 @@ import android.support.annotation.RequiresApi;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -91,8 +93,67 @@ public class CheckPasswordActivity extends AppCompatActivity {
     void setListeners(){
         back.setOnClickListener(backAction);
         update.setOnClickListener(updatePswrdAction);
+        newPassword.addTextChangedListener(newPwChange);
+        confirmpassword.addTextChangedListener(confirmPwChange);
     }
+    TextWatcher newPwChange = new TextWatcher() {
 
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            System.out.println("beforeTextChanged");
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            System.out.println("onTextChanged");
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            System.out.println("afterTextChanged");
+            String searchTxt = newPassword.getText().toString();
+            ShapeDrawable shape = new ShapeDrawable(new RectShape());
+            if(searchTxt.toString().length()>=4){
+                newPassword.setBackground(background);
+                update.setEnabled(true);
+            }else{
+                shape.getPaint().setColor(Color.RED);
+                shape.getPaint().setStyle(Paint.Style.STROKE);
+                shape.getPaint().setStrokeWidth(1);
+                newPassword.setBackground(shape);
+                update.setEnabled(false);
+            }
+        }
+    };
+    TextWatcher confirmPwChange = new TextWatcher() {
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            System.out.println("beforeTextChanged");
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            System.out.println("onTextChanged");
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            System.out.println("afterTextChanged");
+            String searchTxt = confirmpassword.getText().toString();
+            ShapeDrawable shape = new ShapeDrawable(new RectShape());
+            if(searchTxt.toString().length()>=4){
+                confirmpassword.setBackground(background);
+                update.setEnabled(true);
+            }else{
+                shape.getPaint().setColor(Color.RED);
+                shape.getPaint().setStyle(Paint.Style.STROKE);
+                shape.getPaint().setStrokeWidth(1);
+                confirmpassword.setBackground(shape);
+                update.setEnabled(false);
+            }
+        }
+    };
     void setValues(){
         background = confirmpassword.getBackground();
     }

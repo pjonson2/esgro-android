@@ -259,6 +259,9 @@ public class SignUpActivity extends AppCompatActivity {
         progressBar.setVisibility(View.GONE);
         email.addTextChangedListener(emailChange);
         userName.addTextChangedListener(userNameChange);
+
+        password.addTextChangedListener(passwordChange);
+        passwordReType.addTextChangedListener(reTypePasswordChange);
     }
 
     void setValues(){
@@ -452,6 +455,7 @@ public class SignUpActivity extends AppCompatActivity {
             email.setBackground(background);
         }
         if(userName.getText().toString().length()<5){
+            progressBar.setVisibility(View.GONE);
             message = userName.getText().toString();
             shape.getPaint().setColor(Color.RED);
             shape.getPaint().setStyle(Paint.Style.STROKE);
@@ -485,7 +489,25 @@ public class SignUpActivity extends AppCompatActivity {
             passwordReType.setBackground(background);
             password.setBackground(background);
         }
+        if(passwordReType.toString().length()>=4){
+            passwordReType.setBackground(background);
+        }else{
+            shape.getPaint().setColor(Color.RED);
+            shape.getPaint().setStyle(Paint.Style.STROKE);
+            shape.getPaint().setStrokeWidth(1);
+            passwordReType.setBackground(shape);
+            return false;
+        }
 
+        if(password.toString().length()>=4){
+            password.setBackground(background);
+        }else{
+            shape.getPaint().setColor(Color.RED);
+            shape.getPaint().setStyle(Paint.Style.STROKE);
+            shape.getPaint().setStrokeWidth(1);
+            password.setBackground(shape);
+            return false;
+        }
         if (!signUpCheckBox.isChecked()){
             progressBar.setVisibility(View.GONE);
             new ToastActivity().showFailed(
@@ -652,6 +674,69 @@ public class SignUpActivity extends AppCompatActivity {
                 userName.setBackground(shape);
             }
 
+        }
+    };
+
+
+    TextWatcher passwordChange = new TextWatcher() {
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            System.out.println("beforeTextChanged");
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            System.out.println("onTextChanged");
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            System.out.println("afterTextChanged");
+            String searchTxt = password.getText().toString();
+            ShapeDrawable shape = new ShapeDrawable(new RectShape());
+            if(searchTxt.toString().length()>=4){
+                password.setBackground(background);
+                continueBtn.setEnabled(true);
+            }else{
+                shape.getPaint().setColor(Color.RED);
+                shape.getPaint().setStyle(Paint.Style.STROKE);
+                shape.getPaint().setStrokeWidth(1);
+                password.setBackground(shape);
+                continueBtn.setEnabled(false);
+            }
+
+        }
+    };
+
+
+    TextWatcher reTypePasswordChange = new TextWatcher() {
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            System.out.println("beforeTextChanged");
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            System.out.println("onTextChanged");
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            System.out.println("afterTextChanged");
+            String searchTxt = passwordReType.getText().toString();
+            ShapeDrawable shape = new ShapeDrawable(new RectShape());
+            if(searchTxt.toString().length()>=4){
+                passwordReType.setBackground(background);
+                continueBtn.setEnabled(true);
+            }else{
+                shape.getPaint().setColor(Color.RED);
+                shape.getPaint().setStyle(Paint.Style.STROKE);
+                shape.getPaint().setStrokeWidth(1);
+                passwordReType.setBackground(shape);
+                continueBtn.setEnabled(false);
+            }
         }
     };
 

@@ -202,6 +202,8 @@ public class AddCardActivity extends AppCompatActivity {
             }
             final boolean b1 = cardToSave.validateNumber();
             final boolean b2 = cardToSave.validateCVC();
+            final boolean b3 = cardToSave.validateExpiryDate();
+            final boolean b4 = cardToSave.validateExpMonth();
 
             if(zipCOde.equals("")){
                 new  ToastActivity().showFailed(
@@ -215,7 +217,7 @@ public class AddCardActivity extends AppCompatActivity {
                 make_default = true;
             }
 
-            if (b1 && b2) {
+            if (b1 && b2 && b3 && b4) {
                 addcrd.setEnabled(false);
                 System.out.println("Card Valid ");
                 cardToSave.setAddressZip(zipCOde);
