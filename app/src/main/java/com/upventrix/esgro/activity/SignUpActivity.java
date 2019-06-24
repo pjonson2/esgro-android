@@ -1,6 +1,7 @@
 package com.upventrix.esgro.activity;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -20,9 +21,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -83,7 +86,8 @@ public class SignUpActivity extends AppCompatActivity {
     String message = "";
     TextView userNameErrorLbl;
     TextView emailErrorLbl;
-
+    TextView termsTxt;
+    Dialog dialog;
     {
         try {
             mSocket = IO.socket("https://esgro-api.herokuapp.com");
@@ -95,7 +99,6 @@ public class SignUpActivity extends AppCompatActivity {
         onWindowFocusChanged(true);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
-
         mSocket.on("username_unique", userName_uniqueResult);
         mSocket.on("email_unique", email_uniqueResult);
 
@@ -251,6 +254,7 @@ public class SignUpActivity extends AppCompatActivity {
         achievementView = findViewById(R.id.achievementView);
         userNameErrorLbl = findViewById(R.id.userNameErrorLbl);
         emailErrorLbl = findViewById(R.id.emailErrorLbl);
+        termsTxt = findViewById(R.id.termsTxt);
     }
 
     void setListeners(){
@@ -259,13 +263,14 @@ public class SignUpActivity extends AppCompatActivity {
         progressBar.setVisibility(View.GONE);
         email.addTextChangedListener(emailChange);
         userName.addTextChangedListener(userNameChange);
-
+        termsTxt.setOnClickListener(termsAction);
         password.addTextChangedListener(passwordChange);
         passwordReType.addTextChangedListener(reTypePasswordChange);
     }
 
     void setValues(){
         background = email.getBackground();
+        dialog = new Dialog(this);
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         String temp_userdata = new LocalData().getlocalData(sharedPref, "temp_userdata")+"";
@@ -314,6 +319,31 @@ public class SignUpActivity extends AppCompatActivity {
             Intent mainIntent = new Intent(SignUpActivity.this,LaunchedActivity.class);
             SignUpActivity.this.startActivity(mainIntent);
         }
+    };
+
+    View.OnClickListener termsAction = new View.OnClickListener() {
+        public void onClick(View v) {
+
+
+            dialog.setContentView(R.layout.activity_terms_and_conditions);
+            dialog.show();
+
+            Window window = dialog.getWindow();
+            Button button = window.findViewById(R.id.closeBtn);
+            button.setOnClickListener(closeAction);
+            TextView termstxt = window.findViewById(R.id.termsAndConditionsTxt);
+            termstxt.setMovementMethod(new ScrollingMovementMethod());
+
+
+//            Window
+
+        }
+
+        View.OnClickListener closeAction = new View.OnClickListener() {
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        };
     };
 
     View.OnClickListener continueBtnAction = new View.OnClickListener() {

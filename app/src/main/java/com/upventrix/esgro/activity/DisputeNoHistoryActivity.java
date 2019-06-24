@@ -176,10 +176,13 @@ public class DisputeNoHistoryActivity extends AppCompatActivity implements Swipe
                         JSONArray deals = data.getJSONArray("deals");
 
                         if (deals.length() == 0){
+                            emptyView.setVisibility(View.VISIBLE);
                             String text = "No Result!";
                             int duration = Toast.LENGTH_SHORT;
                             Toast toast = Toast.makeText(DisputeNoHistoryActivity.this, text, duration);
                             toast.show();
+                        }else{
+                            emptyView.setVisibility(View.GONE);
                         }
                             disputeList.clear();
                             System.out.println("deals   ............. "+deals);

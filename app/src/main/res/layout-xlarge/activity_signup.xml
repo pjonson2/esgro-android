@@ -33,7 +33,7 @@
         card_view:layout_constraintTop_toBottomOf="@+id/textView3">
 
         <TextView
-            android:id="@+id/textView11"
+            android:id="@+id/termsTxt"
             android:layout_width="177dp"
             android:layout_height="33dp"
             android:layout_marginStart="16dp"

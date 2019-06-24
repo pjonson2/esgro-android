@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -405,7 +406,6 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
             dialog.show();
             Window window = dialog.getWindow();
             Button close = window.findViewById(R.id.feedbackClose);
-
             loadNotifications(window);
             close.setOnClickListener(closeNotificationUI);
 
@@ -583,6 +583,8 @@ public class DisputeDetails_No_History_Activity extends AppCompatActivity {
         public View getView(int position, View convertView, ViewGroup parent) {
             convertView = getLayoutInflater().inflate(R.layout.activity_notification_card,null);
 
+            TextView notificationTxt = convertView.findViewById(R.id.notificationTxt);
+            notificationTxt.setMovementMethod(new ScrollingMovementMethod());
             return convertView;
         }
     }

@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import com.upventrix.esgro.R;
 
@@ -28,6 +29,8 @@ public class ExportActivity extends AppCompatActivity {
     RadioButton exportAllTimeRadio;
     RadioButton exportAllRequestRadio;
     RadioButton exportAllRequestStatusRadio;
+
+    RadioGroup requestGroup;
 
     Button exportSendBtn;
     Button back;
@@ -62,6 +65,8 @@ public class ExportActivity extends AppCompatActivity {
         exportAllTimeRadio = findViewById(R.id.exportAllTimeRadio);
         exportSendBtn = findViewById(R.id.exportSendBtn);
 
+        requestGroup = findViewById(R.id.requestGroup);
+
 
     }
 
@@ -73,6 +78,8 @@ public class ExportActivity extends AppCompatActivity {
         newPostIcon.setOnClickListener(newAction);
         settings.setOnClickListener(home);
         exportSendBtn.setOnClickListener(send);
+        exportAllRequestStatusRadio.setOnClickListener(requestGroupAction);
+        exportAllRequestRadio.setOnClickListener(requestAllGroupAction);
     }
 
     void setValues(){
@@ -97,6 +104,23 @@ public class ExportActivity extends AppCompatActivity {
 
             Intent mainIntent = new Intent(ExportActivity.this,HomePageActivity.class);
             ExportActivity.this.startActivity(mainIntent);
+        }
+    };
+
+    View.OnClickListener requestGroupAction = new View.OnClickListener() {
+        public void onClick(View v) {
+            exportIncomingCheck.setEnabled(true);
+            exportOutgoingChack.setEnabled(true);
+            exportCompletedRadio.setEnabled(true);
+            exportRejectedCheck.setEnabled(true);
+        }
+    };
+    View.OnClickListener requestAllGroupAction = new View.OnClickListener() {
+        public void onClick(View v) {
+            exportIncomingCheck.setEnabled(false);
+            exportOutgoingChack.setEnabled(false);
+            exportCompletedRadio.setEnabled(false);
+            exportRejectedCheck.setEnabled(false);
         }
     };
     View.OnClickListener contactUs = new View.OnClickListener() {

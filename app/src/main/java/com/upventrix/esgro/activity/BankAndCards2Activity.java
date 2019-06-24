@@ -3,6 +3,7 @@ package com.upventrix.esgro.activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -11,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -26,12 +28,15 @@ import com.google.gson.annotations.SerializedName;
 import com.upventrix.esgro.R;
 import com.upventrix.esgro.modals.Bank;
 import com.upventrix.esgro.modals.CardDetails;
+import com.upventrix.esgro.modals.DefaultBank;
+import com.upventrix.esgro.modals.DefaultCard;
 import com.upventrix.esgro.modals.UniqueID;
 import com.upventrix.esgro.modals.User;
 import com.upventrix.esgro.resource.Config;
 import com.upventrix.esgro.resource.LocalData;
 import com.upventrix.esgro.services.BankService;
 import com.upventrix.esgro.services.CardService;
+import com.upventrix.esgro.services.UserService;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -73,6 +78,7 @@ public class BankAndCards2Activity extends AppCompatActivity {
     private CardService cardService;
     private BankService bankService;
     ConstraintLayout constraintLayout;
+    private UserService userService;
 
     @SerializedName("user_id")
     String uid;
@@ -97,7 +103,48 @@ public class BankAndCards2Activity extends AppCompatActivity {
 
         BankAndCards2Activity.CustomAdaper customAdaper = new BankAndCards2Activity.CustomAdaper();
         listView.setAdapter(customAdaper);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position,
+                                    long id) {
 
+//                TextView textView = view.findViewById(R.id.disputeUserName);
+//                String name = textView.getText().toString();
+//
+//                SimpleDraweeView imageView = view.findViewById(R.id.userImg);
+//                imageView.buildDrawingCache();
+//
+//                TextView disputePriceTxt = view.findViewById(R.id.disputePriceTxt);
+//                String disputePrice = disputePriceTxt.getText().toString();
+//
+//                TextView disputeDaysTxt = view.findViewById(R.id.disputeDaysTxt);
+//                String disputeDays = disputeDaysTxt.getText().toString();
+//
+//                TextView disputeDescriptionTxt = view.findViewById(R.id.disputeDiscription);
+//                String disputeDescription = disputeDescriptionTxt.getText().toString();
+//
+//                TextView deal_id = view.findViewById(R.id.dealID);
+//                String dealID = deal_id.getText().toString();
+//
+//                TextView reservePriceTxt = view.findViewById(R.id.reservePriceTxt);
+//                String reservePrice = reservePriceTxt.getText().toString();
+//
+//                Bitmap bitmap = imageView.getDrawingCache();
+//
+//                Intent intent = new Intent(DisputeNoHistoryActivity.this, DisputeDetails_No_History_Activity.class);
+//
+//                intent.putExtra("disputeListName", name);
+//                intent.putExtra("BitmapImage", bitmap);
+//                intent.putExtra("disputeListPrice", disputePrice);
+//                intent.putExtra("disputeListDays", disputeDays);
+//                intent.putExtra("disputeListDescription", disputeDescription);
+//                intent.putExtra("deal_id",dealID);
+//                intent.putExtra("reserve_cost",reservePrice);
+//
+//                startActivity(intent);
+
+            }
+        });
 
         setListeners();
         setValues();
@@ -118,6 +165,7 @@ public class BankAndCards2Activity extends AppCompatActivity {
         setDefaultBtn = findViewById(R.id.setDefaultBtn);
         cardService = Config.getInstance().create(CardService.class);
         bankService = Config.getInstance().create(BankService.class);
+        userService = Config.getInstance().create(UserService.class);
         constraintLayout = findViewById(R.id.emptyView);
     }
 
@@ -164,8 +212,10 @@ public class BankAndCards2Activity extends AppCompatActivity {
 
                     System.out.println("CardList Size ......... "+cardsList.size());
                     if (cardsList.size()==0){
-
+                        constraintLayout.setVisibility(View.VISIBLE);
                         return;
+                    }else{
+                        constraintLayout.setVisibility(View.GONE);
                     }
                     for (JsonElement value :cardsList) {
 
@@ -337,16 +387,84 @@ public class BankAndCards2Activity extends AppCompatActivity {
             Window window = dialog.getWindow();
             allList = window.findViewById(R.id.dynamicBankList);
             setBankList();
+            allList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position,
+                                        long id) {
+                     TextView idTXt = view.findViewById(R.id.idTXt);
+                     String text = idTXt.getText().toString();
 
-//
-//            BankAndCards2Activity.Bank_Card_Adapter customAdaper = new BankAndCards2Activity.Bank_Card_Adapter();
-//            allList.setAdapter(customAdaper);
+                     if(!text.equals("")){
+                         try {
+                             int bankID = Integer.parseInt(text);
+                             callDefaultApi(text,"default-bank");
+                         }catch (NumberFormatException e){
+                             callDefaultApi(text,"default-card");
+                         }
+                     }else{
+                         System.out.println("Empty");
+                     }
+
+                }
+            });
+
+
             dialog.setCanceledOnTouchOutside(false);
             dialog.show();
             Button close = window.findViewById(R.id.closeBtn);
             close.setOnClickListener(closeOfAlert);
         }
     };
+
+    private void callDefaultApi(String id,String type) {
+        final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String userData = new LocalData().getlocalData(sharedPref, "userdata");
+        int userid = 0;
+        try {
+            JSONObject jsonObj = new JSONObject(userData);
+            userid = jsonObj.getInt("user_id");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        if(type.equals("default-card")){
+            Call<JsonObject> jsonObjectCall = userService.defaultCard(new DefaultCard(id, userid));
+            jsonObjectCall.enqueue(new Callback<JsonObject>() {
+                @Override
+                public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                    boolean status = response.body().get("status").getAsBoolean();
+                    if(status){
+                        dialog.dismiss();
+                        System.out.println("default-card saved");
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<JsonObject> call, Throwable t) {
+
+                }
+            });
+        }else{
+            Call<JsonObject> jsonObjectCall = userService.defaultBank(new DefaultBank(Integer.parseInt(id), userid));
+            jsonObjectCall.enqueue(new Callback<JsonObject>() {
+                @Override
+                public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                    boolean status = response.body().get("status").getAsBoolean();
+                    if(status){
+                        dialog.dismiss();
+                        System.out.println("default-bank saved");
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<JsonObject> call, Throwable t) {
+
+                }
+            });
+        }
+
+    }
+
     View.OnClickListener closeOfAlert = new View.OnClickListener() {
         public void onClick(View v) {
             dialog.dismiss();

@@ -1,5 +1,7 @@
 package com.upventrix.esgro.services;
 
+import com.upventrix.esgro.modals.DefaultBank;
+import com.upventrix.esgro.modals.DefaultCard;
 import com.upventrix.esgro.modals.Image;
 import com.upventrix.esgro.modals.Password;
 import com.upventrix.esgro.modals.PasswordReset;
@@ -52,4 +54,10 @@ public interface UserService {
 
     @POST("user/reset-forgotten")
     Call<JsonObject> resetPw(@Body PasswordReset passwordReset);
+
+    @POST("user/default-card")
+    Call<JsonObject> defaultCard(@Body DefaultCard card);
+
+    @POST("user/default-bank")
+    Call<JsonObject> defaultBank(@Body DefaultBank bank);
 }

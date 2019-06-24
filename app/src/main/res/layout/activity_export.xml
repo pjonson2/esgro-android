@@ -180,46 +180,6 @@
         app:layout_constraintTop_toBottomOf="@+id/view29"
         app:layout_constraintVertical_bias="0.0" />
 
-    <RadioButton
-        android:id="@+id/exportAllTimeRadio"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:fontFamily="@font/open_sans_semibold"
-        android:text="All Time"
-        android:textColor="#929AAB"
-        android:textSize="12dp"
-        app:layout_constraintBottom_toBottomOf="@+id/view30"
-        app:layout_constraintEnd_toEndOf="@+id/view30"
-        app:layout_constraintHorizontal_bias="0.01"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view30"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <RadioButton
-        android:id="@+id/exportMonthsRadio"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:fontFamily="@font/open_sans_semibold"
-        android:text="Months"
-        android:textColor="#393E46"
-        android:textSize="12dp"
-        app:layout_constraintBottom_toBottomOf="@+id/view30"
-        app:layout_constraintEnd_toEndOf="@+id/view30"
-        app:layout_constraintHorizontal_bias="0.022"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view30"
-        app:layout_constraintVertical_bias="0.86" />
-
     <TextView
         android:id="@+id/changePasswordBtn5"
         android:layout_width="wrap_content"
@@ -281,12 +241,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:clickable="true"
-        android:fontFamily="@font/open_sans_semibold"
+        android:enabled="false"
 
+        android:fontFamily="@font/open_sans_semibold"
         android:text="Outgoing"
         android:textColor="#929AAB"
         app:layout_constraintBottom_toBottomOf="@+id/view30"
@@ -301,12 +260,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:clickable="true"
-        android:fontFamily="@font/open_sans_semibold"
+        android:enabled="false"
 
+        android:fontFamily="@font/open_sans_semibold"
         android:text="Completed  "
         android:textColor="#929AAB"
         app:layout_constraintBottom_toBottomOf="@+id/view30"
@@ -321,12 +279,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:clickable="true"
-        android:fontFamily="@font/open_sans_semibold"
+        android:enabled="false"
 
+        android:fontFamily="@font/open_sans_semibold"
         android:text="Rejected  "
         android:textColor="#929AAB"
         app:layout_constraintBottom_toBottomOf="@+id/view30"
@@ -336,25 +293,6 @@
         app:layout_constraintTop_toTopOf="@+id/view30"
         app:layout_constraintVertical_bias="0.64" />
 
-    <RadioButton
-        android:id="@+id/exportAllRequestStatusRadio"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:fontFamily="@font/open_sans_semibold"
-        android:text="All requests with status"
-        android:textColor="#929AAB"
-        android:textSize="12dp"
-        app:layout_constraintBottom_toBottomOf="@+id/view30"
-        app:layout_constraintEnd_toEndOf="@+id/view30"
-        app:layout_constraintHorizontal_bias="0.03"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view30"
-        app:layout_constraintVertical_bias="0.225" />
 
     <View
         android:id="@+id/view33"
@@ -401,36 +339,15 @@
         app:layout_constraintVertical_bias="0.115"
         tools:ignore="MissingConstraints" />
 
-    <RadioButton
-        android:id="@+id/exportAllRequestRadio"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:checked="true"
-        android:fontFamily="@font/open_sans_semibold"
-        android:text="All requests"
-        android:textColor="#393E46"
-        android:textSize="12dp"
-        app:layout_constraintBottom_toBottomOf="@+id/view30"
-        app:layout_constraintEnd_toEndOf="@+id/view30"
-        app:layout_constraintHorizontal_bias="0.024"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view30"
-        app:layout_constraintVertical_bias="0.107" />
 
     <CheckBox
         android:id="@+id/exportIncomingCheck"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:clickable="true"
+        android:enabled="false"
         android:fontFamily="@font/open_sans_semibold"
         android:text="Incoming  "
         android:textColor="#929AAB"
@@ -465,5 +382,97 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view30"
         app:layout_constraintVertical_bias="0.821" />
+
+    <RadioGroup
+        android:id="@+id/requestGroup"
+        android:layout_width="344dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/achievementView"
+        app:layout_constraintEnd_toEndOf="@+id/view33"
+        app:layout_constraintHorizontal_bias="0.135"
+        app:layout_constraintStart_toStartOf="@+id/view30"
+        app:layout_constraintTop_toBottomOf="@+id/changePasswordBtn3"
+        app:layout_constraintVertical_bias="0.0">
+
+        <RadioButton
+            android:id="@+id/exportAllRequestRadio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:checked="true"
+            android:fontFamily="@font/open_sans_semibold"
+            android:text="All requests"
+            android:textColor="#393E46"
+            android:textSize="12dp"
+            app:layout_constraintBottom_toBottomOf="@+id/view30"
+            app:layout_constraintEnd_toEndOf="@+id/view30"
+            app:layout_constraintHorizontal_bias="0.024"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/view30"
+            app:layout_constraintVertical_bias="0.107" />
+
+        <RadioButton
+            android:id="@+id/exportAllRequestStatusRadio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:fontFamily="@font/open_sans_semibold"
+            android:text="All requests with status"
+            android:textColor="#929AAB"
+            android:textSize="12dp"
+            app:layout_constraintBottom_toBottomOf="@+id/view30"
+            app:layout_constraintEnd_toEndOf="@+id/view30"
+            app:layout_constraintHorizontal_bias="0.03"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/view30"
+            app:layout_constraintVertical_bias="0.225" />
+    </RadioGroup>
+
+    <RadioGroup
+        android:layout_width="266dp"
+        android:layout_height="78dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/exportSendBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.13"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/changePasswordBtn5"
+        app:layout_constraintVertical_bias="0.0">
+
+        <RadioButton
+            android:id="@+id/exportAllTimeRadio"
+            android:layout_width="117dp"
+            android:layout_height="wrap_content"
+             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/open_sans_semibold"
+            android:text="All Time"
+            android:textColor="#929AAB"
+            android:textSize="12dp" />
+
+        <RadioButton
+            android:id="@+id/exportMonthsRadio"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+             android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:fontFamily="@font/open_sans_semibold"
+            android:text="Months"
+            android:textColor="#393E46"
+            android:textSize="12dp" />
+    </RadioGroup>
 
 </android.support.constraint.ConstraintLayout>
