@@ -122,6 +122,7 @@ public class SignUpActivity extends AppCompatActivity {
         });
         constraintLayout = findViewById(R.id.activity_signup);
         constraintLayout2 = findViewById(R.id.constraintLayout2);
+
         signUpCheckBox = findViewById(R.id.signUpCheckBox);
 
         constraintLayout.setOnTouchListener(new View.OnTouchListener()

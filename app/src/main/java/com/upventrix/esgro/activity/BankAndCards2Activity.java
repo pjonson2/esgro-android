@@ -321,11 +321,12 @@ public class BankAndCards2Activity extends AppCompatActivity {
             Intent mainIntent = new Intent(BankAndCards2Activity.this, AddCardActivity.class);
             mainIntent.putExtra("identifier","BankAndCards2Activity");
             BankAndCards2Activity.this.startActivity(mainIntent);
+
         }
     };
     View.OnClickListener plusBank = new View.OnClickListener() {
         public void onClick(View v) {
-            Intent mainIntent = new Intent(BankAndCards2Activity.this, LinkBankAccountActivity.class);
+            Intent mainIntent = new Intent(BankAndCards2Activity.this, PlaidActivity.class);
             mainIntent.putExtra("identifier","BankAndCards2Activity");
             BankAndCards2Activity.this.startActivity(mainIntent);
         }

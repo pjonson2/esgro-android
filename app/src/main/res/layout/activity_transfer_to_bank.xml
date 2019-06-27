@@ -232,7 +232,6 @@
         android:layout_width="60dp"
         android:layout_height="20dp"
         android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:background="@android:color/transparent"
         android:drawableLeft="@drawable/icons8_white"
         android:fontFamily="@font/open_sans"
@@ -241,9 +240,9 @@
         android:textColor="@android:color/white"
         android:textSize="12dp"
         app:layout_constraintBottom_toBottomOf="@+id/textView116"
-        app:layout_constraintEnd_toEndOf="@+id/view29"
-        app:layout_constraintHorizontal_bias="0.026"
-        app:layout_constraintStart_toStartOf="@+id/view29"
+        app:layout_constraintEnd_toEndOf="@+id/view66"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/view66"
         app:layout_constraintTop_toTopOf="@+id/textView116"
         app:layout_constraintVertical_bias="0.46" />
 

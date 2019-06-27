@@ -140,7 +140,7 @@ public class TransferToBankActivity extends AppCompatActivity {
     View.OnClickListener toLinkBank = new View.OnClickListener() {
         public void onClick(View v) {
 
-            Intent mainIntent = new Intent(TransferToBankActivity.this, LinkBankAccountActivity.class);
+            Intent mainIntent = new Intent(TransferToBankActivity.this, PlaidActivity.class);
             mainIntent.putExtra("identifier","TransferToBankActivity");
             TransferToBankActivity.this.startActivity(mainIntent);
         }
